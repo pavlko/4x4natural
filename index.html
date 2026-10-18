@@ -59,6 +59,11 @@ button:focus-visible{outline:2px solid var(--senal);outline-offset:2px}
 #zoomlbl{position:absolute;left:50%;top:calc(50% + min(19vw,30vh));transform:translateX(-50%);font-size:18px;font-weight:600;text-shadow:0 1px 3px #000}
 #shareBtn{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 112px);z-index:3;display:none;background:#23402F;color:#F3EBDD;border:2px solid #D9B65E;border-radius:22px;padding:8px 18px;font-size:18px;font-weight:600;box-shadow:0 3px 12px rgba(0,0,0,.35)}
 body.photo #shareBtn.show{display:block}
+#shareMenu{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 160px);z-index:4;display:none;gap:6px;background:rgba(20,16,12,.92);padding:8px;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,.4)}
+#shareMenu.show{display:flex}
+body:not(.photo) #shareMenu{display:none!important}
+#shareMenu button{background:#23402F;color:#F3EBDD;border:1.5px solid #D9B65E;border-radius:4px;padding:8px 12px;font-size:17px;font-weight:600}
+#shareMenu #smX{background:none;border-color:transparent;color:#CDBFA6}
 #photoCtl{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 18px);display:none;align-items:center;gap:18px;z-index:2}
 body.photo #photoCtl{display:flex}
 #shoot{width:80px;height:80px;border-radius:50%;border:5px solid #fff;background:var(--senal);font-size:16px;font-weight:700;color:#1f160e;touch-action:none}
@@ -198,6 +203,7 @@ body.menu #touch{display:none!important}
 </div>
 <div id="finder"><div class="vig"></div><div class="frame"><i></i><i></i><i></i><i></i></div><div class="dot"></div><div id="zoomlbl">1×</div></div>
 <button id="shareBtn" type="button">↗ Compartir foto</button>
+<div id="shareMenu" role="menu"><button id="smCopy" type="button">📋 Copiar foto</button><button id="smMail" type="button">✉️ Mail</button><button id="smWA" type="button">💬 WhatsApp</button><button id="smX" type="button" aria-label="Cerrar">✕</button></div>
 <div id="photoCtl"><button class="zb" id="zOut" aria-label="Alejar">−</button><button id="shoot" aria-label="Sacar foto">FOTO</button><button class="zb" id="zIn" aria-label="Acercar">+</button></div>
 <div id="touch">
   <div class="tb" id="tL">◀</div><div class="tb" id="tR">▶</div>
@@ -369,7 +375,7 @@ const SPECIES=[
  {id:'aguila',name:'Águila mora',sci:'Geranoaetus melanoleucus',more:'Abre las alas cerca de 2 m y tiene la cola corta en forma de cuña. Come cuises, liebres y víboras.',size:2.0,hab:'air',spots:[[-80,-215,52,82]],wander:0,walk:9,run:9,shy:null,
   hint:'Muy arriba sobre la sierra. Usá mucho zoom.',
   note:'Vuela muy alto aprovechando el viento que choca contra los cerros, y desde ahí ve presas a cientos de metros. Hace el nido en riscos y árboles altos.'},
- {id:'puma',name:'Puma',sci:'Puma concolor',secret:true,high:true,more:'Puede medir más de 2 m con la cola. Caza de noche y al amanecer, y recorre territorios enormes: decenas de kilómetros.',size:1.2,hab:'land',minH:26,rest:8,spots:[[-160,-240]],wander:60,walk:1.3,run:8,shy:{d:85,v:-1},
+ {id:'puma',name:'Puma',sci:'Puma concolor',secret:true,high:true,more:'Puede medir más de 2 m con la cola. Caza de noche y al amanecer, y recorre territorios enormes: decenas de kilómetros.',size:1.2,hab:'land',minH:22,rest:8,spots:[[-160,-225]],wander:75,walk:1.3,run:8,shy:{d:85,v:-1},
   hint:'',
   note:'El gran felino de América. Anda por las partes más altas y solitarias de la sierra, donde puede vigilar sin ser visto. Es tan tímido que casi nadie lo ve: en Uruguay se lo creía desaparecido, y solo muy de vez en cuando aparecen rastros o avistamientos en sierras lejanas.'}
 ];
@@ -603,14 +609,25 @@ const TREES={
  for(let i=0;i<7;i++){const a=i/7*6.283+rnd()*.6,ca=Math.cos(a),sa=Math.sin(a),w=.07,lean=.22+rnd()*.3,h=.65+rnd()*.5;
   pos.push(sa*w,0,-ca*w,-sa*w,0,ca*w,ca*lean,h,sa*lean, -sa*w,0,ca*w,sa*w,0,-ca*w,ca*lean,h,sa*lean);for(let q=0;q<6;q++)nor.push(ca*.2,1,sa*.2);}
  const gg=new THREE.BufferGeometry();gg.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));gg.setAttribute('normal',new THREE.Float32BufferAttribute(nor,3));gg.normalizeNormals();
- const MAX=26000;
+ const MAX=32000;
  const grass=new THREE.InstancedMesh(gg,M(0xffffff,1),MAX);let n=0;
- for(let t=0;t<90000&&n<MAX;t++){const x=(rnd()*2-1)*(HALF-12),z=(rnd()*2-1)*(HALF-12),h=H(x,z);if(h<-.25)continue;const sl=slopeAt(x,z);if(sl>.75)continue;
-  const wet=h<1.6&&!(z<-122&&z>-272);let p=wet?.95:.34*(1-ss(.3,.75,sl));if(Math.hypot(x-START.x,z-START.z)<7||roadD(x,z)<2||(x<CAVE_X+2&&x>CAVE_X-5&&Math.abs(z-CAVE_Z)<5.5)||sandAt(x,z)>.35||mudAt(x,z)>.45||(x<-65&&x>-84&&Math.abs(z+185)<5.8))p=0;if(rnd()>p)continue;
+ for(let t=0;t<110000&&n<MAX;t++){const x=(rnd()*2-1)*(HALF-12),z=(rnd()*2-1)*(HALF-12),h=H(x,z);if(h<-.25)continue;const sl=slopeAt(x,z);if(sl>.75)continue;
+  const wet=h<1.6&&!(z<-122&&z>-272);let p=wet?.95:.42*(1-ss(.3,.75,sl));if(Math.hypot(x-START.x,z-START.z)<7||roadD(x,z)<2||(x<CAVE_X+2&&x>CAVE_X-5&&Math.abs(z-CAVE_Z)<5.5)||sandAt(x,z)>.35||mudAt(x,z)>.45||(x<-65&&x>-84&&Math.abs(z+185)<5.8))p=0;if(rnd()>p)continue;
   const s=wet?1.4+rnd()*1.3:.6+rnd()*.8;dummy.position.set(x,h-.05,z);dummy.rotation.set(0,rnd()*6.28,0);dummy.scale.set(s,s*(wet?1.5:.8),s);dummy.updateMatrix();grass.setMatrixAt(n,dummy.matrix);
   if(wet)tmpC.setRGB(.6+rnd()*.12,.56+rnd()*.08,.3+rnd()*.06);else{const d=fbm(x*.018,z*.018,3),v=.9+rnd()*.25;tmpC.setRGB(mix(.42,.78,ss(.38,.66,d))*v,mix(.52,.66,ss(.38,.66,d))*v,mix(.22,.36,ss(.38,.66,d))*v);}
   grass.setColorAt(n,tmpC);n++;}
  grass.count=n;grass.receiveShadow=true;grass.userData.grass=true;grass.instanceMatrix.needsUpdate=true;grass.instanceColor.needsUpdate=true;scene.add(grass);
+ // matas de pastizal: manojos altos y dorados del campo natural
+ {const P2=[],N2=[];for(let i=0;i<12;i++){const a=i/12*6.283+rnd()*.5,ca=Math.cos(a),sa=Math.sin(a),w=.06,lean=.3+rnd()*.35,h=.9+rnd()*.6;
+   P2.push(sa*w,0,-ca*w,-sa*w,0,ca*w,ca*lean,h,sa*lean,-sa*w,0,ca*w,sa*w,0,-ca*w,ca*lean,h,sa*lean);for(let q=0;q<6;q++)N2.push(ca*.2,1,sa*.2);}
+  const g2=new THREE.BufferGeometry();g2.setAttribute('position',new THREE.Float32BufferAttribute(P2,3));g2.setAttribute('normal',new THREE.Float32BufferAttribute(N2,3));g2.normalizeNormals();
+  const MX=7000,m=new THREE.InstancedMesh(g2,M(0xffffff,1),MX);let k=0;
+  for(let t=0;t<60000&&k<MX;t++){const x=(rnd()*2-1)*(HALF-14),z=(rnd()*2-1)*(HALF-14),h=H(x,z);if(h<1.6||slopeAt(x,z)>.55)continue;
+   const open=fbm(x*.012+70,z*.012,3);if(rnd()>.12+ss(.45,.7,open)*.5)continue;
+   if(roadD(x,z)<3||Math.hypot(x-START.x,z-START.z)<9||sandAt(x,z)>.2||mudAt(x,z)>.2||hitObs(x,z,1.2)||(x<CAVE_X+2&&x>CAVE_X-5&&Math.abs(z-CAVE_Z)<5.5))continue;
+   const s=.8+rnd()*.9;dummy.position.set(x,h-.05,z);dummy.rotation.set(0,rnd()*6.28,0);dummy.scale.set(s,s*(.8+rnd()*.5),s);dummy.updateMatrix();m.setMatrixAt(k,dummy.matrix);
+   const v=.85+rnd()*.25;tmpC.setRGB((.74+rnd()*.08)*v,(.64+rnd()*.06)*v,(.36+rnd()*.06)*v);m.setColorAt(k,tmpC);k++;}
+  m.count=k;m.receiveShadow=true;m.userData.grass=true;m.instanceMatrix.needsUpdate=true;m.instanceColor.needsUpdate=true;scene.add(m);}
 }
 
 // ===== LUGARES CONSTRUIDOS =====
@@ -905,7 +922,7 @@ const BUILD={
   part(SPH,w,0,1.08,.52,.07,.09,.05,g);
   for(const[x,z]of[[.14,-.38],[-.14,-.38],[.14,.38],[-.14,.38]])L.push(legP(g,d,x,.84,z,.84,.04));}
 };
-function validFor(sp,x,z){const h=H(x,z);switch(sp.hab){case 'swim':return h<-0.35&&Math.hypot((x-LAG2.x)/34,(z-LAG2.z)/24)<.95;case 'water':return h<-0.9;case 'wade':return h>-0.42&&h<1.0;case 'amph':return h<0.7&&lagoonR(x,z)<50;default:return h>(sp.minH||0.25)&&slopeAt(x,z)<0.7;}}
+function validFor(sp,x,z){const h=H(x,z);switch(sp.hab){case 'swim':return h<-0.35&&Math.hypot((x-LAG2.x)/34,(z-LAG2.z)/24)<.95;case 'water':return h<-0.9;case 'wade':return h>-0.42&&h<1.0;case 'amph':return h<0.7&&lagoonR(x,z)<50;default:return h>(sp.minH||0.25)&&slopeAt(x,z)<0.7&&(!sp.minH||(Math.abs(x)<HALF-75&&Math.abs(z)<HALF-75));}}
 function yFor(sp,x,z){const h=H(x,z);if(sp.hab==='swim')return -0.04;if(sp.hab==='water')return -0.2;if(sp.hab==='amph')return Math.max(h,-0.16);if(sp.hab==='wade')return Math.max(h,-0.42)-0.02;return h;}
 function spawn(sp,x,z){
  if(sp.hab!=='perch'&&sp.hab!=='air'&&!validFor(sp,x,z)){let ok=false;for(let r=1;r<30&&!ok;r+=1)for(let k=0;k<12&&!ok;k++){const a=k/12*6.28,tx=x+Math.cos(a)*r,tz=z+Math.sin(a)*r;if(validFor(sp,tx,tz)){x=tx;z=tz;ok=true;}}}
@@ -951,7 +968,7 @@ function updateAnimals(dt,time){
   if(a.state==='flee'){a.t-=dt;a.tx=a.x+(a.x-car.x)/Math.max(dc,.1)*10;a.tz=a.z+(a.z-car.z)/Math.max(dc,.1)*10;
    if(Math.hypot(a.tx-a.home[0],a.tz-a.home[1])>sp.wander*3){a.tx=a.home[0];a.tz=a.home[1];}speed=sp.run;if(a.t<=0){a.state='idle';a.t=2;}}
   else if(a.state==='walk'){speed=sp.walk;if(Math.hypot(a.tx-a.x,a.tz-a.z)<.4){a.state='idle';a.t=sp.rest?sp.rest+rnd()*14:2+rnd()*5;}}
-  else{a.t-=dt;if(a.t<=0){let bh=-1e9;for(let q=0;q<(sp.high?8:1);q++){const ang=rnd()*6.28,r=rnd()*sp.wander,tx=a.home[0]+Math.cos(ang)*r,tz=a.home[1]+Math.sin(ang)*r,hh=sp.high?(slopeAt(tx,tz)<.65?H(tx,tz):-99):0;if(hh>bh){bh=hh;a.tx=tx;a.tz=tz;}}a.state='walk';}}
+  else{a.t-=dt;if(a.t<=0){let bh=-1e9;for(let q=0;q<(sp.high?8:1);q++){const ang=rnd()*6.28,r=sp.high?8+rnd()*28:rnd()*sp.wander,cx=sp.high?a.x:a.home[0],cz=sp.high?a.z:a.home[1],tx=cx+Math.cos(ang)*r,tz=cz+Math.sin(ang)*r,hh=sp.high?((validFor(sp,tx,tz)&&Math.hypot(tx-a.home[0],tz-a.home[1])<sp.wander)?H(tx,tz)+rnd()*7:-99):0;if(hh>bh){bh=hh;a.tx=tx;a.tz=tz;}}a.state='walk';}}
   if(speed>0){
    const dx=a.tx-a.x,dz=a.tz-a.z,hd=Math.atan2(-dx,-dz);let df=hd-a.h;df=Math.atan2(Math.sin(df),Math.cos(df));a.h+=df*Math.min(1,dt*(a.state==='flee'?6:2.5));
    const nx=a.x-Math.sin(a.h)*speed*dt,nz=a.z-Math.cos(a.h)*speed*dt;
@@ -1024,7 +1041,7 @@ addEventListener('keydown',e=>{if(!started)return;keys[e.code]=true;
  if(e.code.startsWith('Arrow'))e.preventDefault();});
 addEventListener('keyup',e=>{keys[e.code]=false;});
 addEventListener('blur',()=>{for(const c in keys)keys[c]=false;});
-$('#bCam').onclick=()=>togglePhoto();$('#bBook').onclick=()=>toggleBook();$('#bLow').onclick=toggleLow;$('#bSnd').onclick=()=>toggleMute();$('#bClose').onclick=()=>toggleBook(false);$('#shoot').onclick=()=>shoot();$('#shareBtn').onclick=()=>doShare();$('#bMap').onclick=()=>toggleMap();$('#mapwrap').onclick=()=>toggleMap();$('#bMapClose').onclick=()=>toggleMap(false);$('#bReset').onclick=()=>resetCar();$('#bigmap').addEventListener('click',e=>{if(e.target.id==='bigmap')toggleMap(false);});
+$('#bCam').onclick=()=>togglePhoto();$('#bBook').onclick=()=>toggleBook();$('#bLow').onclick=toggleLow;$('#bSnd').onclick=()=>toggleMute();$('#bClose').onclick=()=>toggleBook(false);$('#shoot').onclick=()=>shoot();$('#shareBtn').onclick=()=>doShare();$('#smCopy').onclick=shareCopy;$('#smMail').onclick=shareMail;$('#smWA').onclick=shareWA;$('#smX').onclick=()=>$('#shareMenu').classList.remove('show');$('#bMap').onclick=()=>toggleMap();$('#mapwrap').onclick=()=>toggleMap();$('#bMapClose').onclick=()=>toggleMap(false);$('#bReset').onclick=()=>resetCar();$('#bigmap').addEventListener('click',e=>{if(e.target.id==='bigmap')toggleMap(false);});
 // arrastrar para mirar
 let lastP=null;const cv=$('#c');const PTR=new Map();let pinch=null;
 function pinchDist(){const p=[...PTR.values()];return Math.hypot(p[0][0]-p[1][0],p[0][1]-p[1][1]);}
@@ -1112,9 +1129,13 @@ function makeShare(label){const src=renderer.domElement,cw=src.width*.8,ch=cw/1.
  lastShare={label,blob:null,canvas:c};const ls=lastShare;try{c.toBlob(b=>{ls.blob=b;},'image/jpeg',.88);}catch(e){}
  const btn=$('#shareBtn');btn.classList.add('show');clearTimeout(shareTimer);shareTimer=setTimeout(()=>btn.classList.remove('show'),7000);}
 async function doShare(){if(!lastShare)return;const text=(lastShare.label?lastShare.label+': ':'')+'lo fotografié en 4x4 Natural, un juego de Insight Reality. ¿Te animás? '+GAME_URL;
- try{if(!lastShare.blob&&lastShare.canvas)lastShare.blob=await new Promise(r=>lastShare.canvas.toBlob(r,'image/jpeg',.88));if(lastShare.blob){const file=new File([lastShare.blob],'4x4-natural.jpg',{type:'image/jpeg'});if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],text});return;}}
-  if(navigator.share){await navigator.share({text});return;}}catch(e){if(e&&e.name==='AbortError')return;}
- window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank','noopener');}
+ try{if(!lastShare.blob&&lastShare.canvas)lastShare.blob=await new Promise(r=>lastShare.canvas.toBlob(r,'image/jpeg',.88));if(lastShare.blob){const file=new File([lastShare.blob],'4x4-natural.jpg',{type:'image/jpeg'});if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],text});return;}}}catch(e){if(e&&e.name==='AbortError')return;}
+ $('#shareMenu').classList.add('show');}
+async function shareCopy(){const sm=$('#shareMenu');try{const png=await new Promise(r=>lastShare.canvas.toBlob(r,'image/png'));await navigator.clipboard.write([new ClipboardItem({'image/png':png})]);toast('📋 Foto copiada: pegala donde quieras (Ctrl+V)');}
+ catch(e){try{await navigator.clipboard.writeText(shareText());toast('📋 Se copió el texto con el link (la foto no se pudo copiar acá)');}catch(e2){toast('No se pudo copiar en este navegador');}}sm.classList.remove('show');}
+function shareText(){return (lastShare&&lastShare.label?lastShare.label+': ':'')+'lo fotografié en 4x4 Natural, un juego de Insight Reality. ¿Te animás? '+GAME_URL;}
+function shareMail(){window.open('mailto:?subject='+encodeURIComponent('Mirá lo que fotografié en 4x4 Natural')+'&body='+encodeURIComponent(shareText()),'_blank');$('#shareMenu').classList.remove('show');}
+function shareWA(){window.open('https://wa.me/?text='+encodeURIComponent(shareText()),'_blank','noopener');$('#shareMenu').classList.remove('show');}
 function shoot(){shotLabel='';shootCore();if(photo)makeShare(shotLabel);}
 function shootCore(){if(photo&&nestInShot()){shotLabel='Nido del tero';SAVE.nest={img:grabThumb()};save();shutterSound();chime();toast('🥚 ¡Encontraste el nido del tero! El tero grita en un lado y pone los huevos en otro.','place');return;}
 
@@ -1211,9 +1232,12 @@ function updateFly(a,dt,time){const F=a.fl;F.t+=dt;let x,z,y,done=false,roll=0;c
   if(a.sp.flier==='loops'){a.home=[a.x,a.z];}else if(!a.goHome)a.returnT=25+rnd()*20;}}
 // ===== NIDO DEL TERO =====
 const NEST={};{let nx=102,nz=126;for(let r=0;r<40;r+=2){let ok=false;for(let k=0;k<12;k++){const a=k/12*6.28,x=102+Math.cos(a)*r,z=126+Math.sin(a)*r;if(H(x,z)>.6&&slopeAt(x,z)<.2&&!hitObs(x,z,3)&&roadD(x,z)>6&&mudAt(x,z)<.1&&sandAt(x,z)<.1){nx=x;nz=z;ok=true;break;}}if(ok)break;}
- NEST.x=nx;NEST.z=nz;const g=new THREE.Group();g.position.set(nx,H(nx,nz)-.02,nz);scene.add(g);
- const ring=new THREE.Mesh(new THREE.TorusGeometry(.26,.07,5,14),M(0x9c8a5a,1));ring.rotation.x=Math.PI/2;ring.scale.z=.6;g.add(ring);
- const egg=M(0x77724a,.8);for(const[ex,ez,ry] of[[.06,.03,.4],[-.06,.05,-.6],[.0,-.07,1.4],[.08,-.05,2.2]]){const e=part(SPH,egg,ex,.05,ez,.045,.04,.065,g);e.rotation.y=ry;}
+ NEST.x=nx;NEST.z=nz;const g=new THREE.Group();g.position.set(nx,H(nx,nz)-.05,nz);scene.add(g);
+ {const P=[],Nn=[];for(let b=0;b<9;b++){const a=b/9*6.283+rnd()*.6,ca=Math.cos(a),sa=Math.sin(a),w=.05,lean=.25+rnd()*.3,hh=.6+rnd()*.45;P.push(sa*w,0,-ca*w,-sa*w,0,ca*w,ca*lean,hh,sa*lean,-sa*w,0,ca*w,sa*w,0,-ca*w,ca*lean,hh,sa*lean);for(let q=0;q<6;q++)Nn.push(ca*.2,1,sa*.2);}
+  const tg=new THREE.BufferGeometry();tg.setAttribute('position',new THREE.Float32BufferAttribute(P,3));tg.setAttribute('normal',new THREE.Float32BufferAttribute(Nn,3));tg.normalizeNormals();
+  for(let i=0;i<7;i++){const a=i/7*6.28+rnd()*.5,r=.3+rnd()*.3,t=new THREE.Mesh(tg,M(new THREE.Color().setRGB(.7+rnd()*.08,.62+rnd()*.06,.36),1,{emissive:0x2a2414}));t.position.set(Math.cos(a)*r,0,Math.sin(a)*r);t.rotation.y=rnd()*6.28;t.scale.setScalar(.9+rnd()*.5);g.add(t);}}
+ const ring=new THREE.Mesh(new THREE.TorusGeometry(.26,.07,5,14),M(0xa08d58,1));ring.rotation.x=Math.PI/2;ring.scale.z=.6;g.add(ring);
+ const egg=M(0x6c6640,.85);for(const[ex,ez,ry] of[[.06,.03,.4],[-.06,.05,-.6],[.0,-.07,1.4],[.08,-.05,2.2]]){const e=part(SPH,egg,ex,.05,ez,.045,.04,.065,g);e.rotation.y=ry;}
  for(let i=0;i<10;i++)part(SPH,M(0x2a2418,1),(rnd()-.5)*.2,.07,(rnd()-.5)*.2,.008,.006,.008,g);}
 function burrowInShot(){const p=new THREE.Vector3(BURROW.x,H(BURROW.x,BURROW.z)+.2,BURROW.z),dist=camera.position.distanceTo(p);if(dist>20)return false;const v=p.clone().project(camera);if(v.z>1||Math.abs(v.x)>.4||Math.abs(v.y)>.4)return false;return 1.2/(2*dist*Math.tan(THREE.MathUtils.degToRad(camera.fov/2)))>.03;}
 function nestInShot(){if(SAVE.nest)return false;const p=new THREE.Vector3(NEST.x,H(NEST.x,NEST.z)+.08,NEST.z),dist=camera.position.distanceTo(p);if(dist>24)return false;
