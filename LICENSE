@@ -1,0 +1,29 @@
+4x4 Natural
+Copyright (c) 2026 Insight Reality. Todos los derechos reservados.
+
+Este repositorio es público para poder consultarlo y para publicar el juego,
+pero NO es software libre ni de código abierto.
+
+Se permite jugar al juego publicado y ver este repositorio.
+No se permite copiar, modificar, distribuir, publicar, vender ni reutilizar,
+en todo o en parte, el código, los gráficos, los textos, el diseño ni el nombre
+"4x4 Natural", sin autorización previa y por escrito de Insight Reality.
+
+Componentes de terceros (con sus propias licencias):
+- Three.js (licencia MIT, (c) 2010-2021 three.js authors), cargado desde cdnjs.
+- Tipografías Barlow Condensed y Newsreader (SIL Open Font License 1.1),
+  cargadas desde Google Fonts.
+
+-----------------------------------------------------------------------------
+
+4x4 Natural
+Copyright (c) 2026 Insight Reality. All rights reserved.
+
+This repository is public for reference and to host the game, but it is NOT
+free or open-source software. You may play the published game and view this
+repository. You may not copy, modify, distribute, publish, sell or reuse, in
+whole or in part, the code, graphics, texts, design or the name "4x4 Natural"
+without prior written permission from Insight Reality.
+
+Third-party components keep their own licenses: Three.js (MIT) and the
+Barlow Condensed and Newsreader typefaces (SIL Open Font License 1.1).

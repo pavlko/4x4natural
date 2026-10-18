@@ -17,3 +17,6 @@ Pensado para chicos de 7 a 12 años: naturaleza uruguaya, un cuaderno de campo c
 
 ## Cómo se hizo
 Idea, diseño y dirección: Insight Reality. Programado conversando con Claude (Anthropic).
+
+## Licencia
+© 2026 Insight Reality. Todos los derechos reservados. El repositorio es público para consulta y para publicar el juego, pero no es código abierto: ver `LICENSE`.
