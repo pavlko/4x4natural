@@ -40,6 +40,11 @@ button:focus-visible{outline:2px solid var(--senal);outline-offset:2px}
 .tool{background:var(--panel);border:0;border-radius:3px;padding:8px 12px;font-size:17px;font-weight:600;min-width:52px;display:flex;flex-direction:column;align-items:center;gap:1px}
 .tool small{font-size:12px;font-weight:500;color:var(--sub)}
 .tool.on{background:var(--senal);color:#1f160e}
+#diveBtn{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 70px);display:none;background:#1f5f6e;color:#eaf8fb;border:2px solid #9fe0ec;border-radius:26px;padding:10px 22px;font-size:22px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+#diveBtn.show{display:block}body.photo #diveBtn{display:none!important}
+#air{position:fixed;left:12px;top:calc(env(safe-area-inset-top,0px) + 96px);display:none;align-items:center;gap:8px;background:rgba(10,30,36,.7);padding:5px 12px;border-radius:14px;color:#dff6fa;font-size:16px;font-weight:600;z-index:3}
+#air div{width:160px;height:10px;border-radius:5px;background:rgba(255,255,255,.2);overflow:hidden}#air i{display:block;height:100%;width:100%;background:#7fd0e0}
+body.diving #air{display:flex}
 .tool.on small{color:#3a2512}
 #mapwrap{position:absolute;right:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);width:168px;height:168px;border-radius:50%;overflow:hidden;border:3px solid rgba(34,27,20,.85);box-shadow:0 2px 10px rgba(0,0,0,.35);background:#2b241b}
 #minimap{width:100%;height:100%;display:block}
@@ -119,6 +124,16 @@ body.photo #trail{bottom:auto;top:calc(env(safe-area-inset-top,0px) + 118px)}
 .card .fly{position:relative;margin-top:8px}.card .fly img{width:100%;aspect-ratio:8/5;object-fit:cover;display:block;border-radius:1px}.card .fly span{position:absolute;left:6px;bottom:6px;background:rgba(35,64,47,.85);color:#f3ebdd;font-size:13px;padding:1px 7px;border-radius:2px}
 .card .fly.empty{border:1.5px dashed #b7a37c;color:#8a7756;font-size:14px;padding:8px;text-align:center;border-radius:2px}
 .logros{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}.logro{display:flex;gap:10px;align-items:center;border:1.5px dashed #9d8961;border-radius:3px;padding:8px 10px;color:#9d8961}.logro b{font-size:28px;min-width:34px;text-align:center}.logro h5{margin:0;font-size:18px}.logro p{margin:2px 0 0;font-family:Newsreader,serif;font-size:14.5px}.logro.on{border:1.5px solid #b88a2a;background:#e9d9a8;color:var(--tinta)}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;padding:0 0 0 2px}
+.tabs button{background:rgba(216,198,160,.16);border:0;color:var(--kraft);padding:7px 13px;border-radius:4px 4px 0 0;font-size:17px;font-weight:600}
+.tabs button.on{background:var(--kraft);color:var(--tinta)}
+.tp{display:none}.tp.on{display:block}
+.pstat{display:grid;grid-template-columns:auto 1fr auto;gap:8px 12px;align-items:center;font-size:19px;margin:6px 0 14px}
+.pstat .bar{height:12px;border-radius:6px;background:#cbb88f;overflow:hidden}.pstat .bar i{display:block;height:100%;background:#23402F}
+.ptip{font-family:Newsreader,serif;font-size:16.5px;line-height:1.4;margin:8px 0}
+.dives{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:16px}
+.dive{border:1.5px dashed #9d8961;border-radius:3px;padding:8px 10px;background:#e6d8b6}.dive.on{border-style:solid;border-color:#1f5f6e}
+.dive h5{margin:0;font-size:18px}.dive p{margin:4px 0 0;font-family:Newsreader,serif;font-style:italic;font-size:15px}
 .card .more{font-size:14.5px;color:#4d4030}
 .cover h2{margin:0;font-size:30px;font-weight:700;color:var(--kraft)}
 .cover h2 em{font-family:Newsreader,serif;font-weight:400;font-size:20px;color:#a9bba3;margin-left:10px}
@@ -208,6 +223,7 @@ body.menu #touch{display:none!important}
   </div>
   <div id="toasts"></div>
   <div id="trail"></div>
+  <button id="diveBtn" type="button">🤿 Zambullirse</button>
   <div id="race"></div>
   <div id="gauge"><div><div id="spd">0</div><div class="u">km/h</div></div><div id="gear">4H</div></div>
   <div id="mapwrap"><canvas id="minimap" width="200" height="200"></canvas></div>
@@ -221,6 +237,7 @@ body.menu #touch{display:none!important}
   <div class="tb" id="tU">▲</div><div class="tb" id="tD">▼</div>
 </div>
 <div id="flash"></div>
+<div id="air" aria-label="Aire"><span>Aire</span><div><i id="airFill"></i></div></div>
 <div id="party" role="dialog" aria-label="Cuaderno completo"><canvas id="confetti"></canvas><div class="partybox"><div class="partyemoji">🦩🦫🦉🐊</div><h2>¡Completaste el cuaderno!</h2><p id="partySub"></p><p class="partynote">Encontraste a todos los bichos de la sierra y el humedal, y conociste todos sus lugares. ¿Te animás a buscar los logros escondidos?</p><button id="partyOk">¡Seguir explorando!</button></div></div>
 <div id="help" role="dialog" aria-label="Ayuda"><div class="cover"><header><h2>Ayuda<em>Cómo se juega</em></h2><button class="close" id="helpClose">Cerrar</button></header><div class="pages helpbody">
 <h4>Manejar</h4><dl><dt>W A S D o flechas</dt><dd>Acelerar, frenar o ir marcha atrás, y doblar. El acelerador sube de a poco: con toques cortos vas despacio.</dd><dt>Q</dt><dd>Tracción baja (4L): más fuerza para subir laderas, pero menos velocidad.</dd><dt>R o ↺</dt><dd>Destrabar: corre la camioneta a un lugar libre cercano.</dd><dt>Teléfono o tablet</dt><dd>Flechas en pantalla.</dd></dl>
@@ -228,7 +245,8 @@ body.menu #touch{display:none!important}
 <h4>Fotos</h4><dl><dt>F o 📷</dt><dd>Entrar o salir del modo cámara (la camioneta queda frenada).</dd><dt>Flechas o arrastrar</dt><dd>Apuntar.</dd><dt>W/S, rueda, pellizco o + y −</dt><dd>Zoom. Los bichos lejanos o tímidos necesitan zoom.</dd><dt>Espacio o FOTO</dt><dd>Sacar la foto. Sirve para bichos y para lugares; la última foto reemplaza a la anterior.</dd></dl>
 <h4>Más</h4><dl><dt>N o 📓</dt><dd>Cuaderno de campo con pistas, fotos e información.</dd><dt>M o 🗺️</dt><dd>Mapa entero. Con todo completo se desbloquea el teletransporte.</dd><dt>Esc o ☰</dt><dd>Volver a este menú sin perder dónde estabas.</dd><dt>Cueva</dt><dd>Al llegar a la boca te bajás a pie: caminás con ▲▼ o W/S y girás con ◀▶.</dd></dl>
 <h4>Fotos especiales</h4><p>Algunos bichos tienen una segunda foto escondida: la garza y las espátulas volando, los charabones (pichones de ñandú), la cueva de la mulita y el nido del tero.</p>
-<h4>Logros especiales</h4><p>🏁 Ganarle una carrera al ñandú (pasá rápido a su lado y te desafía). 🥚 Encontrar el nido del tero. ★ Fotografiar un bicho secreto que no figura en el cuaderno.</p>
+<h4>Bajo el agua</h4><p>Primero hay que encontrar la máscara del viejo naturalista. Con ella, en ciertos lugares de agua honda aparece el botón 🤿 Zambullirse. Abajo nadás con ▲▼ o W/S (hacia donde mirás) y girás con ◀▶ o arrastrando. Subí a la superficie a respirar antes de que se termine el aire.</p>
+<h4>Logros especiales</h4><p>🏁 Ganarle una carrera al ñandú (pasá rápido a su lado y te desafía). 🥚 Encontrar el nido del tero. ★ Fotografiar un bicho secreto que no figura en el cuaderno. 🐟 Fotografiar los cuatro peces bajo el agua.</p>
 <h4>Jugadores</h4><p>Cada jugador guarda sus fotos, logros y el lugar donde dejó la camioneta. Se elige o se crea en el menú de inicio.</p>
 <h4 id="howWeMade">Cómo lo hicimos</h4><p>Idea, diseño y dirección: Insight Reality. El juego se programó conversando con Claude, una inteligencia artificial de Anthropic, pidiendo cambios y probándolos una y otra vez. Todo se dibuja en el navegador con Three.js: el paisaje, los animales, las plantas y los sonidos se generan con código, sin fotos ni grabaciones.</p>
 </div></div></div>
@@ -236,7 +254,14 @@ body.menu #touch{display:none!important}
 <div id="book" role="dialog" aria-label="Cuaderno de campo">
   <div class="cover">
     <header><h2>Cuaderno de campo<em>Sierras y humedal del este</em></h2><button class="close" id="bClose">Cerrar</button></header>
-    <div class="pages"><div class="grid" id="cards"></div><div class="places"><h4 id="plH">Lugares</h4><div class="grid" id="plList"></div></div><div class="places"><h4>Hallazgos</h4><div id="hzList"></div></div><div class="places"><h4 id="logH">Logros especiales</h4><div id="logros" class="logros"></div></div><p class="bookcredit" id="raceInfo"></p><p class="bookcredit">4x4 Natural · un juego de Insight Reality</p></div>
+    <nav class="tabs" id="bookTabs"><button data-t="portada" class="on">Portada</button><button data-t="bichos">Bichos</button><button data-t="agua">Bajo el agua</button><button data-t="lugares">Lugares</button><button data-t="hallazgos">Hallazgos</button><button data-t="logros">Logros</button></nav>
+<div class="pages"><section class="tp on" data-t="portada"><div id="portada"></div></section>
+<section class="tp" data-t="bichos"><div class="grid" id="cards"></div></section>
+<section class="tp" data-t="agua"><div id="agua"></div></section>
+<section class="tp" data-t="lugares"><h4 id="plH">Lugares</h4><div class="grid" id="plList"></div></section>
+<section class="tp" data-t="hallazgos"><div id="hzList"></div></section>
+<section class="tp" data-t="logros"><h4 id="logH">Logros especiales</h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
+<p class="bookcredit">4x4 Natural · un juego de Insight Reality</p></div>
   </div>
 </div>
 <div id="start">
@@ -805,7 +830,7 @@ function updateFalls(dt){fallTex.offset.y+=dt*1.7;fallTex2.offset.y+=dt*2.4;
  const d=Math.hypot(car.x-FALLS.x,car.z-FALLS.z);
  if(d<170){for(let i=0;i<2;i++)emit(FALLS.x+(Math.random()-.5)*7,.3,FALLS.z+1.2+Math.random()*1.5,(Math.random()-.5)*2.5,1.2+Math.random()*2.2,.8+Math.random()*2,C_WATER,1.5,1.1);}
  if(AC){if(!fallSnd){try{const s=AC.createBufferSource();s.buffer=nzBuf();s.loop=true;const f=AC.createBiquadFilter();f.type='lowpass';f.frequency.value=900;const g=AC.createGain();g.gain.value=0;s.connect(f).connect(g).connect(AC.destination);s.start();fallSnd=g;}catch(e){}}
-  if(fallSnd)fallSnd.gain.setTargetAtTime(muted?0:Math.pow(Math.max(0,1-d/150),2)*.3,AC.currentTime,.3);}}
+  if(fallSnd)fallSnd.gain.setTargetAtTime(muted?0:Math.pow(Math.max(0,1-d/150),2)*(DIVE.on?.12:.3),AC.currentTime,.3);}}
 // cueva de la mulita
 const mulitaHome=SPECIES.find(s=>s.id==='mulita').spots[0];
 const BURROW={x:mulitaHome[0]+1.2,z:mulitaHome[1]};
@@ -1004,10 +1029,19 @@ let lastMsg={};function toastOnce(key,msg,gap=4){const t=performance.now()/1000;
 function refreshTally(){const nf=GOAL.filter(s=>SAVE.found[s.id]).length,ns=SPECIES.filter(s=>s.secret&&SAVE.found[s.id]).length;$('#tBichos').textContent=nf+' / '+GOAL.length+' bichos'+(ns?' ★':'');$('#tLugares').textContent=SAVE.places.length+' / '+PLACES.length+' lugares';}
 function links(sp){const q=encodeURIComponent(sp.sci),qn=encodeURIComponent(sp.name+' '+sp.sci);
  return `<a href="https://www.inaturalist.org/observations?taxon_name=${q}&photos=true" target="_blank" rel="noopener">Fotos reales</a><a href="https://es.wikipedia.org/w/index.php?search=${q}" target="_blank" rel="noopener">Leer más</a><a href="https://www.youtube.com/results?search_query=${qn}" target="_blank" rel="noopener">Videos</a>`;}
-const SPECIALS={garza:'Falta una foto en vuelo',espatula:'Falta una foto en vuelo',nandu:'Falta una foto especial',mulita:'Falta una foto especial',tero:'Falta una foto especial'};
+const SPECIALS={garza:'Falta una foto en vuelo',espatula:'Falta una foto en vuelo',nandu:'Falta una foto especial',mulita:'Falta una foto especial',tero:'Falta una foto especial',lobito:'Falta una foto especial',carpincho:'Falta una foto especial',yacare:'Falta una foto especial',sirir:'Falta una foto especial'};
 function specialHTML(sp,f){const x=f.flyImg?{img:f.flyImg,label:'En vuelo'}:(f.x2&&f.x2.img?f.x2:(sp.id==='tero'&&SAVE.nest&&SAVE.nest.img?{img:SAVE.nest.img,label:'Su nido'}:null));
  if(x)return `<div class="fly"><img alt="${sp.name}: ${x.label}" src="${x.img}"><span>✦ ${x.label}</span></div>`;return SPECIALS[sp.id]?`<div class="fly empty">✦ ${SPECIALS[sp.id]}</div>`:'';}
-function renderBook(){
+function renderPortada(){const nf=GOAL.filter(s=>SAVE.found[s.id]).length,np=SAVE.places.length,fish=SAVE.fish||{},nfi=FISH.filter(x=>fish[x.id]).length,
+ lg=[!!SAVE.raceWins,!!SAVE.nest,!!SAVE.found.puma,FISH.every(x=>fish[x.id])].filter(Boolean).length,ns=SPECIES.filter(sp=>{const f=SAVE.found[sp.id];return f&&(f.flyImg||(f.x2&&f.x2.img)||(sp.id==='tero'&&SAVE.nest));}).length;
+ const row=(l,a,b)=>`<span>${l}</span><div class="bar"><i style="width:${b?Math.round(a/b*100):0}%"></i></div><b>${a} / ${b}</b>`;
+ $('#portada').innerHTML=`<div class="pstat">${row('🐾 Bichos',nf,GOAL.length)}${row('📍 Lugares',np,PLACES.length)}${row('🐟 Peces',nfi,FISH.length)}${row('✦ Fotos especiales',ns,Object.keys(SPECIALS).length)}${row('🏆 Logros',lg,4)}</div>
+ <p class="ptip">${SAVE.mask?'🤿 Tenés la máscara del viejo naturalista. En el mapa (M) están marcados los lugares donde se puede bucear.':'🔎 Dicen que un viejo naturalista vivía por acá y guardaba sus cosas en una casa abandonada…'}</p>
+ <p class="ptip">Tocá las pestañas de arriba para ver tus bichos, lo que hay bajo el agua, los lugares, los hallazgos y los logros.</p>`;}
+function renderAgua(){const el=$('#agua'),fish=SAVE.fish||{};if(!SAVE.mask){el.innerHTML='<p class="ptip">Para mirar bajo el agua hace falta una máscara. ¿Dónde la habrá dejado el viejo naturalista? Quizás en una casa abandonada…</p>';return;}
+ let h='<h4>El mapa del naturalista</h4><div class="dives">'+DIVES.map(d=>`<div class="dive${SAVE.dives&&SAVE.dives[d.id]?' on':''}"><h5>${SAVE.dives&&SAVE.dives[d.id]?'🤿 '+d.name:'¿?'}</h5><p>“${d.note}”</p></div>`).join('')+'</div><h4>Peces</h4><div class="grid">';
+ h+=FISH.map(fi=>{const f=fish[fi.id];return f?`<div class="card"><div class="ph"><img alt="Foto de ${fi.name}" src="${f.img}"></div><h3>${fi.name}</h3><div class="sci">${fi.sci}</div><p>${fi.note}</p><div class="where">Encontrado: ${f.where}</div></div>`:`<div class="card locked"><div class="ph">?</div><h3>Sin descubrir</h3><p>${fi.hint}</p></div>`;}).join('')+'</div>';el.innerHTML=h;}
+function renderBook(){renderPortada();renderAgua();
  const c=$('#cards');c.innerHTML='';
  for(const sp of SPECIES){const f=SAVE.found[sp.id];if(sp.secret&&!f)continue;const d=document.createElement('div');d.className='card'+(f?'':' locked')+(sp.secret?' secret':'');
   d.innerHTML=f?`<div class="ph">${f.img?`<img alt="Foto de ${sp.name}" src="${f.img}">`:'📷'}</div><h3>${sp.name}</h3><div class="sci">${sp.sci}</div><p>${sp.note}</p><p class="more">${sp.more}</p>${specialHTML(sp,f)}<div class="where">Encontrado: ${f.where}</div><div class="links">${links(sp)}</div>`
@@ -1015,8 +1049,8 @@ function renderBook(){
  $('#plH').textContent='Lugares ('+SAVE.places.length+' de '+PLACES.length+')';
  const ul=$('#plList');ul.innerHTML='';const pics=SAVE.placePics||{};for(const p of PLACES){const ok=SAVE.places.includes(p.id),d=document.createElement('div');d.className='card'+(ok?'':' locked');
   d.innerHTML=ok?`<div class="ph">${pics[p.id]?`<img alt="Foto de ${p.name}" src="${pics[p.id]}">`:'📷'}</div><h3>${p.name}</h3><p>${pics[p.id]?'':'Sin foto todavía: volvé y sacale una con la cámara.'}</p>`:`<div class="ph">?</div><h3>Sin descubrir</h3>`;ul.appendChild(d);}
- const lg=$('#logros');if(lg){const L=[[!!SAVE.raceWins,'🏁','Más rápido que un ñandú','Le ganaste una carrera.',SAVE.raceWins?'Carreras ganadas: '+SAVE.raceWins:''],[!!SAVE.nest,'🥚','El nido del tero','Lo encontraste lejos de los gritos.',''],[!!SAVE.found.puma,'★','El fantasma de la sierra','Fotografiaste al puma.','']];
-  lg.innerHTML=L.map(l=>l[0]?`<div class="logro on"><b>${l[1]}</b><div><h5>${l[2]}</h5><p>${l[3]} ${l[4]}</p></div></div>`:`<div class="logro"><b>?</b><div><h5>Logro escondido</h5></div></div>`).join('');$('#logH').textContent='Logros especiales ('+L.filter(l=>l[0]).length+' de 3)';}
+ const lg=$('#logros');if(lg){const L=[[!!SAVE.raceWins,'🏁','Más rápido que un ñandú','Le ganaste una carrera.',SAVE.raceWins?'Carreras ganadas: '+SAVE.raceWins:''],[!!SAVE.nest,'🥚','El nido del tero','Lo encontraste lejos de los gritos.',''],[!!SAVE.found.puma,'★','El fantasma de la sierra','Fotografiaste al puma.',''],[FISH.every(x=>(SAVE.fish||{})[x.id]),'🐟','Los cuatro peces','Fotografiaste los cuatro peces bajo el agua.','']];
+  lg.innerHTML=L.map(l=>l[0]?`<div class="logro on"><b>${l[1]}</b><div><h5>${l[2]}</h5><p>${l[3]} ${l[4]}</p></div></div>`:`<div class="logro"><b>?</b><div><h5>Logro escondido</h5></div></div>`).join('');$('#logH').textContent='Logros especiales ('+L.filter(l=>l[0]).length+' de 4)';}
  const hz=$('#hzList');const H0=SAVE.hall;const q=t=>encodeURIComponent(t);
  const lk=(href,t)=>`<a href="${href}" target="_blank" rel="noopener">${t}</a>`;
  hz.innerHTML=H0?`<div class="card hz"><div class="ph">${H0.img?`<img alt="Pinturas en la cueva" src="${H0.img}">`:'🔥'}</div><div><h3>Los primeros habitantes</h3>
@@ -1033,7 +1067,7 @@ function renderBook(){
 let mapOpen=false;
 function toggleMap(force){mapOpen=force!==undefined?force:!mapOpen;if(mapOpen){if(bookOpen)toggleBook(false);if(photo)togglePhoto(false);checkTele();drawBigMap();}$('#bigmap').classList.toggle('show',mapOpen);$('#bMap').classList.toggle('on',mapOpen);}
 function toggleBook(force){bookOpen=force!==undefined?force:!bookOpen;if(bookOpen){renderBook();if(photo)togglePhoto(false);if(mapOpen)toggleMap(false);}$('#book').classList.toggle('show',bookOpen);$('#bBook').classList.toggle('on',bookOpen);}
-function togglePhoto(force){photo=force!==undefined?force:!photo;if(photo&&!caveView){photoYaw=car.h;photoPitch=-.04;photoFov=55;}truck.visible=!photo;if(!photo&&caveView)leaveCave();document.body.classList.toggle('photo',photo);$('#finder').classList.toggle('show',photo);$('#bCam').classList.toggle('on',photo);}
+function togglePhoto(force){photo=force!==undefined?force:!photo;if(photo&&!caveView&&!DIVE.on){photoYaw=car.h;photoPitch=-.04;photoFov=55;}truck.visible=!photo;if(!photo&&caveView)leaveCave();if(!photo&&DIVE.on)endDive(false);document.body.classList.toggle('photo',photo);$('#finder').classList.toggle('show',photo);$('#bCam').classList.toggle('on',photo);}
 function toggleLow(){car.low=!car.low;$('#gear').textContent=car.low?'4L':'4H';$('#gear').classList.toggle('low',car.low);$('#bLow').classList.toggle('on',car.low);toast(car.low?'Tracción baja: sube casi todo, pero despacio':'Tracción alta: más velocidad');}
 function obsDepth(x,z,h){const s=Math.sin(h),c=Math.cos(h);let m=0;for(const off of[-1.7,0,1.7]){const px=x-s*off,pz=z-c*off,ci=Math.floor(px/CELL),cj=Math.floor(pz/CELL);for(let a=-1;a<=1;a++)for(let b=-1;b<=1;b++){const L=GRID.get((ci+a)+','+(cj+b));if(!L)continue;for(const o of L){if(NOTREES&&o.t)continue;const d=o.r+1.0-Math.hypot(px-o.x,pz-o.z);if(d>m)m=d;}}}return m;}
 function obsHit(x,z,h){const s=Math.sin(h),c=Math.cos(h);let best={d:0,nx:0,nz:0};for(const off of[-1.7,0,1.7]){const px=x-s*off,pz=z-c*off,ci=Math.floor(px/CELL),cj=Math.floor(pz/CELL);for(let a=-1;a<=1;a++)for(let b=-1;b<=1;b++){const L=GRID.get((ci+a)+','+(cj+b));if(!L)continue;for(const o of L){if(NOTREES&&o.t)continue;const dd=Math.hypot(px-o.x,pz-o.z),d=o.r+1.0-dd;if(d>best.d)best={d,nx:(px-o.x)/(dd||1),nz:(pz-o.z)/(dd||1)};}}}return best;}
@@ -1053,7 +1087,7 @@ addEventListener('keydown',e=>{if(!started)return;keys[e.code]=true;
  if(e.code.startsWith('Arrow'))e.preventDefault();});
 addEventListener('keyup',e=>{keys[e.code]=false;});
 addEventListener('blur',()=>{for(const c in keys)keys[c]=false;});
-$('#bCam').onclick=()=>togglePhoto();$('#bBook').onclick=()=>toggleBook();$('#bLow').onclick=toggleLow;$('#bSnd').onclick=()=>toggleMute();$('#bClose').onclick=()=>toggleBook(false);$('#shoot').onclick=()=>shoot();$('#shareBtn').onclick=()=>doShare();$('#smCopy').onclick=shareCopy;$('#smMail').onclick=shareMail;$('#smWA').onclick=shareWA;$('#smX').onclick=()=>$('#shareMenu').classList.remove('show');$('#bMap').onclick=()=>toggleMap();$('#mapwrap').onclick=()=>toggleMap();$('#bMapClose').onclick=()=>toggleMap(false);$('#bReset').onclick=()=>resetCar();$('#bigmap').addEventListener('click',e=>{if(e.target.id==='bigmap')toggleMap(false);});
+$('#bCam').onclick=()=>togglePhoto();$('#bBook').onclick=()=>toggleBook();$('#bLow').onclick=toggleLow;$('#bSnd').onclick=()=>toggleMute();$('#bClose').onclick=()=>toggleBook(false);$('#shoot').onclick=()=>shoot();$('#diveBtn').onclick=()=>{if(DIVE.near&&SAVE.mask)startDive(DIVE.near);};$('#shareBtn').onclick=()=>doShare();$('#smCopy').onclick=shareCopy;$('#smMail').onclick=shareMail;$('#smWA').onclick=shareWA;$('#smX').onclick=()=>$('#shareMenu').classList.remove('show');$('#bMap').onclick=()=>toggleMap();$('#mapwrap').onclick=()=>toggleMap();$('#bMapClose').onclick=()=>toggleMap(false);$('#bReset').onclick=()=>resetCar();$('#bigmap').addEventListener('click',e=>{if(e.target.id==='bigmap')toggleMap(false);});
 // arrastrar para mirar
 let lastP=null;const cv=$('#c');const PTR=new Map();let pinch=null;
 function pinchDist(){const p=[...PTR.values()];return Math.hypot(p[0][0]-p[1][0],p[0][1]-p[1][1]);}
@@ -1148,7 +1182,7 @@ async function shareCopy(){const sm=$('#shareMenu');try{const png=await new Prom
 function shareText(){return (lastShare&&lastShare.label?lastShare.label+': ':'')+'lo fotografié en 4x4 Natural, un juego de Insight Reality. ¿Te animás? '+GAME_URL;}
 function shareMail(){window.open('mailto:?subject='+encodeURIComponent('Mirá lo que fotografié en 4x4 Natural')+'&body='+encodeURIComponent(shareText()),'_blank');$('#shareMenu').classList.remove('show');}
 function shareWA(){window.open('https://wa.me/?text='+encodeURIComponent(shareText()),'_blank','noopener');$('#shareMenu').classList.remove('show');}
-function shoot(){shotLabel='';shootCore();if(photo)makeShare(shotLabel);}
+function shoot(){shotLabel='';if(DIVE.on){shutterSound();shootDive();}else shootCore();if(photo)makeShare(shotLabel);}
 function shootCore(){if(photo&&nestInShot()){shotLabel='Nido del tero';SAVE.nest={img:grabThumb()};save();shutterSound();chime();toast('🥚 ¡Encontraste el nido del tero! El tero grita en un lado y pone los huevos en otro.','place');return;}
 
  if(!photo)return;shutterSound();const fl=$('#flash');fl.style.transition='none';fl.style.opacity=.85;requestAnimationFrame(()=>{fl.style.transition='';fl.style.opacity=0;});
@@ -1191,6 +1225,7 @@ function drawBigMap(){const c=$('#bigc'),x=c.getContext('2d'),S=c.width,s=S/MM;x
  if(SAVE.teleOk){for(const p of TELE()){const[px,py]=P(p.x,p.z);x.strokeStyle='#F28C28';x.lineWidth=3;x.beginPath();x.arc(px,py,13,0,7);x.stroke();}
   const[ix,iy]=P(START.x,START.z);x.fillStyle='#f3ebdd';x.strokeStyle='#1f160e';x.lineWidth=4;x.font='600 22px "Barlow Condensed", sans-serif';x.strokeText('Inicio',ix,iy-18);x.fillText('Inicio',ix,iy-18);}
  const note=$('#mapnote');if(note)note.textContent=SAVE.teleOk?'Teletransporte: tocá un lugar marcado en naranja para ir hasta ahí.':'Lo más oscuro todavía no lo recorriste. Fotografiá todos los bichos y todos los lugares para desbloquear el teletransporte ('+teleProgress()+' de '+(GOAL.length+PLACES.length)+').';
+ if(SAVE.mask){x.save();x.setLineDash([7,6]);x.lineWidth=2.5;for(const d of DIVES){const[cx,cy]=P(d.cx+6,d.cz-4),vis=SAVE.dives&&SAVE.dives[d.id];x.strokeStyle=vis?'#9fe0ec':'#e8dcc0';x.beginPath();x.arc(cx,cy,24,0,7);x.stroke();x.setLineDash([]);x.font='22px sans-serif';x.fillText('🤿',cx,cy+8);x.setLineDash([7,6]);}x.restore();}
  x.fillStyle='#f3ebdd';x.font='700 26px "Barlow Condensed", sans-serif';x.fillText('N',S/2,28);}
 function TELE(){return [{id:'inicio',name:'Inicio',x:START.x,z:START.z}].concat(PLACES.filter(p=>SAVE.places.includes(p.id)));}
 function landSpot(cx,cz){for(let r=0;r<80;r+=2)for(let k=0;k<16;k++){const a=k/16*6.283,x=cx+Math.cos(a)*r,z=cz+Math.sin(a)*r;if(H(x,z)>0.4&&slopeAt(x,z)<.35&&!hitObs(x,z,2.5))return[x,z];}return[START.x,START.z];}
@@ -1254,6 +1289,119 @@ const NEST={};{let nx=102,nz=126;for(let r=0;r<40;r+=2){let ok=false;for(let k=0
 function burrowInShot(){const p=new THREE.Vector3(BURROW.x,H(BURROW.x,BURROW.z)+.2,BURROW.z),dist=camera.position.distanceTo(p);if(dist>20)return false;const v=p.clone().project(camera);if(v.z>1||Math.abs(v.x)>.4||Math.abs(v.y)>.4)return false;return 1.2/(2*dist*Math.tan(THREE.MathUtils.degToRad(camera.fov/2)))>.03;}
 function nestInShot(){if(SAVE.nest)return false;const p=new THREE.Vector3(NEST.x,H(NEST.x,NEST.z)+.08,NEST.z),dist=camera.position.distanceTo(p);if(dist>24)return false;
  const v=p.clone().project(camera);if(v.z>1||Math.abs(v.x)>.4||Math.abs(v.y)>.4)return false;return .5/(2*dist*Math.tan(THREE.MathUtils.degToRad(camera.fov/2)))>.02;}
+// ===== BUCEO =====
+const FISH=[
+ {id:'mojarra',name:'Mojarra',sci:'Astyanax sp.',hint:'En el agua abierta, en grupo, brillando.',note:'Pez chico y plateado que anda en cardúmenes. Moverse todos juntos los protege: a un depredador le cuesta elegir a uno. Comen insectos, semillas y algas.'},
+ {id:'vieja',name:'Vieja del agua',sci:'Hypostomus commersoni',hint:'Pegada a las piedras.',note:'Tiene el cuerpo cubierto de placas como una armadura y la boca como una ventosa: se pega a piedras y troncos y raspa las algas. Por eso la vas a ver quieta sobre las rocas.'},
+ {id:'bagre',name:'Bagre negro',sci:'Rhamdia quelen',hint:'En el fondo, bajo una piedra grande.',note:'Pez de fondo con bigotes (barbillas) que le sirven para sentir y "oler" la comida en la oscuridad. De día se esconde bajo las piedras y sale de noche.'},
+ {id:'tararira',name:'Tararira',sci:'Hoplias malabaricus',hint:'Quieta entre las plantas de una laguna.',note:'Cazadora de emboscada: se queda quieta entre las plantas, camuflada, y ataca de golpe a otros peces y ranas. Tiene dientes filosos y aguanta aguas con poco oxígeno.'}];
+const DIVES=[
+ {id:'pozon',name:'El pozón de la cascada',cx:riverX(-257),cz:-257,note:'Pozo hondo al pie de la caída. Peces entre las piedras.',fog:0x2f6a6e,floor:-5.5,kinds:['mojarra','vieja','bagre','foam']},
+ {id:'quebrada',name:'El agua clara de la quebrada',cx:riverX(-205),cz:-205,note:'Agua clara entre piedras. Vi un lobito nadando abajo.',fog:0x3c7c84,floor:-4.5,kinds:['mojarra','vieja','lobito','walls']},
+ {id:'laguna2',name:'La laguna del arroyo',cx:LAG2.x,cz:LAG2.z,note:'Laguna con muchas plantas. Hay que mirar bien entre ellas.',fog:0x4b6a3c,floor:-4.8,kinds:['tararira','mojarra','patos','carpincho','plants']},
+ {id:'escondida',name:'La laguna escondida',cx:190,cz:-110,note:'Laguna oscura entre cerros. Algo grande se mueve en el fondo.',fog:0x24463e,floor:-6,kinds:['bagre','mojarra','yacare']}];
+const DIVE={on:false,scene:null,d:null,cache:{},pos:new THREE.Vector3(),air:40,ents:[],near:null};
+SAVE.fish=SAVE.fish||{};SAVE.dives=SAVE.dives||{};
+// anclas en la orilla, caña con cinta y piedra plana
+for(const d of DIVES){let best=null;for(let r=5;r<44&&!best;r+=2)for(let k=0;k<20;k++){const a=k/20*6.283,x=d.cx+Math.cos(a)*r,z=d.cz+Math.sin(a)*r,h=H(x,z);if(h>.2&&h<5&&slopeAt(x,z)<.45&&!hitObs(x,z,2.5)){best=[x,z];break;}}
+ if(!best)best=[d.cx+8,d.cz];d.ax=best[0];d.az=best[1];
+ const ux=d.cx-d.ax,uz=d.cz-d.az,ul=Math.hypot(ux,uz)||1,mx=d.ax+ux/ul*2.2,mz=d.az+uz/ul*2.2,mh=Math.max(H(mx,mz),-.05),g=new THREE.Group();g.position.set(mx,mh,mz);scene.add(g);
+ const cane=part(CYL,M(0x9a8a5a,.9),0,.85,0,.03,1.7,.03,g);cane.rotation.z=.12;
+ const rib=new THREE.Mesh(new THREE.PlaneGeometry(.5,.12),M(0xb33a2a,.8,{side:THREE.DoubleSide}));rib.position.set(.3,1.55,0);g.add(rib);d.ribbon=rib;
+ const fr=part(jitter(new THREE.DodecahedronGeometry(1,1),.2),M(0x7a746a,.95,{flatShading:true}),-.6,.05,.4,.7,.18,.6,g);}
+// el baúl de la tapera
+const CHEST={t:0};{const P=PLACES.find(q=>q.id==='tapera'),a=.35,cx=P.x-2.3*Math.sin(a),cz=P.z-2.3*Math.cos(a),g=new THREE.Group();g.position.set(cx,H(P.x,P.z)-.05,cz);g.rotation.y=a;scene.add(g);
+ const wood=M(0x6b4a2e,.9),iron=M(0x34302c,.55,{metalness:.5}),brass=M(0xb08d3a,.35,{metalness:.7});
+ part(BOX,wood,0,.3,0,1.1,.6,.66,g);for(const x of[-.42,.42])part(BOX,iron,x,.3,0,.07,.62,.68,g);part(BOX,M(0x2a1c12,1),0,.59,0,1.0,.02,.58,g);
+ const lid=new THREE.Group();lid.position.set(0,.6,-.33);g.add(lid);part(BOX,wood,0,.08,.33,1.1,.16,.66,lid);for(const x of[-.42,.42])part(BOX,iron,x,.08,.33,.07,.18,.68,lid);part(BOX,brass,0,.06,.67,.12,.1,.03,lid);
+ const ring=new THREE.Mesh(new THREE.TorusGeometry(.1,.025,6,18),brass);ring.position.set(-.18,.62,.02);ring.rotation.x=-Math.PI/2;g.add(ring);
+ const glass=new THREE.Mesh(new THREE.CircleGeometry(.09,18),M(0x9fc3c8,.1,{metalness:.3,transparent:true,opacity:.7}));glass.position.set(-.18,.625,.02);glass.rotation.x=-Math.PI/2;g.add(glass);
+ part(BOX,M(0x5a3a22,.9),-.18,.61,.02,.42,.01,.04,g);
+ const sn=new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([new THREE.Vector3(.05,.62,.15),new THREE.Vector3(.25,.62,.1),new THREE.Vector3(.35,.62,-.08),new THREE.Vector3(.3,.63,-.2)]),12,.018,6),M(0x2b2b2b,.6));g.add(sn);
+ part(BOX,M(0xd9c79a,1),.22,.605,.12,.32,.005,.22,g);
+ CHEST.g=g;CHEST.lid=lid;CHEST.x=cx;CHEST.z=cz;addObs(cx,cz,.7);if(SAVE.mask){lid.rotation.x=-1.9;CHEST.t=1;}}
+// mundo submarino
+function floorY(d,x,z){let y=d.floor+(fbm(x*.15+3,z*.15+d.cx*.01,3)-.5)*1.6+ss(12,22,Math.hypot(x,z))*4.5;if(d.kinds.includes('walls'))y+=ss(3.5,7,Math.abs(x))*7;return y;}
+function fishMesh(len,cb,cf,flat){const g=new THREE.Group(),b=M(cb,.5,{metalness:.15}),f=M(cf,.7,{side:THREE.DoubleSide});
+ part(SPH,b,0,0,0,len*.17,len*(flat?.12:.21),len*.5,g);const tail=new THREE.Mesh(new THREE.ConeGeometry(len*.2,len*.32,3),f);tail.rotation.x=Math.PI/2;tail.scale.set(1,1,.15);tail.position.z=len*.6;g.add(tail);
+ const dor=new THREE.Mesh(new THREE.ConeGeometry(len*.08,len*.18,3),f);dor.scale.set(.15,1,1.4);dor.position.set(0,len*.2,len*.05);g.add(dor);
+ part(SPH,M(0x111111),len*.11,len*.04,-len*.36,len*.025,len*.025,len*.025,g);part(SPH,M(0x111111),-len*.11,len*.04,-len*.36,len*.025,len*.025,len*.025,g);g.userData.tail=tail;return g;}
+function causticTex(){const c=document.createElement('canvas');c.width=c.height=128;const x=c.getContext('2d');x.fillStyle='#9fd0d4';x.fillRect(0,0,128,128);x.strokeStyle='rgba(255,255,255,.55)';x.lineWidth=2;
+ for(let i=0;i<40;i++){x.beginPath();const px=Math.random()*128,py=Math.random()*128;x.ellipse(px,py,6+Math.random()*10,4+Math.random()*8,Math.random()*3,0,6.28);x.stroke();}const t=new THREE.CanvasTexture(c);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(6,6);return t;}
+function buildDive(d){const sc=new THREE.Scene(),fc=new THREE.Color(d.fog);sc.background=fc;sc.fog=new THREE.FogExp2(d.fog,d.id==='quebrada'?.055:.08);
+ sc.add(new THREE.HemisphereLight(0xbfe8f0,0x2a3a2a,.95));const dl=new THREE.DirectionalLight(0xe8fbff,.6);dl.position.set(3,10,2);sc.add(dl);
+ const fg=new THREE.PlaneGeometry(60,60,70,70);fg.rotateX(-Math.PI/2);const p=fg.attributes.position;for(let i=0;i<p.count;i++)p.setY(i,floorY(d,p.getX(i),p.getZ(i)));fg.computeVertexNormals();
+ sc.add(new THREE.Mesh(fg,M(d.id==='laguna2'?0x55502f:(d.id==='escondida'?0x3b3a2c:0x6e6650),1)));
+ const ct=causticTex(),surf=new THREE.Mesh(new THREE.PlaneGeometry(60,60),new THREE.MeshBasicMaterial({color:0xcfeff0,map:ct,transparent:true,opacity:.55,side:THREE.DoubleSide,fog:false}));surf.rotation.x=Math.PI/2;surf.position.y=0;sc.add(surf);
+ const shafts=new THREE.Group();for(let i=0;i<7;i++){const s=new THREE.Mesh(new THREE.PlaneGeometry(1.2+Math.random()*1.5,9),new THREE.MeshBasicMaterial({color:0xe8ffff,transparent:true,opacity:.07,blending:THREE.AdditiveBlending,depthWrite:false,side:THREE.DoubleSide}));s.position.set((Math.random()-.5)*16,-4,(Math.random()-.5)*16);s.rotation.set(0,Math.random()*3,.25);shafts.add(s);}sc.add(shafts);
+ const rk=M(0x6a675e,.95,{flatShading:true}),rg=jitter(new THREE.DodecahedronGeometry(1,1),.35),ents=[],ups=[];
+ for(let i=0;i<30;i++){const a=Math.random()*6.28,r=3+Math.random()*16,x=Math.cos(a)*r,z=Math.sin(a)*r,s=.4+Math.random()*1.4;const m=new THREE.Mesh(rg,rk);m.position.set(x,floorY(d,x,z)+s*.3,z);m.scale.set(s,s*.7,s);m.rotation.set(Math.random()*3,Math.random()*3,0);sc.add(m);}
+ const K=d.kinds;
+ if(K.includes('vieja')){const rx=-3,rz=-3,ry=floorY(d,rx,rz),big=new THREE.Mesh(rg,rk);big.position.set(rx,ry+.6,rz);big.scale.set(1.6,1.1,1.4);sc.add(big);
+  const f=fishMesh(.55,0x4a3e2e,0x3a2f22,true);f.position.set(rx+.2,ry+1.55,rz+.3);f.rotation.set(-.15,.6,0);sc.add(f);ents.push({fish:'vieja',obj:f,size:.7});ups.push(t=>{f.userData.tail.rotation.y=Math.sin(t*2)*.25;});}
+ if(K.includes('bagre')){const bx=4,bz=-5,by=floorY(d,bx,bz);for(const o of[[-.9,0],[.9,0]]){const r=new THREE.Mesh(rg,rk);r.position.set(bx+o[0],by+.3,bz+o[1]);r.scale.set(.6,.6,.6);sc.add(r);}
+  const slab=new THREE.Mesh(rg,rk);slab.position.set(bx,by+.95,bz);slab.scale.set(1.6,.35,1.1);sc.add(slab);
+  const f=fishMesh(.6,0x3b3b3a,0x2b2b2b,false);f.position.set(bx,by+.38,bz);f.rotation.y=1.2;for(const s of[-1,1])for(const l of[.12,.2]){const bb=part(CYL,M(0x222222),s*.05,-.02,-.2,.005,l,.005,f);bb.rotation.set(Math.PI/2.3,0,s*.6);}
+  sc.add(f);ents.push({fish:'bagre',obj:f,size:.65});ups.push(t=>{f.userData.tail.rotation.y=Math.sin(t*3)*.3;f.position.x=bx+Math.sin(t*.3)*.15;});}
+ if(K.includes('mojarra')){const sch=new THREE.Group();sc.add(sch);const fs=[];for(let i=0;i<16;i++){const f=fishMesh(.24,0xd2dade,0xd9b65e,false);f.userData.o=[Math.random()*6.28,.6+Math.random()*.9,(Math.random()-.5)*.8];sch.add(f);fs.push(f);}
+  const c0=new THREE.Object3D();sc.add(c0);ents.push({fish:'mojarra',obj:c0,size:1.4});
+  ups.push(t=>{const cx=Math.sin(t*.15)*7,cz=Math.cos(t*.11)*6,cy=floorY(d,cx,cz)+1.8+Math.sin(t*.3)*.5;c0.position.set(cx,Math.min(cy,-.8),cz);sch.position.copy(c0.position);
+   fs.forEach((f,i)=>{const o=f.userData.o,a=o[0]+t*1.2;f.position.set(Math.cos(a)*o[1],o[2]+Math.sin(t*2+i)*.08,Math.sin(a)*o[1]);f.rotation.y=-a;f.userData.tail.rotation.y=Math.sin(t*12+i)*.4;});});}
+ if(K.includes('tararira')||K.includes('plants')){const pm=M(0x3f6a2a,.9,{side:THREE.DoubleSide}),reeds=[];for(let i=0;i<70;i++){const a=Math.random()*6.28,r=4+Math.random()*12,x=Math.cos(a)*r,z=Math.sin(a)*r,y0=floorY(d,x,z),hh=Math.min(-y0-.3,1.5+Math.random()*3);
+   const pl=new THREE.Mesh(new THREE.PlaneGeometry(.18,hh,1,4),pm);pl.geometry.translate(0,hh/2,0);pl.position.set(x,y0,z);pl.rotation.y=Math.random()*3;sc.add(pl);reeds.push(pl);}
+  ups.push(t=>reeds.forEach((r,i)=>r.rotation.z=Math.sin(t*.8+i)*.12));}
+ if(K.includes('tararira')){const tx=-5,tz=4,ty=floorY(d,tx,tz)+.7,f=fishMesh(.75,0x6b6a3a,0x4a4a28,false);for(let i=0;i<6;i++)part(SPH,M(0x3a3a1e),(Math.random()-.5)*.1,(Math.random()-.5)*.08,(Math.random()-.5)*.4,.04,.035,.06,f);
+  f.position.set(tx,ty,tz);f.rotation.y=2.2;sc.add(f);const st={x:tx,z:tz,dart:0};ents.push({fish:'tararira',obj:f,size:.8});
+  ups.push((t,dt)=>{f.userData.tail.rotation.y=Math.sin(t*1.5)*.1;const dd=f.position.distanceTo(DIVE.pos);if(dd<2.2&&st.dart<=0){st.dart=1.2;st.x=tx+(Math.random()-.5)*6;st.z=tz+(Math.random()-.5)*6;}
+   if(st.dart>0){st.dart-=dt;f.position.x+=(st.x-f.position.x)*Math.min(1,dt*3);f.position.z+=(st.z-f.position.z)*Math.min(1,dt*3);f.userData.tail.rotation.y=Math.sin(t*20)*.5;}});}
+ if(K.includes('lobito')){const f=new THREE.Group(),b=M(0x543a28,.6);part(SPH,b,0,0,0,.14,.13,.5,f);part(SPH,b,0,.03,-.55,.11,.1,.13,f);part(SPH,M(0x9b8670),0,-.01,-.62,.07,.05,.06,f);const t2=part(CONE,b,0,0,.75,.08,.5,.06,f);t2.rotation.x=Math.PI/2;
+  sc.add(f);ents.push({spec:'lobito',label:'Bajo el agua',obj:f,size:1.1});ups.push(t=>{const a=t*.35,x=Math.sin(a)*5,z=Math.sin(a*2)*3-2,y=Math.min(-.6,floorY(d,x,z)+1.2+Math.sin(t*.7)*.6);const px=f.position.x,pz=f.position.z;f.position.set(x,y,z);
+   const dx=x-px,dz=z-pz;if(Math.hypot(dx,dz)>1e-4)f.rotation.y=Math.atan2(-dx,-dz);f.rotation.z=Math.sin(t*4)*.15;t2.rotation.y=Math.sin(t*5)*.4;});}
+ if(K.includes('patos')){const ducks=new THREE.Group();sc.add(ducks);const feet=[];for(let i=0;i<4;i++){const dk=new THREE.Group();dk.position.set(i*.9-1.3,-.12,(i%2)*.7);part(SPH,M(0x7a4a2c,.8),0,0,0,.14,.08,.22,dk);
+   for(const s of[-1,1]){const ft=new THREE.Mesh(new THREE.ConeGeometry(.07,.16,3),M(0xd88a2a,.7,{side:THREE.DoubleSide}));ft.position.set(s*.06,-.12,.05);ft.scale.set(1,1,.2);dk.add(ft);feet.push([ft,i,s]);}ducks.add(dk);}
+  ents.push({spec:'sirir',label:'Desde abajo',obj:ducks,size:1.6});ups.push(t=>{ducks.position.set(Math.sin(t*.08)*5,0,Math.cos(t*.06)*4-2);ducks.rotation.y=t*.05;feet.forEach(([ft,i,s])=>{ft.rotation.x=Math.sin(t*7+i+s)*.7;});});}
+ if(K.includes('carpincho')){const c=new THREE.Group(),b=M(0x7a5a3b);part(SPH,b,0,0,0,.42,.32,.62,c);part(SPH,b,0,.06,-.62,.24,.22,.3,c);const legs=[];for(const[x,z]of[[.22,-.35],[-.22,-.35],[.22,.35],[-.22,.35]]){const l=legP(c,M(0x4f3a28),x,-.15,z,.35,.07);legs.push(l);}
+  sc.add(c);ents.push({spec:'carpincho',label:'Nadando',obj:c,size:1.3});ups.push(t=>{const a=t*.06;c.position.set(Math.cos(a)*7,-.25,Math.sin(a)*7);c.rotation.y=-a;legs.forEach((l,i)=>l.rotation.x=Math.sin(t*4+i*1.6)*.7);});}
+ if(K.includes('yacare')){const y=new THREE.Group(),b=M(0x2e3424,.8);part(SPH,b,0,0,0,.36,.16,.9,y);part(SPH,b,0,0,-1.05,.2,.1,.4,y);const tl=part(CONE,b,0,0,1.45,.22,1.4,.12,y);tl.rotation.x=Math.PI/2;
+  sc.add(y);ents.push({spec:'yacare',label:'Bajo el agua',obj:y,size:2.2});ups.push(t=>{const a=t*.05;const x=Math.cos(a)*11,z=Math.sin(a)*11-2;y.position.set(x,floorY(d,x,z)+.6,z);y.rotation.y=-a+Math.PI;tl.rotation.y=Math.sin(t*1.2)*.25;});}
+ let bub=null;if(K.includes('foam')){const N=140,pos=new Float32Array(N*3);for(let i=0;i<N;i++){pos[i*3]=(Math.random()-.5)*6;pos[i*3+1]=-Math.random()*5;pos[i*3+2]=-12+(Math.random()-.5)*3;}
+  const bg=new THREE.BufferGeometry();bg.setAttribute('position',new THREE.BufferAttribute(pos,3));bub=new THREE.Points(bg,new THREE.PointsMaterial({color:0xffffff,size:.12,transparent:true,opacity:.8,map:dotTex,depthWrite:false}));sc.add(bub);
+  const foam=new THREE.Mesh(new THREE.PlaneGeometry(8,4),new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.55,side:THREE.DoubleSide,depthWrite:false}));foam.rotation.x=Math.PI/2;foam.position.set(0,-.1,-12);sc.add(foam);
+  ups.push((t,dt)=>{const p=bub.geometry.attributes.position;for(let i=0;i<p.count;i++){let y=p.getY(i)+dt*(1+i%5*.3);if(y>-.05)y=-5;p.setY(i,y);}p.needsUpdate=true;foam.rotation.z=t*.2;});}
+ ups.push(t=>{ct.offset.x=t*.02;ct.offset.y=t*.015;shafts.rotation.y=t*.03;});
+ return {scene:sc,ents,ups};}
+function startDive(d){if(!DIVE.cache[d.id])DIVE.cache[d.id]=buildDive(d);const W=DIVE.cache[d.id];DIVE.on=true;DIVE.d=d;DIVE.scene=W.scene;DIVE.ents=W.ents;DIVE.ups=W.ups;DIVE.air=40;
+ DIVE.pos.set(0,-1,12);car.v=0;togglePhoto(true);photoYaw=0;photoPitch=-.25;photoFov=72;document.body.classList.add('cave','diving');$('#diveBtn').classList.remove('show');
+ if(!SAVE.dives[d.id]){SAVE.dives[d.id]=true;save();}if(engG)engG.gain.value=0;
+ toast('Nadá con ▲▼ o W/S y girá con ◀▶ o arrastrando. Subí a respirar antes de quedarte sin aire. 📷 o F para salir.');}
+function endDive(noAir){DIVE.on=false;document.body.classList.remove('cave','diving');if(engG)engG.gain.value=muted?0:.03;if(noAir)toast('Te quedaste sin aire y volviste a la orilla. ¡Subí a respirar más seguido!');}
+function swim(dt){const d=DIVE.d,mv=((k('KeyW')||k('ArrowUp')||T.up)?1:0)-((k('KeyS')||k('ArrowDown')||T.down)?1:0);
+ if(mv){const sp=2.3*dt*mv,cp=Math.cos(photoPitch),nx=DIVE.pos.x-Math.sin(photoYaw)*cp*sp,nz=DIVE.pos.z-Math.cos(photoYaw)*cp*sp,ny=DIVE.pos.y+Math.sin(photoPitch)*sp;
+  if(Math.hypot(nx,nz)<17){DIVE.pos.x=nx;DIVE.pos.z=nz;}DIVE.pos.y=Math.min(-.25,Math.max(floorY(d,DIVE.pos.x,DIVE.pos.z)+.6,ny));}
+ DIVE.pos.y=Math.max(floorY(d,DIVE.pos.x,DIVE.pos.z)+.6,DIVE.pos.y);
+ if(DIVE.pos.y>-.7)DIVE.air=Math.min(40,DIVE.air+dt*14);else DIVE.air-=dt;
+ const el=$('#airFill');if(el){el.style.width=Math.max(0,DIVE.air/40*100)+'%';el.style.background=DIVE.air<10?'#d9534f':'#7fd0e0';}
+ if(DIVE.air<=0){togglePhoto(false);endDive(true);}}
+function shootDive(){camera.updateMatrixWorld();const tanH=Math.tan(THREE.MathUtils.degToRad(camera.fov/2)),wp=new THREE.Vector3();let best=null,far=false;
+ for(const e of DIVE.ents){e.obj.getWorldPosition(wp);const dist=camera.position.distanceTo(wp);if(dist>22)continue;const v=wp.clone().project(camera);if(v.z>1||Math.abs(v.x)>.45||Math.abs(v.y)>.45)continue;const fr=e.size/(2*dist*tanH);if(fr<.05){far=true;continue;}if(!best||fr>best.fr)best={e,fr};}
+ if(!best){toast(far?'Está muy lejos. Acercate nadando o hacé zoom.':'No hay ningún pez en el cuadro.');return;}
+ const e=best.e,img=grabThumb(),dn=DIVE.d.name;
+ if(e.fish){const fi=FISH.find(f=>f.id===e.fish),first=!SAVE.fish[e.fish];SAVE.fish[e.fish]={img,where:dn};save();shotLabel=fi.name;
+  if(first){chime();toast('🐟 ¡Nuevo pez en el cuaderno: '+fi.name+'!','place');if(FISH.every(f=>SAVE.fish[f.id]))setTimeout(()=>{chime();toast('🐟 Logro especial: ¡los cuatro peces!','place');},1400);}else toast('Foto nueva de '+fi.name.toLowerCase());}
+ else{const sp=SPECIES.find(s=>s.id===e.spec),f=SAVE.found[e.spec];shotLabel=sp.name+' '+e.label.toLowerCase();
+  if(f){f.x2={img,label:e.label};}else{SAVE.found[e.spec]={img,where:dn,x2:{img,label:e.label}};refreshTally();checkComplete();}save();chime();toast('✦ ¡Foto especial: '+sp.name.toLowerCase()+' '+e.label.toLowerCase()+'!','place');}}
+let diveT=0;
+function updateDiving(dt,time){
+ if(!SAVE.mask&&!DIVE.on&&Math.hypot(car.x-CHEST.x,car.z-CHEST.z)<9&&Math.abs(car.v)<3){SAVE.mask=true;save();chime();toast('🤿 En un baúl viejo encontraste una máscara de buceo y el mapa de un naturalista. ¡Ya podés zambullirte! Mirá el mapa (M).','place');}
+ if(SAVE.mask&&CHEST.t<1){CHEST.t=Math.min(1,CHEST.t+dt*.8);CHEST.lid.rotation.x=-1.9*ss(0,1,CHEST.t);}
+ for(const d of DIVES){d.ribbon.rotation.y=Math.sin(time*3+d.cx)*.5;}
+ diveT+=dt;if(diveT>.12){diveT=0;for(const d of DIVES){if(Math.hypot(car.x-d.cx,car.z-d.cz)<140){emit(d.cx+(Math.random()-.5)*2,0,d.cz+(Math.random()-.5)*2,0,.6+Math.random()*.6,0,[.92,.97,1],.5,.2);
+   if(Math.random()<.02){for(let i=0;i<10;i++)emit(d.cx+(Math.random()-.5)*6,0,d.cz+(Math.random()-.5)*6,(Math.random()-.5)*1.5,2+Math.random()*2,(Math.random()-.5)*1.5,C_WATER,.8);}}}}
+ if(DIVE.on){for(const u of DIVE.ups)u(time,dt);return;}
+ let near=null;if(!photo)for(const d of DIVES){if(Math.hypot(car.x-d.ax,car.z-d.az)<8&&Math.abs(car.v)<1.2){near=d;break;}}
+ DIVE.near=near;$('#diveBtn').classList.toggle('show',!!near&&!!SAVE.mask);
+ if(near&&!SAVE.mask)toastOnce('nomask'+near.id,'El agua acá es honda y clara… haría falta una máscara para mirar abajo.',60);}
+
 // ===== FESTEJO =====
 function checkComplete(){if(SAVE.celebrated)return;if(GOAL.every(s=>SAVE.found[s.id])&&PLACES.every(p=>SAVE.places.includes(p.id))){SAVE.celebrated=true;save();setTimeout(celebrate,1300);}}
 function celebrate(){const el=$('#party');$('#partySub').textContent=GOAL.length+' de '+GOAL.length+' bichos · '+PLACES.length+' de '+PLACES.length+' lugares';el.classList.add('show');
@@ -1412,10 +1560,10 @@ let shake=0;
 const camPos=new THREE.Vector3(car.x,car.y+5,car.z+12);
 function updateCamera(dt){
  if(photo){
-  const rot=((k('ArrowLeft')||k('KeyA')||T.left)?1:0)-((k('ArrowRight')||k('KeyD')||T.right)?1:0),tilt=caveView?0:((k('ArrowUp')||T.up)?1:0)-((k('ArrowDown')||T.down)?1:0);
+  const rot=((k('ArrowLeft')||k('KeyA')||T.left)?1:0)-((k('ArrowRight')||k('KeyD')||T.right)?1:0),tilt=(caveView||DIVE.on)?0:((k('ArrowUp')||T.up)?1:0)-((k('ArrowDown')||T.down)?1:0);
   const f=photoFov/55;photoYaw+=rot*dt*1.3*f;photoPitch=Math.max(-.7,Math.min(.6,photoPitch+tilt*dt*.9*f));
-  if((!caveView&&k('KeyW'))||k('Equal')||k('NumpadAdd')||Z.in)photoFov=Math.max(3.4,photoFov*(1-dt*1.4));if((!caveView&&k('KeyS'))||k('Minus')||k('NumpadSubtract')||Z.out)photoFov=Math.min(130,photoFov*(1+dt*1.4));
-  if(caveView){caveWalk(dt);if(caveView)camera.position.copy(caveView);}else camera.position.set(car.x,car.y+2.75,car.z);
+  if((!caveView&&!DIVE.on&&k('KeyW'))||k('Equal')||k('NumpadAdd')||Z.in)photoFov=Math.max(3.4,photoFov*(1-dt*1.4));if((!caveView&&!DIVE.on&&k('KeyS'))||k('Minus')||k('NumpadSubtract')||Z.out)photoFov=Math.min(130,photoFov*(1+dt*1.4));
+  if(DIVE.on){swim(dt);camera.position.copy(DIVE.pos);}else if(caveView){caveWalk(dt);if(caveView)camera.position.copy(caveView);}else camera.position.set(car.x,car.y+2.75,car.z);
   tmpV.set(-Math.sin(photoYaw)*Math.cos(photoPitch),Math.sin(photoPitch),-Math.cos(photoYaw)*Math.cos(photoPitch)).add(camera.position);camera.lookAt(tmpV);
   camera.fov=photoFov;$('#zoomlbl').textContent=(55/photoFov).toFixed(1).replace('.0','')+'×';
  }else{
@@ -1433,17 +1581,17 @@ function updateCamera(dt){
 // ===== BUCLE =====
 const clock=new THREE.Clock();let fogT=0,trailT=0;
 function checkPlaces(){for(const p of PLACES){if(SAVE.places.includes(p.id))continue;if(Math.hypot(car.x-p.x,car.z-p.z)<p.r){SAVE.places.push(p.id);save();refreshTally();chime();toast('Descubriste: '+p.name,'place');checkComplete();}}}
-function updateTrail(){if(caveView){$('#trail').classList.remove('show');return;}let nd=1e9,na=null;for(const a of animals){if(SAVE.found[a.sp.id]||!a.g.visible||a.sp.hab==='air'||a.sp.secret)continue;const d=Math.hypot(car.x-a.x,car.z-a.z);if(d<nd){nd=d;na=a;}}
+function updateTrail(){if(caveView||DIVE.on){$('#trail').classList.remove('show');return;}let nd=1e9,na=null;for(const a of animals){if(SAVE.found[a.sp.id]||!a.g.visible||a.sp.hab==='air'||a.sp.secret)continue;const d=Math.hypot(car.x-a.x,car.z-a.z);if(d<nd){nd=d;na=a;}}
  const el=$('#trail');if(na&&nd<55){let msg='Huellas frescas por acá';if(nd<25){const ref=photo?photoYaw:car.h;let d=Math.atan2(-(na.x-car.x),-(na.z-car.z))-ref;d=Math.atan2(Math.sin(d),Math.cos(d));const dir=Math.abs(d)<.5?'adelante':Math.abs(d)>2.6?'atrás':d>0?'a la izquierda':'a la derecha';const dy=na.y-car.y;msg='Hay algo muy cerca, '+dir+(dy>5?' y más arriba':dy<-5?' y más abajo':'')+'. Frená y usá la cámara';}el.textContent=msg;el.classList.add('show');}else el.classList.remove('show');}
 function loop(){
  const dt=Math.min(.05,clock.getDelta()),time=clock.elapsedTime;if(started)perfCheck();
- if(started){updateCar(dt,time);updateAnimals(dt,time);updateCalls(dt);updateRace(dt,time);updateChicks(dt);posT+=dt;if(posT>4){posT=0;savePos();}updateParts(dt);updateFalls(dt);updateCave(dt,time);fogT+=dt;if(fogT>.25){fogT=0;revealFog();checkPlaces();}trailT+=dt;if(trailT>.5){trailT=0;updateTrail();}}
+ if(started){updateCar(dt,time);updateAnimals(dt,time);updateCalls(dt);updateRace(dt,time);updateChicks(dt);posT+=dt;if(posT>4){posT=0;savePos();}updateParts(dt);updateFalls(dt);updateCave(dt,time);updateDiving(dt,time);fogT+=dt;if(fogT>.25){fogT=0;revealFog();checkPlaces();}trailT+=dt;if(trailT>.5){trailT=0;updateTrail();}}
  else{if(!dragging)startA+=dt*.04;}
  if(started)updateCamera(dt);else{const a=startA+camOrbit,el=Math.max(.04,Math.min(1.35,.27+camTilt)),dd=22*camZoom;camera.position.set(car.x+Math.sin(a)*Math.cos(el)*dd,car.y+1.2+Math.sin(el)*dd,car.z+Math.cos(a)*Math.cos(el)*dd);const gh=H(camera.position.x,camera.position.z)+1;if(camera.position.y<gh)camera.position.y=gh;camera.lookAt(car.x,car.y+1.2,car.z);}
  sky.position.copy(camera.position);
  sun.position.set(car.x+sunDir.x*160,car.y+sunDir.y*160,car.z+sunDir.z*160);sun.target.position.set(car.x,car.y,car.z);
  waterTex.offset.x=time*.006;waterTex.offset.y=time*.004;
- renderer.render(scene,camera);
+ renderer.render(DIVE.on&&DIVE.scene?DIVE.scene:scene,camera);
  if(started)drawMinimap();if(mapOpen&&(fogT===0))drawBigMap();
  requestAnimationFrame(loop);
 }
@@ -1482,7 +1630,7 @@ function fillProfiles(){const box=$('#profList');box.innerHTML='';if(PROFS.list.
    try{localStorage.removeItem(SAVE_KEY+'_'+p.id);localStorage.removeItem(SAVE_KEY+'_'+p.id+'_pos');}catch(e){}PROFS.list=PROFS.list.filter(q=>q.id!==p.id);
    if(!PROFS.list.length)PROFS.list=[{id:'p'+Date.now().toString(36),name:''}];saveProfs();if(PROFS.current===p.id||!PROFS.list.find(q=>q.id===PROFS.current))switchProfile(PROFS.list[0].id);fillProfiles();};
   ch.append(nb,rb);if(PROFS.list.length>1)ch.append(db);box.appendChild(ch);}}
-function switchProfile(id){if(started)savePos();PROFS.current=id;saveProfs();SAVE=readSave();NOTREES=!!(SAVE.settings&&SAVE.settings.noTrees);$('#optTrees').checked=NOTREES;loadPos();refreshTally();
+function switchProfile(id){if(started)savePos();PROFS.current=id;saveProfs();SAVE=readSave();SAVE.fish=SAVE.fish||{};SAVE.dives=SAVE.dives||{};CHEST.t=SAVE.mask?1:0;CHEST.lid.rotation.x=SAVE.mask?-1.9:0;NOTREES=!!(SAVE.settings&&SAVE.settings.noTrees);$('#optTrees').checked=NOTREES;loadPos();refreshTally();
  $('#go').textContent=(Object.keys(SAVE.found).length||SAVE.places.length)?'Seguir explorando':'Arrancar';const fg=fogC.getContext('2d');fg.fillStyle='#2e271e';fg.fillRect(0,0,MM,MM);}
 // arranque
 truck.position.set(car.x,car.y,car.z);
@@ -1492,6 +1640,7 @@ if(Object.keys(SAVE.found).length||SAVE.places.length)$('#go').textContent='Segu
 let firstGo=true;
 $('#go').onclick=()=>{started=true;camOrbit=0;camTilt=0;camZoom=1;camLock=false;checkTele();$('#start').style.display='none';document.body.classList.remove('menu');$('#hud').style.display='block';if(!AC)initAudio();revealFog();if(firstGo)toast('Fotografiá los bichos en su lugar. N abre el cuaderno con pistas.');firstGo=false;};
 $('#goBook').onclick=()=>toggleBook(true);
+document.querySelectorAll('#bookTabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#bookTabs button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.pages .tp').forEach(p=>p.classList.toggle('on',p.dataset.t===b.dataset.t));$('#book .pages').scrollTop=0;});
 $('#helpClose').onclick=()=>$('#help').classList.remove('show');$('#help').addEventListener('click',e=>{if(e.target.id==='help')$('#help').classList.remove('show');});
 $('#partyOk').onclick=()=>$('#party').classList.remove('show');
 fillProfiles();loadPos();
@@ -1505,7 +1654,7 @@ function openMenu(){if(photo)togglePhoto(false);if(bookOpen)toggleBook(false);if
  $('#hud').style.display='none';document.body.classList.add('menu');$('#start').style.display='flex';$('#go').textContent='Seguir explorando';}
 $('#bMenu').onclick=openMenu;
 
-function resetAll(){SAVE={found:{},places:[],placePics:{},settings:SAVE.settings};save();refreshTally();const go=$('#go');if(go)go.textContent='Arrancar';toast('🧹','place');const sup=$('#start sup');if(sup){sup.style.transition='color .3s';sup.style.color='#c0392b';setTimeout(()=>sup.style.color='',900);}}
+function resetAll(){SAVE={found:{},places:[],placePics:{},settings:SAVE.settings,fish:{},dives:{}};CHEST.t=0;CHEST.lid.rotation.x=0;save();refreshTally();const go=$('#go');if(go)go.textContent='Arrancar';toast('🧹','place');const sup=$('#start sup');if(sup){sup.style.transition='color .3s';sup.style.color='#c0392b';setTimeout(()=>sup.style.color='',900);}}
 function longPress(el,ms,fn){if(!el)return;let tm=null;const stop=()=>{clearTimeout(tm);tm=null;};el.addEventListener('pointerdown',()=>{stop();tm=setTimeout(()=>{tm=null;fn();},ms);});el.addEventListener('pointerup',stop);el.addEventListener('pointerleave',stop);el.addEventListener('pointercancel',stop);el.addEventListener('contextmenu',e=>e.preventDefault());}
 longPress($('#start sup'),3000,resetAll);longPress($('#tally'),3000,resetAll);
 function unlockAll(){SAVE.placePics=SAVE.placePics||{};for(const sp of GOAL)if(!SAVE.found[sp.id])SAVE.found[sp.id]={img:'',where:'Desbloqueado'};for(const p of PLACES){if(!SAVE.places.includes(p.id))SAVE.places.push(p.id);if(!(p.id in SAVE.placePics))SAVE.placePics[p.id]='';}if(!SAVE.hall)SAVE.hall={img:''};SAVE.teleOk=true;save();refreshTally();const go=$('#go');if(go)go.textContent='Seguir explorando';toast('✨','place');checkComplete();const sup=$('#start sup');if(sup){sup.style.transition='color .3s';sup.style.color='#F28C28';setTimeout(()=>sup.style.color='',900);}}
