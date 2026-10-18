@@ -220,7 +220,7 @@ function baseH(x,z){
   const rb=1-ss(w*0.45,w+8,d);
   h=mix(h,depth,rb);
   // quebrada escalonada: sendero junto al agua, cornisas y escalones hasta el borde
-  const q=ss(-122,-150,z)*(1-ss(-262,-276,z));
+  const q=ss(-122,-150,z)*(1-ss(-256,-265,z));
   if(q>0&&d>=w*.5){
     const rim=Math.min(hPre,24),d0=w*.5+7.5,span=60;let prof;
     if(d<d0)prof=.7;
@@ -228,6 +228,11 @@ function baseH(x,z){
     prof=mix(prof,hPre,ss(d0+span,d0+span+25,d));
     h=mix(h,prof,q);
   }
+  // laguna del arroyo: el cauce se ensancha al sur
+  {const LX=riverX(245)+8,le=Math.hypot((x-LX)/34,(z-245)/24);if(le<1.15){const tg=mix(-2.3,.9,ss(.3,1,le));h=mix(h,Math.min(h,tg),1-ss(.8,1.15,le));}}
+  // cascada: paredón donde nace el arroyo y pozón al pie
+  {const FZ=-263,dr=Math.abs(x-riverX(z));if(z<FZ+3&&dr<60){const wall=ss(FZ+2,FZ-2,z)*(1-ss(40,60,dr));if(dr<3.2&&z<FZ-1)h=mix(h,25,wall);else h=mix(h,Math.max(h,26),wall);}
+   const pd=Math.hypot(x-riverX(FZ+6),z-(FZ+6));if(pd<10)h=mix(h,Math.min(h,-2.6),1-ss(6,10,pd));}
   // bordes del mundo
   const e=Math.max(Math.abs(x),Math.abs(z));
   h+=ss(HALF-45,HALF-5,e)*45;
@@ -240,6 +245,7 @@ for(let j=0;j<N;j++)for(let i=0;i<N;i++)HT[j*N+i]=rawH(-HALF+i*STEP,-HALF+j*STEP
 function H(x,z){let gx=(x+HALF)/STEP,gz=(z+HALF)/STEP;gx=Math.max(0,Math.min(SEG-1e-4,gx));gz=Math.max(0,Math.min(SEG-1e-4,gz));const i=gx|0,j=gz|0,fx=gx-i,fz=gz-j,k=j*N+i;const a=HT[k],b=HT[k+1],c=HT[k+N],d=HT[k+N+1];return a+(b-a)*fx+(c-a)*fz+(a-b-c+d)*fx*fz;}
 function slopeAt(x,z){return Math.hypot(H(x+1,z)-H(x-1,z),H(x,z+1)-H(x,z-1))/2;}
 // ===== DATOS =====
+const LAG2={x:riverX(245)+8,z:245};
 const PLACES=[
  {id:'vado',name:'El paso del arroyo',x:riverX(55),z:55,r:18},
  {id:'tapera',name:'La tapera del ombú',x:-160,z:106,r:24},
@@ -247,7 +253,9 @@ const PLACES=[
  {id:'quebrada',name:'La quebrada',x:riverX(-200),z:-200,r:32},
  {id:'gruta',name:'La gruta',x:-70,z:-185,r:16},
  {id:'laguna',name:'Laguna escondida',x:190,z:-110,r:46},
- {id:'valle',name:'Valle alto',x:-190,z:-215,r:42}
+ {id:'valle',name:'Valle alto',x:-190,z:-215,r:42},
+ {id:'laguna2',name:'La laguna del arroyo',x:LAG2.x,z:LAG2.z,r:30},
+ {id:'cascada',name:'La cascada',x:riverX(-257),z:-256,r:18}
 ];
 const SPECIES=[
  {id:'tero',more:'Mide unos 37 cm. Come insectos y lombrices que encuentra en el pasto. Vive en todo Uruguay.',name:'Tero',sci:'Vanellus chilensis',size:.42,hab:'land',spots:[[115,165],[121,171]],wander:9,walk:1.1,run:4.5,shy:{d:12,v:7},
@@ -282,7 +290,19 @@ const SPECIES=[
   note:'Necesita arroyos de agua limpia con orillas de piedras y monte para hacer su madriguera. Si hay lobitos, el agua está sana.'},
  {id:'venado',more:'Pesa unos 30 a 40 kg. El macho tiene astas que se le caen y le vuelven a crecer cada año.',name:'Venado de campo',sci:'Ozotoceros bezoarticus',size:1.55,hab:'land',spots:[[-190,-212]],wander:16,walk:1,run:10,shy:{d:48,v:2.2},
   hint:'Un valle alto en la sierra. Se llega con 4L, y es el más asustadizo de todos.',
-  note:'Vive en pastizales naturales abiertos, lejos de perros y personas. En Uruguay quedan muy pocos y está en peligro: verlo es un privilegio.'}
+  note:'Vive en pastizales naturales abiertos, lejos de perros y personas. En Uruguay quedan muy pocos y está en peligro: verlo es un privilegio.'},
+ {id:'espatula',name:'Espátula rosada',sci:'Platalea ajaja',more:'Mide unos 80 cm. Come camarones, insectos y pececitos: el rosado de sus plumas le viene de lo que come.',size:.85,hab:'wade',spots:[[LAG2.x-15,LAG2.z+4],[LAG2.x-12,LAG2.z+8],[LAG2.x-18,LAG2.z+1],[LAG2.x-10,LAG2.z+11]],wander:6,walk:.4,run:2,shy:{d:22,v:4},
+  hint:'Aguas bajitas de una laguna que forma el arroyo, al sur.',
+  note:'Camina por el agua baja moviendo el pico de lado a lado: es una cuchara que filtra el barro y atrapa bichitos. Por eso busca lagunas y bañados poco profundos.'},
+ {id:'sirir',name:'Pato cara blanca',sci:'Dendrocygna viduata',more:'También le dicen sirirí, por el silbido que hace al volar. Come semillas y plantas acuáticas.',size:.45,hab:'swim',spots:[[LAG2.x+2,LAG2.z-2],[LAG2.x+4,LAG2.z],[LAG2.x+1,LAG2.z+2],[LAG2.x+5,LAG2.z+3],[LAG2.x+3,LAG2.z-4]],wander:12,walk:.6,run:2.2,shy:{d:20,v:3},
+  hint:'Nadan en grupo en la laguna del arroyo. Se escuchan silbidos.',
+  note:'Los patos necesitan agua quieta con plantas para comer y orillas tranquilas para descansar. Andan en bandadas y se avisan entre ellos con silbidos.'},
+ {id:'cuervo',name:'Cuervo de cabeza roja',sci:'Cathartes aura',more:'Es un buitre: abre las alas casi 1,8 m. Encuentra comida por el olfato, algo raro en las aves.',size:1.7,hab:'air',spots:[[riverX(-205),-205,28,34],[riverX(-195)+6,-195,22,30],[riverX(-215)-4,-215,33,38]],wander:0,walk:7,run:7,shy:null,
+  hint:'Miralos volar en círculos sobre la quebrada.',
+  note:'Planea sin aletear aprovechando el aire caliente que sube de las laderas. Las quebradas le dan esas corrientes y lugares altos y tranquilos para el nido.'},
+ {id:'aguila',name:'Águila mora',sci:'Geranoaetus melanoleucus',more:'Abre las alas cerca de 2 m y tiene la cola corta en forma de cuña. Come cuises, liebres y víboras.',size:2.0,hab:'air',spots:[[-80,-215,52,82]],wander:0,walk:9,run:9,shy:null,
+  hint:'Muy arriba sobre la sierra. Usá mucho zoom.',
+  note:'Vuela muy alto aprovechando el viento que choca contra los cerros, y desde ahí ve presas a cientos de metros. Hace el nido en riscos y árboles altos.'}
 ];
 const START={x:90,z:200,h:0};
 const ROADS=[[[90,206],[80,150],[60,100],[32,64],[riverX(55)+12,55],[riverX(55)-12,55],[-32,62],[-72,82],[-108,104],[-146,108]],[[60,100],[105,45],[150,15],[195,-20]]];
@@ -562,6 +582,22 @@ let grutaPos;
  grutaPos=new THREE.Vector3(0,0,-3.6);g.localToWorld(grutaPos);
  for(const p of[[0,3.2,5],[-2.5,-2.3,1.1],[2.5,-2.3,1.1]]){const v=new THREE.Vector3(p[0],0,p[1]);g.localToWorld(v);addObs(v.x,v.z,p[2]);}
 }
+// cascada donde nace el arroyo
+const FALLS={x:riverX(-263),z:-263};
+const fallTex=(()=>{const c=document.createElement('canvas');c.width=64;c.height=256;const g=c.getContext('2d');g.fillStyle='rgba(215,230,236,.6)';g.fillRect(0,0,64,256);
+ for(let i=0;i<80;i++){const x=Math.random()*64,w=1+Math.random()*3,y=Math.random()*256,hh=20+Math.random()*90;g.fillStyle='rgba(255,255,255,'+(.4+Math.random()*.55)+')';g.fillRect(x,y,w,hh);g.fillRect(x,y-256,w,hh);}
+ const t=new THREE.CanvasTexture(c);t.wrapS=t.wrapT=THREE.RepeatWrapping;return t;})();
+const fallTex2=fallTex.clone();fallTex2.needsUpdate=true;fallTex2.repeat.set(1.4,.8);
+{const topY=25.6,w=6.8,hgt=topY+.4;
+ for(const [tex,dz,op] of [[fallTex,0,.88],[fallTex2,.4,.55]]){const m=new THREE.Mesh(new THREE.PlaneGeometry(w,hgt),new THREE.MeshStandardMaterial({map:tex,transparent:true,opacity:op,roughness:.25,side:THREE.DoubleSide,depthWrite:false,emissive:0x8a9aa2,emissiveIntensity:.3}));
+  m.position.set(FALLS.x,topY-hgt/2,FALLS.z-.4+dz);m.rotation.x=-.07;scene.add(m);}
+ const up=new THREE.Mesh(new THREE.PlaneGeometry(40,40),water.material);up.rotation.x=-Math.PI/2;up.position.set(riverX(-282),topY,-284);scene.add(up);}
+let fallSnd=null;
+function updateFalls(dt){fallTex.offset.y+=dt*1.7;fallTex2.offset.y+=dt*2.4;
+ const d=Math.hypot(car.x-FALLS.x,car.z-FALLS.z);
+ if(d<170){for(let i=0;i<2;i++)emit(FALLS.x+(Math.random()-.5)*7,.3,FALLS.z+1.2+Math.random()*1.5,(Math.random()-.5)*2.5,1.2+Math.random()*2.2,.8+Math.random()*2,C_WATER,1.5,1.1);}
+ if(AC){if(!fallSnd){try{const s=AC.createBufferSource();s.buffer=nzBuf();s.loop=true;const f=AC.createBiquadFilter();f.type='lowpass';f.frequency.value=900;const g=AC.createGain();g.gain.value=0;s.connect(f).connect(g).connect(AC.destination);s.start();fallSnd=g;}catch(e){}}
+  if(fallSnd)fallSnd.gain.setTargetAtTime(muted?0:Math.pow(Math.max(0,1-d/150),2)*.3,AC.currentTime,.3);}}
 // cueva de la mulita
 const mulitaHome=SPECIES.find(s=>s.id==='mulita').spots[0];
 {const h=H(mulitaHome[0]+1.2,mulitaHome[1]);const g=new THREE.Group();g.position.set(mulitaHome[0]+1.2,h-.05,mulitaHome[1]);scene.add(g);
@@ -647,6 +683,24 @@ const BUILD={
  lobito(g,L){const b=M(0x543a28,.6),l=M(0x9b8670,.7);
   part(SPH,b,0,.1,0,.14,.13,.5,g);part(SPH,b,0,.16,-.52,.11,.1,.13,g);part(SPH,l,0,.12,-.6,.07,.05,.06,g);
   const t=part(CONE,b,0,.08,.75,.08,.5,.06,g);t.rotation.x=Math.PI/2;},
+ espatula(g,L){const pk=M(0xe58aa6),dp=M(0xc8456a),bl=M(0x9a9a8a),lg=M(0xb0505a);
+  part(SPH,pk,0,.62,0,.14,.13,.24,g);part(SPH,dp,0,.66,.1,.13,.08,.12,g);
+  const n=part(CYL,M(0xf3eef0),0,.8,-.18,.035,.32,.035,g);n.rotation.x=.5;
+  part(SPH,M(0xd9d0c8),0,.96,-.26,.05,.05,.06,g);
+  const b=part(BOX,bl,0,.91,-.36,.025,.02,.22,g);b.rotation.x=-.5;part(SPH,bl,0,.85,-.47,.045,.012,.05,g);
+  L.push(legP(g,lg,.04,.52,0,.52,.012),legP(g,lg,-.04,.52,0,.52,.012));},
+ sirir(g,L){const br=M(0x7a4a2c),bk=M(0x1c1a18),wh=M(0xf2efe8);
+  part(SPH,br,0,.12,0,.13,.1,.22,g);part(SPH,bk,0,.17,.08,.11,.06,.16,g);
+  const n=part(CYL,bk,0,.24,-.14,.035,.14,.035,g);n.rotation.x=.3;
+  part(SPH,wh,0,.31,-.18,.055,.055,.065,g);part(SPH,bk,0,.35,-.15,.03,.02,.03,g);part(BOX,M(0x55585a),0,.29,-.25,.03,.018,.07,g);},
+ cuervo(g,L){const d=M(0x2a2420),r=M(0xb3372c),gw=M(0x6a625a);
+  part(SPH,d,0,0,0,.14,.12,.36,g);part(SPH,r,0,.04,-.38,.06,.06,.08,g);part(CONE,M(0xe8e0d0),0,.03,-.47,.02,.06,.02,g).rotation.x=-Math.PI/2;
+  for(const s of[-1,1]){const w=new THREE.Group();w.position.set(s*.1,.02,0);w.rotation.z=s*.18;part(BOX,d,s*.45,0,.02,.9,.03,.36,w);part(BOX,gw,s*.5,-.016,.08,.8,.01,.2,w);part(BOX,d,s*.92,0,.06,.1,.02,.3,w);g.add(w);L.push(w);}
+  part(BOX,d,0,0,.42,.2,.025,.22,g);},
+ aguila(g,L){const dk=M(0x34383c),wh=M(0xeeeae2),gy=M(0x6b7075);
+  part(SPH,dk,0,0,0,.16,.14,.38,g);part(SPH,wh,0,-.06,.02,.13,.08,.3,g);part(SPH,gy,0,.05,-.4,.09,.08,.1,g);part(CONE,M(0xe0b23a),0,.03,-.52,.025,.07,.025,g).rotation.x=-Math.PI/2;
+  for(const s of[-1,1]){const w=new THREE.Group();w.position.set(s*.12,.02,0);w.rotation.z=s*.04;part(BOX,dk,s*.5,0,.02,1.0,.035,.5,w);part(BOX,wh,s*.48,-.022,.05,.9,.01,.36,w);part(BOX,dk,s*1.02,0,.08,.12,.025,.4,w);g.add(w);L.push(w);}
+  const t=part(CONE,dk,0,0,.5,.2,.22,.04,g);t.rotation.x=-Math.PI/2;},
  venado(g,L){const b=M(0xc09865),w=M(0xeee6d6),d=M(0x4a3a2a);
   part(SPH,b,0,1.0,0,.25,.27,.55,g);part(SPH,w,0,.9,0,.2,.18,.45,g);
   const nk=part(CYL,b,0,1.32,-.5,.08,.55,.08,g);nk.rotation.x=-.6;part(SPH,b,0,1.6,-.7,.1,.11,.2,g);part(SPH,d,0,1.57,-.88,.045,.04,.04,g);
@@ -655,15 +709,15 @@ const BUILD={
   part(SPH,w,0,1.08,.52,.07,.09,.05,g);
   for(const[x,z]of[[.14,-.38],[-.14,-.38],[.14,.38],[-.14,.38]])L.push(legP(g,d,x,.84,z,.84,.04));}
 };
-function validFor(sp,x,z){const h=H(x,z);switch(sp.hab){case 'water':return h<-0.9;case 'wade':return h>-0.9&&h<1.2;case 'amph':return h<0.7&&lagoonR(x,z)<50;default:return h>0.25&&slopeAt(x,z)<0.7;}}
-function yFor(sp,x,z){const h=H(x,z);if(sp.hab==='water')return -0.2;if(sp.hab==='amph')return Math.max(h,-0.16);if(sp.hab==='wade')return Math.max(h,-0.6)-0.02;return h;}
+function validFor(sp,x,z){const h=H(x,z);switch(sp.hab){case 'swim':return h<-0.35&&Math.hypot((x-LAG2.x)/34,(z-LAG2.z)/24)<.95;case 'water':return h<-0.9;case 'wade':return h>-0.42&&h<1.0;case 'amph':return h<0.7&&lagoonR(x,z)<50;default:return h>0.25&&slopeAt(x,z)<0.7;}}
+function yFor(sp,x,z){const h=H(x,z);if(sp.hab==='swim')return -0.04;if(sp.hab==='water')return -0.2;if(sp.hab==='amph')return Math.max(h,-0.16);if(sp.hab==='wade')return Math.max(h,-0.42)-0.02;return h;}
 function spawn(sp,x,z){
- if(sp.hab!=='perch'&&!validFor(sp,x,z)){let ok=false;for(let r=1;r<30&&!ok;r+=1)for(let k=0;k<12&&!ok;k++){const a=k/12*6.28,tx=x+Math.cos(a)*r,tz=z+Math.sin(a)*r;if(validFor(sp,tx,tz)){x=tx;z=tz;ok=true;}}}
+ if(sp.hab!=='perch'&&sp.hab!=='air'&&!validFor(sp,x,z)){let ok=false;for(let r=1;r<30&&!ok;r+=1)for(let k=0;k<12&&!ok;k++){const a=k/12*6.28,tx=x+Math.cos(a)*r,tz=z+Math.sin(a)*r;if(validFor(sp,tx,tz)){x=tx;z=tz;ok=true;}}}
  const g=new THREE.Group(),L=[];BUILD[sp.id](g,L);scene.add(g);
  const a={sp,g,legs:L,x,z,home:[x,z],h:rnd()*6.28,state:'idle',t:rnd()*3,tx:x,tz:z,phase:rnd()*6,y:0};
  a.y=yFor(sp,x,z);g.position.set(x,a.y,z);animals.push(a);return a;
 }
-for(const sp of SPECIES){for(const s of sp.spots)spawn(sp,s[0],s[1]);}
+for(const sp of SPECIES){for(const s of sp.spots){const a=spawn(sp,s[0],s[1]);if(sp.hab==='air'){a.R=s[2];a.alt=s[3];a.ang=rnd()*6.28;}}}
 {const sp=SPECIES.find(s=>s.id==='lechuza');const a=spawn(sp,lechuzaPerch.x,lechuzaPerch.z);a.y=lechuzaPerch.y;a.g.position.y=a.y;a.h=Math.PI*.8;}
 {const a=animals.find(a=>a.sp.id==='gato');a.x=a.home[0]=grutaPos.x;a.z=a.home[1]=grutaPos.z;a.h=-Math.PI/2;a.y=H(a.x,a.z);a.g.position.set(a.x,a.y,a.z);a.g.rotation.y=a.h;}
 
@@ -672,6 +726,10 @@ function updateAnimals(dt,time){
   const sp=a.sp,dc=Math.hypot(car.x-a.x,car.z-a.z);
   if(dc>260){continue;}
   if(sp.hab==='perch'){const hd=a.g.userData.head;if(hd)hd.rotation.y=Math.sin(time*.4+a.phase)*1.1;a.g.rotation.y=a.h;a.g.position.y=a.y+Math.sin(time*1.3)*.005;continue;}
+  if(sp.hab==='air'){a.ang+=dt*sp.walk/a.R;a.x=a.home[0]+Math.cos(a.ang)*a.R;a.z=a.home[1]+Math.sin(a.ang)*a.R;a.h=Math.PI-a.ang;
+   a.y=a.alt+Math.sin(time*.25+a.phase)*3;a.g.position.set(a.x,a.y,a.z);a.g.rotation.set(0,a.h,-.3+Math.sin(time*.7+a.phase)*.08,'YXZ');
+   const ag=sp.id==='aguila',flap=Math.sin(time*(ag?.2:.13)+a.phase)>(ag?.85:.93);
+   a.legs.forEach(w=>{const s=Math.sign(w.position.x);w.rotation.z=s*((ag?.04:.18)+(flap?Math.sin(time*9)*.35:0));});continue;}
   if(a.state==='hidden'){a.t-=dt;if(a.t<=0&&dc>24){a.state='idle';a.g.visible=true;a.x=a.home[0];a.z=a.home[1];}continue;}
   if(sp.shy&&dc<sp.shy.d&&Math.abs(car.v)>sp.shy.v&&a.state!=='flee'){
    if(sp.hides){a.state='hidden';a.t=12;a.g.visible=false;toast('Algo se metió en una cueva…');continue;}
@@ -784,9 +842,13 @@ const CALLS={
  yacare(d,t){tn(d,t,.9,62,50,1,'sawtooth',9);nz(d,t,.8,180,1.5,.5);},
  gato(d,t){tn(d,t,.22,520,800,.45,'triangle',7);tn(d,t+.2,.35,800,430,.45,'triangle',7);},
  lobito(d,t){for(let i=0;i<3;i++)tn(d,t+i*.22,.12,1800,2500,.35);},
- venado(d,t){nz(d,t,.25,700,1,.7);tn(d,t+.3,.3,1300,1050,.3);}
+ venado(d,t){nz(d,t,.25,700,1,.7);tn(d,t+.3,.3,1300,1050,.3);},
+ espatula(d,t){tn(d,t,.12,520,420,.3,'square');tn(d,t+.2,.12,500,400,.25,'square');},
+ sirir(d,t){for(let i=0;i<3;i++){tn(d,t+i*.3,.13,2400,3000,.3);tn(d,t+i*.3+.14,.1,2900,2300,.25);}},
+ cuervo(d,t){nz(d,t,.5,1200,1,.3);},
+ aguila(d,t){tn(d,t,.35,1800,2300,.35,'sawtooth');tn(d,t+.45,.5,2200,1600,.35,'sawtooth');}
 };
-const CALL_R={nandu:95,lechuza:85,yacare:75,mulita:32,tero:80,carpincho:60,garza:60,zorro:75,gato:60,lobito:65,venado:80};
+const CALL_R={espatula:55,sirir:70,cuervo:55,aguila:170,nandu:95,lechuza:85,yacare:75,mulita:32,tero:80,carpincho:60,garza:60,zorro:75,gato:60,lobito:65,venado:80};
 function playCall(a,dist){
  const t=AC.currentTime+.02,vol=Math.pow(1-dist/CALL_R[a.sp.id],1.4)*.55;if(vol<=.003)return;
  const g=AC.createGain();g.gain.value=vol;let out=g;
@@ -794,7 +856,7 @@ function playCall(a,dist){
  out.connect(AC.destination);try{CALLS[a.sp.id](g,t);}catch(e){}setTimeout(()=>{try{out.disconnect();g.disconnect();}catch(e){}},3000);
 }
 function updateCalls(dt){if(!AC||muted||mapOpen||bookOpen)return;if(AC.state==='suspended')AC.resume();
- for(const a of animals){if(!a.g.visible)continue;const dist=Math.hypot(car.x-a.x,car.z-a.z),R=CALL_R[a.sp.id];
+ for(const a of animals){if(!a.g.visible||a.sp.hab==='air')continue;const dist=Math.hypot(car.x-a.x,car.z-a.z),R=CALL_R[a.sp.id];
   if(dist>R){a.callT=Math.min(a.callT===undefined?2:a.callT,1.5+Math.random()*2);continue;}
   a.callT=(a.callT===undefined?Math.random()*2:a.callT)-dt;if(a.callT<=0){playCall(a,dist);a.callT=(5+Math.random()*5)*Math.sqrt(a.sp.spots.length||1);}}}
 // ===== FOTOS =====
@@ -984,11 +1046,11 @@ function updateCamera(dt){
 // ===== BUCLE =====
 const clock=new THREE.Clock();let fogT=0,trailT=0;
 function checkPlaces(){for(const p of PLACES){if(SAVE.places.includes(p.id))continue;if(Math.hypot(car.x-p.x,car.z-p.z)<p.r){SAVE.places.push(p.id);save();refreshTally();chime();toast('Descubriste: '+p.name,'place');}}}
-function updateTrail(){let nd=1e9,na=null;for(const a of animals){if(SAVE.found[a.sp.id]||!a.g.visible)continue;const d=Math.hypot(car.x-a.x,car.z-a.z);if(d<nd){nd=d;na=a;}}
+function updateTrail(){let nd=1e9,na=null;for(const a of animals){if(SAVE.found[a.sp.id]||!a.g.visible||a.sp.hab==='air')continue;const d=Math.hypot(car.x-a.x,car.z-a.z);if(d<nd){nd=d;na=a;}}
  const el=$('#trail');if(na&&nd<55){let msg='Huellas frescas por acá';if(nd<25){const ref=photo?photoYaw:car.h;let d=Math.atan2(-(na.x-car.x),-(na.z-car.z))-ref;d=Math.atan2(Math.sin(d),Math.cos(d));const dir=Math.abs(d)<.5?'adelante':Math.abs(d)>2.6?'atrás':d>0?'a la izquierda':'a la derecha';const dy=na.y-car.y;msg='Hay algo muy cerca, '+dir+(dy>5?' y más arriba':dy<-5?' y más abajo':'')+'. Frená y usá la cámara';}el.textContent=msg;el.classList.add('show');}else el.classList.remove('show');}
 function loop(){
  const dt=Math.min(.05,clock.getDelta()),time=clock.elapsedTime;
- if(started){updateCar(dt,time);updateAnimals(dt,time);updateCalls(dt);updateParts(dt);fogT+=dt;if(fogT>.25){fogT=0;revealFog();checkPlaces();}trailT+=dt;if(trailT>.5){trailT=0;updateTrail();}}
+ if(started){updateCar(dt,time);updateAnimals(dt,time);updateCalls(dt);updateParts(dt);updateFalls(dt);fogT+=dt;if(fogT>.25){fogT=0;revealFog();checkPlaces();}trailT+=dt;if(trailT>.5){trailT=0;updateTrail();}}
  else{camOrbit+=dt*.05;}
  if(started)updateCamera(dt);else{const a=time*.04+.6;camera.position.set(car.x+Math.sin(a)*22,car.y+6,car.z+Math.cos(a)*22);camera.lookAt(car.x,car.y+1.2,car.z);}
  sky.position.copy(camera.position);
