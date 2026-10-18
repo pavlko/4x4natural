@@ -96,6 +96,10 @@ body.photo #trail{bottom:auto;top:calc(env(safe-area-inset-top,0px) + 118px)}
 .hz .ph{aspect-ratio:8/5}
 .hz .note{font-size:14px;color:#6b5a40;font-style:italic}
 @media (max-width:640px){.hz{grid-template-columns:1fr}}
+.card.secret{background:#e9d9a8;box-shadow:0 0 0 2px #b88a2a inset}
+.card.secret h3::after{content:' ★';color:#b88a2a}
+#race{position:absolute;left:50%;top:calc(env(safe-area-inset-top,0px) + 12px);transform:translateX(-50%);background:var(--panel);padding:6px 14px;border-radius:3px;border-bottom:3px solid var(--senal);font-size:18px;font-weight:600;display:none;white-space:nowrap}
+#race.show{display:block}
 .card .more{font-size:14.5px;color:#4d4030}
 .cover h2{margin:0;font-size:30px;font-weight:700;color:var(--kraft)}
 .cover h2 em{font-family:Newsreader,serif;font-weight:400;font-size:20px;color:#a9bba3;margin-left:10px}
@@ -156,6 +160,7 @@ body.photo #trail{bottom:auto;top:calc(env(safe-area-inset-top,0px) + 118px)}
   </div>
   <div id="toasts"></div>
   <div id="trail"></div>
+  <div id="race"></div>
   <div id="gauge"><div><div id="spd">0</div><div class="u">km/h</div></div><div id="gear">4H</div></div>
   <div id="mapwrap"><canvas id="minimap" width="200" height="200"></canvas></div>
 </div>
@@ -170,7 +175,7 @@ body.photo #trail{bottom:auto;top:calc(env(safe-area-inset-top,0px) + 118px)}
 <div id="book" role="dialog" aria-label="Cuaderno de campo">
   <div class="cover">
     <header><h2>Cuaderno de campo<em>Sierras y humedal del este</em></h2><button class="close" id="bClose">Cerrar</button></header>
-    <div class="pages"><div class="grid" id="cards"></div><div class="places"><h4 id="plH">Lugares</h4><div class="grid" id="plList"></div></div><div class="places"><h4>Hallazgos</h4><div id="hzList"></div></div><p class="bookcredit">4x4 Natural · un juego de Insight Reality</p></div>
+    <div class="pages"><div class="grid" id="cards"></div><div class="places"><h4 id="plH">Lugares</h4><div class="grid" id="plList"></div></div><div class="places"><h4>Hallazgos</h4><div id="hzList"></div></div><p class="bookcredit" id="raceInfo"></p><p class="bookcredit">4x4 Natural · un juego de Insight Reality</p></div>
   </div>
 </div>
 <div id="start">
@@ -326,8 +331,12 @@ const SPECIES=[
   note:'Planea sin aletear aprovechando el aire caliente que sube de las laderas. Las quebradas le dan esas corrientes y lugares altos y tranquilos para el nido.'},
  {id:'aguila',name:'Águila mora',sci:'Geranoaetus melanoleucus',more:'Abre las alas cerca de 2 m y tiene la cola corta en forma de cuña. Come cuises, liebres y víboras.',size:2.0,hab:'air',spots:[[-80,-215,52,82]],wander:0,walk:9,run:9,shy:null,
   hint:'Muy arriba sobre la sierra. Usá mucho zoom.',
-  note:'Vuela muy alto aprovechando el viento que choca contra los cerros, y desde ahí ve presas a cientos de metros. Hace el nido en riscos y árboles altos.'}
+  note:'Vuela muy alto aprovechando el viento que choca contra los cerros, y desde ahí ve presas a cientos de metros. Hace el nido en riscos y árboles altos.'},
+ {id:'puma',name:'Puma',sci:'Puma concolor',secret:true,high:true,more:'Puede medir más de 2 m con la cola. Caza de noche y al amanecer, y recorre territorios enormes: decenas de kilómetros.',size:1.0,hab:'land',spots:[[-160,-240]],wander:55,walk:1.5,run:8,shy:{d:72,v:-1},
+  hint:'',
+  note:'El gran felino de América. Anda por las partes más altas y solitarias de la sierra, donde puede vigilar sin ser visto. Es tan tímido que casi nadie lo ve: en Uruguay se lo creía desaparecido, y solo muy de vez en cuando aparecen rastros o avistamientos en sierras lejanas.'}
 ];
+const GOAL=SPECIES.filter(s=>!s.secret);
 const START={x:90,z:200,h:0};
 const ROADS=[[[90,206],[80,150],[60,100],[32,64],[riverX(55)+12,55],[riverX(55)-12,55],[-32,62],[-72,82],[-108,104],[-146,108]],[[60,100],[105,45],[150,15],[195,-20]]];
 function roadD(x,z){let best=1e9;for(const R of ROADS)for(let i=0;i<R.length-1;i++){const[ax,az]=R[i],[bx,bz]=R[i+1],dx=bx-ax,dz=bz-az,l=dx*dx+dz*dz;let t=((x-ax)*dx+(z-az)*dz)/l;t=Math.max(0,Math.min(1,t));const ex=ax+dx*t-x,ez=az+dz*t-z,d=ex*ex+ez*ez;if(d<best)best=d;}return Math.sqrt(best);}
@@ -342,8 +351,8 @@ const SAVE_KEY='natural4x4_v1';
 let SAVE={found:{},places:[]};
 try{const s=localStorage.getItem(SAVE_KEY);if(s){const o=JSON.parse(s);if(o&&o.found)SAVE=o;}}catch(e){}
 function save(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(SAVE));}catch(e){}checkTele();}
-function teleUnlocked(){const pics=SAVE.placePics||{};return Object.keys(SAVE.found).length>=SPECIES.length&&PLACES.every(p=>p.id in pics);}
-function teleProgress(){const pics=SAVE.placePics||{};return Object.keys(SAVE.found).length+PLACES.filter(p=>p.id in pics).length;}
+function teleUnlocked(){const pics=SAVE.placePics||{};return GOAL.every(s=>SAVE.found[s.id])&&PLACES.every(p=>p.id in pics);}
+function teleProgress(){const pics=SAVE.placePics||{};return GOAL.filter(s=>SAVE.found[s.id]).length+PLACES.filter(p=>p.id in pics).length;}
 function checkTele(){if(!SAVE.teleOk&&teleUnlocked()){SAVE.teleOk=true;try{localStorage.setItem(SAVE_KEY,JSON.stringify(SAVE));}catch(e){}setTimeout(()=>{chime();toast('¡Desbloqueaste el teletransporte! Abrí el mapa y tocá un lugar.','place');},1800);}}
 
 // ===== RENDER BÁSICO =====
@@ -833,6 +842,11 @@ const BUILD={
    const m1=flat(WING.map(p=>[s*p[0],p[1]]),dk,0,THREE.DoubleSide),m2=flat(COV.map(p=>[s*p[0],p[1]]),M(0xc6cbcf,.9,{emissive:0x8d9397,emissiveIntensity:.6}),-.006,THREE.DoubleSide);w.add(m1,m2);g.add(w);L.push(w);}
   part(SPH,bl,0,.01,-.2,.15,.13,.24,g);part(SPH,wh,0,-.02,.12,.15,.12,.26,g);part(SPH,bl,0,.04,-.42,.1,.09,.11,g);part(CONE,M(0x9aa0a4),0,.02,-.54,.025,.07,.025,g).rotation.x=-Math.PI/2;
   g.add(flat([[-.12,.28],[.12,.28],[.16,.44],[0,.49],[-.16,.44]],gy,.01,THREE.DoubleSide));},
+ puma(g,L){const b=M(0xb58a5a),l=M(0xe6d6bd),d=M(0x2e241c);
+  part(SPH,b,0,.58,0,.21,.23,.6,g);part(SPH,l,0,.48,-.05,.15,.12,.45,g);part(SPH,b,0,.7,-.62,.14,.13,.16,g);part(SPH,l,0,.65,-.75,.08,.06,.07,g);
+  part(SPH,b,.08,.82,-.6,.04,.045,.025,g);part(SPH,b,-.08,.82,-.6,.04,.045,.025,g);
+  const t1=part(CYL,b,0,.52,.78,.05,.55,.05,g);t1.rotation.x=1.1;const t2=part(CYL,b,0,.3,1.05,.045,.35,.045,g);t2.rotation.x=.3;part(SPH,d,0,.16,1.12,.06,.08,.06,g);
+  for(const[x,z]of[[.12,-.38],[-.12,-.38],[.12,.38],[-.12,.38]])L.push(legP(g,b,x,.44,z,.44,.06));},
  venado(g,L){const b=M(0xc09865),w=M(0xeee6d6),d=M(0x4a3a2a);
   part(SPH,b,0,1.0,0,.25,.27,.55,g);part(SPH,w,0,.9,0,.2,.18,.45,g);
   const nk=part(CYL,b,0,1.32,-.5,.08,.55,.08,g);nk.rotation.x=-.6;part(SPH,b,0,1.6,-.7,.1,.11,.2,g);part(SPH,d,0,1.57,-.88,.045,.04,.04,g);
@@ -863,6 +877,8 @@ function updateAnimals(dt,time){
    const ag=sp.id==='aguila',flap=Math.sin(time*(ag?.2:.13)+a.phase)>(ag?.85:.93);
    a.legs.forEach(w=>{const s=Math.sign(w.position.x);w.rotation.z=s*((ag?.04:.18)+(flap?Math.sin(time*9)*.35:0));});continue;}
   if(a.state==='hidden'){a.t-=dt;if(a.t<=0&&dc>24){a.state='idle';a.g.visible=true;a.x=a.home[0];a.z=a.home[1];}continue;}
+  if(RACE.on&&RACE.a===a)continue;
+  if(sp.id==='nandu'&&!RACE.on&&RACE.cool<=0&&dc<18&&Math.abs(car.v)>8&&!photo){startRace(a);continue;}
   if(sp.shy&&dc<sp.shy.d&&Math.abs(car.v)>sp.shy.v&&a.state!=='flee'){
    if(sp.hides){a.state='hidden';a.t=12;a.g.visible=false;toast('Algo se metió en una cueva…');continue;}
    a.state='flee';a.t=3+rnd()*2;
@@ -871,7 +887,7 @@ function updateAnimals(dt,time){
   if(a.state==='flee'){a.t-=dt;a.tx=a.x+(a.x-car.x)/Math.max(dc,.1)*10;a.tz=a.z+(a.z-car.z)/Math.max(dc,.1)*10;
    if(Math.hypot(a.tx-a.home[0],a.tz-a.home[1])>sp.wander*3){a.tx=a.home[0];a.tz=a.home[1];}speed=sp.run;if(a.t<=0){a.state='idle';a.t=2;}}
   else if(a.state==='walk'){speed=sp.walk;if(Math.hypot(a.tx-a.x,a.tz-a.z)<.4){a.state='idle';a.t=2+rnd()*5;}}
-  else{a.t-=dt;if(a.t<=0){const ang=rnd()*6.28,r=rnd()*sp.wander;a.tx=a.home[0]+Math.cos(ang)*r;a.tz=a.home[1]+Math.sin(ang)*r;a.state='walk';}}
+  else{a.t-=dt;if(a.t<=0){let bh=-1e9;for(let q=0;q<(sp.high?8:1);q++){const ang=rnd()*6.28,r=rnd()*sp.wander,tx=a.home[0]+Math.cos(ang)*r,tz=a.home[1]+Math.sin(ang)*r,hh=sp.high?(slopeAt(tx,tz)<.65?H(tx,tz):-99):0;if(hh>bh){bh=hh;a.tx=tx;a.tz=tz;}}a.state='walk';}}
   if(speed>0){
    const dx=a.tx-a.x,dz=a.tz-a.z,hd=Math.atan2(-dx,-dz);let df=hd-a.h;df=Math.atan2(Math.sin(df),Math.cos(df));a.h+=df*Math.min(1,dt*(a.state==='flee'?6:2.5));
    const nx=a.x-Math.sin(a.h)*speed*dt,nz=a.z-Math.cos(a.h)*speed*dt;
@@ -892,12 +908,12 @@ function k(c){return !!keys[c];}
 const toastsEl=$('#toasts');
 function toast(msg,cls=''){const d=document.createElement('div');d.className='toast '+cls;d.textContent=msg;toastsEl.appendChild(d);while(toastsEl.children.length>3)toastsEl.firstChild.remove();setTimeout(()=>d.remove(),3400);}
 let lastMsg={};function toastOnce(key,msg,gap=4){const t=performance.now()/1000;if(!lastMsg[key]||t-lastMsg[key]>gap){lastMsg[key]=t;toast(msg);}}
-function refreshTally(){const nf=Object.keys(SAVE.found).length;$('#tBichos').textContent=nf+' / '+SPECIES.length+' bichos';$('#tLugares').textContent=SAVE.places.length+' / '+PLACES.length+' lugares';}
+function refreshTally(){const nf=GOAL.filter(s=>SAVE.found[s.id]).length,ns=SPECIES.filter(s=>s.secret&&SAVE.found[s.id]).length;$('#tBichos').textContent=nf+' / '+GOAL.length+' bichos'+(ns?' ★':'');$('#tLugares').textContent=SAVE.places.length+' / '+PLACES.length+' lugares';}
 function links(sp){const q=encodeURIComponent(sp.sci),qn=encodeURIComponent(sp.name+' '+sp.sci);
  return `<a href="https://www.inaturalist.org/observations?taxon_name=${q}&photos=true" target="_blank" rel="noopener">Fotos reales</a><a href="https://es.wikipedia.org/w/index.php?search=${q}" target="_blank" rel="noopener">Leer más</a><a href="https://www.youtube.com/results?search_query=${qn}" target="_blank" rel="noopener">Videos</a>`;}
-function renderBook(){
+function renderBook(){const ri=$('#raceInfo');if(ri)ri.textContent=SAVE.raceWins?'🏁 Carreras ganadas al ñandú: '+SAVE.raceWins:'';
  const c=$('#cards');c.innerHTML='';
- for(const sp of SPECIES){const f=SAVE.found[sp.id];const d=document.createElement('div');d.className='card'+(f?'':' locked');
+ for(const sp of SPECIES){const f=SAVE.found[sp.id];if(sp.secret&&!f)continue;const d=document.createElement('div');d.className='card'+(f?'':' locked')+(sp.secret?' secret':'');
   d.innerHTML=f?`<div class="ph">${f.img?`<img alt="Foto de ${sp.name}" src="${f.img}">`:'📷'}</div><h3>${sp.name}</h3><div class="sci">${sp.sci}</div><p>${sp.note}</p><p class="more">${sp.more}</p><div class="where">Encontrado: ${f.where}</div><div class="links">${links(sp)}</div>`
    :`<div class="ph">?</div><h3>Sin descubrir</h3><p>${sp.hint}</p>`;c.appendChild(d);}
  $('#plH').textContent='Lugares ('+SAVE.places.length+' de '+PLACES.length+')';
@@ -1002,7 +1018,7 @@ function playCall(a,dist){
  out.connect(AC.destination);try{CALLS[a.sp.id](g,t);}catch(e){}setTimeout(()=>{try{out.disconnect();g.disconnect();}catch(e){}},3000);
 }
 function updateCalls(dt){if(!AC||muted||mapOpen||bookOpen)return;if(AC.state==='suspended')AC.resume();
- for(const a of animals){if(!a.g.visible||a.sp.hab==='air')continue;const dist=Math.hypot(car.x-a.x,car.z-a.z),R=CALL_R[a.sp.id];
+ for(const a of animals){if(!a.g.visible||a.sp.hab==='air'||!CALL_R[a.sp.id])continue;const dist=Math.hypot(car.x-a.x,car.z-a.z),R=CALL_R[a.sp.id];
   if(dist>R){a.callT=Math.min(a.callT===undefined?2:a.callT,1.5+Math.random()*2);continue;}
   a.callT=(a.callT===undefined?Math.random()*2:a.callT)-dt;if(a.callT<=0){playCall(a,dist);a.callT=(5+Math.random()*5)*Math.sqrt(a.sp.spots.length||1);}}}
 // ===== FOTOS =====
@@ -1028,7 +1044,7 @@ function shoot(){
   const sp=best.a.sp,first=!SAVE.found[sp.id];
   const img=grabThumb();
   {SAVE.found[sp.id]={img,where:placeNameAt(best.a.x,best.a.z),q:best.frac,x:Math.round(best.a.x),z:Math.round(best.a.z)};save();}
-  if(first){chime();toast('¡Nuevo en el cuaderno: '+sp.name+'!','place');refreshTally();if(Object.keys(SAVE.found).length===SPECIES.length)setTimeout(()=>toast('¡Completaste el cuaderno de este ambiente!','place'),1500);}
+  if(first){chime();toast(sp.secret?'★ ¡Bicho secreto! '+sp.name+': casi nadie lo ve.':'¡Nuevo en el cuaderno: '+sp.name+'!','place');refreshTally();if(!sp.secret&&GOAL.every(s=>SAVE.found[s.id]))setTimeout(()=>toast('¡Completaste el cuaderno de este ambiente!','place'),1500);}
   else toast('Foto nueva de '+sp.name.toLowerCase()+' en el cuaderno');
  }else{const pl=placeInShot();
   if(pl){if(!SAVE.places.includes(pl.id)){SAVE.places.push(pl.id);refreshTally();chime();}SAVE.placePics=SAVE.placePics||{};SAVE.placePics[pl.id]=grabThumb();save();toast(far?'No se ve ningún bicho, pero guardaste la foto de '+pl.name:'Foto guardada: '+pl.name,'place');}
@@ -1054,7 +1070,7 @@ function drawBigMap(){const c=$('#bigc'),x=c.getContext('2d'),S=c.width,s=S/MM;x
  const[cx,cy]=P(car.x,car.z);x.save();x.translate(cx,cy);x.rotate(-car.h);x.fillStyle='#F28C28';x.strokeStyle='#1f160e';x.lineWidth=2;x.beginPath();x.moveTo(0,-14);x.lineTo(9,9);x.lineTo(0,4);x.lineTo(-9,9);x.closePath();x.fill();x.stroke();x.restore();
  if(SAVE.teleOk){for(const p of TELE()){const[px,py]=P(p.x,p.z);x.strokeStyle='#F28C28';x.lineWidth=3;x.beginPath();x.arc(px,py,13,0,7);x.stroke();}
   const[ix,iy]=P(START.x,START.z);x.fillStyle='#f3ebdd';x.strokeStyle='#1f160e';x.lineWidth=4;x.font='600 22px "Barlow Condensed", sans-serif';x.strokeText('Inicio',ix,iy-18);x.fillText('Inicio',ix,iy-18);}
- const note=$('#mapnote');if(note)note.textContent=SAVE.teleOk?'Teletransporte: tocá un lugar marcado en naranja para ir hasta ahí.':'Lo más oscuro todavía no lo recorriste. Fotografiá todos los bichos y todos los lugares para desbloquear el teletransporte ('+teleProgress()+' de '+(SPECIES.length+PLACES.length)+').';
+ const note=$('#mapnote');if(note)note.textContent=SAVE.teleOk?'Teletransporte: tocá un lugar marcado en naranja para ir hasta ahí.':'Lo más oscuro todavía no lo recorriste. Fotografiá todos los bichos y todos los lugares para desbloquear el teletransporte ('+teleProgress()+' de '+(GOAL.length+PLACES.length)+').';
  x.fillStyle='#f3ebdd';x.font='700 26px "Barlow Condensed", sans-serif';x.fillText('N',S/2,28);}
 function TELE(){return [{id:'inicio',name:'Inicio',x:START.x,z:START.z}].concat(PLACES.filter(p=>SAVE.places.includes(p.id)));}
 function landSpot(cx,cz){for(let r=0;r<80;r+=2)for(let k=0;k<16;k++){const a=k/16*6.283,x=cx+Math.cos(a)*r,z=cz+Math.sin(a)*r;if(H(x,z)>0.4&&slopeAt(x,z)<.35&&!hitObs(x,z,2.5))return[x,z];}return[START.x,START.z];}
@@ -1087,6 +1103,28 @@ function updateCave(dt,time){
  if(!photo&&!caveCool&&dm<5)enterCave();
  hemi.intensity+=((caveView?.1:.62)-hemi.intensity)*Math.min(1,dt*2.5);sun.intensity+=((caveView?.16:1.25)-sun.intensity)*Math.min(1,dt*2.5);
  if(caveView&&photo){const L=toCaveL(caveView.x,caveView.z);if(Math.hypot(L[0]-CH.cx,L[1]-CH.cz)<CH.r)caveT+=dt;if(caveT>1.5&&!SAVE.hall){SAVE.hall={img:grabThumb()};save();chime();toast('¡Nuevo hallazgo en el cuaderno: los primeros habitantes!','place');}}}
+// ===== CARRERA CON EL ÑANDÚ =====
+const RACE={on:false,cool:5,a:null,fx:0,fz:0,t:0};
+const flag=new THREE.Group();{part(CYL,M(0xdedad0),0,3.5,0,.08,7,.08,flag);const c=document.createElement('canvas');c.width=64;c.height=40;const x=c.getContext('2d');for(let i=0;i<8;i++)for(let j=0;j<5;j++){x.fillStyle=(i+j)%2?'#1c1a18':'#f3ebdd';x.fillRect(i*8,j*8,8,8);}
+ const fm=new THREE.Mesh(new THREE.PlaneGeometry(1.8,1.1),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(c),side:THREE.DoubleSide}));fm.position.set(.95,6.4,0);flag.add(fm);flag.userData.cloth=fm;
+ const ring=new THREE.Mesh(new THREE.TorusGeometry(9,.25,6,40),new THREE.MeshBasicMaterial({color:0xF28C28}));ring.rotation.x=Math.PI/2;ring.position.y=.3;flag.add(ring);}
+flag.visible=false;scene.add(flag);
+function startRace(a){const dx=-Math.sin(car.h)*Math.sign(car.v||1),dz=-Math.cos(car.h)*Math.sign(car.v||1);let best=null;
+ for(const da of[0,.35,-.35,.7,-.7]){const ux=dx*Math.cos(da)-dz*Math.sin(da),uz=dx*Math.sin(da)+dz*Math.cos(da);let L=0;
+  for(let d=5;d<=230;d+=5){const x=a.x+ux*d,z=a.z+uz*d;if(H(x,z)<-.4||Math.abs(x)>HALF-30||Math.abs(z)>HALF-30||slopeAt(x,z)>.6||hitObs(x,z,2.6))break;L=d;}
+  if(!best||L>best.L)best={L,ux,uz};if(L>=230)break;}
+ if(best.L<80)return;RACE.on=true;RACE.a=a;RACE.t=0;RACE.fx=a.x+best.ux*best.L;RACE.fz=a.z+best.uz*best.L;
+ flag.position.set(RACE.fx,H(RACE.fx,RACE.fz),RACE.fz);flag.visible=true;$('#race').classList.add('show');toast('¡El ñandú te desafía! Llegá primero a la bandera 🏁','place');}
+function endRace(win,msg){RACE.on=false;RACE.cool=25;flag.visible=false;$('#race').classList.remove('show');const a=RACE.a;RACE.a=null;if(a){a.state='idle';a.t=3;}
+ if(win){SAVE.raceWins=(SAVE.raceWins||0)+1;save();chime();}toast(msg,win?'place':'');}
+function updateRace(dt,time){if(!RACE.on){RACE.cool-=dt;return;}const a=RACE.a;RACE.t+=dt;flag.userData.cloth.rotation.y=Math.sin(time*4)*.3;
+ const dx=RACE.fx-a.x,dz=RACE.fz-a.z,da=Math.hypot(dx,dz),dcar=Math.hypot(RACE.fx-car.x,RACE.fz-car.z);
+ const spd=Math.min(14,4+RACE.t*5);const hd=Math.atan2(-dx,-dz)+Math.sin(RACE.t*1.6)*.55*Math.min(1,da/25);let df=hd-a.h;df=Math.atan2(Math.sin(df),Math.cos(df));a.h+=df*Math.min(1,dt*4);
+ const nx=a.x-Math.sin(a.h)*spd*dt,nz=a.z-Math.cos(a.h)*spd*dt;if(H(nx,nz)>-.4){a.x=nx;a.z=nz;}
+ a.phase+=dt*spd*3.2;a.legs.forEach((p,i)=>{p.rotation.x=Math.sin(a.phase+(i%2?0:Math.PI))*.8;});a.y=H(a.x,a.z);a.g.position.set(a.x,a.y+Math.abs(Math.sin(a.phase))*.08,a.z);a.g.rotation.y=a.h;
+ $('#race').textContent='🏁 Vos '+Math.round(dcar)+' m · Ñandú '+Math.round(da)+' m';
+ if(dcar<9)endRace(true,'¡Le ganaste al ñandú! 🏆');else if(da<3)endRace(false,'¡Ganó el ñandú! Corre en zigzag a más de 50 km/h…');
+ else if(RACE.t>45||dcar>da+160)endRace(false,'El ñandú se fue lejos. Otra vez será.');}
 // ===== FÍSICA DE LA CAMIONETA =====
 function updateCar(dt,time){
  let tin=0,st=0;
@@ -1121,7 +1159,7 @@ function updateCar(dt,time){
    if(mud>.4&&Math.abs(thr)>.6)spin=true;}
   else{car.v*=1-dt*.7;if(Math.abs(car.v)<.6&&Math.abs(gF)<.42)car.v=0;}
   if(photo){car.v=0;car.thr=0;}
-  car.v*=1-dt*(.2+(inWater?1.3:0)+riverMud*.6+mud*1.1+sand*.9);
+  car.v*=1-dt*(.17+(inWater?1.3:0)+riverMud*.6+mud*1.1+sand*.9);
  }
  // giro y derrape: la dirección de avance sigue a la trompa según el agarre
  const yaw=car.steer*car.v*.21/(1+Math.abs(car.v)*.05)*(1-.3*mud);
@@ -1215,11 +1253,11 @@ function updateCamera(dt){
 // ===== BUCLE =====
 const clock=new THREE.Clock();let fogT=0,trailT=0;
 function checkPlaces(){for(const p of PLACES){if(SAVE.places.includes(p.id))continue;if(Math.hypot(car.x-p.x,car.z-p.z)<p.r){SAVE.places.push(p.id);save();refreshTally();chime();toast('Descubriste: '+p.name,'place');}}}
-function updateTrail(){if(caveView){$('#trail').classList.remove('show');return;}let nd=1e9,na=null;for(const a of animals){if(SAVE.found[a.sp.id]||!a.g.visible||a.sp.hab==='air')continue;const d=Math.hypot(car.x-a.x,car.z-a.z);if(d<nd){nd=d;na=a;}}
+function updateTrail(){if(caveView){$('#trail').classList.remove('show');return;}let nd=1e9,na=null;for(const a of animals){if(SAVE.found[a.sp.id]||!a.g.visible||a.sp.hab==='air'||a.sp.secret)continue;const d=Math.hypot(car.x-a.x,car.z-a.z);if(d<nd){nd=d;na=a;}}
  const el=$('#trail');if(na&&nd<55){let msg='Huellas frescas por acá';if(nd<25){const ref=photo?photoYaw:car.h;let d=Math.atan2(-(na.x-car.x),-(na.z-car.z))-ref;d=Math.atan2(Math.sin(d),Math.cos(d));const dir=Math.abs(d)<.5?'adelante':Math.abs(d)>2.6?'atrás':d>0?'a la izquierda':'a la derecha';const dy=na.y-car.y;msg='Hay algo muy cerca, '+dir+(dy>5?' y más arriba':dy<-5?' y más abajo':'')+'. Frená y usá la cámara';}el.textContent=msg;el.classList.add('show');}else el.classList.remove('show');}
 function loop(){
  const dt=Math.min(.05,clock.getDelta()),time=clock.elapsedTime;if(started)perfCheck();
- if(started){updateCar(dt,time);updateAnimals(dt,time);updateCalls(dt);updateParts(dt);updateFalls(dt);updateCave(dt,time);fogT+=dt;if(fogT>.25){fogT=0;revealFog();checkPlaces();}trailT+=dt;if(trailT>.5){trailT=0;updateTrail();}}
+ if(started){updateCar(dt,time);updateAnimals(dt,time);updateCalls(dt);updateRace(dt,time);updateParts(dt);updateFalls(dt);updateCave(dt,time);fogT+=dt;if(fogT>.25){fogT=0;revealFog();checkPlaces();}trailT+=dt;if(trailT>.5){trailT=0;updateTrail();}}
  else{if(!dragging)startA+=dt*.04;}
  if(started)updateCamera(dt);else{const a=startA+camOrbit,el=Math.max(.04,Math.min(1.35,.27+camTilt)),dd=22*camZoom;camera.position.set(car.x+Math.sin(a)*Math.cos(el)*dd,car.y+1.2+Math.sin(el)*dd,car.z+Math.cos(a)*Math.cos(el)*dd);const gh=H(camera.position.x,camera.position.z)+1;if(camera.position.y<gh)camera.position.y=gh;camera.lookAt(car.x,car.y+1.2,car.z);}
  sky.position.copy(camera.position);
@@ -1258,7 +1296,7 @@ $('#go').onclick=()=>{started=true;camOrbit=0;camTilt=0;camZoom=1;camLock=false;
 function resetAll(){SAVE={found:{},places:[],placePics:{}};save();refreshTally();const go=$('#go');if(go)go.textContent='Arrancar';toast('🧹','place');const sup=$('#start sup');if(sup){sup.style.transition='color .3s';sup.style.color='#c0392b';setTimeout(()=>sup.style.color='',900);}}
 function longPress(el,ms,fn){if(!el)return;let tm=null;const stop=()=>{clearTimeout(tm);tm=null;};el.addEventListener('pointerdown',()=>{stop();tm=setTimeout(()=>{tm=null;fn();},ms);});el.addEventListener('pointerup',stop);el.addEventListener('pointerleave',stop);el.addEventListener('pointercancel',stop);el.addEventListener('contextmenu',e=>e.preventDefault());}
 longPress($('#start sup'),3000,resetAll);longPress($('#tally'),3000,resetAll);
-function unlockAll(){SAVE.placePics=SAVE.placePics||{};for(const sp of SPECIES)if(!SAVE.found[sp.id])SAVE.found[sp.id]={img:'',where:'Desbloqueado'};for(const p of PLACES){if(!SAVE.places.includes(p.id))SAVE.places.push(p.id);if(!(p.id in SAVE.placePics))SAVE.placePics[p.id]='';}if(!SAVE.hall)SAVE.hall={img:''};SAVE.teleOk=true;save();refreshTally();const go=$('#go');if(go)go.textContent='Seguir explorando';toast('✨','place');const sup=$('#start sup');if(sup){sup.style.transition='color .3s';sup.style.color='#F28C28';setTimeout(()=>sup.style.color='',900);}}
+function unlockAll(){SAVE.placePics=SAVE.placePics||{};for(const sp of GOAL)if(!SAVE.found[sp.id])SAVE.found[sp.id]={img:'',where:'Desbloqueado'};for(const p of PLACES){if(!SAVE.places.includes(p.id))SAVE.places.push(p.id);if(!(p.id in SAVE.placePics))SAVE.placePics[p.id]='';}if(!SAVE.hall)SAVE.hall={img:''};SAVE.teleOk=true;save();refreshTally();const go=$('#go');if(go)go.textContent='Seguir explorando';toast('✨','place');const sup=$('#start sup');if(sup){sup.style.transition='color .3s';sup.style.color='#F28C28';setTimeout(()=>sup.style.color='',900);}}
 function tripleTap(el,fn){if(!el)return;let n=0,t=0;el.addEventListener('pointerdown',()=>{const now=performance.now();n=now-t<450?n+1:1;t=now;if(n>=3){n=0;fn();}});}
 tripleTap($('#start sup'),unlockAll);tripleTap($('#tally'),unlockAll);
 requestAnimationFrame(loop);
