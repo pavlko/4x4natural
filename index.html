@@ -4,6 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>4x4 Natural — Insight Reality</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#23402F">
+<meta name="description" content="Manejá una 4x4 por la sierra y el humedal de Uruguay y fotografiá los bichos donde viven. Un juego de Insight Reality.">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="4x4 Natural">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
@@ -133,6 +142,8 @@ body.photo #trail{bottom:auto;top:calc(env(safe-area-inset-top,0px) + 118px)}
 /* inicio */
 #start{position:fixed;inset:0;display:flex;align-items:flex-end;justify-content:flex-start;padding:calc(env(safe-area-inset-top,0px) + 24px) 6vw calc(env(safe-area-inset-bottom,0px) + 7vh);background:linear-gradient(to top,rgba(20,16,12,.92) 0%,rgba(20,16,12,.55) 45%,rgba(20,16,12,0) 80%)}
 #start .in{max-width:620px;pointer-events:auto}
+#installBtn{background:none;color:var(--niebla);border:2px solid var(--pasto);border-radius:3px;padding:10px 18px;font-size:20px;font-weight:600}
+.ioshint{margin:10px 0 0;font-size:16px;color:var(--sub)}
 #party{position:fixed;inset:0;z-index:30;display:none;align-items:center;justify-content:center;background:rgba(15,12,9,.55)}#party.show{display:flex}
 #confetti{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .partybox{position:relative;background:var(--monte);color:var(--kraft);border-radius:6px;padding:24px 28px;max-width:min(520px,92vw);text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.5)}
@@ -232,7 +243,8 @@ body.menu #touch{display:none!important}
   <div class="in">
     <h1>4x4<br>Natural<sup>beta</sup></h1>
     <p class="lead">Manejá por la sierra y el humedal y fotografiá los bichos donde viven. Algunos están a la vista; otros, en lugares que hay que encontrar.</p>
-    <div class="startbtns"><button id="go">Arrancar</button><button id="goBook">📓 Cuaderno de campo</button></div>
+    <div class="startbtns"><button id="go">Arrancar</button><button id="goBook">📓 Cuaderno de campo</button><button id="installBtn" hidden>⬇ Instalar app</button></div>
+    <p id="iosHint" class="ioshint" hidden>Para instalarla en iPhone o iPad: tocá <b>Compartir</b> y después <b>Agregar a inicio</b>.</p>
     <div class="players"><div id="profList"></div><button id="profNew" type="button">👤 Nuevo jugador</button><span id="profNewBox" hidden><input id="profName" maxlength="16" placeholder="Nombre del jugador"> <button id="profOk" type="button">Listo</button> <button id="profCancel" type="button" aria-label="Cancelar">✕</button></span></div>
     <label class="opt"><input type="checkbox" id="optTrees"> Pasar a través de los árboles (para los más chicos)</label>
     <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button></p>
@@ -1501,6 +1513,15 @@ function tripleTap(el,fn){if(!el)return;let n=0,t=0;el.addEventListener('pointer
 tripleTap($('#start sup'),unlockAll);tripleTap($('#tally'),unlockAll);
 requestAnimationFrame(loop);
 
+
+// ===== APP INSTALABLE =====
+if('serviceWorker' in navigator&&location.protocol.startsWith('http')){const reg=()=>navigator.serviceWorker.register('sw.js').catch(()=>{});if(document.readyState==='complete')reg();else window.addEventListener('load',reg);}
+{const standalone=matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches||navigator.standalone;let deferred=null;const btn=$('#installBtn');
+ window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;if(!standalone)btn.hidden=false;});
+ btn.onclick=async()=>{if(!deferred)return;deferred.prompt();try{await deferred.userChoice;}catch(e){}deferred=null;btn.hidden=true;};
+ window.addEventListener('appinstalled',()=>{btn.hidden=true;});
+ const ios=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+ if(ios&&!standalone)$('#iosHint').hidden=false;}
 </script>
 </body>
 </html>

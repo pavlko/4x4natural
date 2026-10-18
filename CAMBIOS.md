@@ -15,4 +15,4 @@ Un juego de Insight Reality
 - v12  Compartir en PC, más pastizal, nido escondido, puma dentro del mapa
 
 Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v12).
-La versión vigente es index.html.
+La versión vigente es index.html (lista como app instalable).
