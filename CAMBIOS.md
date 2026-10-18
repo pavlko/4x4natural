@@ -1,7 +1,7 @@
 # 4x4 Natural — historial de versiones
 Un juego de Insight Reality
 
-- v01  Base: sierra, humedal, cueva con pinturas, quebrada, cascada
+- v01  Base: sierra, humedal, quebrada escalonada, cascada, árboles nativos, cueva simple
 - v02  Laguna del arroyo, espátulas, patos, buitres, águila mora
 - v03  Cueva recorrible con luces de la camioneta
 - v04  Fuego en la cueva, entrada a pie, hallazgo de los primeros habitantes
