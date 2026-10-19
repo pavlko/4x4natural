@@ -28,6 +28,7 @@ Un juego de Insight Reality
 - v25  Caraguatá falso siempre atravesable; caraguatá verdadero del doble de tamaño, sólido y con racimo de frutos amarillos
 - v26  Caraguatá atravesable y agrupado en matas dentro del monte de la quebrada
 - v27  Yarará, araña pollito, espinillos con cardenal amarillo, federal, dragones y viudita blanca; puma echado en el noroeste que se va hacia el borde; pindós más bajos lejos del fondo; cuaderno por grupos con pestañas de emoji
+- v28  Íconos de estilo rupestre en el cuaderno, teros más desesperados cerca del nido, modo ahorro (30 cuadros, menos resolución, sombra y pasto)
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v27).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v28).
 La versión vigente es index.html (lista como app instalable).
