@@ -1,4 +1,4 @@
-# 4x4 Natural
+# Safari Gaucho (antes 4x4 Natural)
 
 Un juego de **Insight Reality**.
 

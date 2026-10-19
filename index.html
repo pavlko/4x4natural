@@ -12,7 +12,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="4x4 Natural">
+<meta name="apple-mobile-web-app-title" content="Safari Gaucho">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
@@ -302,12 +302,12 @@ body.menu #touch{display:none!important}
 <section class="tp" data-t="lugares"><h4><span class="ich" data-ic="lugares"></span> <span id="plH">Lugares</span></h4><div class="grid" id="plList"></div></section>
 <section class="tp" data-t="logros"><h4><span class="ich" data-ic="logros"></span> <span id="logH">Logros especiales</span></h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
 <section class="tp" data-t="hallazgos"><h4><span class="ich" data-ic="hallazgos"></span> Hallazgos</h4><div id="hzList"></div></section>
-<p class="bookcredit">4x4 Natural · un juego de Insight Reality</p></div>
+<p class="bookcredit">Safari Gaucho · un juego de Insight Reality</p></div>
   </div>
 </div>
 <div id="start">
   <div class="in">
-    <h1>4x4<br>Natural<sup>beta</sup></h1>
+    <h1>Safari<br>Gaucho<sup>beta</sup></h1>
     <p class="lead">Manejá por la sierra y el humedal y fotografiá los bichos donde viven. Algunos están a la vista; otros, en lugares que hay que encontrar.</p>
     <div class="startbtns"><button id="go">Arrancar</button><button id="goBook">📓 Cuaderno de campo</button><button id="installBtn" hidden>⬇ Instalar app</button></div>
     <p id="iosHint" class="ioshint" hidden>Para instalarla en iPhone o iPad: tocá <b>Compartir</b> y después <b>Agregar a inicio</b>.</p>
@@ -1393,17 +1393,17 @@ let shotLabel='',lastShare=null,shareTimer=null;
 const GAME_URL='https://tinyurl.com/4x4naturaluruguay';
 function makeShare(label){const src=renderer.domElement,cw=src.width*.8,ch=cw/1.5,sx=(src.width-cw)/2,sy=Math.max(0,(src.height-ch)/2),W=Math.min(1600,Math.round(cw)),Hh=Math.round(W/1.5),band=Math.round(Hh*.1);
  const c=document.createElement('canvas');c.width=W;c.height=Hh+band;const g=c.getContext('2d');g.drawImage(src,sx,sy,cw,Math.min(ch,src.height),0,0,W,Hh);
- g.fillStyle='#23402F';g.fillRect(0,Hh,W,band);g.fillStyle='#F3EBDD';g.textBaseline='middle';g.font='700 '+Math.round(band*.42)+'px "Barlow Condensed",sans-serif';g.fillText((label?label+' · ':'')+'4x4 Natural',band*.4,Hh+band/2);
+ g.fillStyle='#23402F';g.fillRect(0,Hh,W,band);g.fillStyle='#F3EBDD';g.textBaseline='middle';g.font='700 '+Math.round(band*.42)+'px "Barlow Condensed",sans-serif';g.fillText((label?label+' · ':'')+'Safari Gaucho',band*.4,Hh+band/2);
  g.font='500 '+Math.round(band*.3)+'px "Barlow Condensed",sans-serif';g.fillStyle='#D9B65E';g.textAlign='right';g.fillText('Insight Reality · tinyurl.com/4x4naturaluruguay',W-band*.4,Hh+band/2);
  lastShare={label,blob:null,canvas:c};const ls=lastShare;try{c.toBlob(b=>{ls.blob=b;},'image/jpeg',.88);}catch(e){}
  const btn=$('#shareBtn');btn.classList.add('show');clearTimeout(shareTimer);shareTimer=setTimeout(()=>btn.classList.remove('show'),7000);}
-async function doShare(){if(!lastShare)return;const text=(lastShare.label?lastShare.label+': ':'')+'lo fotografié en 4x4 Natural, un juego de Insight Reality. ¿Te animás? '+GAME_URL;
- try{if(!lastShare.blob&&lastShare.canvas)lastShare.blob=await new Promise(r=>lastShare.canvas.toBlob(r,'image/jpeg',.88));if(lastShare.blob){const file=new File([lastShare.blob],'4x4-natural.jpg',{type:'image/jpeg'});if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],text});return;}}}catch(e){if(e&&e.name==='AbortError')return;}
+async function doShare(){if(!lastShare)return;const text=(lastShare.label?lastShare.label+': ':'')+'lo fotografié en Safari Gaucho, un juego de Insight Reality. ¿Te animás? '+GAME_URL;
+ try{if(!lastShare.blob&&lastShare.canvas)lastShare.blob=await new Promise(r=>lastShare.canvas.toBlob(r,'image/jpeg',.88));if(lastShare.blob){const file=new File([lastShare.blob],'safari-gaucho.jpg',{type:'image/jpeg'});if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],text});return;}}}catch(e){if(e&&e.name==='AbortError')return;}
  $('#shareMenu').classList.add('show');}
 async function shareCopy(){const sm=$('#shareMenu');try{const png=await new Promise(r=>lastShare.canvas.toBlob(r,'image/png'));await navigator.clipboard.write([new ClipboardItem({'image/png':png})]);toast('📋 Foto copiada: pegala donde quieras (Ctrl+V)');}
  catch(e){try{await navigator.clipboard.writeText(shareText());toast('📋 Se copió el texto con el link (la foto no se pudo copiar acá)');}catch(e2){toast('No se pudo copiar en este navegador');}}sm.classList.remove('show');}
-function shareText(){return (lastShare&&lastShare.label?lastShare.label+': ':'')+'lo fotografié en 4x4 Natural, un juego de Insight Reality. ¿Te animás? '+GAME_URL;}
-function shareMail(){window.open('mailto:?subject='+encodeURIComponent('Mirá lo que fotografié en 4x4 Natural')+'&body='+encodeURIComponent(shareText()),'_blank');$('#shareMenu').classList.remove('show');}
+function shareText(){return (lastShare&&lastShare.label?lastShare.label+': ':'')+'lo fotografié en Safari Gaucho, un juego de Insight Reality. ¿Te animás? '+GAME_URL;}
+function shareMail(){window.open('mailto:?subject='+encodeURIComponent('Mirá lo que fotografié en Safari Gaucho')+'&body='+encodeURIComponent(shareText()),'_blank');$('#shareMenu').classList.remove('show');}
 function shareWA(){window.open('https://wa.me/?text='+encodeURIComponent(shareText()),'_blank','noopener');$('#shareMenu').classList.remove('show');}
 function shoot(){shotLabel='';if(DIVE.on&&!DIVE.out){shutterSound();shootDive();}else shootCore();if(photo)makeShare(shotLabel);}
 function shootCore(){if(photo&&nestInShot()){shotLabel='Nido del tero';SAVE.nest={img:grabThumb()};save();shutterSound();chime();toast('🥚 ¡Encontraste el nido del tero! El tero grita en un lado y pone los huevos en otro.','place');return;}

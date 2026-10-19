@@ -36,6 +36,7 @@ Un juego de Insight Reality
 - v33  Anillo de la laguna escondida más irregular, con cresta quebrada y lomas bajas transitables alrededor
 - v34  La cámara de fotos mira mucho más arriba y abajo
 - v35  Sin pico en la unión de la cresta sureste con el anillo de la laguna escondida
+- v36  El juego pasa a llamarse Safari Gaucho
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v35).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v36).
 La versión vigente es index.html (lista como app instalable).
