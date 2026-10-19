@@ -20,6 +20,7 @@ Un juego de Insight Reality
 - v17  Entradas de buceo en las dos orillas (cascada y quebrada, arroyo arriba del paso, laguna de las espátulas, laguna escondida), castañetas en pareja, anguila criolla en la laguna escondida, sacar la cabeza afuera para respirar, diseño vertical en celular
 - v18  Biguá (posado en troncos secos con alas abiertas y pescando bajo el agua), anguila cilíndrica, vieja del agua unida, fotos de afuera desde la superficie, visibilidad del agua según el lugar, marcas de buceo del mapa separadas
 - v19  Espesura de plantas acuáticas en la laguna escondida (zona navegable más chica), marcas de buceo del mapa reubicadas, tronco seco marrón y unido con el biguá bien apoyado
+- v20  Festejos separados al completar bichos, lugares y peces (los peces ya no son logro), teros que atacan en vuelo cerca del nido, pasillos entre las plantas de la laguna escondida hacia las entradas de buceo
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v19).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v20).
 La versión vigente es index.html (lista como app instalable).
