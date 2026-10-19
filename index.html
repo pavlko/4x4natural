@@ -257,7 +257,7 @@ body.menu #touch{display:none!important}
 <div id="party" role="dialog" aria-label="Cuaderno completo"><canvas id="confetti"></canvas><div class="partybox"><div class="partyemoji">🦩🦫🦉🐊</div><h2>¡Completaste el cuaderno!</h2><p id="partySub"></p><p class="partynote">Encontraste a todos los bichos de la sierra y el humedal, y conociste todos sus lugares. ¿Te animás a buscar los logros escondidos?</p><button id="partyOk">¡Seguir explorando!</button></div></div>
 <div id="help" role="dialog" aria-label="Ayuda"><div class="cover"><header><h2>Ayuda<em>Cómo se juega</em></h2><button class="close" id="helpClose">Cerrar</button></header><div class="pages helpbody">
 <h4>Manejar</h4><dl><dt>W A S D o flechas</dt><dd>Acelerar, frenar o ir marcha atrás, y doblar. El acelerador sube de a poco: con toques cortos vas despacio.</dd><dt>Q</dt><dd>Tracción baja (4L): más fuerza para subir laderas, pero menos velocidad.</dd><dt>R o ↺</dt><dd>Destrabar: corre la camioneta a un lugar libre cercano.</dd><dt>Teléfono o tablet</dt><dd>Flechas en pantalla.</dd></dl>
-<h4>Mirar alrededor de la camioneta</h4><dl><dt>Arrastrar con el mouse o el dedo</dt><dd>Hacia los costados gira la cámara; hacia arriba y abajo la sube y la baja.</dd><dt>Rueda del mouse o pellizcar</dt><dd>Alejar o acercar.</dd><dt>Doble click o doble toque</dt><dd>Deja la cámara fija donde la pusiste. Otro doble toque la libera y vuelve sola atrás de la camioneta.</dd></dl>
+<h4>Mirar alrededor de la camioneta</h4><dl><dt>Arrastrar con el mouse o el dedo</dt><dd>Hacia los costados gira la cámara; hacia arriba y abajo la sube y la baja.</dd><dt>Rueda del mouse o pellizcar</dt><dd>Acercar. La vista lejana se desbloquea después de descubrir algunos lugares y recorrer una buena parte del mapa.</dd><dt>Doble click o doble toque</dt><dd>Deja la cámara fija donde la pusiste. Otro doble toque la libera y vuelve sola atrás de la camioneta.</dd></dl>
 <h4>Fotos</h4><dl><dt>F o 📷</dt><dd>Entrar o salir del modo cámara (la camioneta queda frenada).</dd><dt>Flechas o arrastrar</dt><dd>Apuntar.</dd><dt>W/S, rueda, pellizco o + y −</dt><dd>Zoom. Los bichos lejanos o tímidos necesitan zoom.</dd><dt>Espacio o FOTO</dt><dd>Sacar la foto. Sirve para bichos y para lugares; la última foto reemplaza a la anterior.</dd></dl>
 <h4>Más</h4><dl><dt>N o 📓</dt><dd>Cuaderno de campo con pistas, fotos e información.</dd><dt>M o 🗺️</dt><dd>Mapa entero. Con todo completo se desbloquea el teletransporte.</dd><dt>Esc o ☰</dt><dd>Volver a este menú sin perder dónde estabas.</dd><dt>Cueva</dt><dd>Al llegar a la boca te bajás a pie: caminás con ▲▼ o W/S y girás con ◀▶.</dd></dl>
 <h4>Fotos especiales</h4><p>Algunos bichos tienen una segunda foto escondida: la garza y las espátulas volando, los charabones (pichones de ñandú), la cueva de la mulita y el nido del tero.</p>
@@ -317,10 +317,11 @@ function baseH(x,z){
   h+=14*Math.exp(-((x+118)**2+(z-80)**2)/(2*28*28));
   // laguna escondida: anillo de cerros con un paso al este
   const lx=x-190,lz=z+110,lr=Math.hypot(lx,lz),ang=Math.atan2(lz,lx);
-  const gap=ss(0.86,0.97,Math.cos(ang));
+  const gap=ss(0.86,0.97,Math.cos(ang+Math.PI/4));
   const h0=h;
-  {const rn=fbm(Math.cos(ang)*2+7,Math.sin(ang)*2+3,3),hn=fbm(Math.cos(ang)*3+11,Math.sin(ang)*3+5,3),rr=60+(rn-.5)*16,sg=10+(hn-.5)*4,hh=25+hn*10,rg=Math.exp(-((lr-rr)**2)/(2*sg*sg));
-   h+=hh*rg+(fbm(x*.07+5,z*.07,3)-.5)*7*Math.exp(-((lr-rr)**2)/(2*(sg*1.7)**2))*(1-gap);}
+  {const rn=fbm(Math.cos(ang)*2+7,Math.sin(ang)*2+3,3),hn=fbm(Math.cos(ang)*3+11,Math.sin(ang)*3+5,3),rr=58+(rn-.5)*12,sg=3.6+(hn-.5)*1.4,hh=9+hn*5,rg=Math.exp(-((lr-rr)**2)/(2*sg*sg)),
+    sf=ss(-.15,.45,Math.sin(ang))*(1-gap),ramp=lr>rr-2?8*(1-ss(rr,rr+32,lr))*sf*(.65+.7*fbm(x*.045+3,z*.045,3)):0;
+   h+=(hh*rg+(fbm(x*.09+5,z*.09,3)-.5)*3*Math.exp(-((lr-rr)**2)/(2*(sg*2.2)**2)))*(1-gap*.9)+ramp;}
   const tgt=mix(-2.6,1.4,ss(22,40,lr));
   h=mix(h,tgt,1-ss(38,50,lr));
   if(gap>0&&lr<100){const ramp=mix(1.4,h0,ss(40,95,lr));h=mix(h,ramp,gap*ss(34,44,lr)*(1-ss(90,100,lr)));}
@@ -438,7 +439,7 @@ const SPECIES=[
 ];
 const GOAL=SPECIES.filter(s=>!s.secret);
 const START={x:90,z:200,h:0};
-const ROADS=[[[90,206],[80,150],[60,100],[32,64],[riverX(55)+12,55],[riverX(55)-12,55],[-32,62],[-72,82],[-108,104],[-146,108]],[[60,100],[105,45],[150,15],[195,-20]]];
+const ROADS=[[[90,206],[80,150],[60,100],[32,64],[riverX(55)+12,55],[riverX(55)-12,55],[-32,62],[-72,82],[-108,104],[-146,108]]];
 function roadD(x,z){let best=1e9;for(const R of ROADS)for(let i=0;i<R.length-1;i++){const[ax,az]=R[i],[bx,bz]=R[i+1],dx=bx-ax,dz=bz-az,l=dx*dx+dz*dz;let t=((x-ax)*dx+(z-az)*dz)/l;t=Math.max(0,Math.min(1,t));const ex=ax+dx*t-x,ez=az+dz*t-z,d=ex*ex+ez*ez;if(d<best)best=d;}return Math.sqrt(best);}
 const MUD=[[86,168,8],[26,142,15],[riverX(55)+19,60,9],[riverX(55)-19,50,8],[-42,-18,12],[150,-58,11],[-130,190,9]].map(p=>[p[0],p[1],p[2]*1.45]);
 const SAND=[[118,232,17],[riverX(250)+21,250,20],[riverX(-60)+19,-60,13],[176,-94,11],[203,-131,9],[-176,140,10]].map(p=>[p[0],p[1],p[2]*1.45]);
@@ -1148,11 +1149,11 @@ cv.addEventListener('pointerdown',e=>{PTR.set(e.pointerId,[e.clientX,e.clientY])
  if(PTR.size===1&&!photo){const now=performance.now();if(now-lastTap[0]<320&&Math.hypot(e.clientX-lastTap[1],e.clientY-lastTap[2])<40){camLock=!camLock;lastTap=[0,0,0];toast(camLock?'📌 Cámara fija':'Cámara libre');}else lastTap=[now,e.clientX,e.clientY];}cv.setPointerCapture(e.pointerId);if(PTR.size===2){pinch={d:pinchDist(),fov:photoFov,z:camZoom};dragging=false;lastP=null;}else{dragging=true;lastP=[e.clientX,e.clientY];}});
 function ptrUp(e){PTR.delete(e.pointerId);if(PTR.size<2)pinch=null;if(PTR.size===0){dragging=false;lastP=null;}else if(PTR.size===1){const p=[...PTR.values()][0];lastP=[p[0],p[1]];dragging=true;}}
 cv.addEventListener('pointermove',e=>{if(PTR.has(e.pointerId))PTR.set(e.pointerId,[e.clientX,e.clientY]);
- if(pinch&&PTR.size===2){const d=pinchDist();if(photo){photoFov=Math.max(3.4,Math.min(130,pinch.fov*pinch.d/Math.max(d,1)));}else camZoom=Math.max(.6,Math.min(5.2,pinch.z*pinch.d/Math.max(d,1)));return;}
+ if(pinch&&PTR.size===2){const d=pinchDist();if(photo){photoFov=Math.max(3.4,Math.min(130,pinch.fov*pinch.d/Math.max(d,1)));}else camZoom=Math.max(.6,Math.min(zoomMax(),pinch.z*pinch.d/Math.max(d,1)));return;}
  if(!dragging||!lastP)return;const dx=e.clientX-lastP[0],dy=e.clientY-lastP[1];lastP=[e.clientX,e.clientY];
  if(photo){const f=photoFov/55;photoYaw-=dx*.0042*f;photoPitch=Math.max(-.7,Math.min(.6,photoPitch-dy*.0042*f));}else{camOrbit-=dx*.006;camTilt=Math.max(-.3,Math.min(1.12,camTilt+dy*.005));}});
 cv.addEventListener('pointerup',ptrUp);cv.addEventListener('pointercancel',ptrUp);
-cv.addEventListener('wheel',e=>{e.preventDefault();if(photo){photoFov=Math.max(3.4,Math.min(130,photoFov*(e.deltaY>0?1.12:0.89)));}else camZoom=Math.max(.6,Math.min(5.2,camZoom*(e.deltaY>0?1.1:0.91)));},{passive:false});
+cv.addEventListener('wheel',e=>{e.preventDefault();if(photo){photoFov=Math.max(3.4,Math.min(130,photoFov*(e.deltaY>0?1.12:0.89)));}else camZoom=Math.max(.6,Math.min(zoomMax(),camZoom*(e.deltaY>0?1.1:0.91)));},{passive:false});
 // táctil
 if('ontouchstart' in window||navigator.maxTouchPoints>0){$('#touch').classList.add('show');}
 for(const [id,key] of [['tL','left'],['tR','right'],['tU','up'],['tD','down']]){const el=$('#'+id);
@@ -1715,7 +1716,7 @@ function updateTrail(){if(caveView||DIVE.on){$('#trail').classList.remove('show'
  const el=$('#trail');if(na&&nd<55){let msg='Huellas frescas por acá';if(nd<25){const ref=photo?photoYaw:car.h;let d=Math.atan2(-(na.x-car.x),-(na.z-car.z))-ref;d=Math.atan2(Math.sin(d),Math.cos(d));const dir=Math.abs(d)<.5?'adelante':Math.abs(d)>2.6?'atrás':d>0?'a la izquierda':'a la derecha';const dy=na.y-car.y;msg='Hay algo muy cerca, '+dir+(dy>5?' y más arriba':dy<-5?' y más abajo':'')+'. Frená y usá la cámara';}el.textContent=msg;el.classList.add('show');}else el.classList.remove('show');}
 function loop(){
  const dt=Math.min(.05,clock.getDelta()),time=clock.elapsedTime;if(started)perfCheck();
- if(started){updateCar(dt,time);updateAnimals(dt,time);updateCalls(dt);updateRace(dt,time);updateChicks(dt);posT+=dt;if(posT>4){posT=0;savePos();}updateParts(dt);updateFalls(dt);updateCave(dt,time);updateDiving(dt,time);fogT+=dt;if(fogT>.25){fogT=0;revealFog();checkPlaces();}trailT+=dt;if(trailT>.5){trailT=0;updateTrail();}}
+ if(started){updateCar(dt,time);updateAnimals(dt,time);updateCalls(dt);updateRace(dt,time);updateChicks(dt);posT+=dt;if(posT>4){posT=0;savePos();}updateParts(dt);updateFalls(dt);updateCave(dt,time);updateDiving(dt,time);fogT+=dt;if(fogT>.25){fogT=0;revealFog();checkPlaces();}fogSaveT+=dt;if(fogSaveT>8){fogSaveT=0;saveFog();checkZoomUnlock();}trailT+=dt;if(trailT>.5){trailT=0;updateTrail();}}
  else{if(!dragging)startA+=dt*.04;}
  if(started)updateCamera(dt);else{const a=startA+camOrbit,el=Math.max(.04,Math.min(1.35,.27+camTilt)),dd=22*camZoom;camera.position.set(car.x+Math.sin(a)*Math.cos(el)*dd,car.y+1.2+Math.sin(el)*dd,car.z+Math.cos(a)*Math.cos(el)*dd);const gh=H(camera.position.x,camera.position.z)+1;if(camera.position.y<gh)camera.position.y=gh;camera.lookAt(car.x,car.y+1.2,car.z);}
  sky.position.copy(camera.position);
@@ -1744,6 +1745,13 @@ function perfCheck(){if(perfLvl>=2)return;const now=performance.now();if(!perfT0
  if(perfLvl===1){renderer.setPixelRatio(base*.85);sun.shadow.mapSize.set(1024,1024);scene.children.forEach(o=>{if(o.userData&&o.userData.grass)o.count=Math.floor(o.count*.55);});}
  else{renderer.setPixelRatio(base*.7);sun.shadow.mapSize.set(512,512);}
  if(sun.shadow.map){sun.shadow.map.dispose();sun.shadow.map=null;}resize();}
+// ===== VISTA LEJANA Y MAPA PINTADO =====
+let fogSaveT=0;
+const zoomMax=()=>(started&&!SAVE.zoomOk)?1.0:5.2;
+function saveFog(){try{localStorage.setItem(curKey()+'_fog',fogC.toDataURL('image/png'));}catch(e){}}
+function loadFog(){try{const d=localStorage.getItem(curKey()+'_fog');if(!d)return;const im=new Image();im.onload=()=>{const g=fogC.getContext('2d');g.globalCompositeOperation='copy';g.drawImage(im,0,0,MM,MM);g.globalCompositeOperation='source-over';};im.src=d;}catch(e){}}
+function mapPainted(){const d=fogC.getContext('2d').getImageData(0,0,MM,MM).data;let c=0,t=0;for(let y=20;y<MM-20;y+=3)for(let x=20;x<MM-20;x+=3){t++;if(d[(y*MM+x)*4+3]<128)c++;}return c/t;}
+function checkZoomUnlock(){if(SAVE.zoomOk||!started)return;if(SAVE.places.length>=PLACES.length||(SAVE.places.length>=3&&mapPainted()>=.18)){SAVE.zoomOk=true;save();chime();announce('Vista lejana','🔭 Ya podés alejar la cámara de la camioneta: rueda del mouse o pellizcar');}}
 // ===== JUGADORES =====
 let posT=0;
 function savePos(){try{localStorage.setItem(curKey()+'_pos',JSON.stringify({x:+car.x.toFixed(1),z:+car.z.toFixed(1),h:+car.h.toFixed(2)}));}catch(e){}}
@@ -1761,7 +1769,7 @@ function fillProfiles(){const box=$('#profList');box.innerHTML='';if(PROFS.list.
    if(!PROFS.list.length)PROFS.list=[{id:'p'+Date.now().toString(36),name:''}];saveProfs();if(PROFS.current===p.id||!PROFS.list.find(q=>q.id===PROFS.current))switchProfile(PROFS.list[0].id);fillProfiles();};
   ch.append(nb,rb);if(PROFS.list.length>1)ch.append(db);box.appendChild(ch);}}
 function switchProfile(id){if(started)savePos();PROFS.current=id;saveProfs();SAVE=readSave();SAVE.fish=SAVE.fish||{};SAVE.dives=SAVE.dives||{};CHEST.t=SAVE.mask?1:0;CHEST.lid.rotation.x=SAVE.mask?-1.9:0;NOTREES=!!(SAVE.settings&&SAVE.settings.noTrees);$('#optTrees').checked=NOTREES;loadPos();refreshTally();
- $('#go').textContent=(Object.keys(SAVE.found).length||SAVE.places.length)?'Seguir explorando':'Arrancar';const fg=fogC.getContext('2d');fg.fillStyle='#2e271e';fg.fillRect(0,0,MM,MM);}
+ $('#go').textContent=(Object.keys(SAVE.found).length||SAVE.places.length)?'Seguir explorando':'Arrancar';const fg=fogC.getContext('2d');fg.fillStyle='#2e271e';fg.fillRect(0,0,MM,MM);loadFog();}
 // arranque
 truck.position.set(car.x,car.y,car.z);
 refreshTally();
@@ -1773,7 +1781,7 @@ $('#goBook').onclick=()=>toggleBook(true);
 document.querySelectorAll('#bookTabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#bookTabs button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.pages .tp').forEach(p=>p.classList.toggle('on',p.dataset.t===b.dataset.t));$('#book .pages').scrollTop=0;});
 $('#helpClose').onclick=()=>$('#help').classList.remove('show');$('#help').addEventListener('click',e=>{if(e.target.id==='help')$('#help').classList.remove('show');});
 $('#partyOk').onclick=()=>$('#party').classList.remove('show');
-fillProfiles();loadPos();
+fillProfiles();loadPos();loadFog();
 $('#profNew').onclick=()=>{$('#profNewBox').hidden=false;$('#profNew').hidden=true;$('#profName').value='';$('#profName').focus();};
 $('#profCancel').onclick=()=>{$('#profNewBox').hidden=true;$('#profNew').hidden=false;};
 $('#creditInfo').onclick=()=>{$('#help').classList.add('show');const pg=$('#help .pages');if(pg)pg.scrollTop=0;};

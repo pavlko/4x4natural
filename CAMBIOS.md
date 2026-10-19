@@ -22,6 +22,7 @@ Un juego de Insight Reality
 - v19  Espesura de plantas acuáticas en la laguna escondida (zona navegable más chica), marcas de buceo del mapa reubicadas, tronco seco marrón y unido con el biguá bien apoyado
 - v20  Festejos separados al completar bichos, lugares y peces (los peces ya no son logro), teros que atacan en vuelo cerca del nido, pasillos entre las plantas de la laguna escondida hacia las entradas de buceo
 - v21  Cerros irregulares alrededor de la laguna escondida, carpincho y patos nadando hacia adelante, pindós solo en la quebrada, pedregal del lado de la cueva junto a la cascada
+- v22  Laguna escondida con paredes más bajas e irregulares, subida al sur y entrada solo por el noreste; camino sin desvío; vista lejana desbloqueable; el mapa pintado se guarda por jugador
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v21).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v22).
 La versión vigente es index.html (lista como app instalable).
