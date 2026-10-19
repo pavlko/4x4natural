@@ -24,6 +24,7 @@ Un juego de Insight Reality
 - v21  Cerros irregulares alrededor de la laguna escondida, carpincho y patos nadando hacia adelante, pindós solo en la quebrada, pedregal del lado de la cueva junto a la cascada
 - v22  Laguna escondida con paredes más bajas e irregulares, subida al sur y entrada solo por el noreste; camino sin desvío; vista lejana desbloqueable; el mapa pintado se guarda por jugador
 - v23  Menos pindós y chachíes; caraguatá en la quebrada, caraguatá falso en el arroyo y zonas húmedas, envira en la sierra, claveles del aire en paredones, flores de pastizal; barrial con desniveles rodeado de caraguatá falso
+- v24  Cresta que une el anillo de la laguna escondida con el borde alto del mundo al sureste
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v23).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v24).
 La versión vigente es index.html (lista como app instalable).
