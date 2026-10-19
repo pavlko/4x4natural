@@ -133,10 +133,11 @@ body.photo #raceArrow{display:none!important}
 .card .fly.empty{border:1.5px dashed #b7a37c;color:#8a7756;font-size:14px;padding:8px;text-align:center;border-radius:2px}
 .logros{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}.logro{display:flex;gap:10px;align-items:center;border:1.5px dashed #9d8961;border-radius:3px;padding:8px 10px;color:#9d8961}.logro b{font-size:28px;min-width:34px;text-align:center}.logro h5{margin:0;font-size:18px}.logro p{margin:2px 0 0;font-family:Newsreader,serif;font-size:14.5px}.logro.on{border:1.5px solid #b88a2a;background:#e9d9a8;color:var(--tinta)}
 .tabs{display:flex;flex-wrap:wrap;gap:4px;padding:0 0 0 2px}
-.tabs button{background:rgba(216,198,160,.16);border:0;color:var(--kraft);padding:7px 13px;border-radius:4px 4px 0 0;font-size:17px;font-weight:600}
+.tabs button{background:rgba(216,198,160,.16);border:0;color:var(--kraft);padding:6px 10px;border-radius:4px 4px 0 0;font-size:22px;line-height:1.1}
+.tp h4{margin:0 0 10px;font-size:24px}
 .tabs button.on{background:var(--kraft);color:var(--tinta)}
 .tp{display:none}.tp.on{display:block}
-.pstat{display:grid;grid-template-columns:auto 1fr auto;gap:8px 12px;align-items:center;font-size:19px;margin:6px 0 14px}
+.pstat{display:flex;flex-direction:column;gap:6px;font-size:19px;margin:6px 0 14px}.prow{display:grid;grid-template-columns:minmax(150px,auto) 1fr auto;gap:12px;align-items:center;padding:4px 6px;border-radius:4px;cursor:pointer}.prow:hover,.prow:focus-visible{background:#e6d8b6}
 .pstat .bar{height:12px;border-radius:6px;background:#cbb88f;overflow:hidden}.pstat .bar i{display:block;height:100%;background:#23402F}
 .ptip{font-family:Newsreader,serif;font-size:16.5px;line-height:1.4;margin:8px 0}
 .dives{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:16px}
@@ -270,13 +271,16 @@ body.menu #touch{display:none!important}
 <div id="book" role="dialog" aria-label="Cuaderno de campo">
   <div class="cover">
     <header><h2>Cuaderno de campo<em>Sierras y humedal del este</em></h2><button class="close" id="bClose">Cerrar</button></header>
-    <nav class="tabs" id="bookTabs"><button data-t="portada" class="on">Portada</button><button data-t="bichos">Bichos</button><button data-t="agua">Bajo el agua</button><button data-t="lugares">Lugares</button><button data-t="hallazgos">Hallazgos</button><button data-t="logros">Logros</button></nav>
-<div class="pages"><section class="tp on" data-t="portada"><div id="portada"></div></section>
-<section class="tp" data-t="bichos"><div class="grid" id="cards"></div></section>
+    <nav class="tabs" id="bookTabs"><button data-t="portada" class="on" title="Portada" aria-label="Portada">📖</button><button data-t="aves" title="Aves" aria-label="Aves">🐦</button><button data-t="mamiferos" title="Mamíferos" aria-label="Mamíferos">🦊</button><button data-t="reptiles" title="Reptiles" aria-label="Reptiles">🦎</button><button data-t="invertebrados" title="Invertebrados" aria-label="Invertebrados">🕷️</button><button data-t="agua" title="Bajo el agua" aria-label="Bajo el agua">🐟</button><button data-t="lugares" title="Lugares" aria-label="Lugares">📍</button><button data-t="logros" title="Logros" aria-label="Logros">🏆</button><button data-t="hallazgos" title="Hallazgos" aria-label="Hallazgos">🏺</button></nav>
+<div class="pages"><section class="tp on" data-t="portada"><h4>📖 Portada</h4><div id="portada"></div></section>
+<section class="tp" data-t="aves"><h4>🐦 Aves</h4><div class="grid" id="cards_aves"></div></section>
+<section class="tp" data-t="mamiferos"><h4>🦊 Mamíferos</h4><div class="grid" id="cards_mamiferos"></div></section>
+<section class="tp" data-t="reptiles"><h4>🦎 Reptiles</h4><div class="grid" id="cards_reptiles"></div></section>
+<section class="tp" data-t="invertebrados"><h4>🕷️ Invertebrados</h4><div class="grid" id="cards_invertebrados"></div></section>
 <section class="tp" data-t="agua"><div id="agua"></div></section>
-<section class="tp" data-t="lugares"><h4 id="plH">Lugares</h4><div class="grid" id="plList"></div></section>
-<section class="tp" data-t="hallazgos"><div id="hzList"></div></section>
+<section class="tp" data-t="lugares"><h4 id="plH">📍 Lugares</h4><div class="grid" id="plList"></div></section>
 <section class="tp" data-t="logros"><h4 id="logH">Logros especiales</h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
+<section class="tp" data-t="hallazgos"><h4>🏺 Hallazgos</h4><div id="hzList"></div></section>
 <p class="bookcredit">4x4 Natural · un juego de Insight Reality</p></div>
   </div>
 </div>
@@ -440,10 +444,30 @@ const SPECIES=[
  {id:'bigua',name:'Biguá',sci:'Nannopterum brasilianum',more:'Bucea persiguiendo peces y puede quedarse un rato largo bajo el agua. Sus plumas se mojan para pesar más al bucear, por eso después necesita secarlas al sol.',size:.9,hab:'perch',spots:[],wander:0,walk:0,run:0,shy:null,
   hint:'En troncos secos a la orilla de las lagunas, a veces con las alas abiertas.',
   note:'Pájaro negro y pescador. Se zambulle y nada bajo el agua persiguiendo mojarras. Al salir se para en un tronco o en la orilla con las alas abiertas, secándolas al sol.'},
+ {id:'yarara',name:'Yarará',sci:'Bothrops alternatus',more:'Puede medir más de 1,5 m. Come ratones y otros roedores. Es venenosa: si la ves, mirala de lejos y dejala tranquila.',size:.8,hab:'land',spots:[],wander:4,walk:.3,run:.8,shy:{d:16,v:-1},hides:true,
+  hint:'Asoleándose sobre las piedras, en lo alto de la sierra.',
+  note:'Serpiente de pastizales y sierras, con un dibujo de crucecitas oscuras que la camufla entre piedras y pasto seco. Se calienta al sol sobre las rocas y no ataca si no la molestan.'},
+ {id:'arana',name:'Araña pollito',sci:'Grammostola sp.',more:'Es una tarántula grande, peluda y tranquila. Las hembras pueden vivir más de 20 años.',size:.3,hab:'land',spots:[],wander:60,walk:.35,run:.6,shy:null,
+  hint:'Caminando despacio por las piedras de la sierra.',
+  note:'Vive en cuevitas entre las piedras y sale a caminar, sobre todo al atardecer. Aunque parece temible, es tranquila: se defiende soltando pelitos que pican. Come insectos y otros bichitos.'},
+ {id:'cardenal',name:'Cardenal amarillo',sci:'Gubernatrix cristata',more:'Está en peligro de extinción: quedan muy pocos, porque durante años los atraparon para tenerlos en jaula.',size:.5,hab:'perch',hop:{fleeD:14},spots:[],
+  hint:'En pareja, volando entre los espinillos del campo.',
+  note:'Pájaro amarillo con copete y garganta negros. Vive en pareja en montes de espinillo y algarrobo, donde busca semillas e insectos. Cuidar esos montes es cuidar al cardenal amarillo.'},
+ {id:'federal',name:'Federal',sci:'Amblyramphus holosericeus',more:'Su pico largo y fino le sirve para abrir tallos y sacar insectos escondidos.',size:.5,hab:'perch',hop:{fleeD:16},spots:[],
+  hint:'En las varas del caraguatá falso, en la orilla del arroyo.',
+  note:'Pájaro negro con la cabeza y el pecho rojo anaranjado. Vive en bañados y pajonales, posado en lo alto de plantas como el caraguatá, desde donde canta y vigila.'},
+ {id:'dragon',name:'Dragón',sci:'Pseudoleistes virescens',more:'Andan en grupos ruidosos y se avisan entre todos cuando ven un peligro.',size:1.0,hab:'perch',hop:{fleeD:22},spots:[],
+  hint:'En grupo, de palmera en palmera en el palmar.',
+  note:'Pájaro pardo oliva con hombros y panza amarillos. Vive en grupos en bañados, pastizales húmedos y palmares, y busca insectos caminando por el suelo.'},
+ {id:'viudita',name:'Viudita blanca',sci:'Xolmis irupero',more:'En el campo se la reconoce de lejos por su blanco brillante.',size:.4,hab:'perch',hop:{fleeD:18,sally:true},spots:[],
+  hint:'Blanca, en lo alto de una palmera del palmar.',
+  note:'Pajarito blanco con la punta de las alas y de la cola negras. Se posa en lo alto, sale volando a cazar insectos en el aire y vuelve a su percha.'},
  {id:'puma',name:'Puma',sci:'Puma concolor',secret:true,high:true,more:'Puede medir más de 2 m con la cola. Caza de noche y al amanecer, y recorre territorios enormes: decenas de kilómetros.',size:1.2,hab:'land',minH:22,rest:8,spots:[[-160,-225]],wander:75,walk:1.3,run:8,shy:{d:85,v:-1},
   hint:'',
   note:'El gran felino de América. Anda por las partes más altas y solitarias de la sierra, donde puede vigilar sin ser visto. Es tan tímido que casi nadie lo ve: en Uruguay se lo creía desaparecido, y solo muy de vez en cuando aparecen rastros o avistamientos en sierras lejanas.'}
 ];
+const GRPN={aves:['🐦','Aves'],mamiferos:['🦊','Mamíferos'],reptiles:['🦎','Reptiles'],invertebrados:['🕷️','Invertebrados']};
+{const G={carpincho:'mamiferos',zorro:'mamiferos',mulita:'mamiferos',gato:'mamiferos',lobito:'mamiferos',venado:'mamiferos',puma:'mamiferos',yacare:'reptiles',yarara:'reptiles',arana:'invertebrados'};SPECIES.forEach(s=>s.grp=G[s.id]||'aves');}
 const GOAL=SPECIES.filter(s=>!s.secret);
 const START={x:90,z:200,h:0};
 const ROADS=[[[90,206],[80,150],[60,100],[32,64],[riverX(55)+12,55],[riverX(55)-12,55],[-32,62],[-72,82],[-108,104],[-146,108]]];
@@ -595,6 +619,7 @@ const TREES={
  }
  for(const id in IM){const I=IM[id];I.meshes.forEach((m,i)=>{m.count=I.n;m.castShadow=true;m.receiveShadow=i===1;m.instanceMatrix.needsUpdate=true;if(m.instanceColor)m.instanceColor.needsUpdate=true;scene.add(m);});}
 }
+const PALMS=[],CFALSO=[],ESPIN=[];
 // palmar de butiá
 {
  const MAX=170,trunkG=new THREE.CylinderGeometry(.24,.32,1,7);trunkG.translate(0,.5,0);
@@ -616,7 +641,7 @@ const TREES={
   if(h<0.6||slopeAt(x,z)>.6||rnd()>1-r/70)continue;
   const th=3.2+rnd()*2.6,s=.8+rnd()*.35;
   dummy.position.set(x,h-.1,z);dummy.rotation.set((rnd()-.5)*.12,rnd()*6.28,(rnd()-.5)*.12);dummy.scale.set(s,th,s);dummy.updateMatrix();trunks.setMatrixAt(n,dummy.matrix);
-  dummy.position.set(x,h-.1+th,z);dummy.scale.set(s,s,s);dummy.updateMatrix();crowns.setMatrixAt(n,dummy.matrix);
+  PALMS.push([x,h-.1+th+1.05*s,z]);dummy.position.set(x,h-.1+th,z);dummy.scale.set(s,s,s);dummy.updateMatrix();crowns.setMatrixAt(n,dummy.matrix);
   tmpC.setRGB(.2+rnd()*.06,.29+rnd()*.05,.22+rnd()*.04);crowns.setColorAt(n,tmpC);
   addObs(x,z,.45,1);n++;
  }
@@ -638,7 +663,7 @@ const TREES={
  const trunkG=new THREE.CylinderGeometry(.17,.22,1,8);trunkG.translate(0,.5,0);
  const MAX=70,trunks=new THREE.InstancedMesh(trunkG,M(0x8a8478,.8),MAX),crowns=new THREE.InstancedMesh(crownG,M(0xffffff,.85),MAX);let n=0;
  const putP=(x,z,h)=>{
-  const th=7+rnd()*5,s=.85+rnd()*.3;
+  const th=(7+rnd()*5)*mix(1,.5,ss(10,40,Math.abs(x-riverX(z)))),s=.85+rnd()*.3;
   dummy.position.set(x,h-.1,z);dummy.rotation.set((rnd()-.5)*.1,rnd()*6.28,(rnd()-.5)*.1);dummy.scale.set(s,th,s);dummy.updateMatrix();trunks.setMatrixAt(n,dummy.matrix);
   const top=new THREE.Vector3(0,1,0).applyMatrix4(dummy.matrix);
   dummy.position.copy(top);dummy.rotation.set(0,rnd()*6.28,0);dummy.scale.set(s,s,s);dummy.updateMatrix();crowns.setMatrixAt(n,dummy.matrix);
@@ -715,8 +740,15 @@ const wetPt=()=>{const z=-100+rnd()*370,x=riverX(z)+(rnd()<.5?-1:1)*(riverW(z)*.
  const L1=[],add=p=>{L1.push(p);};for(let t=0;t<9000&&L1.length<420;t++){const p=wetPt();if(p)add(p);}
  for(let i=0;i<46;i++){const a=i/46*6.283;if(Math.abs(Math.cos(a))>.94)continue;const r=BARRO.r+1.5+rnd()*1.5,x=BARRO.x+Math.cos(a)*r,z=BARRO.z+Math.sin(a)*r;L1.push([x,z,H(x,z),1]);}
  const lm=new THREE.InstancedMesh(g1,M(0xffffff,.8),L1.length),sm=new THREE.InstancedMesh(stalk,M(0xc9c7a0,.8),L1.length);let ns=0;
- L1.forEach((p,i)=>{const s=.8+rnd()*.5;put(lm,i,p,s);tmpC.setRGB(.42+rnd()*.06,.5+rnd()*.06,.4);lm.setColorAt(i,tmpC);if(rnd()<.55){put(sm,ns,p,s);ns++;}});
+ L1.forEach((p,i)=>{const s=.8+rnd()*.5;put(lm,i,p,s);tmpC.setRGB(.42+rnd()*.06,.5+rnd()*.06,.4);lm.setColorAt(i,tmpC);if(rnd()<.55){put(sm,ns,p,s);ns++;if(!p[3])CFALSO.push([p[0],p[2]-.03+1.62*s,p[1]]);}});
  lm.count=L1.length;sm.count=ns;lm.instanceMatrix.needsUpdate=true;lm.instanceColor.needsUpdate=true;sm.instanceMatrix.needsUpdate=true;scene.add(lm,sm);}
+{// espinillos en el pastizal: copa chata y flores amarillas
+ const wood=mergeGeos([tf(new THREE.CylinderGeometry(.06,.1,1.6,6),0,.8,0,1,1,1,0,.12),tf(new THREE.CylinderGeometry(.04,.07,1.2,5),.35,1.5,0,1,1,1,0,-.6),tf(new THREE.CylinderGeometry(.04,.06,1.1,5),-.3,1.55,.1,1,1,1,.2,.55)]),
+  crown=mergeGeos([tf(blob(1.2,.25),0,2.25,0,1.35,.32,1.25),tf(blob(.8,.2),.8,2.05,.3,1,.35,1),tf(blob(.8,.2),-.7,2.1,-.3,1,.35,1)]),fl=[];for(let i=0;i<26;i++){const a=rnd()*6.28,r=rnd()*1.4;fl.push(tf(new THREE.SphereGeometry(.07,5,4),Math.cos(a)*r,2.35+rnd()*.2,Math.sin(a)*r));}
+ const flG=mergeGeos(fl),pts=[];for(let t=0;t<9000&&pts.length<90;t++){const x=40+rnd()*190,z=-40+rnd()*230,h=H(x,z);if(h<1.8||slopeAt(x,z)>.4||clearing(x,z)||roadD(x,z)<6||Math.hypot(x-BARRO.x,z-BARRO.z)<BARRO.r+6||fbm(x*.025+60,z*.025,3)<.5||hitObs(x,z,4)||Math.hypot(x-START.x,z-START.z)<25)continue;pts.push([x,z,h]);addObs(x,z,.25,1);}
+ const wm=new THREE.InstancedMesh(wood,M(0x4a3a2c,.95),pts.length),cm=new THREE.InstancedMesh(crown,M(0xffffff,.9,{flatShading:true}),pts.length),fm=new THREE.InstancedMesh(flG,M(0xf2c522,.5,{emissive:0x332600}),pts.length);
+ pts.forEach((p,i)=>{const s=.8+rnd()*.5;dummy.position.set(p[0],p[2]-.05,p[1]);dummy.rotation.set(0,rnd()*6.28,0);dummy.scale.set(s,s,s);dummy.updateMatrix();wm.setMatrixAt(i,dummy.matrix);cm.setMatrixAt(i,dummy.matrix);fm.setMatrixAt(i,dummy.matrix);tmpC.setRGB(.38+rnd()*.06,.5+rnd()*.06,.24);cm.setColorAt(i,tmpC);ESPIN.push([p[0],p[2]-.05+2.45*s,p[1]]);});
+ for(const m of[wm,cm,fm]){m.castShadow=true;m.instanceMatrix.needsUpdate=true;if(m.instanceColor)m.instanceColor.needsUpdate=true;scene.add(m);}}
 {// envira en la sierra: arbustos bajos y tupidos
  const g=mergeGeos([tf(new THREE.CylinderGeometry(.04,.06,.5,5),0,.25,0),tf(blob(.45,.18),0,.7,0,1.1,.8,1.1),tf(blob(.35,.14),.32,.55,.1,1,.8,1),tf(blob(.32,.14),-.28,.58,-.15,1,.8,1)]);
  placeInst(g,M(0xffffff,.85,{flatShading:true}),420,9000,()=>{const x=(rnd()*2-1)*(HALF-40),z=-110-rnd()*150,h=H(x,z);return(h>8&&slopeAt(x,z)<.9&&!clearing(x,z)&&!hitObs(x,z,1.2))?[x,z,h]:null;},
@@ -1069,6 +1101,53 @@ function updateChicks(dt){for(const c of CHICKS){const p=c.par,ch=Math.cos(p.h),
  const br=part(CYL,wd2,Math.sin(.9)*.45,1.35+Math.cos(.9)*.45,0,.05,.9,.05,piv);br.rotation.z=-.9;const br2=part(CYL,wd2,-Math.sin(.7)*.3,1.8+Math.cos(.7)*.3,0,.035,.6,.035,piv);br2.rotation.z=.7;addObs(x,z,.4);
  tg.updateMatrixWorld(true);const tp=new THREE.Vector3(0,2.27,0).applyMatrix4(piv.matrixWorld);
  const a=spawn(sp,tp.x,tp.z);a.x=tp.x;a.z=tp.z;a.y=tp.y-.03;a.g.position.set(a.x,a.y,a.z);a.h=Math.atan2(-(cx-x),-(cz-z));a.wt=Math.random()*5;a.wopen=Math.random()<.5;}}
+// ===== AVES DE PERCHA, YARARÁ, ARAÑA Y PUMA =====
+function birdMesh(o){const g=new THREE.Group(),L=o.len||.2,b=M(o.body,.7),h=M(o.head||o.body,.7);
+ part(SPH,b,0,L*.9,0,L*.3,L*.32,L*.5,g);if(o.belly)part(SPH,M(o.belly,.7),0,L*.8,-L*.06,L*.25,L*.24,L*.38,g);
+ part(SPH,h,0,L*1.25,-L*.4,L*.22,L*.22,L*.24,g);const bk=part(CONE,M(o.beak||0x333333,.5),0,L*1.22,-L*(o.longBeak?.75:.65),L*.06,L*(o.longBeak?.42:.22),L*.06,g);bk.rotation.x=-Math.PI/2;
+ if(o.throat)part(SPH,M(o.throat,.7),0,L*1.06,-L*.5,L*.16,L*.13,L*.12,g);
+ if(o.crest){const c=part(CONE,M(o.crest,.7),0,L*1.5,-L*.32,L*.07,L*.28,L*.05,g);c.rotation.x=.5;}
+ const t=part(BOX,M(o.tail||o.body,.7),0,L*.85,L*.62,L*.22,L*.04,L*.5,g);t.rotation.x=.3;
+ const wings=[-1,1].map(s=>{const w=new THREE.Group();w.position.set(s*L*.22,L*1.0,0);part(BOX,M(o.wing||o.body,.7),s*L*.4,0,0,L*.8,L*.03,L*.45,w);if(o.tip)part(BOX,M(o.tip,.7),s*L*.78,0,L*.05,L*.2,L*.035,L*.35,w);if(o.shoulder)part(BOX,M(o.shoulder,.7),s*L*.12,.004,-L*.12,L*.25,L*.035,L*.18,w);g.add(w);return w;});
+ for(const s of[-1,1])part(CYL,M(0x333333),s*L*.08,L*.3,0,L*.02,L*.5,L*.02,g);g.userData.wingsAll=wings;return g;}
+function birdGroup(g,specs,offs){const all=[];specs.forEach((o,i)=>{const b=birdMesh(o);b.position.set(offs[i][0],offs[i][1]||0,offs[i][2]);b.rotation.y=offs[i][3]||0;g.add(b);all.push(...b.userData.wingsAll);});g.userData.wingsAll=all;}
+BUILD.cardenal=(g)=>birdGroup(g,[{body:0xd9b81f,head:0xe6c41f,crest:0x111111,throat:0x111111,wing:0x7c7a32,tail:0x3a3a26,len:.2},{body:0xb9ab5a,head:0xb9ab5a,crest:0x2a2a2a,throat:0x3a3a3a,wing:0x6f6c40,tail:0x3a3a2a,len:.19}],[[-.15,0,0,.3],[.17,0,.06,-.4]]);
+BUILD.federal=(g)=>birdGroup(g,[{body:0x151515,head:0xe2552a,throat:0xe2552a,longBeak:1,len:.22},{body:0x151515,head:0xd94e24,throat:0xd94e24,longBeak:1,len:.21}],[[-.15,0,0,.2],[.16,-.05,.08,-.3]]);
+BUILD.dragon=(g)=>birdGroup(g,Array.from({length:5},()=>({body:0x5f5a33,head:0x5a5532,belly:0xe0b52a,wing:0x55502c,shoulder:0xe0b52a,len:.21})),[[0,0,0,0],[.5,0,.3,.5],[-.45,0,.2,-.4],[.2,0,-.45,1],[-.3,0,-.4,2]]);
+BUILD.viudita=(g)=>birdGroup(g,[{body:0xf4f4ef,head:0xf7f7f3,tip:0x111111,tail:0x161616,len:.19}],[[0,0,0,0]]);
+BUILD.yarara=(g)=>{const pts=[];for(let i=0;i<20;i++){const a=i*.62,r=.32-i*.011;pts.push(new THREE.Vector3(Math.cos(a)*r,.05+(i>15?(i-15)*.04:0),Math.sin(a)*r));}const b=M(0x8a6a44,.7),dk=M(0x2e2216,.8);
+ const tube=new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),60,.045,7,false),b);tube.castShadow=true;g.add(tube);
+ for(let i=1;i<18;i++){const p=pts[i];part(SPH,dk,p.x,p.y+.035,p.z,.03,.012,.03,g);}const hd=pts[19];part(SPH,b,hd.x,hd.y+.02,hd.z-.04,.055,.035,.075,g);g.userData.head=g.children[g.children.length-1];};
+BUILD.arana=(g,L)=>{const b=M(0x3a2a20,.95),h=M(0x55402e,.95);part(SPH,b,0,.12,.08,.09,.07,.11,g);part(SPH,h,0,.11,-.06,.065,.05,.07,g);
+ for(let i=0;i<8;i++){const s=i<4?-1:1,k=i%4,z=-.1+k*.05,p=new THREE.Group();p.position.set(s*.05,.12,z);p.rotation.y=s*(-.5+k*.35);g.add(p);const l1=part(CYL,b,s*.08,.02,0,.012,.18,.012,p);l1.rotation.z=s*1.1;const l2=part(CYL,b,s*.17,-.06,0,.01,.16,.01,p);l2.rotation.z=s*.35;L.push(p);}};
+function flapW(a,time,on){(a.g.userData.wingsAll||[]).forEach((w,i)=>{const s=Math.sign(w.position.x)||1;if(on){w.scale.x=1;w.rotation.z=s*Math.sin(time*18+i)*.85;}else{w.scale.x=.35;w.rotation.z=s*1.25;}});}
+function hopUpdate(a,dt,time,dc){const hp=a.sp.hop;if(!a.perch)return;
+ if(a.state!=='fly'){if(a.sallyT){a.sallyT-=dt;const u=1-a.sallyT/1.6;a.g.position.y=a.perch[1]+Math.sin(u*Math.PI)*1.6;flapW(a,time,true);if(a.sallyT<=0){a.sallyT=0;a.t=3+Math.random()*5;flapW(a,time,false);a.g.position.y=a.perch[1];}return;}
+  a.t-=dt;const flee=dc<hp.fleeD;if(hp.sally&&!flee&&a.t<=0&&Math.random()<.5){a.sallyT=1.6;return;}
+  if(flee||a.t<=0){let cand=a.perches.filter(p=>p!==a.perch&&Math.hypot(p[0]-a.perch[0],p[2]-a.perch[2])<50);if(flee){const far=cand.filter(p=>Math.hypot(p[0]-car.x,p[2]-car.z)>hp.fleeD+6);if(far.length)cand=far;}if(!cand.length)cand=a.perches.filter(p=>p!==a.perch);
+   if(!cand.length){a.t=5;return;}const nx=cand[Math.floor(Math.random()*cand.length)];a.fl={from:a.perch,to:nx,t:0,dur:Math.max(1.2,Math.hypot(nx[0]-a.perch[0],nx[2]-a.perch[2])/7)};a.state='fly';}
+  else flapW(a,time,false);return;}
+ const F=a.fl;F.t+=dt;const u=Math.min(1,F.t/F.dur),e=u*u*(3-2*u);a.x=mix(F.from[0],F.to[0],e);a.z=mix(F.from[2],F.to[2],e);a.y=mix(F.from[1],F.to[1],e)+Math.sin(u*Math.PI)*2.5;
+ a.h=Math.atan2(-(F.to[0]-F.from[0]),-(F.to[2]-F.from[2]));a.g.position.set(a.x,a.y,a.z);a.g.rotation.y=a.h;flapW(a,time,true);
+ if(u>=1){a.perch=F.to;a.state='perched';a.t=4+Math.random()*9;flapW(a,time,false);}}
+function setPerch(a,list,start){a.perches=list;a.perch=start;a.x=start[0];a.y=start[1];a.z=start[2];a.g.position.set(a.x,a.y,a.z);a.state='perched';a.t=2+Math.random()*6;flapW(a,0,false);}
+function spreadPts(n,minD,test){const out=[];for(let t=0;t<6000&&out.length<n;t++){const x=(rnd()*2-1)*(HALF-40),z=(rnd()*2-1)*(HALF-40);if(!test(x,z))continue;if(out.some(p=>Math.hypot(p[0]-x,p[1]-z)<minD))continue;out.push([x,z]);}return out;}
+{const sp=SPECIES.find(s=>s.id==='yarara');spreadPts(4,60,(x,z)=>z<-110&&H(x,z)>20&&slopeAt(x,z)<.5&&!hitObs(x,z,2)).forEach(p=>spawn(sp,p[0],p[1]));}
+{const sp=SPECIES.find(s=>s.id==='arana');spreadPts(4,55,(x,z)=>z<-100&&H(x,z)>14&&slopeAt(x,z)<.6&&!hitObs(x,z,2)).forEach(p=>spawn(sp,p[0],p[1]));}
+{const sp=SPECIES.find(s=>s.id==='cardenal');if(ESPIN.length>2){const c=ESPIN[Math.floor(ESPIN.length/2)],list=ESPIN.filter(p=>Math.hypot(p[0]-c[0],p[2]-c[2])<60);const a=spawn(sp,c[0],c[2]);setPerch(a,list.length>2?list:ESPIN,c);}}
+{const sp=SPECIES.find(s=>s.id==='federal');const c=CFALSO.find(p=>p[2]>5&&p[2]<130)||CFALSO[0];if(c){const list=CFALSO.filter(p=>Math.hypot(p[0]-c[0],p[2]-c[2])<45);const a=spawn(sp,c[0],c[2]);setPerch(a,list,c);}}
+{for(const id of['dragon','viudita']){const sp=SPECIES.find(s=>s.id===id);if(PALMS.length>3){const c=PALMS[Math.floor(rnd()*PALMS.length)];const a=spawn(sp,c[0],c[2]);setPerch(a,PALMS,id==='viudita'?[c[0],c[1]+.15,c[2]]:c);}}}
+// puma: echado en lo alto del noroeste; si te acercás se va caminando hacia el borde
+const PUMA_SPOTS=spreadPts(4,22,(x,z)=>x<-150&&x>-250&&z<-190&&z>-250&&H(x,z)>24&&slopeAt(x,z)<.5);
+function pumaUpdate(a,dt,time,dc){
+ if(a.gone){a.goneT-=dt;if(a.goneT<=0&&dc>140&&PUMA_SPOTS.length){const s=PUMA_SPOTS[Math.floor(Math.random()*PUMA_SPOTS.length)];a.x=s[0];a.z=s[1];a.gone=false;a.mode='rest';a.g.visible=true;a.h=Math.random()*6.28;}return;}
+ if(a.mode!=='leave'&&dc<85){a.mode='leave';const toW=Math.abs(a.x+HALF),toN=Math.abs(a.z+HALF);a.lx=toW<toN?-1:0;a.lz=toW<toN?0:-1;}
+ if(a.mode==='leave'){const sp=2.2,want=Math.atan2(-a.lx,-a.lz);let df=want-a.h;df=Math.atan2(Math.sin(df),Math.cos(df));a.h+=df*Math.min(1,dt*3);a.x-=Math.sin(a.h)*sp*dt;a.z-=Math.cos(a.h)*sp*dt;a.phase+=dt*sp*4;
+  a.legs.forEach((p,i)=>p.rotation.x=Math.sin(a.phase+(i%2?0:Math.PI)+(i>1?Math.PI/2:0))*.5);a.y=H(a.x,a.z);a.g.position.set(a.x,a.y,a.z);a.g.rotation.y=a.h;
+  if(Math.abs(a.x)>HALF-28||Math.abs(a.z)>HALF-28){a.gone=true;a.goneT=45;a.g.visible=false;}return;}
+ a.legs.forEach(p=>p.rotation.x=0);a.y=H(a.x,a.z);a.g.position.set(a.x,a.y-.32,a.z);a.g.rotation.y=a.h;}
+{const a=animals.find(a=>a.sp.id==='puma');if(a&&PUMA_SPOTS.length){const s=PUMA_SPOTS[0];a.x=s[0];a.z=s[1];a.mode='rest';a.h=Math.random()*6.28;}}
+
 {const sp=SPECIES.find(s=>s.id==='lechuza');const a=spawn(sp,lechuzaPerch.x,lechuzaPerch.z);a.y=lechuzaPerch.y;a.g.position.y=a.y;a.h=Math.PI*.8;}
 {const a=animals.find(a=>a.sp.id==='gato');a.x=a.home[0]=grutaPos.x;a.z=a.home[1]=grutaPos.z;a.h=-Math.PI/2;a.y=grutaPos.y;a.g.position.set(a.x,a.y,a.z);a.g.rotation.y=a.h;}
 
@@ -1076,6 +1155,8 @@ function updateAnimals(dt,time){
  for(const a of animals){
   const sp=a.sp,dc=Math.hypot(car.x-a.x,car.z-a.z);
   if(dc>260){continue;}
+  if(sp.id==='puma'){pumaUpdate(a,dt,time,dc);continue;}
+  if(sp.hop){hopUpdate(a,dt,time,dc);continue;}
   if(sp.hab==='perch'){const hd=a.g.userData.head;if(hd)hd.rotation.y=Math.sin(time*.4+a.phase)*1.1;a.g.rotation.y=a.h;a.g.position.y=a.y+Math.sin(time*1.3)*.005;
    if(a.g.userData.wings){a.wt=(a.wt||0)-dt;if(a.wt<=0){a.wopen=!a.wopen;a.wt=6+Math.random()*9;}a.ws=(a.ws||0)+((a.wopen?1:0)-(a.ws||0))*Math.min(1,dt*2);a.g.userData.wings.forEach(w=>{const s=Math.sign(w.position.x);w.scale.set(.3+.7*a.ws,1,1);w.rotation.z=s*(1.25-1.1*a.ws);});}continue;}
   if(sp.hab==='air'){a.ang+=dt*sp.walk/a.R;a.x=a.home[0]+Math.cos(a.ang)*a.R;a.z=a.home[1]+Math.sin(a.ang)*a.R;a.h=Math.PI-a.ang;
@@ -1135,23 +1216,23 @@ function specialHTML(sp,f){const x=f.flyImg?{img:f.flyImg,label:'En vuelo'}:(f.x
  if(x)return `<div class="fly"><img alt="${sp.name}: ${x.label}" src="${x.img}"><span>✦ ${x.label}</span></div>`;return SPECIALS[sp.id]?`<div class="fly empty">✦ ${SPECIALS[sp.id]}</div>`:'';}
 function renderPortada(){const nf=GOAL.filter(s=>SAVE.found[s.id]).length,np=SAVE.places.length,fish=SAVE.fish||{},nfi=FISH.filter(x=>fish[x.id]).length,
  lg=[!!SAVE.raceWins,!!SAVE.nest,!!SAVE.found.puma].filter(Boolean).length,ns=SPECIES.filter(sp=>{const f=SAVE.found[sp.id];return f&&(f.flyImg||(f.x2&&f.x2.img)||(sp.id==='tero'&&SAVE.nest));}).length;
- const row=(l,a,b)=>`<span>${l}</span><div class="bar"><i style="width:${b?Math.round(a/b*100):0}%"></i></div><b>${a} / ${b}</b>`;
- $('#portada').innerHTML=`<div class="pstat">${row('🐾 Bichos',nf,GOAL.length)}${row('📍 Lugares',np,PLACES.length)}${row('🐟 Peces',nfi,FISH.length)}${row('✦ Fotos especiales',ns,Object.keys(SPECIALS).length)}${row('🏆 Logros',lg,3)}</div>
+ const row=(l,a,b,go)=>`<div class="prow" data-go="${go}" role="button" tabindex="0"><span>${l}</span><div class="bar"><i style="width:${b?Math.round(a/b*100):0}%"></i></div><b>${a} / ${b}</b></div>`,gc=k=>GOAL.filter(s=>s.grp===k),gf=k=>gc(k).filter(s=>SAVE.found[s.id]).length;
+ $('#portada').innerHTML=`<div class="pstat">${Object.keys(GRPN).map(k=>row(GRPN[k][0]+' '+GRPN[k][1],gf(k),gc(k).length,k)).join('')}${row('🐟 Peces',nfi,FISH.length,'agua')}${row('📍 Lugares',np,PLACES.length,'lugares')}${row('✦ Fotos especiales',ns,Object.keys(SPECIALS).length,'aves')}${row('🏆 Logros',lg,3,'logros')}</div>
  <p class="ptip">${SAVE.mask?'🤿 Tenés la máscara del viejo naturalista. En el mapa (M) están marcados los lugares donde se puede bucear.':'🔎 Dicen que un viejo naturalista vivía por acá y guardaba sus cosas en una casa abandonada…'}</p>
- <p class="ptip">Tocá las pestañas de arriba para ver tus bichos, lo que hay bajo el agua, los lugares, los hallazgos y los logros.</p>`;}
+ <p class="ptip">Tocá una fila o las pestañas de arriba para ver cada grupo.</p>`;document.querySelectorAll('#portada [data-go]').forEach(el=>el.onclick=()=>goTab(el.dataset.go));}
 function renderAgua(){const el=$('#agua'),fish=SAVE.fish||{};if(!SAVE.mask){el.innerHTML='<p class="ptip">Para mirar bajo el agua hace falta una máscara. ¿Dónde la habrá dejado el viejo naturalista? Quizás en una casa abandonada…</p>';return;}
  let h='<h4>El mapa del naturalista</h4><div class="dives">'+DIVES.map(d=>`<div class="dive${SAVE.dives&&SAVE.dives[d.id]?' on':''}"><h5>${SAVE.dives&&SAVE.dives[d.id]?'🤿 '+d.name:'¿?'}</h5><p>“${d.note}”</p></div>`).join('')+'</div><h4>Peces</h4><div class="grid">';
  h+=FISH.map(fi=>{const f=fish[fi.id];return f?`<div class="card"><div class="ph"><img alt="Foto de ${fi.name}" src="${f.img}"></div><h3>${fi.name}</h3><div class="sci">${fi.sci}</div><p>${fi.note}</p><div class="where">Encontrado: ${f.where}</div></div>`:`<div class="card locked"><div class="ph">?</div><h3>Sin descubrir</h3><p>${fi.hint}</p></div>`;}).join('')+'</div>';el.innerHTML=h;}
 function renderBook(){renderPortada();renderAgua();
- const c=$('#cards');c.innerHTML='';
+ for(const gk in GRPN)$('#cards_'+gk).innerHTML='';
  for(const sp of SPECIES){const f=SAVE.found[sp.id];if(sp.secret&&!f)continue;const d=document.createElement('div');d.className='card'+(f?'':' locked')+(sp.secret?' secret':'');
   d.innerHTML=f?`<div class="ph">${f.img?`<img alt="Foto de ${sp.name}" src="${f.img}">`:'📷'}</div><h3>${sp.name}</h3><div class="sci">${sp.sci}</div><p>${sp.note}</p><p class="more">${sp.more}</p>${specialHTML(sp,f)}<div class="where">Encontrado: ${f.where}</div><div class="links">${links(sp)}</div>`
-   :`<div class="ph">?</div><h3>Sin descubrir</h3><p>${sp.hint}</p>`;c.appendChild(d);}
- $('#plH').textContent='Lugares ('+SAVE.places.length+' de '+PLACES.length+')';
+   :`<div class="ph">?</div><h3>Sin descubrir</h3><p>${sp.hint}</p>`;$('#cards_'+sp.grp).appendChild(d);}
+ $('#plH').textContent='📍 Lugares ('+SAVE.places.length+' de '+PLACES.length+')';
  const ul=$('#plList');ul.innerHTML='';const pics=SAVE.placePics||{};for(const p of PLACES){const ok=SAVE.places.includes(p.id),d=document.createElement('div');d.className='card'+(ok?'':' locked');
   d.innerHTML=ok?`<div class="ph">${pics[p.id]?`<img alt="Foto de ${p.name}" src="${pics[p.id]}">`:'📷'}</div><h3>${p.name}</h3><p>${pics[p.id]?'':'Sin foto todavía: volvé y sacale una con la cámara.'}</p>`:`<div class="ph">?</div><h3>Sin descubrir</h3>`;ul.appendChild(d);}
  const lg=$('#logros');if(lg){const L=[[!!SAVE.raceWins,'🏁','Más rápido que un ñandú','Le ganaste una carrera.',SAVE.raceWins?'Carreras ganadas: '+SAVE.raceWins:''],[!!SAVE.nest,'🥚','El nido del tero','Lo encontraste lejos de los gritos.',''],[!!SAVE.found.puma,'★','El fantasma de la sierra','Fotografiaste al puma.','']];
-  lg.innerHTML=L.map(l=>l[0]?`<div class="logro on"><b>${l[1]}</b><div><h5>${l[2]}</h5><p>${l[3]} ${l[4]}</p></div></div>`:`<div class="logro"><b>?</b><div><h5>Logro escondido</h5></div></div>`).join('');$('#logH').textContent='Logros especiales ('+L.filter(l=>l[0]).length+' de 3)';}
+  lg.innerHTML=L.map(l=>l[0]?`<div class="logro on"><b>${l[1]}</b><div><h5>${l[2]}</h5><p>${l[3]} ${l[4]}</p></div></div>`:`<div class="logro"><b>?</b><div><h5>Logro escondido</h5></div></div>`).join('');$('#logH').textContent='🏆 Logros especiales ('+L.filter(l=>l[0]).length+' de 3)';}
  const hz=$('#hzList');const H0=SAVE.hall;const q=t=>encodeURIComponent(t);
  const lk=(href,t)=>`<a href="${href}" target="_blank" rel="noopener">${t}</a>`;
  hz.innerHTML=H0?`<div class="card hz"><div class="ph">${H0.img?`<img alt="Pinturas en la cueva" src="${H0.img}">`:'🔥'}</div><div><h3>Los primeros habitantes</h3>
@@ -1241,10 +1322,14 @@ const CALLS={
  espatula(d,t){tn(d,t,.12,520,420,.3,'square');tn(d,t+.2,.12,500,400,.25,'square');},
  sirir(d,t){for(let i=0;i<3;i++){tn(d,t+i*.3,.13,2400,3000,.3);tn(d,t+i*.3+.14,.1,2900,2300,.25);}},
  cuervo(d,t){nz(d,t,.5,1200,1,.3);},
+ cardenal(d,t){for(let i=0;i<3;i++)tn(d,t+i*.18,.14,2600,3100,.25);},
+ federal(d,t){tn(d,t,.3,1900,2400,.25);tn(d,t+.35,.25,2300,1800,.2);},
+ dragon(d,t){for(let i=0;i<5;i++)tn(d,t+i*.12+Math.random()*.05,.1,1500+Math.random()*700,1200,.2,'square');},
+ viudita(d,t){tn(d,t,.12,3200,3600,.15);},
  bigua(d,t){tn(d,t,.25,140,110,.6,'sawtooth');tn(d,t+.35,.2,130,100,.5,'sawtooth');},
  aguila(d,t){tn(d,t,.35,1800,2300,.35,'sawtooth');tn(d,t+.45,.5,2200,1600,.35,'sawtooth');}
 };
-const CALL_R={bigua:45,espatula:55,sirir:70,cuervo:55,aguila:170,nandu:95,lechuza:85,yacare:75,mulita:32,tero:80,carpincho:60,garza:60,zorro:75,gato:60,lobito:65,venado:80};
+const CALL_R={cardenal:45,federal:50,dragon:60,viudita:35,bigua:45,espatula:55,sirir:70,cuervo:55,aguila:170,nandu:95,lechuza:85,yacare:75,mulita:32,tero:80,carpincho:60,garza:60,zorro:75,gato:60,lobito:65,venado:80};
 function playCall(a,dist){
  const t=AC.currentTime+.02,vol=Math.pow(1-dist/CALL_R[a.sp.id],1.4)*.55;if(vol<=.003)return;
  const g=AC.createGain();g.gain.value=vol;let out=g;
@@ -1825,7 +1910,8 @@ if(Object.keys(SAVE.found).length||SAVE.places.length)$('#go').textContent='Segu
 let firstGo=true;
 $('#go').onclick=()=>{started=true;camOrbit=0;camTilt=0;camZoom=1;camLock=false;checkTele();$('#start').style.display='none';document.body.classList.remove('menu');$('#hud').style.display='block';if(!AC)initAudio();revealFog();if(firstGo)toast('Fotografiá los bichos en su lugar. N abre el cuaderno con pistas.');firstGo=false;};
 $('#goBook').onclick=()=>toggleBook(true);
-document.querySelectorAll('#bookTabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#bookTabs button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.pages .tp').forEach(p=>p.classList.toggle('on',p.dataset.t===b.dataset.t));$('#book .pages').scrollTop=0;});
+function goTab(t){document.querySelectorAll('#bookTabs button').forEach(x=>x.classList.toggle('on',x.dataset.t===t));document.querySelectorAll('.pages .tp').forEach(p=>p.classList.toggle('on',p.dataset.t===t));$('#book .pages').scrollTop=0;}
+document.querySelectorAll('#bookTabs button').forEach(b=>b.onclick=()=>goTab(b.dataset.t));
 $('#helpClose').onclick=()=>$('#help').classList.remove('show');$('#help').addEventListener('click',e=>{if(e.target.id==='help')$('#help').classList.remove('show');});
 $('#partyOk').onclick=()=>$('#party').classList.remove('show');
 fillProfiles();loadPos();loadFog();

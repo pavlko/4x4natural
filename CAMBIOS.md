@@ -27,6 +27,7 @@ Un juego de Insight Reality
 - v24  Cresta que une el anillo de la laguna escondida con el borde alto del mundo al sureste
 - v25  Caraguatá falso siempre atravesable; caraguatá verdadero del doble de tamaño, sólido y con racimo de frutos amarillos
 - v26  Caraguatá atravesable y agrupado en matas dentro del monte de la quebrada
+- v27  Yarará, araña pollito, espinillos con cardenal amarillo, federal, dragones y viudita blanca; puma echado en el noroeste que se va hacia el borde; pindós más bajos lejos del fondo; cuaderno por grupos con pestañas de emoji
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v26).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v27).
 La versión vigente es index.html (lista como app instalable).
