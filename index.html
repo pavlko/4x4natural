@@ -121,6 +121,9 @@ body.photo #trail{bottom:auto;top:calc(env(safe-area-inset-top,0px) + 118px)}
 .card.secret h3::after{content:' ★';color:#b88a2a}
 #race{position:absolute;left:50%;top:calc(env(safe-area-inset-top,0px) + 74px);transform:translateX(-50%);background:var(--panel);padding:6px 14px;border-radius:3px;border-bottom:3px solid var(--senal);font-size:18px;font-weight:600;display:none;white-space:nowrap}
 #race.show{display:block}
+#raceArrow{position:absolute;left:50%;top:calc(env(safe-area-inset-top,0px) + 118px);transform:translateX(-50%);font-size:58px;line-height:1;color:#F28C28;text-shadow:0 0 0 #1f160e,0 2px 6px rgba(0,0,0,.7);display:none;pointer-events:none;transition:font-size .4s}
+#raceArrow.show{display:block}#raceArrow.big{font-size:110px}
+body.photo #raceArrow{display:none!important}
 .card .fly{position:relative;margin-top:8px}.card .fly img{width:100%;aspect-ratio:8/5;object-fit:cover;display:block;border-radius:1px}.card .fly span{position:absolute;left:6px;bottom:6px;background:rgba(35,64,47,.85);color:#f3ebdd;font-size:13px;padding:1px 7px;border-radius:2px}
 .card .fly.empty{border:1.5px dashed #b7a37c;color:#8a7756;font-size:14px;padding:8px;text-align:center;border-radius:2px}
 .logros{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}.logro{display:flex;gap:10px;align-items:center;border:1.5px dashed #9d8961;border-radius:3px;padding:8px 10px;color:#9d8961}.logro b{font-size:28px;min-width:34px;text-align:center}.logro h5{margin:0;font-size:18px}.logro p{margin:2px 0 0;font-family:Newsreader,serif;font-size:14.5px}.logro.on{border:1.5px solid #b88a2a;background:#e9d9a8;color:var(--tinta)}
@@ -225,6 +228,7 @@ body.menu #touch{display:none!important}
   <div id="trail"></div>
   <button id="diveBtn" type="button">🤿 Zambullirse</button>
   <div id="race"></div>
+  <div id="raceArrow" aria-hidden="true">➤</div>
   <div id="gauge"><div><div id="spd">0</div><div class="u">km/h</div></div><div id="gear">4H</div></div>
   <div id="mapwrap"><canvas id="minimap" width="200" height="200"></canvas></div>
 </div>
@@ -517,7 +521,7 @@ function hitObs(x,z,rad){const ci=Math.floor(x/CELL),cj=Math.floor(z/CELL);for(l
 // ===== VEGETACIÓN =====
 const M=(c,r=.88,o={})=>new THREE.MeshStandardMaterial(Object.assign({color:c,roughness:r},o));
 const dummy=new THREE.Object3D(),tmpC=new THREE.Color();
-function jitter(geo,amt){const p=geo.attributes.position;const m=new Map();for(let i=0;i<p.count;i++){const key=p.getX(i).toFixed(3)+p.getY(i).toFixed(3)+p.getZ(i).toFixed(3);if(!m.has(key))m.set(key,[(rnd()-.5)*amt,(rnd()-.5)*amt,(rnd()-.5)*amt]);const d=m.get(key);p.setXYZ(i,p.getX(i)+d[0],p.getY(i)+d[1],p.getZ(i)+d[2]);}geo.computeVertexNormals();return geo;}
+function jitter(geo,amt){const p=geo.attributes.position;const m=new Map();for(let i=0;i<p.count;i++){const kq=v=>(Math.round(v*1000)||0),key=kq(p.getX(i))+','+kq(p.getY(i))+','+kq(p.getZ(i));if(!m.has(key))m.set(key,[(rnd()-.5)*amt,(rnd()-.5)*amt,(rnd()-.5)*amt]);const d=m.get(key);p.setXYZ(i,p.getX(i)+d[0],p.getY(i)+d[1],p.getZ(i)+d[2]);}geo.computeVertexNormals();return geo;}
 function nearPlace(x,z,id,r){const p=PLACES.find(q=>q.id===id);return Math.hypot(x-p.x,z-p.z)<r;}
 const lagoonR=(x,z)=>Math.hypot(x-190,z+110);
 // árboles autóctonos: coronilla, tala, arrayán, ceibo (+ ombúes sueltos)
@@ -674,12 +678,12 @@ let lechuzaPerch;
 { // tapera + ombú
  const P=PLACES.find(q=>q.id==='tapera'),g=new THREE.Group();g.position.set(P.x,H(P.x,P.z)-.05,P.z);g.rotation.y=.35;scene.add(g);
  const cal=M(0xcdbfa4,.95),lad=M(0x8f5638,.95);
- const walls=[[0,0,-3,7,2.9,.4],[-3.3,0,0,.4,2.2,6],[3.3,0,-.8,.4,3.4,4.4],[-2.2,0,3,2.6,1.4,.4],[2.4,0,3,1.8,2.0,.4]];
+ const walls=[[0,0,-3,7,2.9,.4],[-3.3,0,0,.4,2.2,6],[3.3,0,-.8,.4,3.4,4.4],[-2.75,0,3,1.5,1.4,.4],[2.85,0,3,.9,2.0,.4]];
  for(const w of walls){part(BOX,cal,w[0],w[4]/2,w[2],w[3],w[4],w[5],g);}
  part(BOX,lad,1.5,.6,-2.75,1.6,1.2,.12,g);part(BOX,lad,-3.08,1.4,1.2,.12,.9,1.4,g);
  part(BOX,M(0x5b4a3a),3.3,3.5,-2.6,.6,.2,.6,g);// cumbrera rota
  g.updateMatrixWorld(true);lechuzaPerch=new THREE.Vector3(3.3,3.62,-2.6);g.localToWorld(lechuzaPerch);
- for(const w of walls){const v=new THREE.Vector3(w[0],0,w[2]);g.localToWorld(v);addObs(v.x,v.z,Math.max(w[3],w[5])*.45);}
+ for(const w of walls){const L=Math.max(w[3],w[5]),alongX=w[3]>w[5],n=Math.max(1,Math.round(L/.7));for(let i=0;i<n;i++){const o=-L/2+L*(i+.5)/n,v=new THREE.Vector3(w[0]+(alongX?o:0),0,w[2]+(alongX?0:o));g.localToWorld(v);addObs(v.x,v.z,.3);}}
  // ombú
  const ox=P.x+12,oz=P.z-7,oh=H(ox,oz),o=new THREE.Group();o.position.set(ox,oh-.2,oz);scene.add(o);
  const bark=M(0x5e5246,1);ombuTrunk(o,bark);
@@ -1009,13 +1013,13 @@ function updateAnimals(dt,time){
   if(speed>0){
    const dx=a.tx-a.x,dz=a.tz-a.z,hd=Math.atan2(-dx,-dz);let df=hd-a.h;df=Math.atan2(Math.sin(df),Math.cos(df));a.h+=df*Math.min(1,dt*(a.state==='flee'?6:2.5));
    const nx=a.x-Math.sin(a.h)*speed*dt,nz=a.z-Math.cos(a.h)*speed*dt;
-   if(validFor(sp,nx,nz)){a.x=nx;a.z=nz;}else{if(a.state==='flee'){a.h+=1.6;}else{a.state='idle';a.t=1+rnd()*2;}}
+   if(validFor(sp,nx,nz)){a.x=nx;a.z=nz;}else{if(a.state==='flee'){a.h+=1.6;}else{a.state='idle';a.t=sp.rest?4+rnd()*6:1+rnd()*2;}}
    a.phase+=dt*speed*(sp.size<.6?14:6)/Math.max(sp.size,.4);
   }
   const mv=speed>0?1:0;
   a.legs.forEach((p,i)=>{p.rotation.x=mv*Math.sin(a.phase+(i%2?0:Math.PI)+(i>1?Math.PI/2:0))*.55;});
   const ty=yFor(sp,a.x,a.z);a.y+=(ty-a.y)*Math.min(1,dt*8);
-  a.g.position.set(a.x,a.y+mv*Math.abs(Math.sin(a.phase))*.03*sp.size-(sp.rest&&!mv?.28:0),a.z);a.g.rotation.y=a.h;
+  a.cr=(a.cr||0)+(((sp.rest&&!mv)?.28:0)-(a.cr||0))*Math.min(1,dt*1.5);a.g.position.set(a.x,a.y+mv*Math.abs(Math.sin(a.phase))*.03*sp.size-a.cr,a.z);a.g.rotation.y=a.h;
  }
 }
 
@@ -1422,9 +1426,9 @@ const raceMarks=new THREE.InstancedMesh(new THREE.PlaneGeometry(.5,2.2),new THRE
 function layMarks(P){let n=0;dummy.scale.set(1,1,1);for(let k=0;k<P.length-1&&n<418;k++){const ax=P[k][0],az=P[k][1],bx=P[k+1][0],bz=P[k+1][1],L=Math.hypot(bx-ax,bz-az);if(L<1)continue;const ux=(bx-ax)/L,uz=(bz-az)/L,th=Math.atan2(-ux,-uz);
  for(let d=1.5;d<L&&n<418;d+=4.5)for(const sd of[-3.4,3.4]){const x=ax+ux*d-uz*sd,z=az+uz*d+ux*sd;dummy.position.set(x,Math.max(H(x,z),-.05)+.07,z);dummy.rotation.set(-Math.PI/2,th,0,'YXZ');dummy.updateMatrix();raceMarks.setMatrixAt(n++,dummy.matrix);}}
  raceMarks.count=n;raceMarks.instanceMatrix.needsUpdate=true;}
-function startRace(a){const np=nearestOnPath(RACEPATH,a.x,a.z),P=[[a.x,a.z],[np.px,np.pz]].concat(RACEPATH.slice(np.i+1));
- RACE.on=true;RACE.a=a;RACE.t=0;RACE.path=P;RACE.wi=1;RACE.fx=P[P.length-1][0];RACE.fz=P[P.length-1][1];layMarks(P.slice(1));
- flag.position.set(RACE.fx,H(RACE.fx,RACE.fz),RACE.fz);flag.visible=true;$('#race').classList.add('show');toast('¡El ñandú te desafía! Seguí la pista hasta la tapera 🏁','place');}
+function startRace(a){const P=[[a.x,a.z]].concat(RACEPATH.slice(5));
+ RACE.on=true;RACE.a=a;RACE.t=0;RACE.path=P;RACE.wi=1;RACE.cwi=1;RACE.spd=6;RACE.fx=P[P.length-1][0];RACE.fz=P[P.length-1][1];layMarks(P);$('#raceArrow').classList.add('show');
+ flag.position.set(RACE.fx,H(RACE.fx,RACE.fz),RACE.fz);flag.visible=true;$('#race').classList.add('show');toast('¡El ñandú te desafía! Seguí la flecha hasta el paso del arroyo y la pista hasta la tapera 🏁','place');}
 function startRaceOld(a){let bi=0,bd=1e9;RACEPATH.forEach((p,i)=>{const d=Math.hypot(a.x-p[0],a.z-p[1]);if(d<bd){bd=d;bi=i;}});
  if(bd<80&&bi<RACEPATH.length-2){if(bi<RACEPATH.length-1&&Math.hypot(a.x-RACEPATH[bi+1][0],a.z-RACEPATH[bi+1][1])<Math.hypot(RACEPATH[bi][0]-RACEPATH[bi+1][0],RACEPATH[bi][1]-RACEPATH[bi+1][1]))bi++;
   const P=RACEPATH.slice(bi);RACE.on=true;RACE.a=a;RACE.t=0;RACE.path=P;RACE.wi=0;RACE.fx=P[P.length-1][0];RACE.fz=P[P.length-1][1];
@@ -1436,14 +1440,17 @@ function startRaceStraight(a){const dx=-Math.sin(car.h)*Math.sign(car.v||1),dz=-
   if(!best||L>best.L)best={L,ux,uz};if(L>=230)break;}
  if(best.L<80)return;RACE.on=true;RACE.a=a;RACE.t=0;RACE.fx=a.x+best.ux*best.L;RACE.fz=a.z+best.uz*best.L;
  flag.position.set(RACE.fx,H(RACE.fx,RACE.fz),RACE.fz);flag.visible=true;$('#race').classList.add('show');toast('¡El ñandú te desafía! Llegá primero a la bandera 🏁','place');}
-function endRace(win,msg){RACE.on=false;RACE.path=null;raceMarks.count=0;RACE.cool=25;flag.visible=false;$('#race').classList.remove('show');const a=RACE.a;RACE.a=null;if(a){a.state='idle';a.t=3;RACE.back=a;}
+function endRace(win,msg){RACE.on=false;RACE.path=null;raceMarks.count=0;$('#raceArrow').classList.remove('show');RACE.cool=25;flag.visible=false;$('#race').classList.remove('show');const a=RACE.a;RACE.a=null;if(a){a.state='idle';a.t=3;RACE.back=a;}
  if(win){SAVE.raceWins=(SAVE.raceWins||0)+1;save();chime();}toast(msg,win?'place':'');}
 function updateRace(dt,time){if(!RACE.on){RACE.cool-=dt;if(RACE.back){const b=RACE.back;if(Math.hypot(car.x-b.x,car.z-b.z)>70){b.x=b.home[0];b.z=b.home[1];b.state='idle';RACE.back=null;}}return;}const a=RACE.a;RACE.t+=dt;flag.userData.cloth.rotation.y=Math.sin(time*4)*.3;
  if(RACE.path){const P=RACE.path;let tg=P[RACE.wi];if(Math.hypot(tg[0]-a.x,tg[1]-a.z)<5&&RACE.wi<P.length-1){RACE.wi++;tg=P[RACE.wi];}
-  const dx=tg[0]-a.x,dz=tg[1]-a.z,dd=Math.hypot(dx,dz),spd=Math.min(RACE.t>16?10:12,4+RACE.t*4),hd=Math.atan2(-dx,-dz)+Math.sin(RACE.t*1.6)*.3*Math.min(1,dd/20);let df=hd-a.h;df=Math.atan2(Math.sin(df),Math.cos(df));a.h+=df*Math.min(1,dt*5);
+  const dx=tg[0]-a.x,dz=tg[1]-a.z,dd=Math.hypot(dx,dz),dA=Math.hypot(a.x-tg[0],a.z-tg[1])+pathRest(P,RACE.wi),dC=pathDist(P.slice(Math.max(0,RACE.cwi-1)),car.x,car.z),gap=dC-dA,
+   want=dA<45?12:Math.max(6,Math.min(16,12-gap*.14)),spd=Math.min(want,4+RACE.t*4),hd=Math.atan2(-dx,-dz)+Math.sin(RACE.t*1.6)*.3*Math.min(1,dd/20);let df=hd-a.h;df=Math.atan2(Math.sin(df),Math.cos(df));a.h+=df*Math.min(1,dt*5);
   a.x-=Math.sin(a.h)*spd*dt;a.z-=Math.cos(a.h)*spd*dt;a.phase+=dt*spd*3.2;a.legs.forEach((p,i)=>{p.rotation.x=Math.sin(a.phase+(i%2?0:Math.PI))*.8;});a.y=Math.max(H(a.x,a.z),-.3);a.g.position.set(a.x,a.y+Math.abs(Math.sin(a.phase))*.08,a.z);a.g.rotation.y=a.h;
   const da=Math.hypot(a.x-tg[0],a.z-tg[1])+pathRest(P,RACE.wi),dcar=pathDist(P.slice(Math.max(0,RACE.wi-1)),car.x,car.z),fin=Math.hypot(RACE.fx-car.x,RACE.fz-car.z);
   $('#race').textContent='🏁 Hasta la tapera · Vos '+Math.round(dcar)+' m · Ñandú '+Math.round(da)+' m';
+  {let ct=P[RACE.cwi];if(Math.hypot(ct[0]-car.x,ct[1]-car.z)<12&&RACE.cwi<P.length-1){RACE.cwi++;ct=P[RACE.cwi];}const yaw=car.h+camOrbit,rel=Math.atan2(-(ct[0]-car.x),-(ct[1]-car.z))-yaw,deg=Math.atan2(Math.sin(rel),Math.cos(rel))*180/Math.PI;
+   const ar=$('#raceArrow');ar.style.transform='translateX(-50%) rotate('+(-90-deg)+'deg)';ar.classList.toggle('big',RACE.t<6);}
   if(fin<10)endRace(true,'¡Le ganaste al ñandú hasta la tapera! 🏆');else if(RACE.wi===P.length-1&&dd<3)endRace(false,'¡Ganó el ñandú! Cruzó el arroyo como si nada…');
   else if(RACE.t>120||dcar>da+300)endRace(false,'El ñandú se fue lejos. Otra vez será.');return;}
  const dx=RACE.fx-a.x,dz=RACE.fz-a.z,da=Math.hypot(dx,dz),dcar=Math.hypot(RACE.fx-car.x,RACE.fz-car.z);
