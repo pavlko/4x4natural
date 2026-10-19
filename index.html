@@ -344,9 +344,10 @@ function baseH(x,z){
   const lx=x-190,lz=z+110,lr=Math.hypot(lx,lz),ang=Math.atan2(lz,lx);
   const gap=ss(0.86,0.97,Math.cos(ang+Math.PI/4));
   const h0=h;
-  {const rn=fbm(Math.cos(ang)*2+7,Math.sin(ang)*2+3,3),hn=fbm(Math.cos(ang)*3+11,Math.sin(ang)*3+5,3),rr=58+(rn-.5)*12,sg=3.6+(hn-.5)*1.4,hh=9+hn*5,rg=Math.exp(-((lr-rr)**2)/(2*sg*sg)),
-    sf=ss(-.15,.45,Math.sin(ang))*(1-gap),ramp=lr>rr-2?8*(1-ss(rr,rr+32,lr))*sf*(.65+.7*fbm(x*.045+3,z*.045,3)):0;
-   h+=(hh*rg+(fbm(x*.09+5,z*.09,3)-.5)*3*Math.exp(-((lr-rr)**2)/(2*(sg*2.2)**2)))*(1-gap*.9)+ramp;}
+  {const ca=Math.cos(ang),sa=Math.sin(ang),rn=fbm(ca*2+7,sa*2+3,3),hn=fbm(ca*3+11,sa*3+5,3),jn=fbm(ca*6+2,sa*6+9,2),rr=58+(rn-.5)*14+(jn-.5)*9,sg=3.4+(hn-.5)*1.4,hh=9+hn*5,rg=Math.exp(-((lr-rr)**2)/(2*sg*sg)),
+    sf=ss(-.15,.45,sa)*(1-gap),out=lr>rr-2?(1-ss(rr,rr+40,lr)):0,ramp=8*out*sf*(.65+.7*fbm(x*.045+3,z*.045,3)),
+    foot=out*(1-gap)*(2.5+5*fbm(x*.06+17,z*.06+2,4))*(.6+.4*Math.sin(x*.11+z*.07)),crest=(fbm(x*.13+5,z*.13,3)-.5)*4*rg;
+   h+=(hh*rg+crest+(fbm(x*.09+5,z*.09,3)-.5)*3*Math.exp(-((lr-rr)**2)/(2*(sg*2.2)**2)))*(1-gap*.9)+Math.max(ramp,foot);}
   const tgt=mix(-2.6,1.4,ss(22,40,lr));
   h=mix(h,tgt,1-ss(38,50,lr));
   if(gap>0&&lr<100){const ramp=mix(1.4,h0,ss(40,95,lr));h=mix(h,ramp,gap*ss(34,44,lr)*(1-ss(90,100,lr)));}
