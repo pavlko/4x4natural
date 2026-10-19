@@ -1390,11 +1390,11 @@ function placeInShot(){let best=null,bs=1e9;const tanH=Math.tan(THREE.MathUtils.
   if(p.r*2/(2*dist*tanH)<.12)continue;const s=1+Math.hypot(pr.x,pr.y);if(s<bs){bs=s;best=p;}}
  return best;}
 let shotLabel='',lastShare=null,shareTimer=null;
-const GAME_URL='https://tinyurl.com/4x4naturaluruguay';
+const GAME_URL='https://pavlko.github.io/4x4natural/';
 function makeShare(label){const src=renderer.domElement,cw=src.width*.8,ch=cw/1.5,sx=(src.width-cw)/2,sy=Math.max(0,(src.height-ch)/2),W=Math.min(1600,Math.round(cw)),Hh=Math.round(W/1.5),band=Math.round(Hh*.1);
  const c=document.createElement('canvas');c.width=W;c.height=Hh+band;const g=c.getContext('2d');g.drawImage(src,sx,sy,cw,Math.min(ch,src.height),0,0,W,Hh);
  g.fillStyle='#23402F';g.fillRect(0,Hh,W,band);g.fillStyle='#F3EBDD';g.textBaseline='middle';g.font='700 '+Math.round(band*.42)+'px "Barlow Condensed",sans-serif';g.fillText((label?label+' · ':'')+'Safari Gaucho',band*.4,Hh+band/2);
- g.font='500 '+Math.round(band*.3)+'px "Barlow Condensed",sans-serif';g.fillStyle='#D9B65E';g.textAlign='right';g.fillText('Insight Reality · tinyurl.com/4x4naturaluruguay',W-band*.4,Hh+band/2);
+ g.font='500 '+Math.round(band*.3)+'px "Barlow Condensed",sans-serif';g.fillStyle='#D9B65E';g.textAlign='right';g.fillText('Insight Reality · pavlko.github.io/4x4natural',W-band*.4,Hh+band/2);
  lastShare={label,blob:null,canvas:c};const ls=lastShare;try{c.toBlob(b=>{ls.blob=b;},'image/jpeg',.88);}catch(e){}
  const btn=$('#shareBtn');btn.classList.add('show');clearTimeout(shareTimer);shareTimer=setTimeout(()=>btn.classList.remove('show'),7000);}
 async function doShare(){if(!lastShare)return;const text=(lastShare.label?lastShare.label+': ':'')+'lo fotografié en Safari Gaucho, un juego de Insight Reality. ¿Te animás? '+GAME_URL;

@@ -37,6 +37,7 @@ Un juego de Insight Reality
 - v34  La cámara de fotos mira mucho más arriba y abajo
 - v35  Sin pico en la unión de la cresta sureste con el anillo de la laguna escondida
 - v36  El juego pasa a llamarse Safari Gaucho
+- v37  Las fotos compartidas usan la dirección de GitHub Pages en vez de tinyurl
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v36).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v37).
 La versión vigente es index.html (lista como app instalable).
