@@ -353,8 +353,8 @@ function baseH(x,z){
   if(gap>0&&lr<100){const ramp=mix(1.4,h0,ss(40,95,lr));h=mix(h,ramp,gap*ss(34,44,lr)*(1-ss(90,100,lr)));}
   const hPre0=0;
   // cresta que une el anillo de la laguna escondida con el borde alto del sureste
-  {const ax=190+Math.cos(.8)*57,az=-110+Math.sin(.8)*57,bx=HALF-8,bz=-38,dx=bx-ax,dz=bz-az,l=dx*dx+dz*dz;let t=((x-ax)*dx+(z-az)*dz)/l;t=Math.max(0,Math.min(1,t));
-   const dd=Math.hypot(x-(ax+dx*t),z-(az+dz*t)),hn=fbm(x*.05+21,z*.05+4,3),sg=3.4+(hn-.5)*1.4;h+=(10+hn*6)*Math.exp(-(dd*dd)/(2*sg*sg))+(fbm(x*.09,z*.09+8,3)-.5)*3*Math.exp(-(dd*dd)/(2*(sg*2.2)**2));}
+  {const ax=190+Math.cos(.8)*60,az=-110+Math.sin(.8)*60,bx=HALF-8,bz=-38,dx=bx-ax,dz=bz-az,l=dx*dx+dz*dz;let t=((x-ax)*dx+(z-az)*dz)/l;t=Math.max(0,Math.min(1,t));
+   const dd=Math.hypot(x-(ax+dx*t),z-(az+dz*t)),hn=fbm(x*.05+21,z*.05+4,3),sg=3.4+(hn-.5)*1.4;const fade=ss(.0,.2,t);h+=fade*(10+hn*6)*Math.exp(-(dd*dd)/(2*sg*sg))+(fbm(x*.09,z*.09+8,3)-.5)*3*Math.exp(-(dd*dd)/(2*(sg*2.2)**2));}
   const hPre=h;
   // arroyo
   const w=riverW(z),d=Math.abs(x-riverX(z));
