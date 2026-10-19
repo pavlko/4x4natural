@@ -319,7 +319,8 @@ function baseH(x,z){
   const lx=x-190,lz=z+110,lr=Math.hypot(lx,lz),ang=Math.atan2(lz,lx);
   const gap=ss(0.86,0.97,Math.cos(ang));
   const h0=h;
-  h+=28*Math.exp(-((lr-60)**2)/(2*11*11));
+  {const rn=fbm(Math.cos(ang)*2+7,Math.sin(ang)*2+3,3),hn=fbm(Math.cos(ang)*3+11,Math.sin(ang)*3+5,3),rr=60+(rn-.5)*16,sg=10+(hn-.5)*4,hh=25+hn*10,rg=Math.exp(-((lr-rr)**2)/(2*sg*sg));
+   h+=hh*rg+(fbm(x*.07+5,z*.07,3)-.5)*7*Math.exp(-((lr-rr)**2)/(2*(sg*1.7)**2))*(1-gap);}
   const tgt=mix(-2.6,1.4,ss(22,40,lr));
   h=mix(h,tgt,1-ss(38,50,lr));
   if(gap>0&&lr<100){const ramp=mix(1.4,h0,ss(40,95,lr));h=mix(h,ramp,gap*ss(34,44,lr)*(1-ss(90,100,lr)));}
@@ -641,8 +642,8 @@ const TREES={
   if(rnd()>.55)continue;putP(x,z,h);
  }
  for(let t=0;t<12000&&n<MAX;t++){
-  const x=(rnd()*2-1)*(HALF-30),z=-100-rnd()*(HALF-135),h=H(x,z);
-  if(h<2||slopeAt(x,z)>.65||clearing(x,z)||nearPlace(x,z,'valle',30)||nearPlace(x,z,'gruta',12)||hitObs(x,z,2.6)||rnd()>.12)continue;putP(x,z,h);
+  const z=-268+rnd()*150,x=riverX(z)+(rnd()<.5?-1:1)*(riverW(z)*.5+8+rnd()*50),h=H(x,z);
+  if(h<1||h>24||slopeAt(x,z)>.65||clearing(x,z)||nearPlace(x,z,'valle',30)||nearPlace(x,z,'gruta',12)||hitObs(x,z,2.6)||rnd()>.12)continue;putP(x,z,h);
  }
  for(const m of [trunks,crowns]){m.count=n;m.castShadow=true;m.instanceMatrix.needsUpdate=true;if(m.instanceColor)m.instanceColor.needsUpdate=true;scene.add(m);}
 }
@@ -821,6 +822,15 @@ const fallTex2=fallTex.clone();fallTex2.needsUpdate=true;fallTex2.repeat.set(1.4
    const g=.28+rnd()*.1;tmpC.setRGB(g,g+.06+rnd()*.06,g-.04);m.setColorAt(n,tmpC);n++;};
   for(let i=0;i<90&&n<40;i++){const a=rnd()*6.28,r=5+rnd()*9,px=FALLS.x+Math.cos(a)*r,pz=FALLS.z+6+Math.sin(a)*r*.7;if(pz<FALLS.z+3||slopeAt(px,pz)>.9)continue;put(px,pz,.5+rnd()*1.6);}
   for(let t=0;t<3000&&n<MAX;t++){const z=-264+rnd()*44,x=riverX(z)+(rnd()<.5?-1:1)*(riverW(z)*.5+rnd()*28),d=zoneD(x,z);if(d<0||(d>3.5&&d<8.5)||rnd()<.5)continue;if(slopeAt(x,z)>.9||z<FALLS.z+2)continue;const s=.4+rnd()*rnd()*2.2;put(x,z,s);if(s>1.6&&d>8.5)addObs(x,z,s*.7);}
+  m.count=n;m.castShadow=true;m.receiveShadow=true;m.instanceMatrix.needsUpdate=true;m.instanceColor.needsUpdate=true;scene.add(m);}
+ // pedregal del lado de la cueva: borde de la cascada, ladera y alrededor de la boca
+ {const MAX=150,m=new THREE.InstancedMesh(jitter(new THREE.DodecahedronGeometry(1,1),.4),M(0xffffff,.95,{flatShading:true}),MAX);let n=0;const x0=riverX(-263);
+  const mouthFree=(x,z)=>x>CAVE_X-1&&x<CAVE_X+9&&Math.abs(z-CAVE_Z)<3.6;
+  const put=(x,z,s,col)=>{if(n>=MAX||mouthFree(x,z))return;const h=H(x,z);dummy.position.set(x,h+s*.2,z);dummy.rotation.set(rnd()*3,rnd()*3,rnd()*3);dummy.scale.set(s*(.9+rnd()*.4),s*(.7+rnd()*.5),s*(.9+rnd()*.4));dummy.updateMatrix();m.setMatrixAt(n,dummy.matrix);const g=.36+rnd()*.12;tmpC.setRGB(g+.02,g,g-.03);m.setColorAt(n,tmpC);n++;if(col&&s>1.6)addObs(x,z,s*.7);};
+  for(let dx=-4;dx>-36;dx-=1.6+rnd()*1.2){const x=x0+dx,L=lipZ(x);for(let k=0;k<3;k++)put(x+(rnd()-.5)*1.2,L+2.2-k*1.7-rnd()*.8,1.2+rnd()*2.1,false);}
+  for(let i=0;i<45;i++){const z=-262+rnd()*24,x=riverX(z)-(riverW(z)*.5+7+rnd()*28);if(H(x,z)<.5)continue;put(x,z,.8+rnd()*rnd()*2.4,true);}
+  for(const sd of[-1,1])for(let i=0;i<9;i++){const x=CAVE_X-1.5+rnd()*4,z=CAVE_Z+sd*(4+rnd()*4.5);put(x,z,1+rnd()*1.8,false);}
+  for(let i=0;i<7;i++){put(CAVE_X-3-rnd()*6,CAVE_Z+(rnd()-.5)*9,1.2+rnd()*1.6,false);}
   m.count=n;m.castShadow=true;m.receiveShadow=true;m.instanceMatrix.needsUpdate=true;m.instanceColor.needsUpdate=true;scene.add(m);}
  // paredón de piedras en la margen opuesta a la cueva
  {const MAX=100,m=new THREE.InstancedMesh(jitter(new THREE.DodecahedronGeometry(1,1),.4),M(0xffffff,.95,{flatShading:true}),MAX);let n=0;const x0=riverX(-263);
@@ -1458,9 +1468,9 @@ function buildUnder(d){if(UW.built[d.id])return;const G=new THREE.Group();G.visi
    const dx=x-px,dz=z-pz;if(Math.hypot(dx,dz)>1e-4)f.rotation.y=Math.atan2(-dx,-dz);f.rotation.z=Math.sin(t*4)*.15;t2.rotation.y=Math.sin(t*5)*.4;});}
  if(K.includes('patos')){const ducks=new THREE.Group();G.add(ducks);const feet=[];for(let i=0;i<4;i++){const dk=new THREE.Group();dk.position.set(i*.9-1.3,-.12,(i%2)*.7);part(SPH,M(0x7a4a2c,.8),0,0,0,.14,.08,.22,dk);
    for(const s of[-1,1]){const ft=new THREE.Mesh(new THREE.ConeGeometry(.07,.16,3),M(0xd88a2a,.7,{side:THREE.DoubleSide}));ft.position.set(s*.06,-.12,.05);ft.scale.set(1,1,.2);dk.add(ft);feet.push([ft,i,s]);}ducks.add(dk);}
-  ents.push({spec:'sirir',label:'Desde abajo',obj:ducks,size:1.6,G});ups.push(t=>{ducks.position.set(d.cx+Math.sin(t*.08)*5,0,d.cz+Math.cos(t*.06)*4);ducks.rotation.y=t*.05;feet.forEach(([ft,i,s])=>{ft.rotation.x=Math.sin(t*7+i+s)*.7;});});}
+  ents.push({spec:'sirir',label:'Desde abajo',obj:ducks,size:1.6,G});ups.push(t=>{{const px=ducks.position.x,pz=ducks.position.z;ducks.position.set(d.cx+Math.sin(t*.08)*5,0,d.cz+Math.cos(t*.06)*4);const vx=ducks.position.x-px,vz=ducks.position.z-pz;if(Math.hypot(vx,vz)>1e-5)ducks.rotation.y=Math.atan2(-vx,-vz);}feet.forEach(([ft,i,s])=>{ft.rotation.x=Math.sin(t*7+i+s)*.7;});});}
  if(K.includes('carpincho')){const c=new THREE.Group(),b=M(0x7a5a3b);part(SPH,b,0,0,0,.42,.32,.62,c);part(SPH,b,0,.06,-.62,.24,.22,.3,c);const legs=[];for(const[x,z]of[[.22,-.35],[-.22,-.35],[.22,.35],[-.22,.35]])legs.push(legP(c,M(0x4f3a28),x,-.15,z,.35,.07));
-  G.add(c);ents.push({spec:'carpincho',label:'Nadando',obj:c,size:1.3,G});ups.push(t=>{const a=t*.06;c.position.set(d.cx+Math.cos(a)*8,-.25,d.cz+Math.sin(a)*6);c.rotation.y=-a;legs.forEach((l,i)=>l.rotation.x=Math.sin(t*4+i*1.6)*.7);});}
+  G.add(c);ents.push({spec:'carpincho',label:'Nadando',obj:c,size:1.3,G});ups.push(t=>{const a=t*.06,px=c.position.x,pz=c.position.z;c.position.set(d.cx+Math.cos(a)*8,-.25,d.cz+Math.sin(a)*6);const vx=c.position.x-px,vz=c.position.z-pz;if(Math.hypot(vx,vz)>1e-5)c.rotation.y=Math.atan2(-vx,-vz);legs.forEach((l,i)=>l.rotation.x=Math.sin(t*4+i*1.6)*.7);});}
  if(K.includes('yacare')){const y=new THREE.Group(),b=M(0x2e3424,.8);part(SPH,b,0,0,0,.36,.16,.9,y);part(SPH,b,0,0,-1.05,.2,.1,.4,y);const tl=part(CONE,b,0,0,1.45,.22,1.4,.12,y);tl.rotation.x=Math.PI/2;
   G.add(y);ents.push({spec:'yacare',label:'Bajo el agua',obj:y,size:2.2,G});ups.push(t=>{const a=t*.05,x=d.cx+Math.cos(a)*8,z=d.cz+Math.sin(a)*6.5;y.position.set(x,H(x,z)+.45,z);y.rotation.y=-a+Math.PI;tl.rotation.y=Math.sin(t*1.2)*.25;});}
  if(K.includes('foam')){const N=140,pos=new Float32Array(N*3),fx=FALLS.x,fz=FALLS.z+2.5;for(let i=0;i<N;i++){pos[i*3]=fx+(Math.random()-.5)*5;pos[i*3+1]=-Math.random()*2.5;pos[i*3+2]=fz+(Math.random()-.5)*2;}
