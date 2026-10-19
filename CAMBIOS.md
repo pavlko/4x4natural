@@ -25,6 +25,7 @@ Un juego de Insight Reality
 - v22  Laguna escondida con paredes más bajas e irregulares, subida al sur y entrada solo por el noreste; camino sin desvío; vista lejana desbloqueable; el mapa pintado se guarda por jugador
 - v23  Menos pindós y chachíes; caraguatá en la quebrada, caraguatá falso en el arroyo y zonas húmedas, envira en la sierra, claveles del aire en paredones, flores de pastizal; barrial con desniveles rodeado de caraguatá falso
 - v24  Cresta que une el anillo de la laguna escondida con el borde alto del mundo al sureste
+- v25  Caraguatá falso siempre atravesable; caraguatá verdadero del doble de tamaño, sólido y con racimo de frutos amarillos
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v24).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v25).
 La versión vigente es index.html (lista como app instalable).
