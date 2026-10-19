@@ -32,6 +32,7 @@ Un juego de Insight Reality
 - v29  Sin modo ahorro; ícono de garza para aves, mano abierta para hallazgos; Lugares primero; textos del naturalista
 - v30  Máscara de buceo antigua, redonda y de bronce, detrás de toda la interfaz
 - v31  Máscara de buceo ovalada, con fleje de bronce y tornillo de ajuste
+- v32  La camioneta se ve desde el agua y desde la cueva
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v31).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v32).
 La versión vigente es index.html (lista como app instalable).
