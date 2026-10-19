@@ -19,6 +19,7 @@ Un juego de Insight Reality
 - v16  Buceo en el mismo paisaje (fondo real del arroyo, se puede nadar por todo el cauce), botón para volver a la camioneta, nueva vieja del agua, colas de peces verticales, mojarras bien orientadas, anuncio grande al descubrir, zoom en el mapa grande
 - v17  Entradas de buceo en las dos orillas (cascada y quebrada, arroyo arriba del paso, laguna de las espátulas, laguna escondida), castañetas en pareja, anguila criolla en la laguna escondida, sacar la cabeza afuera para respirar, diseño vertical en celular
 - v18  Biguá (posado en troncos secos con alas abiertas y pescando bajo el agua), anguila cilíndrica, vieja del agua unida, fotos de afuera desde la superficie, visibilidad del agua según el lugar, marcas de buceo del mapa separadas
+- v19  Espesura de plantas acuáticas en la laguna escondida (zona navegable más chica), marcas de buceo del mapa reubicadas, tronco seco marrón y unido con el biguá bien apoyado
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v18).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v19).
 La versión vigente es index.html (lista como app instalable).

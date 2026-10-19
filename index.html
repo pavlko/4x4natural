@@ -1005,10 +1005,11 @@ function updateChicks(dt){for(const c of CHICKS){const p=c.par,ch=Math.cos(p.h),
  c.pseudo.x=c.x;c.pseudo.y=c.y;c.pseudo.z=c.z;}}
 // troncos secos con biguáes en las lagunas
 {const sp=SPECIES.find(s=>s.id==='bigua');for(const[cx,cz,r0,r1] of[[LAG2.x,LAG2.z,18,40],[190,-110,30,44]]){let p=null;for(let t=0;t<200&&!p;t++){const a=Math.random()*6.28,r=r0+Math.random()*(r1-r0),x=cx+Math.cos(a)*r,z=cz+Math.sin(a)*r,h=H(x,z);if(h>-.45&&h<.3&&!hitObs(x,z,2))p=[x,z];}
- if(!p)continue;const[x,z]=p,h=H(x,z),tg=new THREE.Group();tg.position.set(x,Math.max(h,-.3),z);tg.rotation.y=Math.atan2(cx-x,cz-z);scene.add(tg);const wd=M(0x8a8278,.95);
- const tr=part(CYL,wd,0,1.0,0,.12,2.2,.12,tg);tr.rotation.x=-.35;const br=part(CYL,wd,.25,1.5,.2,.05,.9,.05,tg);br.rotation.z=-.9;addObs(x,z,.4);
- const top=new THREE.Vector3(0,2.05,.38);tg.localToWorld(top);tg.updateMatrixWorld(true);const tp=new THREE.Vector3(0,2.05,.38).applyMatrix4(tg.matrixWorld);
- const a=spawn(sp,tp.x,tp.z);a.y=tp.y;a.g.position.y=a.y;a.h=Math.atan2(-(cx-x),-(cz-z));a.wt=Math.random()*5;a.wopen=Math.random()<.5;}}
+ if(!p)continue;const[x,z]=p,h=H(x,z),tg=new THREE.Group();tg.position.set(x,Math.max(h,-.3)-.15,z);tg.rotation.y=Math.atan2(cx-x,cz-z);scene.add(tg);const wd=M(0x6b5440,.95),wd2=M(0x5a4535,.95);
+ part(CONE,wd2,0,.25,0,.28,.5,.28,tg);const piv=new THREE.Group();piv.rotation.x=-.32;tg.add(piv);part(CYL,wd,0,1.1,0,.11,2.25,.11,piv);part(CYL,wd,0,2.25,0,.08,.06,.08,piv);
+ const br=part(CYL,wd2,Math.sin(.9)*.45,1.35+Math.cos(.9)*.45,0,.05,.9,.05,piv);br.rotation.z=-.9;const br2=part(CYL,wd2,-Math.sin(.7)*.3,1.8+Math.cos(.7)*.3,0,.035,.6,.035,piv);br2.rotation.z=.7;addObs(x,z,.4);
+ tg.updateMatrixWorld(true);const tp=new THREE.Vector3(0,2.27,0).applyMatrix4(piv.matrixWorld);
+ const a=spawn(sp,tp.x,tp.z);a.x=tp.x;a.z=tp.z;a.y=tp.y-.03;a.g.position.set(a.x,a.y,a.z);a.h=Math.atan2(-(cx-x),-(cz-z));a.wt=Math.random()*5;a.wopen=Math.random()<.5;}}
 {const sp=SPECIES.find(s=>s.id==='lechuza');const a=spawn(sp,lechuzaPerch.x,lechuzaPerch.z);a.y=lechuzaPerch.y;a.g.position.y=a.y;a.h=Math.PI*.8;}
 {const a=animals.find(a=>a.sp.id==='gato');a.x=a.home[0]=grutaPos.x;a.z=a.home[1]=grutaPos.z;a.h=-Math.PI/2;a.y=grutaPos.y;a.g.position.set(a.x,a.y,a.z);a.g.rotation.y=a.h;}
 
@@ -1260,8 +1261,8 @@ function drawBigMap(){const c=$('#bigc'),x=c.getContext('2d'),S=c.width,s=S/MM;x
  if(SAVE.teleOk){for(const p of TELE()){const[px,py]=P(p.x,p.z);x.strokeStyle='#F28C28';x.lineWidth=3;x.beginPath();x.arc(px,py,13,0,7);x.stroke();}
   const[ix,iy]=P(START.x,START.z);x.fillStyle='#f3ebdd';x.strokeStyle='#1f160e';x.lineWidth=4;x.font='600 22px "Barlow Condensed", sans-serif';x.strokeText('Inicio',ix,iy-18);x.fillText('Inicio',ix,iy-18);}
  const note=$('#mapnote');if(note)note.textContent=SAVE.teleOk?'Teletransporte: tocá un lugar marcado en naranja para ir hasta ahí.':'Lo más oscuro todavía no lo recorriste. Fotografiá todos los bichos y todos los lugares para desbloquear el teletransporte ('+teleProgress()+' de '+(GOAL.length+PLACES.length)+').';
- if(SAVE.mask){x.save();x.setLineDash([7,6]);x.lineWidth=2.5;for(const d of DIVES){const[px0,py0]=P(d.cx,d.cz),vis=SAVE.dives&&SAVE.dives[d.id],my=py0+(py0>S-70?-46:46);x.strokeStyle=vis?'#9fe0ec':'#e8dcc0';x.lineWidth=2;x.setLineDash([4,4]);x.beginPath();x.moveTo(px0,py0);x.lineTo(px0,my+(my>py0?-17:17));x.stroke();
-  x.setLineDash([]);x.fillStyle='rgba(20,40,46,.85)';x.beginPath();x.arc(px0,my,17,0,7);x.fill();x.lineWidth=2.5;x.stroke();x.font='19px sans-serif';x.fillStyle='#fff';x.fillText('🤿',px0,my+7);x.beginPath();x.arc(px0,py0,4,0,7);x.fillStyle=x.strokeStyle;x.fill();}x.restore();}
+ if(SAVE.mask){x.save();x.setLineDash([7,6]);x.lineWidth=2.5;for(const d of DIVES){const[px0,py0]=P(d.cx,d.cz),vis=SAVE.dives&&SAVE.dives[d.id],off=d.mapOff||[0,py0>S-70?-46:46],mx=px0+off[0],my=py0+off[1],ol=Math.hypot(off[0],off[1])||1;x.strokeStyle=vis?'#9fe0ec':'#e8dcc0';x.lineWidth=2;x.setLineDash([4,4]);x.beginPath();x.moveTo(px0,py0);x.lineTo(mx-off[0]/ol*17,my-off[1]/ol*17);x.stroke();
+  x.setLineDash([]);x.fillStyle='rgba(20,40,46,.85)';x.beginPath();x.arc(mx,my,17,0,7);x.fill();x.lineWidth=2.5;x.stroke();x.font='19px sans-serif';x.fillStyle='#fff';x.fillText('🤿',mx,my+7);x.beginPath();x.arc(px0,py0,4,0,7);x.fillStyle=x.strokeStyle;x.fill();}x.restore();}
  x.setTransform(1,0,0,1,0,0);x.fillStyle='#f3ebdd';x.font='700 26px "Barlow Condensed", sans-serif';x.fillText('N',S/2,28);}
 function TELE(){return [{id:'inicio',name:'Inicio',x:START.x,z:START.z}].concat(PLACES.filter(p=>SAVE.places.includes(p.id)));}
 function landSpot(cx,cz){for(let r=0;r<80;r+=2)for(let k=0;k<16;k++){const a=k/16*6.283,x=cx+Math.cos(a)*r,z=cz+Math.sin(a)*r;if(H(x,z)>0.4&&slopeAt(x,z)<.35&&!hitObs(x,z,2.5))return[x,z];}return[START.x,START.z];}
@@ -1344,10 +1345,10 @@ const FISH=[
  {id:'anguila',name:'Anguila criolla',sci:'Synbranchus marmoratus',hint:'Solo en una laguna oscura y escondida. Vive en el barro del fondo.',note:'Parece una anguila pero no lo es. Vive en el barro de lagunas y bañados y puede respirar aire: cuando el agua se seca, se entierra en el barro húmedo y espera la lluvia. Sale de su cueva para cazar y se esconde enseguida.'},
  {id:'tararira',name:'Tararira',sci:'Hoplias malabaricus',hint:'Quieta entre las plantas de una laguna.',note:'Cazadora de emboscada: se queda quieta entre las plantas, camuflada, y ataca de golpe a otros peces y ranas. Tiene dientes filosos y aguanta aguas con poco oxígeno.'}];
 const DIVES=[
- {id:'cascada',vis:7,name:'La cascada y la quebrada',river:true,cx:riverX(-250),cz:-250,note:'Pozo hondo al pie de la caída y agua clara entre piedras. Vi un lobito nadando.',fog:0x2f6a6e,kinds:['mojarra','vieja','bagre','foam','lobito']},
- {id:'medio',vis:5,name:'El arroyo, arriba del paso',river:true,cx:riverX(18),cz:18,note:'Agua tranquila con plantas y piedras. Hay peces de colores escondidos.',fog:0x3a6e62,kinds:['mojarra','castaneta','bagre','plants']},
+ {id:'cascada',vis:7,mapOff:[-58,10],name:'La cascada y la quebrada',river:true,cx:riverX(-250),cz:-250,note:'Pozo hondo al pie de la caída y agua clara entre piedras. Vi un lobito nadando.',fog:0x2f6a6e,kinds:['mojarra','vieja','bagre','foam','lobito']},
+ {id:'medio',vis:5,mapOff:[0,-48],name:'El arroyo, arriba del paso',river:true,cx:riverX(18),cz:18,note:'Agua tranquila con plantas y piedras. Hay peces de colores escondidos.',fog:0x3a6e62,kinds:['mojarra','castaneta','bagre','plants']},
  {id:'laguna2',vis:3.5,name:'La laguna de las espátulas',cx:LAG2.x,cz:LAG2.z,note:'Laguna con muchas plantas. Hay que mirar bien entre ellas.',fog:0x4b6a3c,kinds:['tararira','mojarra','castaneta','patos','carpincho','plants','bigua']},
- {id:'escondida',vis:3,name:'La laguna escondida',cx:190,cz:-110,note:'Laguna oscura entre cerros. Algo grande se mueve en el fondo, y algo largo vive en el barro.',fog:0x24463e,kinds:['bagre','mojarra','yacare','anguila','bigua']}];
+ {id:'escondida',vis:3,name:'La laguna escondida',cx:190,cz:-110,note:'Laguna oscura entre cerros. Algo grande se mueve en el fondo, y algo largo vive en el barro.',fog:0x24463e,kinds:['bagre','mojarra','yacare','anguila','bigua','espesura']}];
 const DIVE={on:false,scene:null,d:null,cache:{},pos:new THREE.Vector3(),air:40,ents:[],near:null};
 SAVE.fish=SAVE.fish||{};SAVE.dives=SAVE.dives||{};
 // anclas en las dos orillas, cada una con su caña con cinta y piedra plana
@@ -1421,7 +1422,10 @@ function buildUnder(d){if(UW.built[d.id])return;const G=new THREE.Group();G.visi
   const hide=new THREE.Vector3(hx-.25,hy+.18,hz),home=new THREE.Vector3(hx,hy+.55,hz);ents.push({fish:'castaneta',obj:pair,size:.6,G});
   ups.push((t,dt)=>{const dd=pair.position.distanceTo(DIVE.pos),tg=dd<3.2?hide:(dd>5.5?home:null);if(tg)pair.position.lerp(tg,Math.min(1,dt*(dd<3.2?3:.8)));pair.rotation.y=Math.sin(t*.4)*.8;
    a1.position.y=Math.sin(t*1.7)*.04;a2.position.y=.05+Math.sin(t*1.5+1)*.04;[a1,a2].forEach((f,i)=>f.userData.tail.rotation.y=Math.sin(t*9+i)*.4);});}
- if(K.includes('anguila')){const[ex,ez]=waterPt(d.cx,d.cz,4,12,1.6),ey=H(ex,ez),hole=new THREE.Mesh(new THREE.CircleGeometry(.18,14),M(0x0d0b08,1));hole.rotation.x=-Math.PI/2;hole.position.set(ex,ey+.02,ez);G.add(hole);
+ if(K.includes('espesura')){d.navR=13;const pm=M(0x2f5a24,.9,{side:THREE.DoubleSide}),pm2=M(0x3f6a2a,.9,{side:THREE.DoubleSide}),reeds=[];
+  for(let i=0;i<420;i++){const a=Math.random()*6.28,r=12.6+Math.pow(Math.random(),1.5)*7,x=d.cx+Math.cos(a)*r,z=d.cz+Math.sin(a)*r,y0=H(x,z);if(y0>-.3)continue;const hh=-y0+.15,pl=new THREE.Mesh(new THREE.PlaneGeometry(.22+Math.random()*.2,hh,1,3),i%2?pm:pm2);pl.geometry.translate(0,hh/2,0);pl.position.set(x,y0,z);pl.rotation.y=Math.random()*3;G.add(pl);reeds.push(pl);}
+  ups.push(t=>{for(let i=0;i<reeds.length;i+=3)reeds[i].rotation.z=Math.sin(t*.6+i)*.08;});}
+ if(K.includes('anguila')){const[ex,ez]=waterPt(d.cx,d.cz,3,9,1.6),ey=H(ex,ez),hole=new THREE.Mesh(new THREE.CircleGeometry(.18,14),M(0x0d0b08,1));hole.rotation.x=-Math.PI/2;hole.position.set(ex,ey+.02,ez);G.add(hole);
   const em=M(0x4a4a2a,.55),eel=new THREE.Mesh(new THREE.BufferGeometry(),em),head=new THREE.Object3D(),pts=[];for(let i=0;i<12;i++)pts.push(new THREE.Vector3());eel.position.set(ex,ey,ez);eel.frustumCulled=false;G.add(eel);eel.add(head);
   const eye=part(SPH,M(0x111111),0,0,0,.012,.012,.012,eel);const st={out:0,t:0};ents.push({fish:'anguila',obj:head,size:.9,G,hidden:()=>st.out<.5});
   ups.push((t,dt)=>{st.t-=dt;const near=head.getWorldPosition(new THREE.Vector3()).distanceTo(DIVE.pos)<2.4;if(st.t<=0){st.want=!st.want;st.t=st.want?9:6;}const want=near?0:(st.want?1:0);st.out+=(want-st.out)*Math.min(1,dt*(near?4:.8));
@@ -1448,7 +1452,7 @@ function buildUnder(d){if(UW.built[d.id])return;const G=new THREE.Group();G.visi
  if(K.includes('carpincho')){const c=new THREE.Group(),b=M(0x7a5a3b);part(SPH,b,0,0,0,.42,.32,.62,c);part(SPH,b,0,.06,-.62,.24,.22,.3,c);const legs=[];for(const[x,z]of[[.22,-.35],[-.22,-.35],[.22,.35],[-.22,.35]])legs.push(legP(c,M(0x4f3a28),x,-.15,z,.35,.07));
   G.add(c);ents.push({spec:'carpincho',label:'Nadando',obj:c,size:1.3,G});ups.push(t=>{const a=t*.06;c.position.set(d.cx+Math.cos(a)*8,-.25,d.cz+Math.sin(a)*6);c.rotation.y=-a;legs.forEach((l,i)=>l.rotation.x=Math.sin(t*4+i*1.6)*.7);});}
  if(K.includes('yacare')){const y=new THREE.Group(),b=M(0x2e3424,.8);part(SPH,b,0,0,0,.36,.16,.9,y);part(SPH,b,0,0,-1.05,.2,.1,.4,y);const tl=part(CONE,b,0,0,1.45,.22,1.4,.12,y);tl.rotation.x=Math.PI/2;
-  G.add(y);ents.push({spec:'yacare',label:'Bajo el agua',obj:y,size:2.2,G});ups.push(t=>{const a=t*.05,x=d.cx+Math.cos(a)*11,z=d.cz+Math.sin(a)*9;y.position.set(x,H(x,z)+.45,z);y.rotation.y=-a+Math.PI;tl.rotation.y=Math.sin(t*1.2)*.25;});}
+  G.add(y);ents.push({spec:'yacare',label:'Bajo el agua',obj:y,size:2.2,G});ups.push(t=>{const a=t*.05,x=d.cx+Math.cos(a)*8,z=d.cz+Math.sin(a)*6.5;y.position.set(x,H(x,z)+.45,z);y.rotation.y=-a+Math.PI;tl.rotation.y=Math.sin(t*1.2)*.25;});}
  if(K.includes('foam')){const N=140,pos=new Float32Array(N*3),fx=FALLS.x,fz=FALLS.z+2.5;for(let i=0;i<N;i++){pos[i*3]=fx+(Math.random()-.5)*5;pos[i*3+1]=-Math.random()*2.5;pos[i*3+2]=fz+(Math.random()-.5)*2;}
   const bg=new THREE.BufferGeometry();bg.setAttribute('position',new THREE.BufferAttribute(pos,3));const bub=new THREE.Points(bg,new THREE.PointsMaterial({color:0xffffff,size:.12,transparent:true,opacity:.8,map:dotTex,depthWrite:false}));bub.frustumCulled=false;G.add(bub);
   ups.push((t,dt)=>{const p=bub.geometry.attributes.position;for(let i=0;i<p.count;i++){let y=p.getY(i)+dt*(1+i%5*.3);if(y>-.08)y=-2.5;p.setY(i,y);}p.needsUpdate=true;});}}
@@ -1466,7 +1470,8 @@ function endDive(noAir){if(!DIVE.on)return;DIVE.on=false;setUnderEnv(false);docu
  if(noAir)toast('Te quedaste sin aire y volviste a la camioneta. ¡Subí a respirar más seguido!');}
 function swim(dt){const mv=((k('KeyW')||k('ArrowUp')||T.up)?1:0)-((k('KeyS')||k('ArrowDown')||T.down)?1:0);
  if(mv){const sp=2.4*dt*mv,cp=Math.cos(photoPitch),nx=DIVE.pos.x-Math.sin(photoYaw)*cp*sp,nz=DIVE.pos.z-Math.cos(photoYaw)*cp*sp;
-  if(inWater(nx,nz)){DIVE.pos.x=nx;DIVE.pos.z=nz;}else if(inWater(nx,DIVE.pos.z))DIVE.pos.x=nx;else if(inWater(DIVE.pos.x,nz))DIVE.pos.z=nz;DIVE.pos.y+=Math.sin(photoPitch)*sp;}
+  const plant=(x,z)=>{for(const q of DIVES)if(q.navR){const r=Math.hypot(x-q.cx,z-q.cz);if(r>q.navR&&r<q.navR+12)return true;}return false;},canGo=(x,z)=>inWater(x,z)&&!plant(x,z);
+  if(canGo(nx,nz)){DIVE.pos.x=nx;DIVE.pos.z=nz;}else if(canGo(nx,DIVE.pos.z))DIVE.pos.x=nx;else if(canGo(DIVE.pos.x,nz))DIVE.pos.z=nz;else if(plant(nx,nz))toastOnce('espesura','Las plantas acuáticas están muy cerradas: por acá no se pasa.',20);DIVE.pos.y+=Math.sin(photoPitch)*sp;}
  const fl=H(DIVE.pos.x,DIVE.pos.z)+.4;DIVE.pos.y=Math.min(-.22,Math.max(fl,DIVE.pos.y));
  const out=DIVE.pos.y>-.45;if(out!==DIVE.out){DIVE.out=out;setUnderEnv(!out);document.body.classList.toggle('headout',out);if(out)toastOnce('aire','Sacaste la cabeza: respirás y podés mirar afuera. Para volver a la camioneta, tocá el botón.',90);}
  if(out)DIVE.air=Math.min(40,DIVE.air+dt*14);else DIVE.air-=dt;
