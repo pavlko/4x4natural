@@ -30,6 +30,7 @@ Un juego de Insight Reality
 - v27  Yarará, araña pollito, espinillos con cardenal amarillo, federal, dragones y viudita blanca; puma echado en el noroeste que se va hacia el borde; pindós más bajos lejos del fondo; cuaderno por grupos con pestañas de emoji
 - v28  Íconos de estilo rupestre en el cuaderno, teros más desesperados cerca del nido, modo ahorro (30 cuadros, menos resolución, sombra y pasto)
 - v29  Sin modo ahorro; ícono de garza para aves, mano abierta para hallazgos; Lugares primero; textos del naturalista
+- v30  Máscara de buceo antigua, redonda y de bronce, detrás de toda la interfaz
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v29).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v30).
 La versión vigente es index.html (lista como app instalable).
