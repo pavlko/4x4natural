@@ -356,12 +356,15 @@ function baseH(x,z){
   h+=ss(HALF-45,HALF-5,e)*22;
   return h;
 }
+const BARRO={x:150,z:140,r:18};BARRO.h0=Math.max(1.2,baseH(150,140));
 const CAVE_Z=-247,CAVE_X=riverX(-247)-30,CAVE_OX=CAVE_X-1.5,CH={cx:5.5,cz:11.5,r:6.5};
 // forma de la cueva en coordenadas propias: túnel recto de 10 m y sala redonda a la izquierda (positivo = adentro)
 function caveD(xl,zl){const rx=2.3-Math.abs(xl),rz=Math.min(zl+10,12-zl);let dR;if(rx>0&&rz>0)dR=Math.min(rx,rz);else dR=-Math.hypot(Math.max(-rx,0),Math.max(-rz,0));return Math.max(dR,CH.r-Math.hypot(xl-CH.cx,zl-CH.cz));}
 const toCaveL=(x,z)=>[z-CAVE_Z,CAVE_OX-x];
 const FLATS=[[90,200,16],[-160,106,24],[CAVE_X+3,CAVE_Z,5]].map(f=>[f[0],f[1],f[2],baseH(f[0],f[1])]);
 function rawH(x,z){let h=baseH(x,z);for(const f of FLATS){const d=Math.hypot(x-f[0],z-f[1]);if(d<f[2]*1.6)h=mix(h,f[3],1-ss(f[2]*0.6,f[2]*1.6,d));}
+ // barrial con desniveles
+ {const db=Math.hypot(x-BARRO.x,z-BARRO.z);if(db<BARRO.r+5){const t=1-ss(BARRO.r-4,BARRO.r+5,db);h=mix(h,BARRO.h0,t*.85)+((fbm(x*.22+9,z*.22,3)-.5)*2.6+Math.sin(x*.5)*Math.cos(z*.45)*.45)*t;}}
  // cueva metida en la ladera: tierra por encima de toda la cueva y una muesca en la boca
  {const hc=FLATS[2][3],L=toCaveL(x,z),xl=L[0],zl=L[1];
   if(zl>.3&&zl<23&&xl>-7&&xl<16){const cd=caveD(xl,zl),t=ss(-4.5,-1.5,cd)*ss(.3,2.4,zl);if(t>0)h=Math.max(h,mix(h,hc+7.4+(fbm(x*.3,z*.3,2)-.5)*1.2,t));}
@@ -441,7 +444,7 @@ const GOAL=SPECIES.filter(s=>!s.secret);
 const START={x:90,z:200,h:0};
 const ROADS=[[[90,206],[80,150],[60,100],[32,64],[riverX(55)+12,55],[riverX(55)-12,55],[-32,62],[-72,82],[-108,104],[-146,108]]];
 function roadD(x,z){let best=1e9;for(const R of ROADS)for(let i=0;i<R.length-1;i++){const[ax,az]=R[i],[bx,bz]=R[i+1],dx=bx-ax,dz=bz-az,l=dx*dx+dz*dz;let t=((x-ax)*dx+(z-az)*dz)/l;t=Math.max(0,Math.min(1,t));const ex=ax+dx*t-x,ez=az+dz*t-z,d=ex*ex+ez*ez;if(d<best)best=d;}return Math.sqrt(best);}
-const MUD=[[86,168,8],[26,142,15],[riverX(55)+19,60,9],[riverX(55)-19,50,8],[-42,-18,12],[150,-58,11],[-130,190,9]].map(p=>[p[0],p[1],p[2]*1.45]);
+const MUD=[[BARRO.x,BARRO.z,BARRO.r/1.45],[86,168,8],[26,142,15],[riverX(55)+19,60,9],[riverX(55)-19,50,8],[-42,-18,12],[150,-58,11],[-130,190,9]].map(p=>[p[0],p[1],p[2]*1.45]);
 const SAND=[[118,232,17],[riverX(250)+21,250,20],[riverX(-60)+19,-60,13],[176,-94,11],[203,-131,9],[-176,140,10]].map(p=>[p[0],p[1],p[2]*1.45]);
 function zoneAt(L,x,z,sc){let m=0;for(const p of L){const d=Math.hypot(x-p[0],z-p[1]);if(d<p[2])m=Math.max(m,1-ss(p[2]*.45,p[2],d));}if(!m)return 0;return Math.min(1,m*(.7+.6*fbm(x*sc,z*sc,2)));}
 const mudAt=(x,z)=>zoneAt(MUD,x,z,.18),sandAt=(x,z)=>zoneAt(SAND,x,z,.08);
@@ -629,7 +632,7 @@ const TREES={
     prev=[c,L1,R1];}}
   const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));g.setAttribute('normal',new THREE.Float32BufferAttribute(nor,3));g.normalizeNormals();return g;})();
  const trunkG=new THREE.CylinderGeometry(.17,.22,1,8);trunkG.translate(0,.5,0);
- const MAX=240,trunks=new THREE.InstancedMesh(trunkG,M(0x8a8478,.8),MAX),crowns=new THREE.InstancedMesh(crownG,M(0xffffff,.85),MAX);let n=0;
+ const MAX=70,trunks=new THREE.InstancedMesh(trunkG,M(0x8a8478,.8),MAX),crowns=new THREE.InstancedMesh(crownG,M(0xffffff,.85),MAX);let n=0;
  const putP=(x,z,h)=>{
   const th=7+rnd()*5,s=.85+rnd()*.3;
   dummy.position.set(x,h-.1,z);dummy.rotation.set((rnd()-.5)*.1,rnd()*6.28,(rnd()-.5)*.1);dummy.scale.set(s,th,s);dummy.updateMatrix();trunks.setMatrixAt(n,dummy.matrix);
@@ -637,7 +640,7 @@ const TREES={
   dummy.position.copy(top);dummy.rotation.set(0,rnd()*6.28,0);dummy.scale.set(s,s,s);dummy.updateMatrix();crowns.setMatrixAt(n,dummy.matrix);
   tmpC.setRGB(.14+rnd()*.05,.27+rnd()*.06,.12+rnd()*.04);crowns.setColorAt(n,tmpC);
   addObs(x,z,.35,1);n++;};
- for(let t=0;t<9000&&n<170;t++){
+ for(let t=0;t<9000&&n<45;t++){
   const z=-275+rnd()*175,w=riverW(z),sd=rnd()<.5?-1:1,x=riverX(z)+sd*(w*.6+2+rnd()*40),h=H(x,z);
   if(h<0.4||slopeAt(x,z)>1.1||clearing(x,z)||nearPlace(x,z,'gruta',12)||hitObs(x,z,2.6))continue;
   if(rnd()>.55)continue;putP(x,z,h);
@@ -687,6 +690,44 @@ const TREES={
    const v=.85+rnd()*.25;tmpC.setRGB((.74+rnd()*.08)*v,(.64+rnd()*.06)*v,(.36+rnd()*.06)*v);m.setColorAt(k,tmpC);k++;}
   m.count=k;m.receiveShadow=true;m.userData.grass=true;m.instanceMatrix.needsUpdate=true;m.instanceColor.needsUpdate=true;scene.add(m);}
 }
+
+// ===== FLORA NATIVA: caraguatá, caraguatá falso, envira, claveles del aire y flores de pastizal =====
+function bladeGeo(n,len,w,lean,curl,rnd2){const P=[],N=[];for(let i=0;i<n;i++){const a=i/n*6.283+rnd2()*.4,ca=Math.cos(a),sa=Math.sin(a),L=len*(.75+rnd2()*.5),seg=4;let prev=null;
+  for(let k=0;k<=seg;k++){const t=k/seg,r=lean*L*t,y=L*(t-curl*t*t),cx=ca*r,cz=sa*r,ww=w*(1-t*.9),A=[cx-sa*ww,y,cz+ca*ww],B=[cx+sa*ww,y,cz-ca*ww];
+   if(prev){const[pa,pb]=prev;P.push(...pa,...pb,...B,...pa,...B,...A,...pb,...pa,...A,...pb,...A,...B);for(let q=0;q<12;q++)N.push(ca*.3,1,sa*.3);}prev=[A,B];}}
+ const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(P,3));g.setAttribute('normal',new THREE.Float32BufferAttribute(N,3));g.normalizeNormals();return g;}
+function placeInst(geo,mat,max,tries,where,setup){const m=new THREE.InstancedMesh(geo,mat,max);let n=0;for(let t=0;t<tries&&n<max;t++){const p=where();if(!p)continue;setup(m,n,p);n++;}m.count=n;m.instanceMatrix.needsUpdate=true;if(m.instanceColor)m.instanceColor.needsUpdate=true;scene.add(m);return m;}
+const quebradaPt=()=>{const z=-268+rnd()*140,w=riverW(z),x=riverX(z)+(rnd()<.5?-1:1)*(w*.5+2+rnd()*40),h=H(x,z);return(h>.4&&h<22&&slopeAt(x,z)<.8&&!clearing(x,z)&&!hitObs(x,z,.8))?[x,z,h]:null;};
+const wetPt=()=>{const z=-100+rnd()*370,x=riverX(z)+(rnd()<.5?-1:1)*(riverW(z)*.5+1+rnd()*22),h=H(x,z);return(h>.05&&h<1.8&&!clearing(x,z)&&roadD(x,z)>3&&!hitObs(x,z,.8))?[x,z,h]:null;};
+{// caraguatá en la quebrada: roseta de hojas largas y arqueadas, centro rojo
+ const g1=bladeGeo(16,1.1,.07,.75,.45,rnd),g2=new THREE.ConeGeometry(.12,.28,7);g2.translate(0,.14,0);
+ const leaves=placeInst(g1,M(0xffffff,.7),220,6000,quebradaPt,(m,i,p)=>{const s=.7+rnd()*.5;dummy.position.set(p[0],p[2]-.03,p[1]);dummy.rotation.set(0,rnd()*6.28,0);dummy.scale.set(s,s*.8,s);dummy.updateMatrix();m.setMatrixAt(i,dummy.matrix);tmpC.setRGB(.16+rnd()*.06,.32+rnd()*.08,.14);m.setColorAt(i,tmpC);});
+ const hearts=new THREE.InstancedMesh(g2,M(0xb3302a,.6),leaves.count);const mt=new THREE.Matrix4();for(let i=0;i<leaves.count;i++){leaves.getMatrixAt(i,mt);hearts.setMatrixAt(i,mt);}hearts.count=rnd()<2?Math.floor(leaves.count*.6):0;hearts.instanceMatrix.needsUpdate=true;scene.add(hearts);}
+{// caraguatá falso en el arroyo medio y bajo: hojas finas y rígidas, vara florida alta
+ const g1=bladeGeo(18,1.3,.045,.35,.1,rnd),stalk=mergeGeos([tf(new THREE.CylinderGeometry(.02,.03,1.6,5),0,.8,0),tf(new THREE.SphereGeometry(.06,6,4),0,1.62,0),tf(new THREE.SphereGeometry(.045,6,4),.12,1.45,0),tf(new THREE.SphereGeometry(.045,6,4),-.1,1.5,.05)]);
+ const put=(m,i,p,s)=>{dummy.position.set(p[0],p[2]-.03,p[1]);dummy.rotation.set(0,rnd()*6.28,0);dummy.scale.set(s,s,s);dummy.updateMatrix();m.setMatrixAt(i,dummy.matrix);};
+ const L1=[],add=p=>{L1.push(p);};for(let t=0;t<9000&&L1.length<420;t++){const p=wetPt();if(p)add(p);}
+ for(let i=0;i<46;i++){const a=i/46*6.283;if(Math.abs(Math.cos(a))>.94)continue;const r=BARRO.r+1.5+rnd()*1.5,x=BARRO.x+Math.cos(a)*r,z=BARRO.z+Math.sin(a)*r;L1.push([x,z,H(x,z),1]);addObs(x,z,.55,1);}
+ const lm=new THREE.InstancedMesh(g1,M(0xffffff,.8),L1.length),sm=new THREE.InstancedMesh(stalk,M(0xc9c7a0,.8),L1.length);let ns=0;
+ L1.forEach((p,i)=>{const s=.8+rnd()*.5;put(lm,i,p,s);tmpC.setRGB(.42+rnd()*.06,.5+rnd()*.06,.4);lm.setColorAt(i,tmpC);if(rnd()<.55){put(sm,ns,p,s);ns++;}});
+ lm.count=L1.length;sm.count=ns;lm.instanceMatrix.needsUpdate=true;lm.instanceColor.needsUpdate=true;sm.instanceMatrix.needsUpdate=true;scene.add(lm,sm);}
+{// envira en la sierra: arbustos bajos y tupidos
+ const g=mergeGeos([tf(new THREE.CylinderGeometry(.04,.06,.5,5),0,.25,0),tf(blob(.45,.18),0,.7,0,1.1,.8,1.1),tf(blob(.35,.14),.32,.55,.1,1,.8,1),tf(blob(.32,.14),-.28,.58,-.15,1,.8,1)]);
+ placeInst(g,M(0xffffff,.85,{flatShading:true}),420,9000,()=>{const x=(rnd()*2-1)*(HALF-40),z=-110-rnd()*150,h=H(x,z);return(h>8&&slopeAt(x,z)<.9&&!clearing(x,z)&&!hitObs(x,z,1.2))?[x,z,h]:null;},
+  (m,i,p)=>{const s=.8+rnd()*.6;dummy.position.set(p[0],p[2]-.05,p[1]);dummy.rotation.set(0,rnd()*6.28,0);dummy.scale.set(s,s,s);dummy.updateMatrix();m.setMatrixAt(i,dummy.matrix);tmpC.setRGB(.17+rnd()*.05,.27+rnd()*.06,.15);m.setColorAt(i,tmpC);});}
+{// claveles del aire en los paredones: matitas plateadas con flores rosadas
+ const g=bladeGeo(14,.22,.012,.9,.2,rnd),fl=new THREE.SphereGeometry(.035,6,4);fl.translate(0,.06,0);const pts=[];
+ for(let t=0;t<40000&&pts.length<500;t++){const x=(rnd()*2-1)*(HALF-30),z=(rnd()*2-1)*(HALF-30),sl=slopeAt(x,z),h=H(x,z);if(sl>1.05&&h>1&&h<40)pts.push([x,z,h]);}
+ const tm=new THREE.InstancedMesh(g,M(0xb7bdb4,.8),pts.length),fm=new THREE.InstancedMesh(fl,M(0xe07aa8,.6),pts.length);let nf=0;
+ pts.forEach((p,i)=>{const s=.8+rnd()*.7;dummy.position.set(p[0],p[2]+.05,p[1]);dummy.rotation.set((rnd()-.5)*1.2,rnd()*6.28,(rnd()-.5)*1.2);dummy.scale.set(s,s,s);dummy.updateMatrix();tm.setMatrixAt(i,dummy.matrix);if(rnd()<.5){fm.setMatrixAt(nf,dummy.matrix);nf++;}});
+ tm.count=pts.length;fm.count=nf;tm.instanceMatrix.needsUpdate=true;fm.instanceMatrix.needsUpdate=true;scene.add(tm,fm);}
+{// flores y hierbas del pastizal, en manchones
+ const stem=new THREE.CylinderGeometry(.012,.016,.62,4);stem.translate(0,.31,0);const head=new THREE.SphereGeometry(.1,7,4);head.scale(1,.5,1);head.translate(0,.63,0);
+ const cols=[[1,.78,.1],[1,1,.96],[.62,.3,.85],[.9,.18,.12],[.4,.6,1],[1,.5,.08]],pts=[];
+ for(let t=0;t<60000&&pts.length<6000;t++){const x=(rnd()*2-1)*(HALF-14),z=(rnd()*2-1)*(HALF-14),h=H(x,z);if(h<1.6||slopeAt(x,z)>.5)continue;const patch=fbm(x*.03+40,z*.03+9,3);if(rnd()>.04+ss(.42,.6,patch)*.9)continue;if(roadD(x,z)<2.5||sandAt(x,z)>.2||mudAt(x,z)>.2)continue;pts.push([x,z,h,Math.floor(fbm(x*.02+3,z*.02+70,2)*cols.length*1.6)%cols.length]);}
+ const sm=new THREE.InstancedMesh(stem,M(0x5d7a35,.9),pts.length),hm=new THREE.InstancedMesh(head,M(0xffffff,.6,{emissive:0x222222}),pts.length);
+ pts.forEach((p,i)=>{const s=1+rnd()*.7;dummy.position.set(p[0],p[2]-.02,p[1]);dummy.rotation.set((rnd()-.5)*.25,rnd()*6.28,(rnd()-.5)*.25);dummy.scale.set(s,s*(.8+rnd()*.6),s);dummy.updateMatrix();sm.setMatrixAt(i,dummy.matrix);hm.setMatrixAt(i,dummy.matrix);const c=cols[p[3]];tmpC.setRGB(c[0],c[1],c[2]);hm.setColorAt(i,tmpC);});
+ sm.count=hm.count=pts.length;sm.userData.grass=hm.userData.grass=true;sm.instanceMatrix.needsUpdate=true;hm.instanceMatrix.needsUpdate=true;hm.instanceColor.needsUpdate=true;scene.add(sm,hm);}
 
 // ===== LUGARES CONSTRUIDOS =====
 const SPH=new THREE.SphereGeometry(1,16,12),BOX=new THREE.BoxGeometry(1,1,1),CYL=new THREE.CylinderGeometry(1,1,1,10),CONE=new THREE.ConeGeometry(1,1,10);
@@ -801,7 +842,7 @@ const fallTex2=fallTex.clone();fallTex2.needsUpdate=true;fallTex2.repeat.set(1.4
    tmpC.setRGB(.15+rnd()*.1,.36+rnd()*.14,.1+rnd()*.07);m.setColorAt(n,tmpC);n++;}
   m.count=n;m.receiveShadow=true;m.instanceMatrix.needsUpdate=true;m.instanceColor.needsUpdate=true;scene.add(m);}
  // chachí (helecho arborescente)
- {const MAX=50,tg=new THREE.CylinderGeometry(.14,.22,1,7);tg.translate(0,.5,0);const tr=new THREE.InstancedMesh(tg,M(0x3b2d20,1),MAX),cr=new THREE.InstancedMesh(rosette(12,2.1,.6,1.2,.32,12),M(0xffffff,.8),MAX);let n=0;
+ {const MAX=18,tg=new THREE.CylinderGeometry(.14,.22,1,7);tg.translate(0,.5,0);const tr=new THREE.InstancedMesh(tg,M(0x3b2d20,1),MAX),cr=new THREE.InstancedMesh(rosette(12,2.1,.6,1.2,.32,12),M(0xffffff,.8),MAX);let n=0;
   for(let t=0;t<4000&&n<MAX;t++){const z=-266+rnd()*44,x=riverX(z)+(rnd()<.5?-1:1)*(riverW(z)*.5+2+rnd()*22),d=zoneD(x,z),h=H(x,z);
    if(d<2||h<.4||slopeAt(x,z)>.9||(d>3.5&&d<8.5)||hitObs(x,z,3.4)||Math.hypot(x-(CAVE_X+3),z-CAVE_Z)<9)continue;
    const th=1.4+rnd()*2.2,s=.8+rnd()*.4;dummy.position.set(x,h-.1,z);dummy.rotation.set((rnd()-.5)*.15,rnd()*6.28,(rnd()-.5)*.15);dummy.scale.set(s,th,s);dummy.updateMatrix();tr.setMatrixAt(n,dummy.matrix);
