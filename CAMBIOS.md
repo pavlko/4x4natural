@@ -15,6 +15,7 @@ Un juego de Insight Reality
 - v12  Compartir en PC, más pastizal, nido escondido, puma dentro del mapa
 - v13  Buceo: baúl con máscara antigua en la tapera, mapa del naturalista, 4 puntos de zambullida con peces (mojarra, vieja del agua, bagre negro, tararira), fotos especiales bajo el agua (lobito, carpincho, yacaré, patos), cuarto logro y cuaderno con pestañas
 - v14  Puerta de la tapera más ancha, tronco del ombú cerrado, puma sin saltitos, carrera con flecha al paso, pista recta y ritmo parejo con el ñandú
+- v15  El ñandú vuelve trotando a su campo después de la carrera; el papá con charabones no corre carreras
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v14).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v15).
 La versión vigente es index.html (lista como app instalable).

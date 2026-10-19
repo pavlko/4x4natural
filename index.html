@@ -1000,7 +1000,8 @@ function updateAnimals(dt,time){
   if(sp.flier&&a.returnT!==undefined){a.returnT-=dt;if(a.returnT<=0&&dc>30){startFly(a,true);continue;}}
   if(sp.flier&&(dc<10||(dc<24&&Math.abs(car.v)>4))){startFly(a,false);continue;}
   if(RACE.on&&RACE.a===a)continue;
-  if(sp.id==='nandu'&&!RACE.on&&RACE.cool<=0&&dc<18&&Math.abs(car.v)>8&&!photo){startRace(a);continue;}
+  if(a.returning)continue;
+  if(sp.id==='nandu'&&!RACE.on&&!RACE.back&&RACE.cool<=0&&dc<18&&Math.abs(car.v)>8&&!photo&&!CHICKS.some(c=>c.par===a)){startRace(a);continue;}
   if(sp.shy&&dc<sp.shy.d&&Math.abs(car.v)>sp.shy.v&&a.state!=='flee'){
    if(sp.hides){a.state='hidden';a.t=12;a.g.visible=false;toast('Algo se metió en una cueva…');continue;}
    a.state='flee';a.t=3+rnd()*2;
@@ -1440,9 +1441,12 @@ function startRaceStraight(a){const dx=-Math.sin(car.h)*Math.sign(car.v||1),dz=-
   if(!best||L>best.L)best={L,ux,uz};if(L>=230)break;}
  if(best.L<80)return;RACE.on=true;RACE.a=a;RACE.t=0;RACE.fx=a.x+best.ux*best.L;RACE.fz=a.z+best.uz*best.L;
  flag.position.set(RACE.fx,H(RACE.fx,RACE.fz),RACE.fz);flag.visible=true;$('#race').classList.add('show');toast('¡El ñandú te desafía! Llegá primero a la bandera 🏁','place');}
-function endRace(win,msg){RACE.on=false;RACE.path=null;raceMarks.count=0;$('#raceArrow').classList.remove('show');RACE.cool=25;flag.visible=false;$('#race').classList.remove('show');const a=RACE.a;RACE.a=null;if(a){a.state='idle';a.t=3;RACE.back=a;}
+function endRace(win,msg){RACE.on=false;RACE.path=null;raceMarks.count=0;$('#raceArrow').classList.remove('show');RACE.cool=25;flag.visible=false;$('#race').classList.remove('show');const a=RACE.a;RACE.a=null;if(a){a.state='idle';a.t=3;RACE.back=a;RACE.bt=0;}
  if(win){SAVE.raceWins=(SAVE.raceWins||0)+1;save();chime();}toast(msg,win?'place':'');}
-function updateRace(dt,time){if(!RACE.on){RACE.cool-=dt;if(RACE.back){const b=RACE.back;if(Math.hypot(car.x-b.x,car.z-b.z)>70){b.x=b.home[0];b.z=b.home[1];b.state='idle';RACE.back=null;}}return;}const a=RACE.a;RACE.t+=dt;flag.userData.cloth.rotation.y=Math.sin(time*4)*.3;
+function updateRace(dt,time){if(!RACE.on){RACE.cool-=dt;if(RACE.back){const b=RACE.back,hx=b.home[0]-b.x,hz=b.home[1]-b.z,hd=Math.hypot(hx,hz);b.returning=true;
+  if(hd<3||Math.hypot(car.x-b.x,car.z-b.z)>90&&hd>40){if(hd>=3){b.x=b.home[0];b.z=b.home[1];}b.state='idle';b.t=2;b.returning=false;RACE.back=null;}
+  else{RACE.bt=(RACE.bt||0)+dt;if(RACE.bt>2.5){const sp=6.5,want=Math.atan2(-hx,-hz);let df=want-b.h;df=Math.atan2(Math.sin(df),Math.cos(df));b.h+=df*Math.min(1,dt*4);b.x-=Math.sin(b.h)*sp*dt;b.z-=Math.cos(b.h)*sp*dt;
+   b.phase+=dt*sp*3.2;b.legs.forEach((p,i)=>{p.rotation.x=Math.sin(b.phase+(i%2?0:Math.PI))*.7;});b.y=Math.max(H(b.x,b.z),-.3);b.g.position.set(b.x,b.y+Math.abs(Math.sin(b.phase))*.06,b.z);b.g.rotation.y=b.h;}}}return;}const a=RACE.a;RACE.t+=dt;flag.userData.cloth.rotation.y=Math.sin(time*4)*.3;
  if(RACE.path){const P=RACE.path;let tg=P[RACE.wi];if(Math.hypot(tg[0]-a.x,tg[1]-a.z)<5&&RACE.wi<P.length-1){RACE.wi++;tg=P[RACE.wi];}
   const dx=tg[0]-a.x,dz=tg[1]-a.z,dd=Math.hypot(dx,dz),dA=Math.hypot(a.x-tg[0],a.z-tg[1])+pathRest(P,RACE.wi),dC=pathDist(P.slice(Math.max(0,RACE.cwi-1)),car.x,car.z),gap=dC-dA,
    want=dA<45?12:Math.max(6,Math.min(16,12-gap*.14)),spd=Math.min(want,4+RACE.t*4),hd=Math.atan2(-dx,-dz)+Math.sin(RACE.t*1.6)*.3*Math.min(1,dd/20);let df=hd-a.h;df=Math.atan2(Math.sin(df),Math.cos(df));a.h+=df*Math.min(1,dt*5);
