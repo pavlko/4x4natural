@@ -231,17 +231,19 @@ body.menu #touch{display:none!important}
 <body>
 <canvas id="c"></canvas>
 <svg id="maskOv" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
- <defs><radialGradient id="mkFog" cx="50%" cy="46%" r="50%"><stop offset="70%" stop-color="#d8eadf" stop-opacity="0"/><stop offset="100%" stop-color="#d8eadf" stop-opacity=".3"/></radialGradient>
+ <defs><radialGradient id="mkFog" cx="50%" cy="46%" r="50%"><stop offset="72%" stop-color="#d8eadf" stop-opacity="0"/><stop offset="100%" stop-color="#d8eadf" stop-opacity=".3"/></radialGradient>
   <linearGradient id="mkBronze" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e2b46a"/><stop offset=".35" stop-color="#a8742e"/><stop offset=".6" stop-color="#6e4a1c"/><stop offset=".85" stop-color="#b5813a"/><stop offset="1" stop-color="#5a3a14"/></linearGradient>
   <radialGradient id="mkBolt" cx="35%" cy="35%" r="70%"><stop offset="0" stop-color="#f0cf8e"/><stop offset="1" stop-color="#6e4a1c"/></radialGradient></defs>
- <path d="M-400-400H560V500H-400Z M80 4a46 46 0 1 0 .01 0Z" fill="#17120b" fill-rule="evenodd"/>
- <circle class="mkfog" cx="80" cy="50" r="46" fill="url(#mkFog)"/>
- <circle cx="80" cy="50" r="50.5" fill="none" stroke="url(#mkBronze)" stroke-width="9"/>
- <circle cx="80" cy="50" r="46.2" fill="none" stroke="#3a260c" stroke-width="1"/>
- <circle cx="80" cy="50" r="54.8" fill="none" stroke="#3a260c" stroke-width=".8"/>
- <circle cx="132.50" cy="50.00" r="2.1" fill="url(#mkBolt)" stroke="#4a3010" stroke-width=".4"/><circle cx="117.12" cy="87.12" r="2.1" fill="url(#mkBolt)" stroke="#4a3010" stroke-width=".4"/><circle cx="80.00" cy="102.50" r="2.1" fill="url(#mkBolt)" stroke="#4a3010" stroke-width=".4"/><circle cx="42.88" cy="87.12" r="2.1" fill="url(#mkBolt)" stroke="#4a3010" stroke-width=".4"/><circle cx="27.50" cy="50.00" r="2.1" fill="url(#mkBolt)" stroke="#4a3010" stroke-width=".4"/><circle cx="42.88" cy="12.88" r="2.1" fill="url(#mkBolt)" stroke="#4a3010" stroke-width=".4"/><circle cx="80.00" cy="-2.50" r="2.1" fill="url(#mkBolt)" stroke="#4a3010" stroke-width=".4"/><circle cx="117.12" cy="12.88" r="2.1" fill="url(#mkBolt)" stroke="#4a3010" stroke-width=".4"/>
- <path d="M44 22a44 44 0 0 1 30-15" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="1.2" stroke-linecap="round"/>
- <g stroke="#fff" stroke-opacity=".2" stroke-width=".25" fill="none"><path d="M52 34l8 5M110 26l-6 8M96 74l11-4M60 76l4-6M118 54q3 3 2 7"/></g>
+ <path d="M-400-400H560V500H-400Z M80 8a64 42 0 1 0 .01 0Z" fill="#17120b" fill-rule="evenodd"/>
+ <ellipse class="mkfog" cx="80" cy="50" rx="64" ry="42" fill="url(#mkFog)"/>
+ <ellipse cx="80" cy="50" rx="68" ry="46" fill="none" stroke="url(#mkBronze)" stroke-width="8"/>
+ <ellipse cx="80" cy="50" rx="64.2" ry="42.2" fill="none" stroke="#3a260c" stroke-width="1"/>
+ <ellipse cx="80" cy="50" rx="71.8" ry="49.8" fill="none" stroke="#3a260c" stroke-width=".8"/>
+ <rect x="74" y="92.2" width="12" height="5.5" rx="1.2" fill="url(#mkBronze)" stroke="#3a260c" stroke-width=".5"/>
+ <circle cx="80" cy="95" r="1.7" fill="url(#mkBolt)" stroke="#4a3010" stroke-width=".4"/><path d="M78.9 95h2.2" stroke="#4a3010" stroke-width=".5"/>
+ <circle cx="12" cy="50" r="2.2" fill="url(#mkBolt)" stroke="#4a3010" stroke-width=".4"/><circle cx="148" cy="50" r="2.2" fill="url(#mkBolt)" stroke="#4a3010" stroke-width=".4"/>
+ <path d="M30 26a60 40 0 0 1 36-17" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="1.2" stroke-linecap="round"/>
+ <g stroke="#fff" stroke-opacity=".2" stroke-width=".25" fill="none"><path d="M44 34l8 5M118 24l-6 8M100 74l11-4M52 76l4-6M128 52q3 3 2 7"/></g>
 </svg>
 <div class="hud" id="hud">
   <div id="tally"><b id="tBichos">0 / 11 bichos</b><span id="tLugares">0 / 7 lugares</span></div>
