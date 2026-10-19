@@ -274,7 +274,7 @@ body.menu #touch{display:none!important}
 <div id="book" role="dialog" aria-label="Cuaderno de campo">
   <div class="cover">
     <header><h2>Cuaderno de campo<em>Sierras y humedal del este</em></h2><button class="close" id="bClose">Cerrar</button></header>
-    <nav class="tabs" id="bookTabs"><button data-t="portada" class="on" title="Portada" aria-label="Portada"></button><button data-t="aves" title="Aves" aria-label="Aves"></button><button data-t="mamiferos" title="Mamíferos" aria-label="Mamíferos"></button><button data-t="reptiles" title="Reptiles" aria-label="Reptiles"></button><button data-t="invertebrados" title="Invertebrados" aria-label="Invertebrados"></button><button data-t="agua" title="Bajo el agua" aria-label="Bajo el agua"></button><button data-t="lugares" title="Lugares" aria-label="Lugares"></button><button data-t="logros" title="Logros" aria-label="Logros"></button><button data-t="hallazgos" title="Hallazgos" aria-label="Hallazgos"></button></nav>
+    <nav class="tabs" id="bookTabs"><button data-t="portada" class="on" title="Portada" aria-label="Portada"></button><button data-t="lugares" title="Lugares" aria-label="Lugares"></button><button data-t="aves" title="Aves" aria-label="Aves"></button><button data-t="mamiferos" title="Mamíferos" aria-label="Mamíferos"></button><button data-t="reptiles" title="Reptiles" aria-label="Reptiles"></button><button data-t="invertebrados" title="Invertebrados" aria-label="Invertebrados"></button><button data-t="agua" title="Bajo el agua" aria-label="Bajo el agua"></button><button data-t="logros" title="Logros" aria-label="Logros"></button><button data-t="hallazgos" title="Hallazgos" aria-label="Hallazgos"></button></nav>
 <div class="pages"><section class="tp on" data-t="portada"><h4><span class="ich" data-ic="portada"></span> Portada</h4><div id="portada"></div></section>
 <section class="tp" data-t="aves"><h4><span class="ich" data-ic="aves"></span> Aves</h4><div class="grid" id="cards_aves"></div></section>
 <section class="tp" data-t="mamiferos"><h4><span class="ich" data-ic="mamiferos"></span> Mamíferos</h4><div class="grid" id="cards_mamiferos"></div></section>
@@ -295,7 +295,6 @@ body.menu #touch{display:none!important}
     <p id="iosHint" class="ioshint" hidden>Para instalarla en iPhone o iPad: tocá <b>Compartir</b> y después <b>Agregar a inicio</b>.</p>
     <div class="players"><div id="profList"></div><button id="profNew" type="button">👤 Nuevo jugador</button><span id="profNewBox" hidden><input id="profName" maxlength="16" placeholder="Nombre del jugador"> <button id="profOk" type="button">Listo</button> <button id="profCancel" type="button" aria-label="Cancelar">✕</button></span></div>
     <label class="opt"><input type="checkbox" id="optTrees"> Pasar a través de los árboles (para los más chicos)</label>
-    <label class="opt"><input type="checkbox" id="optEco"> Modo ahorro: menos calor y batería</label>
     <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button></p>
   </div>
 </div>
@@ -473,14 +472,14 @@ const SPECIES=[
 const GRPN={aves:['','Aves'],mamiferos:['','Mamíferos'],reptiles:['','Reptiles'],invertebrados:['','Invertebrados']};
 // íconos simples al estilo del arte rupestre de la región
 const ICP={portada:'<circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/>',
- aves:'<path d="M4 15.5 9 13l5-1.5 3-5.5h2.5M14 11.5l-1.5 1.5M10 13.5 8.5 20M12 13.2l1.5 6.8M4 15.5 3 12.5"/>',
+ aves:'<path d="M5.5 12.5c2.2 2.6 6.4 2.6 9 0M14.5 12.5c1-2.6-.6-4.2 0-6.6.4-1.7 2-2.3 3.1-1.7M17.6 4.2l4 1.2M10 14.6V21M12.5 14.4l1 6.6"/>',
  mamiferos:'<path d="M4.5 10.5H17l2.5-3.5M19.5 7l.5-2.5M5.5 10.5 4.5 17M9 10.5V17M14 10.5V17M17 10.5l1 6.5M4.5 10.5 2.5 13"/>',
  reptiles:'<path d="M2.5 16 6 10l3.5 6 3.5-6 3.5 6 3-5h2"/><circle cx="21.2" cy="11" r=".9"/>',
  invertebrados:'<ellipse cx="12" cy="13" rx="2.6" ry="3.4"/><path d="M9.6 11.5 5 8.5 3.5 4M9.4 13 4 12.5 2.5 9M9.6 14.5 4.5 16.5 3.5 21M10 15.8 7 19.5M14.4 11.5l4.6-3 1.5-4.5M14.6 13l5.4-.5L21.5 9M14.4 14.5l5.1 2 1 4.5M14 15.8l3 3.7"/>',
  agua:'<path d="M3.5 12c4-5 9-5 13 0-4 5-9 5-13 0Zm13 0 4-3.5v7Z"/><circle cx="7.5" cy="11.3" r=".8"/>',
  lugares:'<path d="M2 19.5 8 9.5l4 6 3-4.5 7 8.5"/><circle cx="17" cy="5.5" r="2"/>',
  logros:'<path d="M12 2.5v19M2.5 12h19M5.5 5.5l13 13M18.5 5.5l-13 13"/><circle cx="12" cy="12" r="2.5"/>',
- hallazgos:'<path d="M7.5 21c0-3-1.5-4.5-3-6.5l1.8-1 2.4 2.3V5.5M8.7 12V4M11.5 12V3M14.3 12.5V4.5M17 13.5V7.5M8.7 21h7.5c1.5-1.8 1.8-4 .8-7.5"/>',
+ hallazgos:'<path d="M8.5 21c-1.6-2-3.6-4.3-5-7l1.7-.7 3.2 3M8.5 16.3 6 6.5M10.6 15.5 10.2 3.5M12.8 15.6 15 4.5M14.6 16.6l4.6-7.6M8.5 21h7c2-1.8 2.8-3.6 3.2-6.2l-2.8-.6"/>',
  peces:'<path d="M3.5 12c4-5 9-5 13 0-4 5-9 5-13 0Zm13 0 4-3.5v7Z"/><circle cx="7.5" cy="11.3" r=".8"/>',
  fotos:'<path d="M12 3l2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4Z"/>'};
 const ICON=k=>'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">'+(ICP[k]||'')+'</svg>';
@@ -1236,10 +1235,9 @@ function specialHTML(sp,f){const x=f.flyImg?{img:f.flyImg,label:'En vuelo'}:(f.x
 function renderPortada(){const nf=GOAL.filter(s=>SAVE.found[s.id]).length,np=SAVE.places.length,fish=SAVE.fish||{},nfi=FISH.filter(x=>fish[x.id]).length,
  lg=[!!SAVE.raceWins,!!SAVE.nest,!!SAVE.found.puma].filter(Boolean).length,ns=SPECIES.filter(sp=>{const f=SAVE.found[sp.id];return f&&(f.flyImg||(f.x2&&f.x2.img)||(sp.id==='tero'&&SAVE.nest));}).length;
  const row=(l,a,b,go)=>`<div class="prow" data-go="${go}" role="button" tabindex="0"><span>${l}</span><div class="bar"><i style="width:${b?Math.round(a/b*100):0}%"></i></div><b>${a} / ${b}</b></div>`,gc=k=>GOAL.filter(s=>s.grp===k),gf=k=>gc(k).filter(s=>SAVE.found[s.id]).length;
- $('#portada').innerHTML=`<div class="pstat">${Object.keys(GRPN).map(k=>row(ICON(k)+' '+GRPN[k][1],gf(k),gc(k).length,k)).join('')}${row(ICON('peces')+' Peces',nfi,FISH.length,'agua')}${row(ICON('lugares')+' Lugares',np,PLACES.length,'lugares')}${row(ICON('fotos')+' Fotos especiales',ns,Object.keys(SPECIALS).length,'aves')}${row(ICON('logros')+' Logros',lg,3,'logros')}</div>
- <p class="ptip">${SAVE.mask?'🤿 Tenés la máscara del viejo naturalista. En el mapa (M) están marcados los lugares donde se puede bucear.':'🔎 Dicen que un viejo naturalista vivía por acá y guardaba sus cosas en una casa abandonada…'}</p>
- <p class="ptip">Tocá una fila o las pestañas de arriba para ver cada grupo.</p>`;document.querySelectorAll('#portada [data-go]').forEach(el=>el.onclick=()=>goTab(el.dataset.go));}
-function renderAgua(){const el=$('#agua'),fish=SAVE.fish||{};if(!SAVE.mask){el.innerHTML='<p class="ptip">Para mirar bajo el agua hace falta una máscara. ¿Dónde la habrá dejado el viejo naturalista? Quizás en una casa abandonada…</p>';return;}
+ $('#portada').innerHTML=`<div class="pstat">${row(ICON('lugares')+' Lugares',np,PLACES.length,'lugares')}${Object.keys(GRPN).map(k=>row(ICON(k)+' '+GRPN[k][1],gf(k),gc(k).length,k)).join('')}${row(ICON('peces')+' Peces',nfi,FISH.length,'agua')}${row(ICON('fotos')+' Fotos especiales',ns,Object.keys(SPECIALS).length,'aves')}${row(ICON('logros')+' Logros',lg,3,'logros')}</div>
+ <p class="ptip">${SAVE.mask?'🤿 Tenés la máscara del viejo naturalista. En el mapa (M) están marcados los lugares donde se puede bucear.':'🔎 Dicen que un viejo naturalista vivía por acá. Tal vez quedan algunos restos.'}</p>`;document.querySelectorAll('#portada [data-go]').forEach(el=>el.onclick=()=>goTab(el.dataset.go));}
+function renderAgua(){const el=$('#agua'),fish=SAVE.fish||{};if(!SAVE.mask){el.innerHTML='<p class="ptip">Para mirar bajo el agua hace falta una máscara. ¿Habrá usado una alguien por acá?</p>';return;}
  let h='<h4>El mapa del naturalista</h4><div class="dives">'+DIVES.map(d=>`<div class="dive${SAVE.dives&&SAVE.dives[d.id]?' on':''}"><h5>${SAVE.dives&&SAVE.dives[d.id]?'🤿 '+d.name:'¿?'}</h5><p>“${d.note}”</p></div>`).join('')+'</div><h4>Peces</h4><div class="grid">';
  h+=FISH.map(fi=>{const f=fish[fi.id];return f?`<div class="card"><div class="ph"><img alt="Foto de ${fi.name}" src="${f.img}"></div><h3>${fi.name}</h3><div class="sci">${fi.sci}</div><p>${fi.note}</p><div class="where">Encontrado: ${f.where}</div></div>`:`<div class="card locked"><div class="ph">?</div><h3>Sin descubrir</h3><p>${fi.hint}</p></div>`;}).join('')+'</div>';el.innerHTML=h;}
 function renderBook(){renderPortada();renderAgua();
@@ -1865,10 +1863,8 @@ const clock=new THREE.Clock();let fogT=0,trailT=0;
 function checkPlaces(){for(const p of PLACES){if(SAVE.places.includes(p.id))continue;if(Math.hypot(car.x-p.x,car.z-p.z)<p.r){SAVE.places.push(p.id);save();refreshTally();chime();toast('Descubriste: '+p.name,'place');checkComplete();}}}
 function updateTrail(){if(caveView||DIVE.on){$('#trail').classList.remove('show');return;}let nd=1e9,na=null;for(const a of animals){if(SAVE.found[a.sp.id]||!a.g.visible||a.sp.hab==='air'||a.sp.secret)continue;const d=Math.hypot(car.x-a.x,car.z-a.z);if(d<nd){nd=d;na=a;}}
  const el=$('#trail');if(na&&nd<55){let msg='Huellas frescas por acá';if(nd<25){const ref=photo?photoYaw:car.h;let d=Math.atan2(-(na.x-car.x),-(na.z-car.z))-ref;d=Math.atan2(Math.sin(d),Math.cos(d));const dir=Math.abs(d)<.5?'adelante':Math.abs(d)>2.6?'atrás':d>0?'a la izquierda':'a la derecha';const dy=na.y-car.y;msg='Hay algo muy cerca, '+dir+(dy>5?' y más arriba':dy<-5?' y más abajo':'')+'. Frená y usá la cámara';}el.textContent=msg;el.classList.add('show');}else el.classList.remove('show');}
-let lastF=0;
 function loop(){
- if(ECO){const now=performance.now();if(now-lastF<31){requestAnimationFrame(loop);return;}lastF=now;}
- const dt=Math.min(.05,clock.getDelta()),time=clock.elapsedTime;if(started&&!ECO)perfCheck();
+ const dt=Math.min(.05,clock.getDelta()),time=clock.elapsedTime;if(started)perfCheck();
  if(started){updateCar(dt,time);updateAnimals(dt,time);updateCalls(dt);updateRace(dt,time);updateChicks(dt);posT+=dt;if(posT>4){posT=0;savePos();}updateParts(dt);updateFalls(dt);updateCave(dt,time);updateDiving(dt,time);fogT+=dt;if(fogT>.25){fogT=0;revealFog();checkPlaces();}fogSaveT+=dt;if(fogSaveT>8){fogSaveT=0;saveFog();checkZoomUnlock();}trailT+=dt;if(trailT>.5){trailT=0;updateTrail();}}
  else{if(!dragging)startA+=dt*.04;}
  if(started)updateCamera(dt);else{const a=startA+camOrbit,el=Math.max(.04,Math.min(1.35,.27+camTilt)),dd=22*camZoom;camera.position.set(car.x+Math.sin(a)*Math.cos(el)*dd,car.y+1.2+Math.sin(el)*dd,car.z+Math.cos(a)*Math.cos(el)*dd);const gh=H(camera.position.x,camera.position.z)+1;if(camera.position.y<gh)camera.position.y=gh;camera.lookAt(car.x,car.y+1.2,car.z);}
@@ -1880,11 +1876,7 @@ function loop(){
  requestAnimationFrame(loop);
 }
 // ===== RENDIMIENTO =====
-let ECO=!!(SAVE.settings&&SAVE.settings.eco);const BASE_PR=renderer.getPixelRatio();
-const BASE_SH=sun.shadow.mapSize.x;
-function setEco(on){ECO=on;renderer.setPixelRatio(on?Math.min(1,BASE_PR)*.75:BASE_PR);const sh=on?Math.min(1024,BASE_SH):BASE_SH;sun.shadow.mapSize.set(sh,sh);if(sun.shadow.map){sun.shadow.map.dispose();sun.shadow.map=null;}
- scene.children.forEach(o=>{if(o.userData.grass&&o.isInstancedMesh){if(o.userData.n0===undefined)o.userData.n0=o.count;o.count=on?Math.floor(o.userData.n0*.45):o.userData.n0;}});}
-setTimeout(()=>{if(ECO)setEco(true);},0);
+
 // cada bosque, pastizal y pedregal se parte en cuadrantes: solo se dibuja lo que entra en la cámara y en la sombra
 function chunkInstances(m,tile){const n=m.count;if(n<120)return;const groups=new Map(),mat=new THREE.Matrix4(),col=new THREE.Color();
  for(let i=0;i<n;i++){m.getMatrixAt(i,mat);const key=Math.floor(mat.elements[12]/tile)+','+Math.floor(mat.elements[14]/tile);if(!groups.has(key))groups.set(key,[]);groups.get(key).push(i);}
@@ -1947,8 +1939,7 @@ $('#profCancel').onclick=()=>{$('#profNewBox').hidden=true;$('#profNew').hidden=
 $('#creditInfo').onclick=()=>{$('#help').classList.add('show');const pg=$('#help .pages');if(pg)pg.scrollTop=0;};
 const makeProfile=()=>{const name=($('#profName').value||'').trim()||('Jugador '+(PROFS.list.length+1));savePos();const id='p'+Date.now().toString(36);PROFS.list.push({id,name});$('#profNewBox').hidden=true;$('#profNew').hidden=false;fillProfiles();switchProfile(id);fillProfiles();};
 $('#profOk').onclick=makeProfile;$('#profName').addEventListener('keydown',e=>{if(e.key==='Enter')makeProfile();e.stopPropagation();});
-{const oe=$('#optEco');oe.checked=ECO;oe.onchange=()=>{setEco(oe.checked);SAVE.settings=Object.assign(SAVE.settings||{},{eco:ECO});save();};
-const ot=$('#optTrees');ot.checked=NOTREES;ot.onchange=()=>{NOTREES=ot.checked;SAVE.settings=Object.assign(SAVE.settings||{},{noTrees:NOTREES});save();};}
+{const ot=$('#optTrees');ot.checked=NOTREES;ot.onchange=()=>{NOTREES=ot.checked;SAVE.settings=Object.assign(SAVE.settings||{},{noTrees:NOTREES});save();};}
 function openMenu(){if(photo)togglePhoto(false);if(bookOpen)toggleBook(false);if(mapOpen)toggleMap(false);for(const c in keys)keys[c]=false;for(const t in T)T[t]=0;car.v=0;car.thr=0;started=false;
  $('#hud').style.display='none';document.body.classList.add('menu');$('#start').style.display='flex';$('#go').textContent='Seguir explorando';}
 $('#bMenu').onclick=openMenu;
