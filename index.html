@@ -1315,7 +1315,7 @@ function ptrUp(e){PTR.delete(e.pointerId);if(PTR.size<2)pinch=null;if(PTR.size==
 cv.addEventListener('pointermove',e=>{if(PTR.has(e.pointerId))PTR.set(e.pointerId,[e.clientX,e.clientY]);
  if(pinch&&PTR.size===2){const d=pinchDist();if(photo){photoFov=Math.max(3.4,Math.min(130,pinch.fov*pinch.d/Math.max(d,1)));}else camZoom=Math.max(.6,Math.min(zoomMax(),pinch.z*pinch.d/Math.max(d,1)));return;}
  if(!dragging||!lastP)return;const dx=e.clientX-lastP[0],dy=e.clientY-lastP[1];lastP=[e.clientX,e.clientY];
- if(photo){const f=photoFov/55;photoYaw-=dx*.0042*f;photoPitch=Math.max(-.7,Math.min(.6,photoPitch-dy*.0042*f));}else{camOrbit-=dx*.006;camTilt=Math.max(-.3,Math.min(1.12,camTilt+dy*.005));}});
+ if(photo){const f=photoFov/55;photoYaw-=dx*.0042*f;photoPitch=Math.max(-1.35,Math.min(1.4,photoPitch-dy*.0042*f));}else{camOrbit-=dx*.006;camTilt=Math.max(-.3,Math.min(1.12,camTilt+dy*.005));}});
 cv.addEventListener('pointerup',ptrUp);cv.addEventListener('pointercancel',ptrUp);
 cv.addEventListener('wheel',e=>{e.preventDefault();if(photo){photoFov=Math.max(3.4,Math.min(130,photoFov*(e.deltaY>0?1.12:0.89)));}else camZoom=Math.max(.6,Math.min(zoomMax(),camZoom*(e.deltaY>0?1.1:0.91)));},{passive:false});
 // táctil
@@ -1860,7 +1860,7 @@ const camPos=new THREE.Vector3(car.x,car.y+5,car.z+12);
 function updateCamera(dt){
  if(photo){
   const rot=((k('ArrowLeft')||k('KeyA')||T.left)?1:0)-((k('ArrowRight')||k('KeyD')||T.right)?1:0),tilt=(caveView||DIVE.on)?0:((k('ArrowUp')||T.up)?1:0)-((k('ArrowDown')||T.down)?1:0);
-  const f=photoFov/55;photoYaw+=rot*dt*1.3*f;photoPitch=Math.max(-.7,Math.min(.6,photoPitch+tilt*dt*.9*f));
+  const f=photoFov/55;photoYaw+=rot*dt*1.3*f;photoPitch=Math.max(-1.35,Math.min(1.4,photoPitch+tilt*dt*.9*f));
   if((!caveView&&!DIVE.on&&k('KeyW'))||k('Equal')||k('NumpadAdd')||Z.in)photoFov=Math.max(3.4,photoFov*(1-dt*1.4));if((!caveView&&!DIVE.on&&k('KeyS'))||k('Minus')||k('NumpadSubtract')||Z.out)photoFov=Math.min(130,photoFov*(1+dt*1.4));
   if(DIVE.on){swim(dt);camera.position.copy(DIVE.pos);if(DIVE.out)camera.position.y=.32;}else if(caveView){caveWalk(dt);if(caveView)camera.position.copy(caveView);}else camera.position.set(car.x,car.y+2.75,car.z);
   tmpV.set(-Math.sin(photoYaw)*Math.cos(photoPitch),Math.sin(photoPitch),-Math.cos(photoYaw)*Math.cos(photoPitch)).add(camera.position);camera.lookAt(tmpV);

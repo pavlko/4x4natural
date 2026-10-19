@@ -34,6 +34,7 @@ Un juego de Insight Reality
 - v31  Máscara de buceo ovalada, con fleje de bronce y tornillo de ajuste
 - v32  La camioneta se ve desde el agua y desde la cueva
 - v33  Anillo de la laguna escondida más irregular, con cresta quebrada y lomas bajas transitables alrededor
+- v34  La cámara de fotos mira mucho más arriba y abajo
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v33).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v34).
 La versión vigente es index.html (lista como app instalable).
