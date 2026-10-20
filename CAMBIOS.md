@@ -39,6 +39,7 @@ Un juego de Insight Reality
 - v36  El juego pasa a llamarse Safari Gaucho
 - v37  Las fotos compartidas usan la dirección de GitHub Pages en vez de tinyurl
 - v38  Hornero con nido de barro, chajá, lagarto overo, tortuga pintada y apereá
+- v39  Primer hallazgo: el baúl del naturalista, con la máscara y su lista de peces; la cueva pasa a ser el segundo
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v38).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v39).
 La versión vigente es index.html (lista como app instalable).
