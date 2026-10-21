@@ -11,7 +11,6 @@
 Patagonia (Cueva de las Manos), África (Serengeti y Laetoli), sur de China (Guangxi), Amazonía, Australia (Kakadu), Ártico.
 
 ## Otras
-- Tirarse por la cascada a modo snorkel con cámara lenta.
 - Sección del cuaderno con árboles y plantas.
 - Tercera tanda de bichos: martín pescador, lechucita de las vizcacheras, dormilón (en lugar del carancho: vuela corto y se queda inmóvil camuflado entre pastos y rocas), picaflor, zorrillo, comadreja overa, coipo, sapito de Darwin, cangrejo de arroyo, tacurúes.
 - Costa: gaviota cocinera, ostrero, cangrejo de arena, lobo marino; ballena franca como secreto (se ve desde la costa, fin de invierno y primavera).
@@ -21,5 +20,16 @@ Patagonia (Cueva de las Manos), África (Serengeti y Laetoli), sur de China (Gua
 - Educar en no romper las dunas sin que se sienta un límite arbitrario: cercas captoras de palitos (como las reales) que protegen las dunas, una bajada habilitada para llegar a la playa en camioneta, y una pasarela de madera hasta el mirador que se recorre a pie (como la cueva). La ballena se vería mejor desde el mirador.
 - Respuesta suave si se pisa la duna: quedan huellas y el pasto aplastado, y el cuaderno explica por qué importan las dunas. Sin castigos.
 
-## Casita de pescador
-- Además del microscopio, un zoolito como hallazgo.
+## Casita de pescador y zoolito
+- En la casita de pescador está el microscopio, y además un zoolito tallado en madera solo decorativo, que se vea (el "tiburón de pelotas").
+- El zoolito verdadero, como hallazgo, está medio enterrado entre las rocas de la punta.
+
+## Mar y snorkel en la punta de piedra
+- Snorkel en el mar junto a la punta de piedra: sirí, lisas, lenguado, tiburón sarda, tortuga marina.
+- Biguá cazando sargos bajo el mar.
+- En las piedras de la costa, una bandada de playeritos; también biguáes posados.
+- Prueba del mar (solo terreno y vista): https://claude.ai/artifact/Dpys2qm8APi6hqmCBhXTsh
+
+## Manantial de arriba de la cascada
+- Decidido: NO tirarse por la cascada (es muy peligroso en la vida real).
+- Sí bucear en el manantial de arriba: sin nada que encontrar, solo para sentir paz buceando y mirando el paisaje. Limitar con piedras el acceso al borde de la cascada.
