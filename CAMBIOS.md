@@ -46,7 +46,7 @@ Un juego de Insight Reality
 - v43  Nubes que se mueven con el viento; algunas bajas sobre la sierra, por debajo del vuelo del águila
 - v44  La lechuza gira la cabeza de verdad para mirarte; naranjos criollos y una higuera cerca de la tapera
 - v45  Tercera tanda: martín pescador, lechucita de las vizcacheras, dormilón, picaflor verde, zorrillo, comadreja overa, coipo, sapito de Darwin, cangrejo de arroyo; tacurúes; pestaña de anfibios
-- v45  Casita de pescador con el microscopio del naturalista y el tiburón de madera; 8 sitios de muestra con frasquitos; vista de microscopio con 16 microorganismos y restos para identificar; pestaña Microscopio, tercer hallazgo y festejo
+- v46  Casita de pescador con el microscopio del naturalista y el tiburón de madera; 8 sitios de muestra con frasquitos; vista de microscopio con 16 microorganismos y restos para identificar; pestaña Microscopio, tercer hallazgo y festejo
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v45).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v46).
 La versión vigente es index.html (lista como app instalable).
