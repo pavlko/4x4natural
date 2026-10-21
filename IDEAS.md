@@ -37,3 +37,13 @@ Patagonia (Cueva de las Manos), África (Serengeti y Laetoli), sur de China (Gua
 ## Para pensar
 - Andar a caballo, quizás un caballo salvaje (bagual) que hay que conocer y ganarse.
 - El naturalista como personaje vivo: viejo de pelo blanco, medio ermitaño pero conversador, apasionado por la naturaleza. Su rancho, su caballo, su huerta, y charlas con él sobre las pistas y lo que ya encontramos.
+
+## Modo caminar y avatar
+- Botón 🚶 para bajarse de la camioneta cuando uno quiera (con la camioneta frenada); avatar genérico en tercera persona, cámara como la de la camioneta.
+- Caminar despacio espanta menos a los bichos; correr espanta más. No se trepan pendientes muy fuertes; se puede entrar al agua baja hasta las rodillas.
+- Botón "Volver a la camioneta" al estar cerca; la camioneta siempre marcada en el mapa.
+- Pasajes de modo: caminando cerca de una entrada de buceo aparece 🤿 y al salir del agua quedás caminando en la orilla; la cueva se entra caminando (adentro en primera persona) y al salir quedás afuera caminando; la foto caminando es en primera persona a la altura de los ojos.
+
+## Personalizar (más adelante)
+- Camioneta: color, pintarla o dibujarle cosas, calcomanías, cosas en el techo (un sombrero gigante, cuernos de vaca…).
+- Avatar: unas pocas opciones (sombrero, colores, mochila) y alguna graciosa (un mate en la mano, bigotes, una gallina en la cabeza).
