@@ -43,6 +43,7 @@ button:focus-visible{outline:2px solid var(--senal);outline-offset:2px}
 #diveBtn{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 70px);display:none;background:#1f5f6e;color:#eaf8fb;border:2px solid #9fe0ec;border-radius:26px;padding:10px 22px;font-size:22px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.4)}
 #diveBtn.show{display:block}
 #microBtn{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 70px);display:none;background:#5a3f1c;color:#f7ecd2;border:2px solid #d9b65e;border-radius:26px;padding:10px 22px;font-size:22px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.4)}#microBtn.show{display:block}
+body.cave #microBtn,body.diving #microBtn{bottom:calc(env(safe-area-inset-bottom,0px) + 150px)}
 #scope{position:fixed;inset:0;z-index:25;display:none;align-items:center;justify-content:center;background:rgba(10,8,5,.9)}#scope.show{display:flex}
 .scopebox{text-align:center;color:#e8dcc0;font-family:'Newsreader',serif}.scopebox h3{margin:0 0 8px;font-size:22px;font-weight:600}
 #scopeCv{border-radius:50%;box-shadow:0 0 0 10px #8a5e22,0 0 0 14px #3a2510,0 10px 40px rgba(0,0,0,.6);background:#cfe0d6;cursor:crosshair;touch-action:manipulation}
@@ -165,6 +166,7 @@ body.photo #raceArrow{display:none!important}
 .pages{overflow:auto;background:var(--kraft);border-radius:3px;padding:16px;color:var(--tinta)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
 .card{background:#e6d8b6;border-radius:2px;padding:8px;box-shadow:0 1px 0 rgba(0,0,0,.12)}
+.sinfo{font-size:14px;margin:6px 0 4px;color:#4a3d28}.card p.macro{font-size:14px;color:#3d5a2a;margin-top:6px}
 .card .ph.micro canvas{width:100%;height:100%;display:block;border-radius:50%}
 .card .ph{aspect-ratio:8/5;background:#cbb88f;border-radius:1px;display:flex;align-items:center;justify-content:center;font-size:44px;color:#a8946a;overflow:hidden}
 .card .ph img{width:100%;height:100%;object-fit:cover;display:block}
@@ -892,7 +894,7 @@ const SCOPE={on:false,site:null,orgs:[],t:0};
 let microT=0;
 function updateMicro(dt){if(!SAVE.micro){if(!DIVE.on&&!photo&&Math.hypot(car.x-CASITA.mx,car.z-CASITA.mz)<5.5&&Math.abs(car.v)<3)microFound();return;}
  JARFLAGS.forEach((f,i)=>f.rotation.y=Math.sin(performance.now()*.003+i)*.5);microT+=dt;if(microT<.15)return;microT=0;let near=null;
- if(caveView)near=MSITES.find(s=>s.cave);else if(!DIVE.on&&!photo&&Math.abs(car.v)<2.5){for(const s of MSITES){if(!s.cave&&Math.hypot(car.x-s.x,car.z-s.z)<10){near=s;break;}}}
+ if(caveView){const L=toCaveL(caveView.x,caveView.z);if(L[1]>9)caveDeep=true;const fx=-Math.sin(photoYaw),fz=-Math.cos(photoYaw),mx=CAVE.view.x-caveView.x,mz=CAVE.view.z-caveView.z,ml=Math.hypot(mx,mz)||1;if(caveDeep&&L[1]<8&&(fx*mx+fz*mz)/ml>.4)near=MSITES.find(s=>s.cave);}else if(!DIVE.on&&!photo&&Math.abs(car.v)<2.5){for(const s of MSITES){if(!s.cave&&Math.hypot(car.x-s.x,car.z-s.z)<10){near=s;break;}}}
  SCOPE.near=near;$('#microBtn').classList.toggle('show',!!near&&!SCOPE.on);}
 function openScope(site){SCOPE.on=true;SCOPE.site=site;SCOPE.t=0;SAVE.samples=SAVE.samples||{};if(!SAVE.samples[site.id]){SAVE.samples[site.id]=1;save();}
  $('#scopeTitle').textContent='Muestra: '+site.name.toLowerCase();$('#scope').classList.add('show');$('#microBtn').classList.remove('show');
@@ -968,7 +970,7 @@ function makeOmbu(x,z,sc){const o=new THREE.Group();o.position.set(x,H(x,z)-.2,z
  [[0,8.2,0,5.8,3,5.8],[3.4,7.3,1.5,3.4,2.2,3.2],[-3.2,7.5,-1.2,3.6,2.4,3.4],[.8,9.6,-1,3.2,1.9,3]].forEach(c=>part(jitter(new THREE.IcosahedronGeometry(1,2),.18),leaf,c[0],c[1],c[2],c[3],c[4],c[5],o));
  addObs(x,z,3.2*sc,1);}
 for(const [ox,oz,sc] of [[138,112,1],[-48,165,.9],[62,-62,1.1],[-120,-40,.95]]){let x=ox,z=oz;for(let r=0;r<30;r+=3){if(H(x,z)>1&&slopeAt(x,z)<.3&&!hitObs(x,z,4)&&roadD(x,z)>8)break;x=ox+r;z=oz-r*.5;}makeOmbu(x,z,sc);}
-let grutaPos;const FIRE={},CAVE={};let caveView=null,caveCool=false,caveT=0;
+let grutaPos;const FIRE={},CAVE={};let caveView=null,caveCool=false,caveT=0,caveDeep=false,EYE=0;
 { // gruta: túnel oscuro de 10 m que se abre a la izquierda en una sala con fuego y pinturas
  const hc=FLATS[2][3],g=new THREE.Group();g.position.set(CAVE_OX,hc-.2,CAVE_Z);g.rotation.y=-Math.PI/2;scene.add(g);
  const rk=M(0x6d655b,.97,{flatShading:true});
@@ -1490,8 +1492,8 @@ function renderPortada(){const nf=GOAL.filter(s=>SAVE.found[s.id]).length,np=SAV
  `;document.querySelectorAll('#portada [data-go]').forEach(el=>el.onclick=()=>goTab(el.dataset.go));}
 function renderMicro(){const el=$('#microPage');if(!el)return;if(!SAVE.micro){el.innerHTML='';return;}const f=SAVE.microFound||{},sm=SAVE.samples||{};
  let h='<p class="ptip">🔬 Con el microscopio del naturalista podés tomar muestras donde veas un frasquito en una estaca, y en el piso de la cueva. Tocá cada bichito para identificarlo.</p>';
- h+='<div class="dives">'+MSITES.map(st=>`<div class="dive${sm[st.id]?' on':''}"><h5>${sm[st.id]?'✓ ':'· '}${st.name}</h5><p>${st.sp.map(id=>f[id]?MICRO.find(m=>m.id===id).name:'?').join(' · ')}</p></div>`).join('')+'</div>';
- h+='<div class="grid">'+MICRO.map(m=>f[m.id]?`<div class="card"><div class="ph micro"><canvas data-m="${m.id}" width="150" height="150"></canvas></div><div><h3>${m.name}</h3><div class="sci">${m.sci}</div><p>${m.note}</p><div class="where">${f[m.id].where}</div></div></div>`:`<div class="card locked"><div class="ph">?</div><div><h3>Sin identificar</h3><p>Algo diminuto espera en una gota de agua o en un puñado de tierra.</p></div></div>`).join('')+'</div>';
+ h+='<div class="dives">'+MSITES.map(st=>`<div class="dive${sm[st.id]?' on':''}"><h5>${sm[st.id]?'✓ ':'· '}${st.name}</h5><p>${st.sp.map(id=>f[id]?MICRO.find(m=>m.id===id).name:'?').join(' · ')}</p>${sm[st.id]?`<p class="sinfo">${st.info}</p><div class="links"><a href="${st.link[0]}" target="_blank" rel="noopener">${st.link[1]}</a>${st.id==='cueva'?'<a href="https://es.wikipedia.org/w/index.php?search=Cerritos+de+indios" target="_blank" rel="noopener">Leer: cerritos de indios</a>':''}</div>`:''}</div>`).join('')+'</div>';
+ h+='<div class="grid">'+MICRO.map(m=>f[m.id]?`<div class="card"><div class="ph micro"><canvas data-m="${m.id}" width="150" height="150"></canvas></div><div><h3>${m.name}</h3><div class="sci">${m.sci}</div><p>${m.note}</p><p class="macro">🌿 ${m.macro}</p><div class="where">${f[m.id].where}</div></div></div>`:`<div class="card locked"><div class="ph">?</div><div><h3>Sin identificar</h3><p>Algo diminuto espera en una gota de agua o en un puñado de tierra.</p></div></div>`).join('')+'</div>';
  el.innerHTML=h;el.querySelectorAll('canvas[data-m]').forEach(cv=>{const x=cv.getContext('2d');x.fillStyle='#dfeee6';x.fillRect(0,0,150,150);x.save();x.translate(75,75);x.scale(.9,.9);DRAW[cv.dataset.m](x,{a:0,ph:1,s:1},1.3);x.restore();});}
 function renderAgua(){const el=$('#agua'),fish=SAVE.fish||{};if(!SAVE.mask){el.innerHTML='<p class="ptip">Para mirar bajo el agua hace falta una máscara. ¿Habrá usado una alguien por acá?</p>';return;}
  let h='<p class="ptip">🤿 Tenés la máscara del viejo naturalista. En el mapa (M) están marcados los lugares donde se puede bucear.</p><h4>El mapa del naturalista</h4><div class="dives">'+DIVES.map(d=>`<div class="dive${SAVE.dives&&SAVE.dives[d.id]?' on':''}"><h5>${SAVE.dives&&SAVE.dives[d.id]?'🤿 '+d.name:'¿?'}</h5><p>“${d.note}”</p></div>`).join('')+'</div><h4>Peces</h4><div class="grid">';
@@ -1737,7 +1739,7 @@ function emit(x,y,z,vx,vy,vz,c,life,grav=9){const i=pIdx;pIdx=(pIdx+1)%PN;pPos[i
 function updateParts(dt){for(let i=0;i<PN;i++){if(pLife[i]<=0)continue;pLife[i]-=dt;if(pLife[i]<=0){pPos[i*3+1]=-999;continue;}const j=i*3;pVel[j+1]-=pGrav[i]*dt;const k=1-dt*1.6;pVel[j]*=k;pVel[j+2]*=k;pPos[j]+=pVel[j]*dt;pPos[j+1]+=pVel[j+1]*dt;pPos[j+2]+=pVel[j+2]*dt;if(pGrav[i]>3&&pPos[j+1]<H(pPos[j],pPos[j+2])-.05&&pPos[j+1]<-.02){pLife[i]=0;pPos[j+1]=-999;}}pGeo.attributes.position.needsUpdate=true;pGeo.attributes.color.needsUpdate=true;}
 const C_WATER=[.82,.88,.92],C_MUD=[.26,.19,.12],C_SAND=[.84,.75,.57],C_DUST=[.7,.62,.48];
 // ===== CUEVA =====
-function enterCave(){car.v=0;car.thr=0;caveView=CAVE.view.clone();caveT=0;togglePhoto(true);document.body.classList.add('cave');photoYaw=Math.PI/2;photoPitch=-.05;photoFov=70;toast('Caminá con ▲▼ o W/S y girá con ◀▶ o arrastrando. 📷 o F para volver a la camioneta.');}
+function enterCave(){caveDeep=false;car.v=0;car.thr=0;caveView=CAVE.view.clone();caveT=0;togglePhoto(true);document.body.classList.add('cave');photoYaw=Math.PI/2;photoPitch=-.05;photoFov=70;toast('Caminá con ▲▼ o W/S y girá con ◀▶ o arrastrando. 📷 o F para volver a la camioneta.');}
 function caveWalk(dt){const mv=((k('KeyW')||k('ArrowUp')||T.up)?1:0)-((k('KeyS')||k('ArrowDown')||T.down)?1:0);if(!mv)return;
  const sp=2.4*dt*mv,nx=caveView.x-Math.sin(photoYaw)*sp,nz=caveView.z-Math.cos(photoYaw)*sp;
  const ok=(x,z)=>{const L=toCaveL(x,z);return caveD(L[0],L[1])>1.2&&Math.hypot(x-FIRE.pos.x,z-FIRE.pos.z)>1.3;};
@@ -1748,6 +1750,7 @@ function updateCave(dt,time){
  if(FIRE.light){const fl=Math.sin(time*13)*.25+Math.sin(time*7.3+1)*.2+Math.sin(time*23)*.1;FIRE.light.intensity=3.2+fl*1.2;
   FIRE.flames.forEach((m,i)=>{const b=m.userData.b,k=1+Math.sin(time*(9+i*3)+i)*.15+fl*.2;m.scale.set(b[0]*(1-fl*.1),b[1]*k,b[0]*(1-fl*.1));m.rotation.y=time*(1+i*.5);});
   if(Math.hypot(car.x-FIRE.pos.x,car.z-FIRE.pos.z)<60&&Math.random()<.25)emit(FIRE.pos.x+(Math.random()-.5)*.4,FIRE.pos.y+.6,FIRE.pos.z+(Math.random()-.5)*.4,(Math.random()-.5)*.3,1+Math.random()*1.2,(Math.random()-.5)*.3,[1,.55,.15],1.2,-.2);}
+ {const dark=caveView&&toCaveL(caveView.x,caveView.z)[1]>3;EYE+=((dark?1:0)-EYE)*Math.min(1,dt*(dark?.55:.5));renderer.toneMappingExposure=1.08*(1+EYE*2.2);}
  const dm=Math.hypot(car.x-(CAVE_X+1),car.z-CAVE_Z);
  if(caveCool&&dm>8)caveCool=false;
  if(!photo&&!caveCool&&dm<5)enterCave();
@@ -1787,31 +1790,31 @@ function nestInShot(){if(SAVE.nest)return false;const p=new THREE.Vector3(NEST.x
 // ===== BUCEO =====
 // ===== MICROSCOPIO: microorganismos y restos microscópicos =====
 const MICRO=[
- {id:'paramecio',name:'Paramecio',sci:'Paramecium',r:34,note:'Parece una pantufla cubierta de pelitos (cilios) que mueve como remos para nadar y para arrastrar comida a su boca.'},
- {id:'ameba',name:'Ameba',sci:'Amoeba',r:34,note:'No tiene forma fija: estira partes de su cuerpo como brazos para moverse y para envolver lo que come.'},
- {id:'euglena',name:'Euglena',sci:'Euglena',r:30,note:'Es verde porque hace fotosíntesis como una planta, pero nada con una cola (flagelo) como un animal. El puntito rojo es un ojo que siente la luz.'},
- {id:'volvox',name:'Volvox',sci:'Volvox',r:44,note:'Una esfera hecha de cientos de algas verdes que viven juntas y ruedan por el agua. Adentro se ven las esferas hijas.'},
- {id:'vorticela',name:'Vorticela',sci:'Vorticella',r:30,note:'Una campanita con un tallo que se enrosca como un resorte cuando algo la asusta. Vive pegada a plantas y piedras.'},
- {id:'diatomea',name:'Diatomea',sci:'Bacillariophyta',r:34,note:'Alga encerrada en una cajita de vidrio (sílice) con dibujos geométricos. Hay miles de formas, y producen buena parte del oxígeno del planeta.'},
- {id:'rotifero',name:'Rotífero',sci:'Rotifera',r:30,note:'Tiene en la cabeza una corona de cilios que parece dos ruedas girando: con ella nada y atrae comida. Son de los animales más chicos que existen.'},
- {id:'dafnia',name:'Pulga de agua',sci:'Daphnia',r:34,note:'Un crustáceo diminuto y transparente que nada a saltitos con sus antenas. Se le ve el corazón latiendo y el intestino lleno de algas.'},
- {id:'hidra',name:'Hidra',sci:'Hydra',r:38,note:'Pariente de las medusas. Vive pegada a una planta y caza con sus tentáculos. Si se corta, cada pedazo vuelve a crecer entero.'},
- {id:'tardigrado',name:'Osito de agua',sci:'Tardigrada',r:34,note:'El tardígrado camina despacio con sus ocho patitas por el musgo. Puede sobrevivir secándose por completo, al hielo, al calor y hasta al espacio.'},
- {id:'copepodo',name:'Copépodo',sci:'Cyclops',r:30,note:'Un crustáceo con un solo ojo en el medio y antenas largas. Nada dando saltos y es comida para pececitos.'},
- {id:'espirogira',name:'Espirogira',sci:'Spirogyra',r:50,note:'Alga en filamentos con una cinta verde en espiral adentro. Forma esas nubes verdes y resbalosas de los charcos.'},
- {id:'nematodo',name:'Nematodo',sci:'Nematoda',r:36,note:'Gusanito redondo y transparente que se retuerce en forma de S. En un puñado de tierra del monte viven miles.'},
- {id:'colembolo',name:'Colémbolo',sci:'Collembola',r:30,note:'Un bichito del suelo con un resorte debajo de la cola: cuando se asusta, salta muchas veces su tamaño. Come hojas en descomposición.'},
- {id:'fitolito',name:'Fitolitos de maíz',sci:'Zea mays (restos microscópicos)',r:30,note:'Cristales de sílice con forma de cruz que quedan de las plantas de maíz cuando se pudren. Encontrarlos en la cueva significa que la gente de hace miles de años ya cultivaba maíz.'},
- {id:'almidon',name:'Almidón de zapallo',sci:'Cucurbita (restos microscópicos)',r:26,note:'Granos de almidón con una cruz de luz en el medio, de zapallo y poroto. Con el maíz, eran los cultivos de los primeros habitantes del este, como se vio en los cerritos de indios.'}];
+ {id:'paramecio',macro:'Come bacterias y a su vez lo comen larvas y pececitos: es uno de los primeros eslabones de la cadena que termina en las espátulas y los patos de la laguna.',name:'Paramecio',sci:'Paramecium',r:34,note:'Parece una pantufla cubierta de pelitos (cilios) que mueve como remos para nadar y para arrastrar comida a su boca.'},
+ {id:'ameba',macro:'Limpia el agua comiendo bacterias y restos. En el barro quieto del fondo, donde vive la anguila criolla, hay muchísimas.',name:'Ameba',sci:'Amoeba',r:34,note:'No tiene forma fija: estira partes de su cuerpo como brazos para moverse y para envolver lo que come.'},
+ {id:'euglena',macro:'Cuando hay muchas, el agua se pone verde. Con la luz del sol fabrica oxígeno, el mismo que respiran los peces.',name:'Euglena',sci:'Euglena',r:30,note:'Es verde porque hace fotosíntesis como una planta, pero nada con una cola (flagelo) como un animal. El puntito rojo es un ojo que siente la luz.'},
+ {id:'volvox',macro:'Fabrica oxígeno con la luz del sol, y lo comen las pulgas de agua y los pececitos.',name:'Volvox',sci:'Volvox',r:44,note:'Una esfera hecha de cientos de algas verdes que viven juntas y ruedan por el agua. Adentro se ven las esferas hijas.'},
+ {id:'vorticela',macro:'Filtra las bacterias del agua del pozón y ayuda a que se mantenga clara para las mojarras.',name:'Vorticela',sci:'Vorticella',r:30,note:'Una campanita con un tallo que se enrosca como un resorte cuando algo la asusta. Vive pegada a plantas y piedras.'},
+ {id:'diatomea',macro:'Forma la capa resbalosa de las piedras del arroyo, la misma que la vieja del agua raspa con su boca de ventosa.',name:'Diatomea',sci:'Bacillariophyta',r:34,note:'Alga encerrada en una cajita de vidrio (sílice) con dibujos geométricos. Hay miles de formas, y producen buena parte del oxígeno del planeta.'},
+ {id:'rotifero',macro:'Come algas y bacterias, y es comida de larvas de insectos y de pececitos recién nacidos.',name:'Rotífero',sci:'Rotifera',r:30,note:'Tiene en la cabeza una corona de cilios que parece dos ruedas girando: con ella nada y atrae comida. Son de los animales más chicos que existen.'},
+ {id:'dafnia',macro:'Las mojarras se la comen, y a las mojarras se las come el biguá: sin pulgas de agua, la laguna tendría menos pájaros.',name:'Pulga de agua',sci:'Daphnia',r:34,note:'Un crustáceo diminuto y transparente que nada a saltitos con sus antenas. Se le ve el corazón latiendo y el intestino lleno de algas.'},
+ {id:'hidra',macro:'Caza pulgas de agua con sus tentáculos que pican, igual que sus parientes las medusas del mar.',name:'Hidra',sci:'Hydra',r:38,note:'Pariente de las medusas. Vive pegada a una planta y caza con sus tentáculos. Si se corta, cada pedazo vuelve a crecer entero.'},
+ {id:'tardigrado',macro:'Vive en el musgo húmedo junto al agua; si el musgo se seca, se seca con él y revive cuando vuelve a llover.',name:'Osito de agua',sci:'Tardigrada',r:34,note:'El tardígrado camina despacio con sus ocho patitas por el musgo. Puede sobrevivir secándose por completo, al hielo, al calor y hasta al espacio.'},
+ {id:'copepodo',macro:'Es la comida favorita de los peces más chicos: muchas larvas de peces comen casi solo copépodos.',name:'Copépodo',sci:'Cyclops',r:30,note:'Un crustáceo con un solo ojo en el medio y antenas largas. Nada dando saltos y es comida para pececitos.'},
+ {id:'espirogira',macro:'Los renacuajos de ranas y sapitos la comen en los charcos.',name:'Espirogira',sci:'Spirogyra',r:50,note:'Alga en filamentos con una cinta verde en espiral adentro. Forma esas nubes verdes y resbalosas de los charcos.'},
+ {id:'nematodo',macro:'Muchos comen bacterias y hongos, y así liberan nutrientes que después absorben las raíces de los árboles del monte.',name:'Nematodo',sci:'Nematoda',r:36,note:'Gusanito redondo y transparente que se retuerce en forma de S. En un puñado de tierra del monte viven miles.'},
+ {id:'colembolo',macro:'Despedaza las hojas caídas y ayuda a convertirlas en tierra nueva para el monte.',name:'Colémbolo',sci:'Collembola',r:30,note:'Un bichito del suelo con un resorte debajo de la cola: cuando se asusta, salta muchas veces su tamaño. Come hojas en descomposición.'},
+ {id:'fitolito',macro:'El maíz se domesticó en México y llegó hasta acá hace miles de años: estos restos muestran que lo cultivaban o lo cocinaban en la cueva.',name:'Fitolitos de maíz',sci:'Zea mays (restos microscópicos)',r:30,note:'Cristales de sílice con forma de cruz que quedan de las plantas de maíz cuando se pudren. Encontrarlos en la cueva significa que la gente de hace miles de años ya cultivaba maíz.'},
+ {id:'almidon',macro:'Junto con el maíz, el zapallo y el poroto eran alimento de los primeros habitantes, como se descubrió en los cerritos de indios de Rocha.',name:'Almidón de zapallo',sci:'Cucurbita (restos microscópicos)',r:26,note:'Granos de almidón con una cruz de luz en el medio, de zapallo y poroto. Con el maíz, eran los cultivos de los primeros habitantes del este, como se vio en los cerritos de indios.'}];
 const MSITES=[
- {id:'laguna',name:'La laguna de las espátulas',sp:['paramecio','dafnia','volvox']},
- {id:'escondida',name:'La laguna escondida',sp:['ameba','hidra','euglena']},
- {id:'arroyo',name:'El arroyo, arriba del paso',sp:['diatomea','rotifero','copepodo']},
- {id:'pozon',name:'El pozón de la cascada',sp:['vorticela','diatomea']},
- {id:'manantial',name:'El manantial, arriba de la cascada',sp:['tardigrado','rotifero']},
- {id:'charco',name:'Los charcos del barrial',sp:['espirogira','copepodo','euglena']},
- {id:'monte',name:'El suelo del monte',sp:['nematodo','colembolo','tardigrado']},
- {id:'cueva',name:'El piso de la cueva',cave:true,sp:['fitolito','almidon']}];
+ {id:'laguna',info:'El plancton de la laguna alimenta toda su vida: de las pulgas de agua a las mojarras, y de ahí a las garzas, las espátulas y los biguáes.',link:['https://www.youtube.com/results?search_query=plancton+de+agua+dulce+microscopio','Videos: plancton de agua dulce'],name:'La laguna de las espátulas',sp:['paramecio','dafnia','volvox']},
+ {id:'escondida',info:'En el fondo barroso y quieto de esta laguna viven seres que se arreglan con muy poco oxígeno.',link:['https://www.youtube.com/results?search_query=hidra+ameba+microscopio','Videos: hidras y amebas'],name:'La laguna escondida',sp:['ameba','hidra','euglena']},
+ {id:'arroyo',info:'En el agua que corre, las algas se pegan a las piedras y forman una película que alimenta a peces e insectos.',link:['https://www.youtube.com/results?search_query=diatomeas+microscopio','Videos: diatomeas'],name:'El arroyo, arriba del paso',sp:['diatomea','rotifero','copepodo']},
+ {id:'pozon',info:'La caída del agua lo llena de oxígeno: por eso hay tanta vida pegada a las piedras.',link:['https://www.youtube.com/results?search_query=vorticella+microscopio','Videos: vorticelas'],name:'El pozón de la cascada',sp:['vorticela','diatomea']},
+ {id:'manantial',info:'El agua que nace en la sierra es fría y limpia, y en el musgo de las piedras viven los ositos de agua.',link:['https://www.youtube.com/results?search_query=tardígrado+osito+de+agua+documental','Videos: el osito de agua'],name:'El manantial, arriba de la cascada',sp:['tardigrado','rotifero']},
+ {id:'charco',info:'Los charcos se secan y se vuelven a llenar: sus habitantes tienen trucos para esperar la próxima lluvia.',link:['https://www.youtube.com/results?search_query=vida+en+un+charco+microscopio','Videos: la vida en un charco'],name:'Los charcos del barrial',sp:['espirogira','copepodo','euglena']},
+ {id:'monte',info:'En una cucharada de suelo sano viven millones de seres diminutos. Descomponen las hojas, reciclan nutrientes, airean la tierra y ayudan a las raíces: sin esa riqueza de vida el monte no podría funcionar.',link:['https://www.youtube.com/results?search_query=vida+en+el+suelo+microorganismos+documental','Videos: la vida en el suelo'],name:'El suelo del monte',sp:['nematodo','colembolo','tardigrado']},
+ {id:'cueva',info:'Los restos microscópicos de plantas que quedan en el suelo y en las vasijas cuentan qué comía la gente que vivió acá.',link:['https://www.youtube.com/results?search_query=cerritos+de+indios+Uruguay+arqueología','Videos: cerritos de indios'],name:'El piso de la cueva',cave:true,sp:['fitolito','almidon']}];
 
 const FISH=[
  {id:'mojarra',name:'Mojarra',sci:'Astyanax sp.',hint:'En el agua abierta, en grupo, brillando.',note:'Pez chico y plateado que anda en cardúmenes. Moverse todos juntos los protege: a un depredador le cuesta elegir a uno. Comen insectos, semillas y algas.'},

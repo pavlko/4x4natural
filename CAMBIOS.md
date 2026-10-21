@@ -52,6 +52,7 @@ Un juego de Insight Reality
 - v49  Frasco de muestra de la laguna en la orilla, bajando desde la casita de pescador; banderines en los frascos; los sitios de muestra aparecen en el mapa
 - v50  La tarjeta del microscopio ya no habla de zoolitos
 - v51  Los sitios de muestra del microscopio se ven en el mapa aunque no tengas la máscara
+- v52  Cada microorganismo cuenta su relación con los bichos y el lugar; cada sitio de muestra con explicación y video (cerritos de indios en la cueva); en la cueva la muestra se toma al volver; los ojos se acostumbran a la oscuridad y afuera se ve deslumbrante
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v51).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v52).
 La versión vigente es index.html (lista como app instalable).
