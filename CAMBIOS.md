@@ -62,6 +62,7 @@ Un juego de Insight Reality
 - v59  Manantial menos hondo con plantitas, musgo, corriente visible y pastos delicados; piedras solo bajo el agua; caminando se aprieta 🤿 para ponerse la máscara; al salir del agua siempre quedás caminando en la orilla
 - v60  Avatar más gracioso y suelto (cabezón, poncho, balanceo); en el microscopio los nombres anotados llevan al cuaderno y los bichitos se van por el borde y vuelven; video de zoolitos de sambaquis; los primeros habitantes como último hallazgo; tortugas bien sobre el tronco
 - v61  Número de versión chiquito en la pantalla de inicio, en el juego (abajo a la derecha) y en el pie del cuaderno
+- v62  La app instalada busca actualizaciones al abrirse y al volver a ella, y avisa con un botón "Hay una versión nueva"
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v61).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v62).
 La versión vigente es index.html (lista como app instalable).
