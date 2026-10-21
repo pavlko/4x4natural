@@ -13,4 +13,13 @@ Patagonia (Cueva de las Manos), África (Serengeti y Laetoli), sur de China (Gua
 ## Otras
 - Tirarse por la cascada a modo snorkel con cámara lenta.
 - Sección del cuaderno con árboles y plantas.
-- Tercera tanda de bichos: martín pescador, lechucita de las vizcacheras, carancho, picaflor, zorrillo, comadreja overa, coipo, sapito de Darwin, cangrejo de arroyo, tacurúes.
+- Tercera tanda de bichos: martín pescador, lechucita de las vizcacheras, dormilón (en lugar del carancho: vuela corto y se queda inmóvil camuflado entre pastos y rocas), picaflor, zorrillo, comadreja overa, coipo, sapito de Darwin, cangrejo de arroyo, tacurúes.
+- Costa: gaviota cocinera, ostrero, cangrejo de arena, lobo marino; ballena franca como secreto (se ve desde la costa, fin de invierno y primavera).
+
+## Dunas y mirador
+- Dunas bellas con pasto dibujante y otras plantas de médano; un mirador para dejar la camioneta y contemplar los brillos del mar.
+- Educar en no romper las dunas sin que se sienta un límite arbitrario: cercas captoras de palitos (como las reales) que protegen las dunas, una bajada habilitada para llegar a la playa en camioneta, y una pasarela de madera hasta el mirador que se recorre a pie (como la cueva). La ballena se vería mejor desde el mirador.
+- Respuesta suave si se pisa la duna: quedan huellas y el pasto aplastado, y el cuaderno explica por qué importan las dunas. Sin castigos.
+
+## Casita de pescador
+- Además del microscopio, un zoolito como hallazgo.
