@@ -39,9 +39,12 @@ Patagonia (Cueva de las Manos), África (Serengeti y Laetoli), sur de China (Gua
 - El naturalista como personaje vivo: viejo de pelo blanco, medio ermitaño pero conversador, apasionado por la naturaleza. Su rancho, su caballo, su huerta, y charlas con él sobre las pistas y lo que ya encontramos.
 
 ## Modo caminar y avatar
-- Botón 🚶 para bajarse de la camioneta cuando uno quiera (con la camioneta frenada); avatar genérico en tercera persona, cámara como la de la camioneta.
+- Botón 🚶 para bajarse de la camioneta cuando uno quiera (con la camioneta frenada); avatar genérico en tercera persona, cámara como la de la camioneta. Lleva la cámara de fotos colgada al cuello (no binoculares).
 - Caminar despacio espanta menos a los bichos; correr espanta más. No se trepan pendientes muy fuertes; se puede entrar al agua baja hasta las rodillas.
-- Botón "Volver a la camioneta" al estar cerca; la camioneta siempre marcada en el mapa.
+- Botón "🚙 Volver a la camioneta" siempre visible mientras se camina, como atajo (fundido corto y aparecés al volante); la camioneta siempre marcada en el mapa.
+- Agua honda en cualquier lado: caminando, al entrar al agua honda se pasa a nadar en la superficie (como al sacar la cabeza buceando); con la máscara, ▼ para sumergirse en cualquier parte. Sin máscara solo se nada en la superficie.
+- Desde la camioneta también se podrá bucear en cualquier agua honda, pero recién después de visitar los 4 lugares de buceo; el cartel de felicitaciones lo avisa.
+- Lejos de los 4 puntos de buceo, el fondo se arma con lo típico de esa zona (arroyo, laguna, pozón) y algunos peces comunes.
 - Pasajes de modo: caminando cerca de una entrada de buceo aparece 🤿 y al salir del agua quedás caminando en la orilla; la cueva se entra caminando (adentro en primera persona) y al salir quedás afuera caminando; la foto caminando es en primera persona a la altura de los ojos.
 
 ## Personalizar (más adelante)
