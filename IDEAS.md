@@ -30,7 +30,7 @@ Patagonia (Cueva de las Manos), África (Serengeti y Laetoli), sur de China (Gua
 - En las piedras de la costa, una bandada de playeritos; también biguáes posados.
 - Prueba del mar (solo terreno y vista, punta rocosa en el extremo oeste, salida de la laguna al mar más al oeste, pasto dibujante solo de la cresta hacia atrás): https://claude.ai/artifact/Dpys2qm8APi6hqmCBhXTsh
 
-## Manantial de arriba de la cascada
+## Manantial de arriba de la cascada (HECHO en v58)
 - Decidido: NO tirarse por la cascada (es muy peligroso en la vida real).
 - Sí bucear en el manantial de arriba: sin nada que encontrar, solo para sentir paz buceando y mirando el paisaje. Limitar con piedras el acceso al borde de la cascada.
 
@@ -42,7 +42,7 @@ Patagonia (Cueva de las Manos), África (Serengeti y Laetoli), sur de China (Gua
 - Botón 🚶 para bajarse de la camioneta cuando uno quiera (con la camioneta frenada); avatar genérico en tercera persona, cámara como la de la camioneta. Lleva la cámara de fotos colgada al cuello (no binoculares).
 - Caminar despacio espanta menos a los bichos; correr espanta más. No se trepan pendientes muy fuertes; se puede entrar al agua baja hasta las rodillas.
 - Botón "🚙 Volver a la camioneta" siempre visible mientras se camina, como atajo (fundido corto y aparecés al volante); la camioneta siempre marcada en el mapa.
-- Pendiente: nadar y bucear en cualquier agua honda se desbloquea al conocer los 4 lugares de buceo (caminando y desde la camioneta).
+- HECHO (v58): nadar y bucear en cualquier agua honda se desbloquea al conocer los 4 lugares de buceo (caminando y desde la camioneta).
 - Agua honda en cualquier lado: caminando, al entrar al agua honda se pasa a nadar en la superficie (como al sacar la cabeza buceando); con la máscara, ▼ para sumergirse en cualquier parte. Sin máscara solo se nada en la superficie.
 - Desde la camioneta también se podrá bucear en cualquier agua honda, pero recién después de visitar los 4 lugares de buceo; el cartel de felicitaciones lo avisa.
 - Lejos de los 4 puntos de buceo, el fondo se arma con lo típico de esa zona (arroyo, laguna, pozón) y algunos peces comunes.
