@@ -897,7 +897,7 @@ const SCOPE={on:false,site:null,orgs:[],t:0};
 let microT=0;
 function updateMicro(dt){if(!SAVE.micro){if(!DIVE.on&&!photo&&Math.hypot(car.x-CASITA.mx,car.z-CASITA.mz)<5.5&&Math.abs(car.v)<3)microFound();return;}
  JARFLAGS.forEach((f,i)=>f.rotation.y=Math.sin(performance.now()*.003+i)*.5);microT+=dt;if(microT<.15)return;microT=0;let near=null;
- if(caveView){const L=toCaveL(caveView.x,caveView.z);if(L[1]>9)caveDeep=true;const fx=-Math.sin(photoYaw),fz=-Math.cos(photoYaw),mx=CAVE.view.x-caveView.x,mz=CAVE.view.z-caveView.z,ml=Math.hypot(mx,mz)||1;if(caveDeep&&L[1]<8&&(fx*mx+fz*mz)/ml>.4)near=MSITES.find(s=>s.cave);}else if(!DIVE.on&&!photo&&Math.abs(car.v)<2.5){for(const s of MSITES){if(!s.cave&&Math.hypot(car.x-s.x,car.z-s.z)<10){near=s;break;}}}
+ if(caveView){const cs=MSITES.find(s=>s.cave);if(Math.hypot(caveView.x-cs.x,caveView.z-cs.z)<2.6)near=cs;}else if(!DIVE.on&&!photo&&Math.abs(car.v)<2.5){for(const s of MSITES){if(!s.cave&&Math.hypot(car.x-s.x,car.z-s.z)<10){near=s;break;}}}
  SCOPE.near=near;$('#microBtn').classList.toggle('show',!!near&&!SCOPE.on);}
 function openScope(site){SCOPE.on=true;SCOPE.site=site;SCOPE.t=0;SAVE.samples=SAVE.samples||{};if(!SAVE.samples[site.id]){SAVE.samples[site.id]=1;save();}
  $('#scopeTitle').textContent='Muestra: '+site.name.toLowerCase();$('#scope').classList.add('show');$('#microBtn').classList.remove('show');
@@ -1902,7 +1902,7 @@ const JARFLAGS=[];
  {const p=PUDDLES.find(p=>Math.hypot(p.x-BARRO.x,p.z-BARRO.z)<BARRO.r)||PUDDLES[0];pos.charco=p?[p.x+p.r+1.8,p.z]:[BARRO.x+8,BARRO.z];}
  {let p=null;for(let t=0;t<600&&!p;t++){const z=-230+rnd()*90,x=riverX(z)+(rnd()<.5?-1:1)*(riverW(z)*.5+10+rnd()*20),h=H(x,z);if(h>1.5&&h<12&&slopeAt(x,z)<.5&&hitObs(x,z,6)&&!hitObs(x,z,1.4))p=[x,z];}pos.monte=p||band(-230,-140)||[riverX(-180)+20,-180];}
  for(const s of MSITES){if(s.cave)continue;const p=pos[s.id];s.x=p[0];s.z=p[1];jar(p[0],p[1]);addObs(p[0],p[1],.2);}
- {const xl=1.45,zl=3.2,j=jar(CAVE_OX-zl,CAVE_Z+xl,FLATS[2][3]+.02);j.scale.setScalar(.85);}}
+ {const xl=1.45,zl=3.2,j=jar(CAVE_OX-zl,CAVE_Z+xl,FLATS[2][3]+.02);j.scale.setScalar(.85);const cs=MSITES.find(s=>s.cave);cs.x=CAVE_OX-zl;cs.z=CAVE_Z+xl;}}
 
 // el baúl de la tapera
 const CHEST={t:0};{const P=PLACES.find(q=>q.id==='tapera'),a=.35,cx=P.x-2.3*Math.sin(a),cz=P.z-2.3*Math.cos(a),g=new THREE.Group();g.position.set(cx,H(P.x,P.z)-.05,cz);g.rotation.y=a;scene.add(g);

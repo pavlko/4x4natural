@@ -56,6 +56,7 @@ Un juego de Insight Reality
 - v53  El cartel de cada descubrimiento (bicho, pez, microorganismo, lugar, hallazgo) se toca y lleva directo a su ficha en el cuaderno
 - v54  Al tomar una muestra: frasco con el color y la textura de cada lugar, gotero, gota sobre el portaobjetos y zoom al microscopio
 - v55  Frasquito de muestra también en la entrada de la cueva
+- v56  En la cueva el botón de muestra aparece al estar junto al frasco, como en los demás lugares
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v55).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v56).
 La versión vigente es index.html (lista como app instalable).
