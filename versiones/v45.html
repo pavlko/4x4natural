@@ -33,6 +33,13 @@ button:focus-visible{outline:2px solid var(--senal);outline-offset:2px}
 .tool.on{background:var(--senal);color:#1f160e}
 #diveBtn{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 70px);display:none;background:#1f5f6e;color:#eaf8fb;border:2px solid #9fe0ec;border-radius:26px;padding:10px 22px;font-size:22px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.4)}
 #diveBtn.show{display:block}
+#microBtn{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 70px);display:none;background:#5a3f1c;color:#f7ecd2;border:2px solid #d9b65e;border-radius:26px;padding:10px 22px;font-size:22px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.4)}#microBtn.show{display:block}
+#scope{position:fixed;inset:0;z-index:25;display:none;align-items:center;justify-content:center;background:rgba(10,8,5,.9)}#scope.show{display:flex}
+.scopebox{text-align:center;color:#e8dcc0;font-family:'Newsreader',serif}.scopebox h3{margin:0 0 8px;font-size:22px;font-weight:600}
+#scopeCv{border-radius:50%;box-shadow:0 0 0 10px #8a5e22,0 0 0 14px #3a2510,0 10px 40px rgba(0,0,0,.6);background:#cfe0d6;cursor:crosshair;touch-action:manipulation}
+.scopehint{margin:12px 0 6px;font-size:15px;color:#bfae8a}#scopeList{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:0 0 10px}#scopeList span{border:1.5px dashed #8a7a5a;border-radius:4px;padding:2px 10px;font-size:15px;min-width:34px}#scopeList span.ok{border-style:solid;border-color:#d9b65e;color:#f7ecd2}
+#scopeClose{background:#d9b65e;color:#1f160e;border:0;border-radius:4px;padding:8px 22px;font-size:17px;font-weight:700}
+@media (orientation:portrait) and (max-width:700px){#microBtn{bottom:calc(env(safe-area-inset-bottom,0px) + 150px)}}
 #announce{position:fixed;left:50%;top:22%;transform:translate(-50%,-8px);z-index:6;background:rgba(35,64,47,.93);color:#F3EBDD;border-bottom:4px solid #D9B65E;border-radius:6px;padding:12px 26px 14px;text-align:center;pointer-events:none;opacity:0;transition:opacity .35s,transform .35s;max-width:92vw}
 #announce.show{opacity:1;transform:translate(-50%,0)}
 #announce b{display:block;font-size:clamp(34px,7vw,56px);line-height:1;font-weight:700}#announce span{display:block;margin-top:6px;font-size:17px;color:#D9B65E;font-family:Newsreader,serif;font-style:italic}
@@ -149,6 +156,7 @@ body.photo #raceArrow{display:none!important}
 .pages{overflow:auto;background:var(--kraft);border-radius:3px;padding:16px;color:var(--tinta)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
 .card{background:#e6d8b6;border-radius:2px;padding:8px;box-shadow:0 1px 0 rgba(0,0,0,.12)}
+.card .ph.micro canvas{width:100%;height:100%;display:block;border-radius:50%}
 .card .ph{aspect-ratio:8/5;background:#cbb88f;border-radius:1px;display:flex;align-items:center;justify-content:center;font-size:44px;color:#a8946a;overflow:hidden}
 .card .ph img{width:100%;height:100%;object-fit:cover;display:block}
 .card h3{margin:8px 0 0;font-size:22px;font-weight:700;line-height:1}
@@ -250,6 +258,7 @@ body.menu #touch{display:none!important}
   <div id="toasts"></div>
   <div id="trail"></div>
   <button id="diveBtn" type="button">🤿 Zambullirse</button>
+  <button id="microBtn" type="button">🔬 Tomar muestra</button>
   <div id="race"></div>
   <div id="raceArrow" aria-hidden="true">➤</div>
   <div id="gauge"><div><div id="spd">0</div><div class="u">km/h</div></div><div id="gear">4H</div></div>
@@ -264,6 +273,7 @@ body.menu #touch{display:none!important}
   <div class="tb" id="tU">▲</div><div class="tb" id="tD">▼</div>
 </div>
 <div id="flash"></div>
+<div id="scope"><div class="scopebox"><h3 id="scopeTitle">Muestra</h3><canvas id="scopeCv" width="520" height="520"></canvas><p class="scopehint">Tocá cada bichito para identificarlo</p><div id="scopeList"></div><button id="scopeClose" type="button">Cerrar</button></div></div>
 <div id="announce" aria-live="polite"></div>
 <button id="backCar" type="button">🚙 Volver a la camioneta</button>
 <div id="air" aria-label="Aire"><span>Aire</span><div><i id="airFill"></i></div></div>
@@ -283,7 +293,7 @@ body.menu #touch{display:none!important}
 <div id="book" role="dialog" aria-label="Cuaderno de campo">
   <div class="cover">
     <header><h2>Cuaderno de campo<em>Sierras y humedal del este</em></h2><button class="close" id="bClose">Cerrar</button></header>
-    <nav class="tabs" id="bookTabs"><button data-t="portada" class="on" title="Portada" aria-label="Portada"></button><button data-t="lugares" title="Lugares" aria-label="Lugares"></button><button data-t="aves" title="Aves" aria-label="Aves"></button><button data-t="mamiferos" title="Mamíferos" aria-label="Mamíferos"></button><button data-t="reptiles" title="Reptiles" aria-label="Reptiles"></button><button data-t="anfibios" title="Anfibios" aria-label="Anfibios"></button><button data-t="invertebrados" title="Invertebrados" aria-label="Invertebrados"></button><button data-t="agua" title="Bajo el agua" aria-label="Bajo el agua"></button><button data-t="logros" title="Logros" aria-label="Logros"></button><button data-t="hallazgos" title="Hallazgos" aria-label="Hallazgos"></button></nav>
+    <nav class="tabs" id="bookTabs"><button data-t="portada" class="on" title="Portada" aria-label="Portada"></button><button data-t="lugares" title="Lugares" aria-label="Lugares"></button><button data-t="aves" title="Aves" aria-label="Aves"></button><button data-t="mamiferos" title="Mamíferos" aria-label="Mamíferos"></button><button data-t="reptiles" title="Reptiles" aria-label="Reptiles"></button><button data-t="anfibios" title="Anfibios" aria-label="Anfibios"></button><button data-t="invertebrados" title="Invertebrados" aria-label="Invertebrados"></button><button data-t="agua" title="Bajo el agua" aria-label="Bajo el agua"></button><button data-t="micro" title="Microscopio" aria-label="Microscopio"></button><button data-t="logros" title="Logros" aria-label="Logros"></button><button data-t="hallazgos" title="Hallazgos" aria-label="Hallazgos"></button></nav>
 <div class="pages"><section class="tp on" data-t="portada"><h4><span class="ich" data-ic="portada"></span> Portada</h4><div id="portada"></div></section>
 <section class="tp" data-t="aves"><h4><span class="ich" data-ic="aves"></span> Aves</h4><div class="grid" id="cards_aves"></div></section>
 <section class="tp" data-t="mamiferos"><h4><span class="ich" data-ic="mamiferos"></span> Mamíferos</h4><div class="grid" id="cards_mamiferos"></div></section>
@@ -291,6 +301,7 @@ body.menu #touch{display:none!important}
 <section class="tp" data-t="anfibios"><h4><span class="ich" data-ic="anfibios"></span> Anfibios</h4><div class="grid" id="cards_anfibios"></div></section>
 <section class="tp" data-t="invertebrados"><h4><span class="ich" data-ic="invertebrados"></span> Invertebrados</h4><div class="grid" id="cards_invertebrados"></div></section>
 <section class="tp" data-t="agua"><div id="agua"></div></section>
+<section class="tp" data-t="micro"><h4><span class="ich" data-ic="micro"></span> Microscopio</h4><div id="microPage"></div></section>
 <section class="tp" data-t="lugares"><h4><span class="ich" data-ic="lugares"></span> <span id="plH">Lugares</span></h4><div class="grid" id="plList"></div></section>
 <section class="tp" data-t="logros"><h4><span class="ich" data-ic="logros"></span> <span id="logH">Logros especiales</span></h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
 <section class="tp" data-t="hallazgos"><h4><span class="ich" data-ic="hallazgos"></span> Hallazgos</h4><div id="hzList"></div></section>
@@ -547,6 +558,7 @@ const ICP={portada:'<circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v
  logros:'<path d="M12 2.5v19M2.5 12h19M5.5 5.5l13 13M18.5 5.5l-13 13"/><circle cx="12" cy="12" r="2.5"/>',
  hallazgos:'<path d="M8.5 21c-1.6-2-3.6-4.3-5-7l1.7-.7 3.2 3M8.5 16.3 6 6.5M10.6 15.5 10.2 3.5M12.8 15.6 15 4.5M14.6 16.6l4.6-7.6M8.5 21h7c2-1.8 2.8-3.6 3.2-6.2l-2.8-.6"/>',
  peces:'<path d="M3.5 12c4-5 9-5 13 0-4 5-9 5-13 0Zm13 0 4-3.5v7Z"/><circle cx="7.5" cy="11.3" r=".8"/>',
+ micro:'<circle cx="10.5" cy="10.5" r="6.5"/><circle cx="10.5" cy="10.5" r="2.2"/><path d="M15.5 15.5 21 21"/>',
  fotos:'<path d="M12 3l2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4Z"/>'};
 const ICON=k=>'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">'+(ICP[k]||'')+'</svg>';
 function paintIcons(root){(root||document).querySelectorAll('#bookTabs button').forEach(b=>b.innerHTML=ICON(b.dataset.t));(root||document).querySelectorAll('.ich').forEach(e=>e.innerHTML=ICON(e.dataset.ic));}
@@ -869,6 +881,55 @@ const CLOUDS=[];
   const m=new THREE.Mesh(mergeGeos(parts),cm);const x=low?-80+(rnd()-.5)*160:(rnd()-.5)*WORLD*1.3,z=low?-215+(rnd()-.5)*120:(rnd()-.5)*WORLD*1.3,y=low?62+rnd()*12:115+rnd()*55;
   m.position.set(x,y,z);m.rotation.y=rnd()*.6;m.castShadow=false;m.receiveShadow=false;scene.add(m);CLOUDS.push({m,v:1.2+rnd()*1.2,low});}}
 function updateClouds(dt){const L=WORLD*.68;for(const c of CLOUDS){c.m.position.x+=c.v*dt;c.m.position.z+=c.v*.35*dt;if(c.low){if(c.m.position.x>60){c.m.position.x=-220;}if(c.m.position.z>-120)c.m.position.z=-300;}else{if(c.m.position.x>L)c.m.position.x=-L;if(c.m.position.z>L)c.m.position.z=-L;}}}
+// ===== LA VISTA DEL MICROSCOPIO =====
+const SCOPE={on:false,site:null,orgs:[],t:0};
+let microT=0;
+function updateMicro(dt){if(!SAVE.micro){if(!DIVE.on&&!photo&&Math.hypot(car.x-CASITA.x,car.z-CASITA.z)<10&&Math.abs(car.v)<3)microFound();return;}
+ microT+=dt;if(microT<.15)return;microT=0;let near=null;
+ if(caveView)near=MSITES.find(s=>s.cave);else if(!DIVE.on&&!photo&&Math.abs(car.v)<1.5){for(const s of MSITES){if(!s.cave&&Math.hypot(car.x-s.x,car.z-s.z)<9){near=s;break;}}}
+ SCOPE.near=near;$('#microBtn').classList.toggle('show',!!near&&!SCOPE.on);}
+function openScope(site){SCOPE.on=true;SCOPE.site=site;SCOPE.t=0;SAVE.samples=SAVE.samples||{};if(!SAVE.samples[site.id]){SAVE.samples[site.id]=1;save();}
+ $('#scopeTitle').textContent='Muestra: '+site.name.toLowerCase();$('#scope').classList.add('show');$('#microBtn').classList.remove('show');
+ const cv=$('#scopeCv'),S=Math.min(window.innerWidth,window.innerHeight)-40,size=Math.max(260,Math.min(560,S));cv.width=cv.height=size*(window.devicePixelRatio>1.5?2:1);cv.style.width=cv.style.height=size+'px';
+ const W=cv.width,R=W/2-W*.03;SCOPE.W=W;SCOPE.R=R;SCOPE.orgs=[];
+ for(const id of site.sp){const sp=MICRO.find(m=>m.id===id),n=id==='espirogira'||id==='hidra'||id==='vorticela'?1:(id==='fitolito'||id==='almidon'||id==='diatomea'?3:2);
+  for(let i=0;i<n;i++){const a=Math.random()*6.28,r=Math.random()*R*.6;SCOPE.orgs.push({sp,id,x:W/2+Math.cos(a)*r,y:W/2+Math.sin(a)*r,a:Math.random()*6.28,ph:Math.random()*6.28,s:W/560,v:0,k:i});}}
+ scopeList();scopeFrame();}
+function closeScope(){SCOPE.on=false;$('#scope').classList.remove('show');}
+function scopeList(){const f=SAVE.microFound||{};$('#scopeList').innerHTML=SCOPE.site.sp.map(id=>{const m=MICRO.find(x=>x.id===id);return `<span class="${f[id]?'ok':''}">${f[id]?m.name:'?'}</span>`;}).join('');}
+function scopeFrame(){if(!SCOPE.on)return;const cv=$('#scopeCv'),x=cv.getContext('2d'),W=SCOPE.W,R=SCOPE.R,dt=1/60;SCOPE.t+=dt;const t=SCOPE.t;
+ x.clearRect(0,0,W,W);x.save();x.beginPath();x.arc(W/2,W/2,R,0,7);x.clip();const g=x.createRadialGradient(W/2,W/2,R*.2,W/2,W/2,R);g.addColorStop(0,'#e9f2ea');g.addColorStop(.85,'#cfe0d6');g.addColorStop(1,'#8fa89c');x.fillStyle=g;x.fillRect(0,0,W,W);
+ x.globalAlpha=.08;x.fillStyle='#2a3a30';for(let i=0;i<40;i++){const px=(Math.sin(i*12.9)*.5+.5)*W,py=(Math.sin(i*78.2)*.5+.5)*W;x.beginPath();x.arc(px+Math.sin(t*.3+i)*3,py+Math.cos(t*.2+i)*3,1.5+(i%3),0,7);x.fill();}x.globalAlpha=1;
+ for(const o of SCOPE.orgs){moveOrg(o,dt,W,R);x.save();x.translate(o.x,o.y);x.scale(o.s,o.s);DRAW[o.id](x,o,t);x.restore();}
+ x.restore();x.lineWidth=W*.012;x.strokeStyle='#1a1510';x.beginPath();x.arc(W/2,W/2,R+W*.006,0,7);x.stroke();
+ requestAnimationFrame(scopeFrame);}
+function moveOrg(o,dt,W,R){const id=o.id;if(id==='hidra'||id==='vorticela'||id==='espirogira'){o.x+=Math.sin(o.ph+SCOPE.t*.2)*.05;return;}
+ if(id==='fitolito'||id==='almidon'||id==='diatomea'){o.a+=dt*.05;o.x+=Math.sin(SCOPE.t*.3+o.ph)*.15;o.y+=Math.cos(SCOPE.t*.25+o.ph)*.15;}
+ else if(id==='dafnia'||id==='copepodo'||id==='colembolo'){o.v=Math.max(0,o.v-dt*3);if(Math.random()<dt*(id==='colembolo'?.5:1.6)){o.v=id==='colembolo'?9:4;o.a+=(Math.random()-.5)*1.5;}o.x+=Math.cos(o.a)*o.v*o.s*2;o.y+=Math.sin(o.a)*o.v*o.s*2-(id==='dafnia'?dt*8:0);}
+ else if(id==='ameba'||id==='tardigrado'||id==='nematodo'||id==='volvox'){o.a+=(Math.random()-.5)*dt*.6;const v=id==='volvox'?.5:(id==='nematodo'?.9:.25);o.x+=Math.cos(o.a)*v*o.s;o.y+=Math.sin(o.a)*v*o.s;}
+ else{o.a+=(Math.random()-.5)*dt*1.4+Math.sin(SCOPE.t*2+o.ph)*dt*.4;const v=id==='paramecio'?1.8:(id==='rotifero'?1.1:1.4);o.x+=Math.cos(o.a)*v*o.s;o.y+=Math.sin(o.a)*v*o.s;}
+ const dx=o.x-W/2,dy=o.y-W/2,d=Math.hypot(dx,dy);if(d>R*.78){o.a=Math.atan2(-dy,-dx)+(Math.random()-.5)*.8;o.x-=dx/d*2;o.y-=dy/d*2;}}
+const DRAW={
+ paramecio(x,o,t){x.rotate(o.a);x.fillStyle='rgba(190,200,185,.75)';x.strokeStyle='#5a6a5a';x.lineWidth=1.2;x.beginPath();x.ellipse(0,0,34,15,0,0,7);x.fill();x.stroke();x.strokeStyle='rgba(60,80,60,.6)';x.lineWidth=.8;for(let i=0;i<36;i++){const a=i/36*6.28,c=Math.cos(a),s=Math.sin(a),w=Math.sin(t*25+i)*1.5;x.beginPath();x.moveTo(c*34,s*15);x.lineTo(c*39+w,s*19);x.stroke();}x.fillStyle='rgba(90,110,90,.7)';x.beginPath();x.ellipse(-4,0,9,5,0,0,7);x.fill();x.fillStyle='rgba(255,255,255,.6)';x.beginPath();x.arc(16,-4,3.5,0,7);x.fill();x.beginPath();x.arc(-18,3,3,0,7);x.fill();},
+ ameba(x,o,t){x.fillStyle='rgba(205,200,185,.75)';x.strokeStyle='#7a7060';x.lineWidth=1.3;x.beginPath();for(let i=0;i<=12;i++){const a=i/12*6.28,r=24+10*Math.sin(a*3+t*.9+o.ph)+6*Math.sin(a*5-t*.6);x.lineTo(Math.cos(a)*r,Math.sin(a)*r);}x.closePath();x.fill();x.stroke();x.fillStyle='rgba(110,100,80,.7)';x.beginPath();x.arc(3,-2,6,0,7);x.fill();x.fillStyle='rgba(120,120,110,.5)';for(let i=0;i<5;i++){x.beginPath();x.arc(Math.sin(i*4+1)*12,Math.cos(i*3)*10,2.2,0,7);x.fill();}},
+ euglena(x,o,t){x.rotate(o.a);x.fillStyle='rgba(90,160,70,.85)';x.strokeStyle='#2f6a28';x.lineWidth=1.2;x.beginPath();x.moveTo(26,0);x.quadraticCurveTo(10,-14,-18,-6);x.quadraticCurveTo(-26,0,-18,6);x.quadraticCurveTo(10,14,26,0);x.fill();x.stroke();x.fillStyle='#c8302a';x.beginPath();x.arc(17,-3,2.6,0,7);x.fill();x.strokeStyle='rgba(60,90,50,.8)';x.lineWidth=1;x.beginPath();x.moveTo(26,0);for(let i=1;i<=14;i++)x.lineTo(26+i*3,Math.sin(i*.9-t*18)*5);x.stroke();},
+ volvox(x,o,t){x.rotate(t*.4+o.ph);x.fillStyle='rgba(140,200,120,.25)';x.strokeStyle='rgba(70,130,60,.9)';x.lineWidth=1.5;x.beginPath();x.arc(0,0,42,0,7);x.fill();x.stroke();x.fillStyle='rgba(60,130,50,.9)';for(let i=0;i<48;i++){const a=i*.618*6.28,r=42*Math.sqrt((i+.5)/48);x.beginPath();x.arc(Math.cos(a)*r,Math.sin(a)*r,1.6,0,7);x.fill();}x.strokeStyle='rgba(60,130,50,.7)';for(const[cx,cy,r] of[[-12,8,11],[14,-6,9],[4,16,7]]){x.beginPath();x.arc(cx,cy,r,0,7);x.stroke();}},
+ vorticela(x,o,t){const c=Math.max(0,Math.sin(t*.7+o.ph));const k=1-c*.55;x.strokeStyle='#6a7a60';x.lineWidth=1.4;x.beginPath();x.moveTo(0,60);for(let i=1;i<=12;i++)x.lineTo(Math.sin(i*1.4)*4*c,60-i*5*k);x.stroke();x.fillStyle='rgba(200,215,200,.8)';x.strokeStyle='#5a6a5a';x.beginPath();x.moveTo(-14,60-60*k);x.quadraticCurveTo(-18,60-60*k-22,-10,60-60*k-30);x.lineTo(10,60-60*k-30);x.quadraticCurveTo(18,60-60*k-22,14,60-60*k);x.closePath();x.fill();x.stroke();x.strokeStyle='rgba(60,80,60,.6)';for(let i=0;i<10;i++){x.beginPath();x.moveTo(-10+i*2.2,60-60*k-30);x.lineTo(-10+i*2.2+Math.sin(t*20+i),60-60*k-36);x.stroke();}},
+ diatomea(x,o,t){x.rotate(o.a);x.fillStyle='rgba(200,170,90,.55)';x.strokeStyle='#8a6a2a';x.lineWidth=1.3;x.beginPath();x.moveTo(-36,0);x.quadraticCurveTo(-10,-11,0,-11);x.quadraticCurveTo(10,-11,36,0);x.quadraticCurveTo(10,11,0,11);x.quadraticCurveTo(-10,11,-36,0);x.fill();x.stroke();x.lineWidth=.7;for(let i=-30;i<=30;i+=4){const h=10*(1-Math.abs(i)/36);x.beginPath();x.moveTo(i,-h);x.lineTo(i,h);x.stroke();}x.beginPath();x.moveTo(-32,0);x.lineTo(32,0);x.stroke();},
+ rotifero(x,o,t){x.rotate(o.a);x.fillStyle='rgba(215,210,195,.8)';x.strokeStyle='#6a6050';x.lineWidth=1.2;x.beginPath();x.ellipse(0,0,24,13,0,0,7);x.fill();x.stroke();x.beginPath();x.moveTo(-22,0);x.lineTo(-34,-5);x.moveTo(-22,0);x.lineTo(-34,5);x.stroke();for(const s of[-1,1]){x.save();x.translate(22,s*7);x.rotate(t*12*s);x.strokeStyle='rgba(80,70,60,.8)';x.beginPath();x.arc(0,0,6,0,7);x.stroke();for(let i=0;i<8;i++){const a=i/8*6.28;x.beginPath();x.moveTo(Math.cos(a)*6,Math.sin(a)*6);x.lineTo(Math.cos(a)*9,Math.sin(a)*9);x.stroke();}x.restore();}x.fillStyle='rgba(120,100,80,.6)';x.beginPath();x.ellipse(2,0,9,5,0,0,7);x.fill();},
+ dafnia(x,o,t){x.fillStyle='rgba(215,220,210,.7)';x.strokeStyle='#5a6050';x.lineWidth=1.2;x.beginPath();x.moveTo(0,-26);x.quadraticCurveTo(22,-20,18,8);x.quadraticCurveTo(10,26,0,30);x.quadraticCurveTo(-22,22,-16,-10);x.quadraticCurveTo(-12,-24,0,-26);x.fill();x.stroke();x.fillStyle='#1a1a1a';x.beginPath();x.arc(-6,-16,4.5,0,7);x.fill();x.fillStyle='rgba(110,130,80,.7)';x.beginPath();x.moveTo(2,-14);x.quadraticCurveTo(10,0,4,18);x.quadraticCurveTo(-2,2,2,-14);x.fill();x.strokeStyle='#4a5040';x.lineWidth=1.5;const f=Math.sin(t*14)*8;x.beginPath();x.moveTo(-4,-20);x.lineTo(-24,-30+f);x.lineTo(-30,-18+f);x.moveTo(-4,-20);x.lineTo(-26,-8+f*.5);x.stroke();x.fillStyle='rgba(200,80,80,.6)';x.beginPath();x.arc(6,-8,2.5+Math.sin(t*9),0,7);x.fill();},
+ hidra(x,o,t){x.fillStyle='rgba(170,190,150,.8)';x.strokeStyle='#5a7a4a';x.lineWidth=1.5;x.beginPath();x.moveTo(-8,60);x.quadraticCurveTo(-11,20,-7,-10);x.lineTo(7,-10);x.quadraticCurveTo(11,20,8,60);x.closePath();x.fill();x.stroke();x.lineWidth=1.3;for(let i=0;i<6;i++){const a=-Math.PI/2+(i-2.5)*.45;x.beginPath();x.moveTo(0,-10);for(let k=1;k<=10;k++){const r=k*5;x.lineTo(Math.cos(a)*r+Math.sin(t*2+i+k*.5)*3,-10+Math.sin(a)*r);}x.stroke();}},
+ tardigrado(x,o,t){x.rotate(o.a);x.fillStyle='rgba(205,195,170,.9)';x.strokeStyle='#6a5a40';x.lineWidth=1.3;x.beginPath();x.ellipse(0,0,30,14,0,0,7);x.fill();x.stroke();x.lineWidth=.8;for(let i=-18;i<=18;i+=9){x.beginPath();x.moveTo(i,-13+Math.abs(i)*.2);x.lineTo(i,13-Math.abs(i)*.2);x.stroke();}x.lineWidth=1.3;for(let i=0;i<4;i++)for(const s of[-1,1]){const px=-22+i*14,w=Math.sin(t*4+i*1.5)*3;x.beginPath();x.moveTo(px,s*11);x.lineTo(px+w,s*19);x.lineTo(px+w+2,s*22);x.stroke();}x.fillStyle='#4a3a2a';x.beginPath();x.arc(24,-4,1.8,0,7);x.fill();x.beginPath();x.arc(24,4,1.8,0,7);x.fill();},
+ copepodo(x,o,t){x.rotate(o.a);x.fillStyle='rgba(205,215,205,.8)';x.strokeStyle='#5a6a5a';x.lineWidth=1.2;x.beginPath();x.ellipse(6,0,16,9,0,0,7);x.fill();x.stroke();x.beginPath();x.moveTo(-10,0);x.lineTo(-26,0);x.moveTo(-26,0);x.lineTo(-34,-5);x.moveTo(-26,0);x.lineTo(-34,5);x.stroke();const f=Math.sin(t*10)*6;x.beginPath();x.moveTo(18,-3);x.lineTo(46,-14+f);x.moveTo(18,3);x.lineTo(46,14-f);x.stroke();x.fillStyle='#c8302a';x.beginPath();x.arc(18,0,2.2,0,7);x.fill();x.fillStyle='rgba(120,100,80,.6)';x.beginPath();x.ellipse(-16,-6,5,3,0,0,7);x.fill();x.beginPath();x.ellipse(-16,6,5,3,0,0,7);x.fill();},
+ espirogira(x,o,t){x.rotate(o.ph*.5);x.fillStyle='rgba(190,230,170,.45)';x.strokeStyle='#5a9a4a';x.lineWidth=1.3;x.beginPath();x.rect(-110,-8,220,16);x.fill();x.stroke();for(let i=-80;i<=80;i+=40){x.beginPath();x.moveTo(i,-8);x.lineTo(i,8);x.stroke();}x.strokeStyle='#2f8a2a';x.lineWidth=2.2;x.beginPath();for(let i=-110;i<=110;i+=2)x.lineTo(i,Math.sin(i*.25+t)*6);x.stroke();},
+ nematodo(x,o,t){x.rotate(o.a);x.strokeStyle='rgba(120,120,100,.9)';x.lineWidth=4;x.lineCap='round';x.beginPath();for(let i=-40;i<=40;i+=3)x.lineTo(i,Math.sin(i*.12+t*6)*9*(1-Math.abs(i)/60));x.stroke();x.strokeStyle='rgba(255,255,255,.5)';x.lineWidth=1.2;x.beginPath();for(let i=-40;i<=40;i+=3)x.lineTo(i,Math.sin(i*.12+t*6)*9*(1-Math.abs(i)/60)-1);x.stroke();},
+ colembolo(x,o,t){x.rotate(o.a);x.fillStyle='rgba(120,110,120,.95)';x.strokeStyle='#3a3040';x.lineWidth=1;x.beginPath();x.ellipse(0,0,16,8,0,0,7);x.fill();x.stroke();x.beginPath();x.arc(17,0,5,0,7);x.fill();x.stroke();x.beginPath();x.moveTo(20,-2);x.lineTo(30,-9);x.moveTo(20,2);x.lineTo(30,9);x.moveTo(-14,2);x.quadraticCurveTo(-24,6,-22,-6);x.stroke();for(let i=0;i<3;i++)for(const s of[-1,1]){x.beginPath();x.moveTo(8-i*8,s*7);x.lineTo(6-i*8,s*13);x.stroke();}},
+ fitolito(x,o,t){x.rotate(o.a);x.fillStyle='rgba(230,235,240,.9)';x.strokeStyle='#6a7a88';x.lineWidth=1.3;x.beginPath();x.moveTo(-18,-6);x.lineTo(-6,-6);x.lineTo(-6,-18);x.lineTo(6,-18);x.lineTo(6,-6);x.lineTo(18,-6);x.lineTo(18,6);x.lineTo(6,6);x.lineTo(6,18);x.lineTo(-6,18);x.lineTo(-6,6);x.lineTo(-18,6);x.closePath();x.fill();x.stroke();x.strokeStyle='rgba(100,120,140,.5)';x.beginPath();x.moveTo(-12,0);x.lineTo(12,0);x.moveTo(0,-12);x.lineTo(0,12);x.stroke();},
+ almidon(x,o,t){x.fillStyle='rgba(245,245,235,.9)';x.strokeStyle='#8a8a70';x.lineWidth=1.2;x.beginPath();x.ellipse(0,0,18,14,0,0,7);x.fill();x.stroke();x.strokeStyle='rgba(120,120,100,.6)';x.lineWidth=.8;for(let r=4;r<16;r+=4){x.beginPath();x.ellipse(0,0,r*1.2,r,0,0,7);x.stroke();}x.strokeStyle='rgba(40,40,40,.55)';x.lineWidth=2;x.beginPath();x.moveTo(-14,0);x.lineTo(14,0);x.moveTo(0,-11);x.lineTo(0,11);x.stroke();}};
+function scopeTap(ev){if(!SCOPE.on)return;const cv=$('#scopeCv'),rc=cv.getBoundingClientRect(),k=cv.width/rc.width,px=(ev.clientX-rc.left)*k,py=(ev.clientY-rc.top)*k;let best=null,bd=1e9;
+ for(const o of SCOPE.orgs){const d=Math.hypot(o.x-px,o.y-py)/o.s;if(d<o.sp.r*1.3&&d<bd){bd=d;best=o;}}if(!best)return;
+ SAVE.microFound=SAVE.microFound||{};const m=best.sp,isNew=!SAVE.microFound[m.id];if(isNew){SAVE.microFound[m.id]={where:SCOPE.site.name};save();chime();announce(m.name,'🔬 '+m.note,m.sci);checkComplete();}else toast('🔬 '+m.name+' — ya lo tenías anotado.');scopeList();}
+
 function updateSurf(t){SURF.forEach((m,i)=>{const ph=t*.55+i*2.2;m.position.z=1.2+Math.sin(ph)*1.6+i*1.5;m.material.opacity=.15+.4*Math.max(0,Math.sin(ph+1.2));});}
 // ===== LUGARES CONSTRUIDOS =====
 const SPH=new THREE.SphereGeometry(1,16,12),BOX=new THREE.BoxGeometry(1,1,1),CYL=new THREE.CylinderGeometry(1,1,1,10),CONE=new THREE.ConeGeometry(1,1,10);
@@ -1419,12 +1480,17 @@ function specialHTML(sp,f){const x=f.flyImg?{img:f.flyImg,label:'En vuelo'}:(f.x
 function renderPortada(){const nf=GOAL.filter(s=>SAVE.found[s.id]).length,np=SAVE.places.length,fish=SAVE.fish||{},nfi=FISH.filter(x=>fish[x.id]).length,
  lg=[!!SAVE.raceWins,!!SAVE.nest,!!SAVE.found.puma].filter(Boolean).length,ns=SPECIES.filter(sp=>{const f=SAVE.found[sp.id];return f&&(f.flyImg||(f.x2&&f.x2.img)||(sp.id==='tero'&&SAVE.nest));}).length;
  const row=(l,a,b,go)=>`<div class="prow" data-go="${go}" role="button" tabindex="0"><span>${l}</span><div class="bar"><i style="width:${b?Math.round(a/b*100):0}%"></i></div><b>${a} / ${b}</b></div>`,gc=k=>GOAL.filter(s=>s.grp===k),gf=k=>gc(k).filter(s=>SAVE.found[s.id]).length;
- $('#portada').innerHTML=`<div class="pstat">${row(ICON('lugares')+' Lugares',np,PLACES.length,'lugares')}${Object.keys(GRPN).map(k=>row(ICON(k)+' '+GRPN[k][1],gf(k),gc(k).length,k)).join('')}${SAVE.mask?row(ICON('peces')+' Peces',nfi,FISH.length,'agua'):''}${row(ICON('fotos')+' Fotos especiales',ns,Object.keys(SPECIALS).length,'aves')}${row(ICON('logros')+' Logros',lg,3,'logros')}</div>
+ $('#portada').innerHTML=`<div class="pstat">${row(ICON('lugares')+' Lugares',np,PLACES.length,'lugares')}${Object.keys(GRPN).map(k=>row(ICON(k)+' '+GRPN[k][1],gf(k),gc(k).length,k)).join('')}${SAVE.mask?row(ICON('peces')+' Peces',nfi,FISH.length,'agua'):''}${SAVE.micro?row(ICON('micro')+' Microscopio',Object.keys(SAVE.microFound||{}).length,MICRO.length,'micro'):''}${row(ICON('fotos')+' Fotos especiales',ns,Object.keys(SPECIALS).length,'aves')}${row(ICON('logros')+' Logros',lg,3,'logros')}</div>
  `;document.querySelectorAll('#portada [data-go]').forEach(el=>el.onclick=()=>goTab(el.dataset.go));}
+function renderMicro(){const el=$('#microPage');if(!el)return;if(!SAVE.micro){el.innerHTML='';return;}const f=SAVE.microFound||{},sm=SAVE.samples||{};
+ let h='<p class="ptip">🔬 Con el microscopio del naturalista podés tomar muestras donde veas un frasquito en una estaca, y en el piso de la cueva. Tocá cada bichito para identificarlo.</p>';
+ h+='<div class="dives">'+MSITES.map(st=>`<div class="dive${sm[st.id]?' on':''}"><h5>${sm[st.id]?'✓ ':'· '}${st.name}</h5><p>${st.sp.map(id=>f[id]?MICRO.find(m=>m.id===id).name:'?').join(' · ')}</p></div>`).join('')+'</div>';
+ h+='<div class="grid">'+MICRO.map(m=>f[m.id]?`<div class="card"><div class="ph micro"><canvas data-m="${m.id}" width="150" height="150"></canvas></div><div><h3>${m.name}</h3><div class="sci">${m.sci}</div><p>${m.note}</p><div class="where">${f[m.id].where}</div></div></div>`:`<div class="card locked"><div class="ph">?</div><div><h3>Sin identificar</h3><p>Algo diminuto espera en una gota de agua o en un puñado de tierra.</p></div></div>`).join('')+'</div>';
+ el.innerHTML=h;el.querySelectorAll('canvas[data-m]').forEach(cv=>{const x=cv.getContext('2d');x.fillStyle='#dfeee6';x.fillRect(0,0,150,150);x.save();x.translate(75,75);x.scale(.9,.9);DRAW[cv.dataset.m](x,{a:0,ph:1,s:1},1.3);x.restore();});}
 function renderAgua(){const el=$('#agua'),fish=SAVE.fish||{};if(!SAVE.mask){el.innerHTML='<p class="ptip">Para mirar bajo el agua hace falta una máscara. ¿Habrá usado una alguien por acá?</p>';return;}
  let h='<p class="ptip">🤿 Tenés la máscara del viejo naturalista. En el mapa (M) están marcados los lugares donde se puede bucear.</p><h4>El mapa del naturalista</h4><div class="dives">'+DIVES.map(d=>`<div class="dive${SAVE.dives&&SAVE.dives[d.id]?' on':''}"><h5>${SAVE.dives&&SAVE.dives[d.id]?'🤿 '+d.name:'¿?'}</h5><p>“${d.note}”</p></div>`).join('')+'</div><h4>Peces</h4><div class="grid">';
  h+=FISH.map(fi=>{const f=fish[fi.id];return f?`<div class="card"><div class="ph"><img alt="Foto de ${fi.name}" src="${f.img}"></div><h3>${fi.name}</h3><div class="sci">${fi.sci}</div><p>${fi.note}</p><div class="where">Encontrado: ${f.where}</div></div>`:`<div class="card locked"><div class="ph">?</div><h3>Sin descubrir</h3><p>${fi.hint}</p></div>`;}).join('')+'</div>';el.innerHTML=h;}
-function renderBook(){{const tb=document.querySelector('#bookTabs [data-t=agua]');if(tb){tb.style.display=SAVE.mask?'':'none';if(!SAVE.mask&&tb.classList.contains('on'))goTab('portada');}}renderPortada();renderAgua();
+function renderBook(){{const tb=document.querySelector('#bookTabs [data-t=agua]');if(tb){tb.style.display=SAVE.mask?'':'none';if(!SAVE.mask&&tb.classList.contains('on'))goTab('portada');}const tm=document.querySelector('#bookTabs [data-t=micro]');if(tm){tm.style.display=SAVE.micro?'':'none';if(!SAVE.micro&&tm.classList.contains('on'))goTab('portada');}}renderMicro();renderPortada();renderAgua();
  for(const gk in GRPN)$('#cards_'+gk).innerHTML='';
  for(const sp of SPECIES){const f=SAVE.found[sp.id];if(sp.secret&&!f)continue;const d=document.createElement('div');d.className='card'+(f?'':' locked')+(sp.secret?' secret':'');
   d.innerHTML=f?`<div class="ph">${f.img?`<img alt="Foto de ${sp.name}" src="${f.img}">`:'📷'}</div><h3>${sp.name}</h3><div class="sci">${sp.sci}</div><p>${sp.note}</p><p class="more">${sp.more}</p>${specialHTML(sp,f)}<div class="where">Encontrado: ${f.where}</div><div class="links">${links(sp)}</div>`
@@ -1445,9 +1511,16 @@ function renderBook(){{const tb=document.querySelector('#bookTabs [data-t=agua]'
   <p>Cuando llegaron los europeos vivían aquí charrúas, minuanes, guenoas, chanás y guaraníes, entre otros pueblos.</p>
   <p class="note">Las pinturas de esta cueva son una invención del juego, inspiradas en el arte rupestre. Las de Chamangá son sobre todo geométricas.</p>
   <div class="links">${lk('https://commons.wikimedia.org/w/index.php?search='+q('Chamangá')+'&title=Special:MediaSearch&type=image','Fotos: pinturas de Chamangá')}${lk('https://commons.wikimedia.org/w/index.php?search='+q('zoolito')+'&title=Special:MediaSearch&type=image','Fotos: zoolitos')}${lk('https://commons.wikimedia.org/w/index.php?search='+q('cerámica Goya-Malabrigo')+'&title=Special:MediaSearch&type=image','Fotos: cerámica')}${lk('https://es.wikipedia.org/w/index.php?search='+q('Chamangá'),'Leer: Chamangá')}${lk('https://es.wikipedia.org/w/index.php?search='+q('Cerritos de indios'),'Leer: cerritos de indios')}${lk('https://es.wikipedia.org/w/index.php?search='+q('Charrúas'),'Leer: charrúas')}${lk('https://www.youtube.com/results?search_query='+q('Chamangá pinturas rupestres Uruguay'),'Videos: Chamangá')}${lk('https://www.youtube.com/results?search_query='+q('cerritos de indios Uruguay arqueología'),'Videos: cerritos')}${lk('https://www.youtube.com/results?search_query='+q('zoolitos Uruguay'),'Videos: zoolitos')}</div></div></div>`
-  :`<div class="card locked hz"><div class="ph">?</div><div><h3>Sin descubrir</h3><p>Algo muy antiguo espera en la oscuridad de una cueva.</p></div></div>`);
+  :`<div class="card locked hz"><div class="ph">?</div><div><h3>Sin descubrir</h3><p>Algo muy antiguo espera en la oscuridad de una cueva.</p></div></div>`)+microCard();
 }
 const MASK_SVG='<svg viewBox="0 0 120 80" width="100%" height="100%"><defs><linearGradient id="hzB" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e2b46a"/><stop offset=".5" stop-color="#8a5a24"/><stop offset="1" stop-color="#c08a40"/></linearGradient></defs><path d="M6 40Q4 22 20 22" fill="none" stroke="#3a2a1a" stroke-width="4"/><path d="M114 40Q116 22 100 22" fill="none" stroke="#3a2a1a" stroke-width="4"/><ellipse cx="60" cy="40" rx="44" ry="28" fill="#3d5a52" stroke="url(#hzB)" stroke-width="7"/><ellipse cx="60" cy="40" rx="40" ry="24" fill="#5f8a7c" opacity=".6"/><path d="M34 28q10-8 26-8" stroke="#fff" stroke-opacity=".5" stroke-width="2" fill="none" stroke-linecap="round"/><rect x="54" y="64" width="12" height="7" rx="2" fill="url(#hzB)"/></svg>';
+function microCard(){if(!SAVE.micro)return `<div class="card locked hz"><div class="ph">?</div><div><h3>Sin descubrir</h3><p>Una casita en la costa guarda algo más del naturalista.</p></div></div>`;
+ const f=SAVE.microFound||{},sm=SAVE.samples||{},q=t=>encodeURIComponent(t),lk=(href,t)=>`<a href="${href}" target="_blank" rel="noopener">${t}</a>`;
+ return `<div class="card hz"><div class="ph" style="background:#e9dcbd"><svg viewBox="0 0 120 80" width="100%" height="100%"><rect x="30" y="66" width="60" height="8" rx="2" fill="#2a2a2a"/><path d="M52 66 48 40" stroke="#b08d3a" stroke-width="7" stroke-linecap="round"/><path d="M48 40 C 50 24, 62 18, 70 22" stroke="#b08d3a" stroke-width="6" fill="none" stroke-linecap="round"/><rect x="66" y="14" width="10" height="24" rx="2" fill="#2a2a2a" transform="rotate(-20 71 26)"/><rect x="60" y="30" width="22" height="4" rx="1" fill="#2a2a2a" transform="rotate(-20 71 32)"/><rect x="44" y="52" width="30" height="3" rx="1" fill="#2a2a2a"/><circle cx="60" cy="58" r="4" fill="#7a9ab0"/></svg></div><div><h3>El microscopio del naturalista</h3>
+  <p>En la casita de pescador de la costa, sobre una mesa, estaba su microscopio de bronce, junto a un tiburón tallado en madera. Con él se puede mirar lo que vive en una gota de agua o en un puñado de tierra.</p>
+  <p><b>Lugares donde tomó muestras</b> (las tildes son las tuyas):</p><ul class="hzfish">${MSITES.map(st=>`<li>${sm[st.id]?'✓':'·'} ${st.name}</li>`).join('')}</ul>
+  <p><b>Identificaste ${Object.keys(f).length} de ${MICRO.length}.</b> Los zoolitos, como el tiburón de madera, son esculturas de piedra con forma de animal que hicieron los primeros habitantes de Uruguay hace miles de años.</p>
+  <div class="links">${lk('https://es.wikipedia.org/w/index.php?search='+q('Zoolitos de Uruguay'),'Leer: zoolitos')}${lk('https://www.youtube.com/results?search_query='+q('microorganismos agua de charco microscopio'),'Videos: una gota de agua al microscopio')}</div></div></div>`;}
 function maskCard(){if(!SAVE.mask)return `<div class="card locked hz"><div class="ph">?</div><div><h3>Sin descubrir</h3><p>Dicen que un viejo naturalista vivía por acá. Tal vez quedan algunos restos.</p></div></div>`;
  const fish=SAVE.fish||{},q=t=>encodeURIComponent(t),lk=(href,t)=>`<a href="${href}" target="_blank" rel="noopener">${t}</a>`;
  const list=FISH.map(fi=>`<li>${fish[fi.id]?'✓':'·'} ${fi.name} <i>${fish[fi.id]?'':'(sin fotografiar)'}</i></li>`).join('');
@@ -1479,7 +1552,7 @@ addEventListener('keydown',e=>{if(!started)return;keys[e.code]=true;
  if(e.code.startsWith('Arrow'))e.preventDefault();});
 addEventListener('keyup',e=>{keys[e.code]=false;});
 addEventListener('blur',()=>{for(const c in keys)keys[c]=false;});
-$('#bCam').onclick=()=>togglePhoto();$('#bBook').onclick=()=>toggleBook();$('#bLow').onclick=toggleLow;$('#bSnd').onclick=()=>toggleMute();$('#bClose').onclick=()=>toggleBook(false);$('#shoot').onclick=()=>shoot();$('#diveBtn').onclick=()=>{if(DIVE.near&&SAVE.mask)startDive(DIVE.near);};$('#backCar').onclick=()=>{if(DIVE.on)togglePhoto(false);};$('#shareBtn').onclick=()=>doShare();$('#smCopy').onclick=shareCopy;$('#smMail').onclick=shareMail;$('#smWA').onclick=shareWA;$('#smX').onclick=()=>$('#shareMenu').classList.remove('show');$('#bMap').onclick=()=>toggleMap();$('#mapwrap').onclick=()=>toggleMap();$('#bMapClose').onclick=()=>toggleMap(false);$('#bReset').onclick=()=>resetCar();$('#bigmap').addEventListener('click',e=>{if(e.target.id==='bigmap')toggleMap(false);});
+$('#bCam').onclick=()=>togglePhoto();$('#bBook').onclick=()=>toggleBook();$('#bLow').onclick=toggleLow;$('#bSnd').onclick=()=>toggleMute();$('#bClose').onclick=()=>toggleBook(false);$('#shoot').onclick=()=>shoot();$('#diveBtn').onclick=()=>{if(DIVE.near&&SAVE.mask)startDive(DIVE.near);};$('#microBtn').onclick=()=>{if(SCOPE.near)openScope(SCOPE.near);};$('#scopeClose').onclick=closeScope;$('#scopeCv').addEventListener('pointerdown',scopeTap);$('#backCar').onclick=()=>{if(DIVE.on)togglePhoto(false);};$('#shareBtn').onclick=()=>doShare();$('#smCopy').onclick=shareCopy;$('#smMail').onclick=shareMail;$('#smWA').onclick=shareWA;$('#smX').onclick=()=>$('#shareMenu').classList.remove('show');$('#bMap').onclick=()=>toggleMap();$('#mapwrap').onclick=()=>toggleMap();$('#bMapClose').onclick=()=>toggleMap(false);$('#bReset').onclick=()=>resetCar();$('#bigmap').addEventListener('click',e=>{if(e.target.id==='bigmap')toggleMap(false);});
 // arrastrar para mirar
 let lastP=null;const cv=$('#c');const PTR=new Map();let pinch=null;
 function pinchDist(){const p=[...PTR.values()];return Math.hypot(p[0][0]-p[1][0],p[0][1]-p[1][1]);}
@@ -1705,6 +1778,34 @@ function burrowInShot(){const p=new THREE.Vector3(BURROW.x,H(BURROW.x,BURROW.z)+
 function nestInShot(){if(SAVE.nest)return false;const p=new THREE.Vector3(NEST.x,H(NEST.x,NEST.z)+.08,NEST.z),dist=camera.position.distanceTo(p);if(dist>24)return false;
  const v=p.clone().project(camera);if(v.z>1||Math.abs(v.x)>.4||Math.abs(v.y)>.4)return false;return .5/(2*dist*Math.tan(THREE.MathUtils.degToRad(camera.fov/2)))>.02;}
 // ===== BUCEO =====
+// ===== MICROSCOPIO: microorganismos y restos microscópicos =====
+const MICRO=[
+ {id:'paramecio',name:'Paramecio',sci:'Paramecium',r:34,note:'Parece una pantufla cubierta de pelitos (cilios) que mueve como remos para nadar y para arrastrar comida a su boca.'},
+ {id:'ameba',name:'Ameba',sci:'Amoeba',r:34,note:'No tiene forma fija: estira partes de su cuerpo como brazos para moverse y para envolver lo que come.'},
+ {id:'euglena',name:'Euglena',sci:'Euglena',r:30,note:'Es verde porque hace fotosíntesis como una planta, pero nada con una cola (flagelo) como un animal. El puntito rojo es un ojo que siente la luz.'},
+ {id:'volvox',name:'Volvox',sci:'Volvox',r:44,note:'Una esfera hecha de cientos de algas verdes que viven juntas y ruedan por el agua. Adentro se ven las esferas hijas.'},
+ {id:'vorticela',name:'Vorticela',sci:'Vorticella',r:30,note:'Una campanita con un tallo que se enrosca como un resorte cuando algo la asusta. Vive pegada a plantas y piedras.'},
+ {id:'diatomea',name:'Diatomea',sci:'Bacillariophyta',r:34,note:'Alga encerrada en una cajita de vidrio (sílice) con dibujos geométricos. Hay miles de formas, y producen buena parte del oxígeno del planeta.'},
+ {id:'rotifero',name:'Rotífero',sci:'Rotifera',r:30,note:'Tiene en la cabeza una corona de cilios que parece dos ruedas girando: con ella nada y atrae comida. Son de los animales más chicos que existen.'},
+ {id:'dafnia',name:'Pulga de agua',sci:'Daphnia',r:34,note:'Un crustáceo diminuto y transparente que nada a saltitos con sus antenas. Se le ve el corazón latiendo y el intestino lleno de algas.'},
+ {id:'hidra',name:'Hidra',sci:'Hydra',r:38,note:'Pariente de las medusas. Vive pegada a una planta y caza con sus tentáculos. Si se corta, cada pedazo vuelve a crecer entero.'},
+ {id:'tardigrado',name:'Osito de agua',sci:'Tardigrada',r:34,note:'El tardígrado camina despacio con sus ocho patitas por el musgo. Puede sobrevivir secándose por completo, al hielo, al calor y hasta al espacio.'},
+ {id:'copepodo',name:'Copépodo',sci:'Cyclops',r:30,note:'Un crustáceo con un solo ojo en el medio y antenas largas. Nada dando saltos y es comida para pececitos.'},
+ {id:'espirogira',name:'Espirogira',sci:'Spirogyra',r:50,note:'Alga en filamentos con una cinta verde en espiral adentro. Forma esas nubes verdes y resbalosas de los charcos.'},
+ {id:'nematodo',name:'Nematodo',sci:'Nematoda',r:36,note:'Gusanito redondo y transparente que se retuerce en forma de S. En un puñado de tierra del monte viven miles.'},
+ {id:'colembolo',name:'Colémbolo',sci:'Collembola',r:30,note:'Un bichito del suelo con un resorte debajo de la cola: cuando se asusta, salta muchas veces su tamaño. Come hojas en descomposición.'},
+ {id:'fitolito',name:'Fitolitos de maíz',sci:'Zea mays (restos microscópicos)',r:30,note:'Cristales de sílice con forma de cruz que quedan de las plantas de maíz cuando se pudren. Encontrarlos en la cueva significa que la gente de hace miles de años ya cultivaba maíz.'},
+ {id:'almidon',name:'Almidón de zapallo',sci:'Cucurbita (restos microscópicos)',r:26,note:'Granos de almidón con una cruz de luz en el medio, de zapallo y poroto. Con el maíz, eran los cultivos de los primeros habitantes del este, como se vio en los cerritos de indios.'}];
+const MSITES=[
+ {id:'laguna',name:'La laguna de las espátulas',sp:['paramecio','dafnia','volvox']},
+ {id:'escondida',name:'La laguna escondida',sp:['ameba','hidra','euglena']},
+ {id:'arroyo',name:'El arroyo, arriba del paso',sp:['diatomea','rotifero','copepodo']},
+ {id:'pozon',name:'El pozón de la cascada',sp:['vorticela','diatomea']},
+ {id:'manantial',name:'El manantial, arriba de la cascada',sp:['tardigrado','rotifero']},
+ {id:'charco',name:'Los charcos del barrial',sp:['espirogira','copepodo','euglena']},
+ {id:'monte',name:'El suelo del monte',sp:['nematodo','colembolo','tardigrado']},
+ {id:'cueva',name:'El piso de la cueva',cave:true,sp:['fitolito','almidon']}];
+
 const FISH=[
  {id:'mojarra',name:'Mojarra',sci:'Astyanax sp.',hint:'En el agua abierta, en grupo, brillando.',note:'Pez chico y plateado que anda en cardúmenes. Moverse todos juntos los protege: a un depredador le cuesta elegir a uno. Comen insectos, semillas y algas.'},
  {id:'vieja',name:'Vieja del agua',sci:'Hypostomus commersoni',hint:'Pegada a las piedras.',note:'Tiene el cuerpo cubierto de placas como una armadura y la boca como una ventosa: se pega a piedras y troncos y raspa las algas. Por eso la vas a ver quieta sobre las rocas.'},
@@ -1731,6 +1832,32 @@ for(const d of DIVES){d.anchors=[];d.ribbons=[];
   const rib=new THREE.Mesh(new THREE.PlaneGeometry(.5,.12),M(0xb33a2a,.8,{side:THREE.DoubleSide}));rib.position.set(.3,1.55,0);g.add(rib);d.ribbons.push(rib);
   part(jitter(new THREE.DodecahedronGeometry(1,1),.2),M(0x7a746a,.95,{flatShading:true}),-.6,.05,.4,.7,.18,.6,g);}
  if(!d.anchors.length)d.anchors.push([d.cx+10,d.cz]);d.ax=d.anchors[0][0];d.az=d.anchors[0][1];}
+
+// ===== CASITA DE PESCADOR CON EL MICROSCOPIO; SITIOS DE MUESTRA =====
+const CASITA={};{let px=LAG2.x+70,pz=COASTZ(LAG2.x+70)-36;px=LAG2.x+52;pz=LAG2.z+4;for(let t=0;t<2500;t++){const x=LAG2.x+44+rnd()*40,z=LAG2.z-14+rnd()*36,h=H(x,z);if(h>.5&&h<9&&slopeAt(x,z)<.3&&!hitObs(x,z,3.6)){px=x;pz=z;break;}}
+ const h=H(px,pz),g=new THREE.Group();g.position.set(px,h-.1,pz);g.rotation.y=Math.PI+.2;scene.add(g);CASITA.x=px;CASITA.z=pz;
+ const wd=M(0x8a8378,.95),wd2=M(0x6f6758,.95),tin=M(0x7a4a2e,.7,{metalness:.3}),dk=M(0x2a2520,1);
+ part(BOX,wd,0,1.3,0,4.6,2.6,3.6,g);part(BOX,wd,0,2.75,0,4.56,.5,2.9,g);part(BOX,wd,0,3.05,0,4.52,.35,1.6,g);part(BOX,dk,1.4,1.0,-1.81,.8,1.9,.04,g);part(BOX,M(0x4a6a7a,.3),-.8,1.6,-1.81,.9,.7,.04,g);part(BOX,wd2,0,1.6,1.81,4.6,.1,.04,g);
+ const r1=part(BOX,tin,0,2.95,-.95,5.2,.08,2.1,g);r1.rotation.x=.35;const r2=part(BOX,tin,0,2.95,.95,5.2,.08,2.1,g);r2.rotation.x=-.35;part(BOX,wd2,0,3.25,0,5.3,.1,.14,g);
+ for(const x of[-2.1,-1.5,-.9,-.3,.3,.9,1.5,2.1])part(BOX,wd2,x,1.3,-1.83,.06,2.6,.03,g);
+ part(CYL,wd2,2.6,.55,-1.2,.05,1.1,.05,g);part(CYL,wd2,2.6,.55,1.2,.05,1.1,.05,g);const net=new THREE.Mesh(new THREE.PlaneGeometry(2.4,.9,8,3),M(0xd9d2b0,.9,{wireframe:true}));net.position.set(2.6,.9,0);net.rotation.y=Math.PI/2;g.add(net);
+ // mesa con el tiburón de madera (zoolito decorativo) y el microscopio
+ part(BOX,wd2,-1.3,.72,-2.5,1.6,.06,.8,g);for(const[x,z] of[[-2,-2.8],[-.6,-2.8],[-2,-2.2],[-.6,-2.2]])part(BOX,wd2,x,.36,z,.06,.72,.06,g);
+ const shk=new THREE.Group();shk.position.set(-1.75,.84,-2.5);shk.rotation.y=.4;g.add(shk);const sw=M(0x6b4a2e,.75);part(SPH,sw,0,.07,0,.09,.08,.26,shk);part(CONE,sw,0,.17,.02,.05,.1,.03,shk);const tl=part(CONE,sw,0,.09,.3,.06,.12,.03,shk);tl.rotation.x=Math.PI/2;part(SPH,sw,.05,.03,-.05,.04,.015,.08,shk);part(SPH,sw,-.05,.03,-.05,.04,.015,.08,shk);
+ const mic=new THREE.Group();mic.position.set(-.85,.75,-2.5);g.add(mic);CASITA.mic=mic;const br=M(0xb08d3a,.35,{metalness:.7}),bk=M(0x2a2a2a,.6);part(CYL,bk,0,.02,0,.13,.04,.13,mic);const arm=part(BOX,br,.06,.2,0,.04,.34,.05,mic);arm.rotation.z=-.35;part(CYL,br,-.02,.24,0,.03,.2,.03,mic).rotation.z=.1;part(CYL,bk,-.02,.36,0,.04,.05,.04,mic);part(BOX,bk,-.02,.12,0,.14,.015,.1,mic);
+ addObs(px,pz,2.9);addObs(px-1.2,pz+2.2,.9);}
+function microFound(){if(SAVE.micro)return;SAVE.micro=true;save();chime();announce('El microscopio del naturalista','🔬 En la casita de pescador había un microscopio de bronce. Buscá los frascos de muestra junto al agua y en el monte.');renderBook&&0;}
+// sitios de muestra: una estaca con un frasquito de vidrio
+{const jar=(x,z)=>{const h=H(x,z),g=new THREE.Group();g.position.set(x,h-.05,z);scene.add(g);part(CYL,M(0x6b5440,.95),0,.45,0,.035,.9,.035,g);part(BOX,M(0x6b5440,.95),0,.9,0,.22,.14,.04,g);const jr=part(CYL,M(0xbfe3e8,.1,{transparent:true,opacity:.55}),0,1.05,0,.06,.16,.06,g);part(CYL,M(0x8a6a3a,.8),0,1.14,0,.065,.025,.065,g);return g;};
+ const band=(z0,z1)=>{for(let t=0;t<300;t++){const z=z0+rnd()*(z1-z0),x=riverX(z)+(rnd()<.5?-1:1)*(riverW(z)*.5+2+rnd()*3),h=H(x,z);if(h>.3&&h<8&&slopeAt(x,z)<.5&&!hitObs(x,z,1.5))return[x,z];}return null;};
+ const pos={};
+ {let p=null;for(let t=0;t<400&&!p;t++){const a=rnd()*6.28,r=24+rnd()*22,x=LAG2.x+Math.cos(a)*r,z=LAG2.z+Math.sin(a)*r,h=H(x,z);if(h>.3&&h<1.4&&slopeAt(x,z)<.3&&!hitObs(x,z,1.5))p=[x,z];}pos.laguna=p||[LAG2.x-30,LAG2.z];}
+ const away=(an,cx,cz,k)=>{const dx=an[0]-cx,dz=an[1]-cz,l=Math.hypot(dx,dz)||1;return[an[0]+dx/l*k,an[1]+dz/l*k];};
+ pos.escondida=away(DIVES[3].anchors[0],DIVES[3].cx,DIVES[3].cz,2.5);pos.arroyo=away(DIVES[1].anchors[0],riverX(DIVES[1].anchors[0][1]),DIVES[1].anchors[0][1],2.5);pos.pozon=away(DIVES[0].anchors[0],riverX(DIVES[0].anchors[0][1]),DIVES[0].anchors[0][1],2.5);
+ pos.manantial=band(-283,-271)||[riverX(-278)+riverW(-278)*.5+4,-278];
+ {const p=PUDDLES.find(p=>Math.hypot(p.x-BARRO.x,p.z-BARRO.z)<BARRO.r)||PUDDLES[0];pos.charco=p?[p.x+p.r+1.8,p.z]:[BARRO.x+8,BARRO.z];}
+ {let p=null;for(let t=0;t<600&&!p;t++){const z=-230+rnd()*90,x=riverX(z)+(rnd()<.5?-1:1)*(riverW(z)*.5+10+rnd()*20),h=H(x,z);if(h>1.5&&h<12&&slopeAt(x,z)<.5&&hitObs(x,z,6)&&!hitObs(x,z,1.4))p=[x,z];}pos.monte=p||band(-230,-140)||[riverX(-180)+20,-180];}
+ for(const s of MSITES){if(s.cave)continue;const p=pos[s.id];s.x=p[0];s.z=p[1];jar(p[0],p[1]);addObs(p[0],p[1],.2);}}
 
 // el baúl de la tapera
 const CHEST={t:0};{const P=PLACES.find(q=>q.id==='tapera'),a=.35,cx=P.x-2.3*Math.sin(a),cz=P.z-2.3*Math.cos(a),g=new THREE.Group();g.position.set(cx,H(P.x,P.z)-.05,cz);g.rotation.y=a;scene.add(g);
@@ -1875,11 +2002,13 @@ function announce(big,small){const el=$('#announce');el.innerHTML='<b></b><span>
 // ===== FESTEJO =====
 const PARTY={bichos:['🦩🦫🦉🐊','¡Encontraste todos los bichos!',()=>GOAL.length+' de '+GOAL.length+' bichos','Fotografiaste a todos los bichos de la sierra y el humedal. ¿Te animás a buscar los logros escondidos?'],
  lugares:['🏞️⛰️🌊','¡Conociste todos los lugares!',()=>PLACES.length+' de '+PLACES.length+' lugares','Recorriste la sierra, la quebrada, las lagunas y la cueva. Sos un verdadero explorador.'],
- peces:['🐟🫧🐟','¡Fotografiaste todos los peces!',()=>FISH.length+' de '+FISH.length+' peces','Conociste lo que vive bajo el agua del arroyo y las lagunas.']};
+ peces:['🐟🫧🐟','¡Fotografiaste todos los peces!',()=>FISH.length+' de '+FISH.length+' peces','Conociste lo que vive bajo el agua del arroyo y las lagunas.'],
+ micro:['🔬🦠🔬','¡Encontraste todo lo invisible!',()=>MICRO.length+' de '+MICRO.length+' con el microscopio','Lo que no se ve a simple vista también vive en la sierra, el arroyo y las lagunas.']};
 function checkComplete(){SAVE.cel=SAVE.cel||{};if(SAVE.celebrated&&!SAVE.cel.migr){SAVE.cel.migr=1;if(PLACES.every(p=>SAVE.places.includes(p.id)))SAVE.cel.lugares=1;}const q=[];
  if(!SAVE.cel.bichos&&GOAL.every(s=>SAVE.found[s.id])){SAVE.cel.bichos=1;q.push('bichos');}
  if(!SAVE.cel.lugares&&PLACES.every(p=>SAVE.places.includes(p.id))){SAVE.cel.lugares=1;q.push('lugares');}
  if(!SAVE.cel.peces&&FISH.every(f=>(SAVE.fish||{})[f.id])){SAVE.cel.peces=1;q.push('peces');}
+ if(!SAVE.cel.micro&&MICRO.every(m=>(SAVE.microFound||{})[m.id])){SAVE.cel.micro=1;q.push('micro');}
  if(q.length){save();q.forEach((k,i)=>setTimeout(()=>celebrate(k),1300+i*7000));}}
 function celebrate(kind){const P0=PARTY[kind||'bichos'],el=$('#party');el.querySelector('.partyemoji').textContent=P0[0];el.querySelector('h2').textContent=P0[1];$('#partySub').textContent=P0[2]();el.querySelector('.partynote').textContent=P0[3];el.classList.add('show');
  [0,350,700].forEach(t=>setTimeout(chime,t));const cv=$('#confetti'),g=cv.getContext('2d');cv.width=innerWidth;cv.height=innerHeight;const cols=['#F28C28','#D9B65E','#23402F','#e58aa6','#f3c614','#5d8fbd','#f3ebdd'];
@@ -2068,7 +2197,7 @@ function updateTrail(){if(caveView||DIVE.on){$('#trail').classList.remove('show'
  const el=$('#trail');if(na&&nd<55){let msg='Huellas frescas por acá';if(nd<25){const ref=photo?photoYaw:car.h;let d=Math.atan2(-(na.x-car.x),-(na.z-car.z))-ref;d=Math.atan2(Math.sin(d),Math.cos(d));const dir=Math.abs(d)<.5?'adelante':Math.abs(d)>2.6?'atrás':d>0?'a la izquierda':'a la derecha';const dy=na.y-car.y;msg='Hay algo muy cerca, '+dir+(dy>5?' y más arriba':dy<-5?' y más abajo':'')+'. Frená y usá la cámara';}el.textContent=msg;el.classList.add('show');}else el.classList.remove('show');}
 function loop(){
  const dt=Math.min(.05,clock.getDelta()),time=clock.elapsedTime;if(started)perfCheck();
- if(started){updateCar(dt,time);updateAnimals(dt,time);postAnim(dt,time);updateCalls(dt);updateRace(dt,time);updateChicks(dt);posT+=dt;if(posT>4){posT=0;savePos();}updateParts(dt);updateFalls(dt);updateCave(dt,time);updateDiving(dt,time);updateSurf(time);updateClouds(dt);truck.visible=!photo||DIVE.on||!!caveView;fogT+=dt;if(fogT>.25){fogT=0;revealFog();checkPlaces();}fogSaveT+=dt;if(fogSaveT>8){fogSaveT=0;saveFog();checkZoomUnlock();}trailT+=dt;if(trailT>.5){trailT=0;updateTrail();}}
+ if(started){updateCar(dt,time);updateAnimals(dt,time);postAnim(dt,time);updateCalls(dt);updateRace(dt,time);updateChicks(dt);posT+=dt;if(posT>4){posT=0;savePos();}updateParts(dt);updateFalls(dt);updateCave(dt,time);updateDiving(dt,time);updateSurf(time);updateClouds(dt);updateMicro(dt);truck.visible=!photo||DIVE.on||!!caveView;fogT+=dt;if(fogT>.25){fogT=0;revealFog();checkPlaces();}fogSaveT+=dt;if(fogSaveT>8){fogSaveT=0;saveFog();checkZoomUnlock();}trailT+=dt;if(trailT>.5){trailT=0;updateTrail();}}
  else{if(!dragging)startA+=dt*.04;}
  if(started)updateCamera(dt);else{const a=startA+camOrbit,el=Math.max(.04,Math.min(1.35,.27+camTilt)),dd=22*camZoom;camera.position.set(car.x+Math.sin(a)*Math.cos(el)*dd,car.y+1.2+Math.sin(el)*dd,car.z+Math.cos(a)*Math.cos(el)*dd);const gh=H(camera.position.x,camera.position.z)+1;if(camera.position.y<gh)camera.position.y=gh;camera.lookAt(car.x,car.y+1.2,car.z);}
  sky.position.copy(camera.position);
