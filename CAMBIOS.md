@@ -60,6 +60,7 @@ Un juego de Insight Reality
 - v57  Modo caminar: bajarse de la camioneta (B), avatar con sombrero, mochila y cámara colgada, ir despacio para espantar menos, volver a la camioneta con un toque; foto a la altura de los ojos; buceo, cueva y muestras también caminando
 - v58  Al conocer los 4 lugares de buceo (festejo): nadar y zambullirse en cualquier agua honda, caminando o desde la camioneta, con cardumen de mojarras; buceo tranquilo en el pozo del manantial arriba de la cascada; piedras que cortan el paso al borde de la cascada
 - v59  Manantial menos hondo con plantitas, musgo, corriente visible y pastos delicados; piedras solo bajo el agua; caminando se aprieta 🤿 para ponerse la máscara; al salir del agua siempre quedás caminando en la orilla
+- v60  Avatar más gracioso y suelto (cabezón, poncho, balanceo); en el microscopio los nombres anotados llevan al cuaderno y los bichitos se van por el borde y vuelven; video de zoolitos de sambaquis; los primeros habitantes como último hallazgo; tortugas bien sobre el tronco
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v59).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v60).
 La versión vigente es index.html (lista como app instalable).

@@ -53,7 +53,7 @@ body.cave #microBtn,body.diving #microBtn{bottom:calc(env(safe-area-inset-bottom
 .scopebox{text-align:center;color:#e8dcc0;font-family:'Newsreader',serif}.scopebox h3{margin:0 0 8px;font-size:22px;font-weight:600}
 #scopeCv.intro{border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.6)}
 #scopeCv{border-radius:50%;transition:border-radius .5s,box-shadow .5s;box-shadow:0 0 0 10px #8a5e22,0 0 0 14px #3a2510,0 10px 40px rgba(0,0,0,.6);background:#cfe0d6;cursor:crosshair;touch-action:manipulation}
-.scopehint{margin:12px 0 6px;font-size:15px;color:#bfae8a}#scopeList{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:0 0 10px}#scopeList span{border:1.5px dashed #8a7a5a;border-radius:4px;padding:2px 10px;font-size:15px;min-width:34px}#scopeList span.ok{border-style:solid;border-color:#d9b65e;color:#f7ecd2}
+.scopehint{margin:12px 0 6px;font-size:15px;color:#bfae8a}#scopeList{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:0 0 10px}#scopeList span{border:1.5px dashed #8a7a5a;border-radius:4px;padding:2px 10px;font-size:15px;min-width:34px}#scopeList span.ok{cursor:pointer;border-style:solid;border-color:#d9b65e;color:#f7ecd2}
 #scopeClose{background:#d9b65e;color:#1f160e;border:0;border-radius:4px;padding:8px 22px;font-size:17px;font-weight:700}
 @media (orientation:portrait) and (max-width:700px){#microBtn{bottom:calc(env(safe-area-inset-bottom,0px) + 150px)}}
 #announce.go{pointer-events:auto;cursor:pointer}#announce em{display:block;margin-top:6px;font-size:14px;font-style:normal;color:#D9B65E;font-weight:700}
@@ -917,7 +917,7 @@ function openScope(site){SCOPE.on=true;SCOPE.site=site;SCOPE.t=0;SAVE.samples=SA
   for(let i=0;i<n;i++){const a=Math.random()*6.28,r=Math.random()*R*.6;SCOPE.orgs.push({sp,id,x:W/2+Math.cos(a)*r,y:W/2+Math.sin(a)*r,a:Math.random()*6.28,ph:Math.random()*6.28,s:W/560,v:0,k:i});}}
  scopeList();scopeFrame();}
 function closeScope(){SCOPE.on=false;$('#scope').classList.remove('show');}
-function scopeList(){const f=SAVE.microFound||{};$('#scopeList').innerHTML=SCOPE.site.sp.map(id=>{const m=MICRO.find(x=>x.id===id);return `<span class="${f[id]?'ok':''}">${f[id]?m.name:'?'}</span>`;}).join('');}
+function scopeList(){const f=SAVE.microFound||{};$('#scopeList').innerHTML=SCOPE.site.sp.map(id=>{const m=MICRO.find(x=>x.id===id);return `<span class="${f[id]?'ok':''}" data-m="${f[id]?id:''}">${f[id]?m.name+' ›':'?'}</span>`;}).join('');$('#scopeList').querySelectorAll('span[data-m]').forEach(el=>{if(el.dataset.m)el.onclick=()=>openGoto({tab:'micro',id:el.dataset.m});});}
 const SAMPLE_LOOK={laguna:['#7f9a52','motas'],escondida:['#4a4a2c','turbia'],arroyo:['#a9c2b8','arena'],pozon:['#9cc6cf','burbujas'],manantial:['#cfe6ec','musgo'],charco:['#6d6a3a','algas'],monte:['#4a3424','tierra'],cueva:['#8a7a62','polvo']};
 function scopeFrame(){if(!SCOPE.on)return;const cv=$('#scopeCv'),x=cv.getContext('2d'),W=SCOPE.W,R=SCOPE.R,dt=1/60;SCOPE.t+=dt;const t=SCOPE.t,I=2.8;
  cv.classList.toggle('intro',t<I-.15);
@@ -926,7 +926,7 @@ function scopeFrame(){if(!SCOPE.on)return;const cv=$('#scopeCv'),x=cv.getContext
 function drawView(x,W,R,t,dt){x.save();x.beginPath();x.arc(W/2,W/2,R,0,7);x.clip();const L=SAMPLE_LOOK[SCOPE.site.id]||['#cfe0d6'],tint=new THREE.Color(L[0]),bg=new THREE.Color(0xe9f2ea).lerp(tint,.18),bg2=new THREE.Color(0xcfe0d6).lerp(tint,.25);
  const g=x.createRadialGradient(W/2,W/2,R*.2,W/2,W/2,R);g.addColorStop(0,'#'+bg.getHexString());g.addColorStop(.85,'#'+bg2.getHexString());g.addColorStop(1,'#8fa89c');x.fillStyle=g;x.fillRect(0,0,W,W);
  x.globalAlpha=.08;x.fillStyle='#2a3a30';for(let i=0;i<40;i++){const px=(Math.sin(i*12.9)*.5+.5)*W,py=(Math.sin(i*78.2)*.5+.5)*W;x.beginPath();x.arc(px+Math.sin(t*.3+i)*3,py+Math.cos(t*.2+i)*3,1.5+(i%3),0,7);x.fill();}x.globalAlpha=1;
- for(const o of SCOPE.orgs){if(SCOPE.t>2.05)moveOrg(o,dt,W,R);x.save();x.translate(o.x,o.y);x.scale(o.s,o.s);DRAW[o.id](x,o,t);x.restore();}x.restore();}
+ for(const o of SCOPE.orgs){if(SCOPE.t>2.05)moveOrg(o,dt,W,R);if(o.gone)continue;x.save();x.translate(o.x,o.y);x.scale(o.s,o.s);DRAW[o.id](x,o,t);x.restore();}x.restore();}
 function drawIntro(x,W,t){const L=SAMPLE_LOOK[SCOPE.site.id]||['#88a','motas'],col=L[0],tex=L[1],u=W/100;
  const tb=x.createLinearGradient(0,0,0,W);tb.addColorStop(0,'#6b5038');tb.addColorStop(1,'#4a3524');x.fillStyle=tb;x.fillRect(0,0,W,W);
  x.globalAlpha=.12;x.strokeStyle='#2a1a0e';x.lineWidth=u*.4;for(let i=0;i<9;i++){x.beginPath();x.moveTo(0,i*W/8+Math.sin(i)*u*3);x.bezierCurveTo(W*.3,i*W/8+u*4,W*.6,i*W/8-u*3,W,i*W/8+u*2);x.stroke();}x.globalAlpha=1;
@@ -955,12 +955,12 @@ function drawIntro(x,W,t){const L=SAMPLE_LOOK[SCOPE.site.id]||['#88a','motas'],c
  const fill=t>.55&&t<1.45;x.save();x.translate(px,py);x.fillStyle='#c8302a';x.beginPath();x.roundRect(-2.6*u,-16*u,5.2*u,7*u,2*u);x.fill();x.fillStyle='rgba(230,240,240,.7)';x.fillRect(-1.3*u,-9*u,2.6*u,12*u);if(fill){x.fillStyle=col;x.fillRect(-1.1*u,-2*u,2.2*u,4.6*u);}x.beginPath();x.moveTo(-1.3*u,3*u);x.lineTo(0,6*u);x.lineTo(1.3*u,3*u);x.fill();x.restore();
  if(t>1.45){const k=ss(1.45,1.7,t),dy=mix(sy-15*u,sy,k);if(k<1){x.fillStyle=col;x.beginPath();x.ellipse(sx,dy,1.4*u,1.8*u,0,0,7);x.fill();}else{const sp=ss(1.7,2,t);x.globalAlpha=.75;x.fillStyle=col;x.beginPath();x.ellipse(sx,sy,mix(1.6,5.5,sp)*u,mix(1.2,3,sp)*u,0,0,7);x.fill();x.globalAlpha=1;x.fillStyle='rgba(255,255,255,.5)';x.beginPath();x.ellipse(sx-1.2*u,sy-.8*u,1.2*u,.6*u,0,0,7);x.fill();}}
  if(t>1.85){const k=ss(1.85,2.05,t);x.fillStyle='rgba(235,250,250,.35)';x.strokeStyle='rgba(255,255,255,.9)';x.fillRect(sx-7*u,sy-7*u+(1-k)*-10*u,14*u,14*u);x.strokeRect(sx-7*u,sy-7*u+(1-k)*-10*u,14*u,14*u);}}
-function moveOrg(o,dt,W,R){const id=o.id;if(id==='hidra'||id==='vorticela'||id==='espirogira'){o.x+=Math.sin(o.ph+SCOPE.t*.2)*.05;return;}
+function moveOrg(o,dt,W,R){const id=o.id;if(o.gone){if(SCOPE.t<o.gone)return;o.gone=0;}if(id==='hidra'||id==='vorticela'||id==='espirogira'){o.x+=Math.sin(o.ph+SCOPE.t*.2)*.05;return;}
  if(id==='fitolito'||id==='almidon'||id==='diatomea'){o.a+=dt*.05;o.x+=Math.sin(SCOPE.t*.3+o.ph)*.15;o.y+=Math.cos(SCOPE.t*.25+o.ph)*.15;}
  else if(id==='dafnia'||id==='copepodo'||id==='colembolo'){o.v=Math.max(0,o.v-dt*3);if(Math.random()<dt*(id==='colembolo'?.5:1.6)){o.v=id==='colembolo'?9:4;o.a+=(Math.random()-.5)*1.5;}o.x+=Math.cos(o.a)*o.v*o.s*2;o.y+=Math.sin(o.a)*o.v*o.s*2-(id==='dafnia'?dt*8:0);}
  else if(id==='ameba'||id==='tardigrado'||id==='nematodo'||id==='volvox'){o.a+=(Math.random()-.5)*dt*.6;const v=id==='volvox'?.5:(id==='nematodo'?.9:.25);o.x+=Math.cos(o.a)*v*o.s;o.y+=Math.sin(o.a)*v*o.s;}
  else{o.a+=(Math.random()-.5)*dt*1.4+Math.sin(SCOPE.t*2+o.ph)*dt*.4;const v=id==='paramecio'?1.8:(id==='rotifero'?1.1:1.4);o.x+=Math.cos(o.a)*v*o.s;o.y+=Math.sin(o.a)*v*o.s;}
- const dx=o.x-W/2,dy=o.y-W/2,d=Math.hypot(dx,dy);if(d>R*.78){o.a=Math.atan2(-dy,-dx)+(Math.random()-.5)*.8;o.x-=dx/d*2;o.y-=dy/d*2;}}
+ const dx=o.x-W/2,dy=o.y-W/2,d=Math.hypot(dx,dy);if(d>R*1.12){o.gone=SCOPE.t+2+Math.random()*5;const b=Math.random()*6.28;o.x=W/2+Math.cos(b)*R*1.1;o.y=W/2+Math.sin(b)*R*1.1;o.a=b+Math.PI+(Math.random()-.5)*.9;}}
 const DRAW={
  paramecio(x,o,t){x.rotate(o.a);x.fillStyle='rgba(190,200,185,.75)';x.strokeStyle='#5a6a5a';x.lineWidth=1.2;x.beginPath();x.ellipse(0,0,34,15,0,0,7);x.fill();x.stroke();x.strokeStyle='rgba(60,80,60,.6)';x.lineWidth=.8;for(let i=0;i<36;i++){const a=i/36*6.28,c=Math.cos(a),s=Math.sin(a),w=Math.sin(t*25+i)*1.5;x.beginPath();x.moveTo(c*34,s*15);x.lineTo(c*39+w,s*19);x.stroke();}x.fillStyle='rgba(90,110,90,.7)';x.beginPath();x.ellipse(-4,0,9,5,0,0,7);x.fill();x.fillStyle='rgba(255,255,255,.6)';x.beginPath();x.arc(16,-4,3.5,0,7);x.fill();x.beginPath();x.arc(-18,3,3,0,7);x.fill();},
  ameba(x,o,t){x.fillStyle='rgba(205,200,185,.75)';x.strokeStyle='#7a7060';x.lineWidth=1.3;x.beginPath();for(let i=0;i<=12;i++){const a=i/12*6.28,r=24+10*Math.sin(a*3+t*.9+o.ph)+6*Math.sin(a*5-t*.6);x.lineTo(Math.cos(a)*r,Math.sin(a)*r);}x.closePath();x.fill();x.stroke();x.fillStyle='rgba(110,100,80,.7)';x.beginPath();x.arc(3,-2,6,0,7);x.fill();x.fillStyle='rgba(120,120,110,.5)';for(let i=0;i<5;i++){x.beginPath();x.arc(Math.sin(i*4+1)*12,Math.cos(i*3)*10,2.2,0,7);x.fill();}},
@@ -979,7 +979,7 @@ const DRAW={
  fitolito(x,o,t){x.rotate(o.a);x.fillStyle='rgba(230,235,240,.9)';x.strokeStyle='#6a7a88';x.lineWidth=1.3;x.beginPath();x.moveTo(-18,-6);x.lineTo(-6,-6);x.lineTo(-6,-18);x.lineTo(6,-18);x.lineTo(6,-6);x.lineTo(18,-6);x.lineTo(18,6);x.lineTo(6,6);x.lineTo(6,18);x.lineTo(-6,18);x.lineTo(-6,6);x.lineTo(-18,6);x.closePath();x.fill();x.stroke();x.strokeStyle='rgba(100,120,140,.5)';x.beginPath();x.moveTo(-12,0);x.lineTo(12,0);x.moveTo(0,-12);x.lineTo(0,12);x.stroke();},
  almidon(x,o,t){x.fillStyle='rgba(245,245,235,.9)';x.strokeStyle='#8a8a70';x.lineWidth=1.2;x.beginPath();x.ellipse(0,0,18,14,0,0,7);x.fill();x.stroke();x.strokeStyle='rgba(120,120,100,.6)';x.lineWidth=.8;for(let r=4;r<16;r+=4){x.beginPath();x.ellipse(0,0,r*1.2,r,0,0,7);x.stroke();}x.strokeStyle='rgba(40,40,40,.55)';x.lineWidth=2;x.beginPath();x.moveTo(-14,0);x.lineTo(14,0);x.moveTo(0,-11);x.lineTo(0,11);x.stroke();}};
 function scopeTap(ev){if(!SCOPE.on||SCOPE.t<2.8)return;const cv=$('#scopeCv'),rc=cv.getBoundingClientRect(),k=cv.width/rc.width,px=(ev.clientX-rc.left)*k,py=(ev.clientY-rc.top)*k;let best=null,bd=1e9;
- for(const o of SCOPE.orgs){const d=Math.hypot(o.x-px,o.y-py)/o.s;if(d<o.sp.r*1.3&&d<bd){bd=d;best=o;}}if(!best)return;
+ for(const o of SCOPE.orgs){if(o.gone)continue;const d=Math.hypot(o.x-px,o.y-py)/o.s;if(d<o.sp.r*1.3&&d<bd){bd=d;best=o;}}if(!best)return;
  SAVE.microFound=SAVE.microFound||{};const m=best.sp,isNew=!SAVE.microFound[m.id];if(isNew){SAVE.microFound[m.id]={where:SCOPE.site.name};save();chime();announce(m.name,'🔬 '+m.note,{tab:'micro',id:m.id});checkComplete();}else toast('🔬 '+m.name+' — ya lo tenías anotado.');scopeList();}
 
 function updateSurf(t){if(!SURF.length)return;SURF.forEach((m,i)=>{const ph=t*.55+i*2.2;m.position.z=1.2+Math.sin(ph)*1.6+i*1.5;m.material.opacity=.15+.4*Math.max(0,Math.sin(ph+1.2));});}
@@ -1380,7 +1380,7 @@ BUILD.tortuga=(g)=>{const mk=(x,z,ry,s)=>{const t=new THREE.Group();t.position.s
   part(SPH,sh,0,.07,0,.16,.075,.2,t);part(SPH,M(0x6b6a3a,.7),0,.04,0,.15,.03,.19,t);for(let i=0;i<4;i++){const l=part(BOX,ye,0,.13,-.12+i*.08,.18-Math.abs(i-1.5)*.04,.006,.008,t);l.position.y=.135-Math.abs(i-1.5)*.012;}
   part(SPH,M(0x3d4a2c,.7),0,.06,-.24,.045,.04,.06,t);part(SPH,M(0xd8642a,.6),.035,.07,-.24,.012,.018,.025,t);part(SPH,M(0xd8642a,.6),-.035,.07,-.24,.012,.018,.025,t);
   for(const[x,z] of[[.12,-.12],[-.12,-.12],[.12,.12],[-.12,.12]])part(SPH,M(0x3d4a2c,.7),x,.03,z,.04,.02,.03,t);};
- mk(-.55,0,.1,1);mk(.1,.02,-.15,.85);mk(.7,-.02,.2,.7);};
+ mk(-.6,0,Math.PI/2+.1,1);mk(.1,.01,Math.PI/2-.15,.85);mk(.72,-.01,-Math.PI/2+.2,.72);};
 BUILD.aperea=(g,L)=>{const b=M(0x7a6248,.9),d=M(0x4a3a2a,.9);part(SPH,b,0,.1,0,.08,.075,.14,g);part(SPH,b,0,.12,-.13,.055,.05,.065,g);part(SPH,d,.035,.17,-.12,.018,.02,.01,g);part(SPH,d,-.035,.17,-.12,.018,.02,.01,g);
  part(SPH,M(0x111111),.04,.135,-.17,.01,.01,.01,g);part(SPH,M(0x111111),-.04,.135,-.17,.01,.01,.01,g);for(const[x,z] of[[.05,-.07],[-.05,-.07],[.05,.07],[-.05,.07]])L.push(legP(g,d,x,.05,z,.05,.012));};
 {// naranjos criollos y una higuera cerca de la tapera
@@ -1403,7 +1403,7 @@ function hornoInShot(){const f=SAVE.found.hornero;if(!f||f.x2)return false;const
 // tortugas pintadas tomando sol en un tronco caído de la laguna
 const TORT={};{let p=null;for(let t=0;t<600&&!p;t++){const a=rnd()*6.28,r=8+rnd()*30,x=LAG2.x+Math.cos(a)*r,z=LAG2.z+Math.sin(a)*r,h=H(x,z);if(h>-.6&&h<-.15)p=[x,z,a];}
  if(p){const g=new THREE.Group();g.position.set(p[0],-.12,p[1]);g.rotation.y=p[2];scene.add(g);const log=part(CYL,M(0x5e4836,.95),0,0,0,.2,2.6,.2,g);log.rotation.z=Math.PI/2;log.rotation.y=.0;part(CYL,M(0x4f3c2c,.95),-.6,.18,.12,.05,.5,.05,g).rotation.z=-.7;
-  TORT.x=p[0];TORT.z=p[1];const sp=SPECIES.find(s=>s.id==='tortuga');const a=spawn(sp,p[0],p[1]);a.y=-.12+.18;a.h=p[2]+Math.PI/2;a.g.position.set(a.x,a.y,a.z);a.g.rotation.y=a.h;a.mode='sun';}}
+  TORT.x=p[0];TORT.z=p[1];const sp=SPECIES.find(s=>s.id==='tortuga');const a=spawn(sp,p[0],p[1]);a.y=-.12+.19;a.h=p[2];a.g.position.set(a.x,a.y,a.z);a.g.rotation.y=a.h;a.mode='sun';}}
 function tortUpdate(a,dt,dc){if(a.mode==='sun'){a.g.position.y=a.y;if(dc<20){a.mode='dive';a.dt=0;}return;}
  if(a.mode==='dive'){a.dt+=dt;a.g.position.y=a.y-a.dt*.5;a.g.rotation.x=Math.min(.6,a.dt);if(a.dt>.9){a.mode='gone';a.g.visible=false;a.gt=25+Math.random()*15;a.g.rotation.x=0;}return;}
  a.gt-=dt;if(a.gt<=0&&dc>32){a.mode='sun';a.g.visible=true;a.g.position.y=a.y;}}
@@ -1554,7 +1554,7 @@ function renderBook(){{const tb=document.querySelector('#bookTabs [data-t=agua]'
   lg.innerHTML=L.map(l=>l[0]?`<div class="logro on"><b>${l[1]}</b><div><h5>${l[2]}</h5><p>${l[3]} ${l[4]}</p></div></div>`:`<div class="logro"><b>?</b><div><h5>Logro escondido</h5></div></div>`).join('');$('#logH').textContent='Logros especiales ('+L.filter(l=>l[0]).length+' de 3)';}
  const hz=$('#hzList');const H0=SAVE.hall;const q=t=>encodeURIComponent(t);
  const lk=(href,t)=>`<a href="${href}" target="_blank" rel="noopener">${t}</a>`;
- hz.innerHTML=maskCard()+(H0?`<div class="card hz"><div class="ph">${H0.img?`<img alt="Pinturas en la cueva" src="${H0.img}">`:'🔥'}</div><div><h3>Los primeros habitantes</h3>
+ hz.innerHTML=maskCard()+microCard()+(H0?`<div class="card hz"><div class="ph">${H0.img?`<img alt="Pinturas en la cueva" src="${H0.img}">`:'🔥'}</div><div><h3>Los primeros habitantes</h3>
   <p>Mucho antes de que llegaran los europeos, en lo que hoy es Uruguay vivieron pueblos cazadores, pescadores y recolectores. Hay rastros de personas de hace más de 10.000 años.</p>
   <p><b>Pinturas en la roca.</b> En Chamangá, en Flores, está el mayor conjunto de pinturas rupestres del país, hechas con pigmento rojo sobre piedras de granito. La mayoría son dibujos geométricos: líneas, círculos y figuras que todavía no sabemos leer del todo.</p>
   <p><b>Cerritos de indios.</b> En los bañados del este, desde hace unos 5.000 años, se construyeron montículos de tierra para vivir por encima del agua y enterrar a sus muertos.</p>
@@ -1562,8 +1562,8 @@ function renderBook(){{const tb=document.querySelector('#bookTabs [data-t=agua]'
   <p><b>Cerámica.</b> Los pueblos del litoral hacían vasijas y modelaban cabezas de aves y otros animales en los bordes. En el norte, los guaraníes hacían cerámica pintada o con marcas de dedos.</p>
   <p>Cuando llegaron los europeos vivían aquí charrúas, minuanes, guenoas, chanás y guaraníes, entre otros pueblos.</p>
   <p class="note">Las pinturas de esta cueva son una invención del juego, inspiradas en el arte rupestre. Las de Chamangá son sobre todo geométricas.</p>
-  <div class="links">${lk('https://commons.wikimedia.org/w/index.php?search='+q('Chamangá')+'&title=Special:MediaSearch&type=image','Fotos: pinturas de Chamangá')}${lk('https://commons.wikimedia.org/w/index.php?search='+q('zoolito')+'&title=Special:MediaSearch&type=image','Fotos: zoolitos')}${lk('https://commons.wikimedia.org/w/index.php?search='+q('cerámica Goya-Malabrigo')+'&title=Special:MediaSearch&type=image','Fotos: cerámica')}${lk('https://es.wikipedia.org/w/index.php?search='+q('Chamangá'),'Leer: Chamangá')}${lk('https://es.wikipedia.org/w/index.php?search='+q('Cerritos de indios'),'Leer: cerritos de indios')}${lk('https://es.wikipedia.org/w/index.php?search='+q('Charrúas'),'Leer: charrúas')}${lk('https://www.youtube.com/results?search_query='+q('Chamangá pinturas rupestres Uruguay'),'Videos: Chamangá')}${lk('https://www.youtube.com/results?search_query='+q('cerritos de indios Uruguay arqueología'),'Videos: cerritos')}${lk('https://www.youtube.com/results?search_query='+q('zoolitos Uruguay'),'Videos: zoolitos')}</div></div></div>`
-  :`<div class="card locked hz"><div class="ph">?</div><div><h3>Sin descubrir</h3><p>Algo muy antiguo espera en la oscuridad de una cueva.</p></div></div>`)+microCard();
+  <div class="links">${lk('https://commons.wikimedia.org/w/index.php?search='+q('Chamangá')+'&title=Special:MediaSearch&type=image','Fotos: pinturas de Chamangá')}${lk('https://commons.wikimedia.org/w/index.php?search='+q('zoolito')+'&title=Special:MediaSearch&type=image','Fotos: zoolitos')}${lk('https://commons.wikimedia.org/w/index.php?search='+q('cerámica Goya-Malabrigo')+'&title=Special:MediaSearch&type=image','Fotos: cerámica')}${lk('https://es.wikipedia.org/w/index.php?search='+q('Chamangá'),'Leer: Chamangá')}${lk('https://es.wikipedia.org/w/index.php?search='+q('Cerritos de indios'),'Leer: cerritos de indios')}${lk('https://es.wikipedia.org/w/index.php?search='+q('Charrúas'),'Leer: charrúas')}${lk('https://www.youtube.com/results?search_query='+q('Chamangá pinturas rupestres Uruguay'),'Videos: Chamangá')}${lk('https://www.youtube.com/results?search_query='+q('cerritos de indios Uruguay arqueología'),'Videos: cerritos')}${lk('https://www.youtube.com/results?search_query='+q('zoólitos sambaqui escultura'),'Videos: zoolitos (sambaquis del sur de Brasil)')}</div></div></div>`
+  :`<div class="card locked hz"><div class="ph">?</div><div><h3>Sin descubrir</h3><p>Algo muy antiguo espera en la oscuridad de una cueva.</p></div></div>`);
 }
 const MASK_SVG='<svg viewBox="0 0 120 80" width="100%" height="100%"><defs><linearGradient id="hzB" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e2b46a"/><stop offset=".5" stop-color="#8a5a24"/><stop offset="1" stop-color="#c08a40"/></linearGradient></defs><path d="M6 40Q4 22 20 22" fill="none" stroke="#3a2a1a" stroke-width="4"/><path d="M114 40Q116 22 100 22" fill="none" stroke="#3a2a1a" stroke-width="4"/><ellipse cx="60" cy="40" rx="44" ry="28" fill="#3d5a52" stroke="url(#hzB)" stroke-width="7"/><ellipse cx="60" cy="40" rx="40" ry="24" fill="#5f8a7c" opacity=".6"/><path d="M34 28q10-8 26-8" stroke="#fff" stroke-opacity=".5" stroke-width="2" fill="none" stroke-linecap="round"/><rect x="54" y="64" width="12" height="7" rx="2" fill="url(#hzB)"/></svg>';
 function microCard(){if(!SAVE.micro)return `<div class="card locked hz"><div class="ph">?</div><div><h3>Sin descubrir</h3><p>Una casita en la costa guarda algo más del naturalista.</p></div></div>`;
@@ -2279,18 +2279,19 @@ function updateCamera(dt){
 // ===== MODO CAMINAR =====
 const WALK={on:false,run:true,ph:0},PARK={};
 const AV=new THREE.Group();scene.add(AV);AV.visible=false;
-{const skin=M(0xd8a77f,.8),shirt=M(0xb59a6a,.85),pants=M(0x4a4a3a,.9),boot=M(0x3a2a1c,.8),hat=M(0x7a5a3a,.85),pack=M(0x5a6a3a,.9),blk=M(0x1e1e1e,.5),lens=M(0x3a4a5a,.2,{metalness:.5});
- const body=new THREE.Group();AV.add(body);AV.userData.body=body;
- const legs=[-1,1].map(s=>{const p=new THREE.Group();p.position.set(s*.11,.92,0);body.add(p);part(CYL,pants,0,-.42,0,.075,.84,.075,p);part(BOX,boot,0,-.86,-.04,.13,.1,.24,p);return p;});
- part(BOX,shirt,0,1.22,0,.42,.6,.24,body);part(BOX,pants,0,.94,0,.4,.12,.23,body);
- const arms=[-1,1].map(s=>{const p=new THREE.Group();p.position.set(s*.27,1.48,0);body.add(p);part(CYL,shirt,0,-.25,0,.06,.5,.06,p);part(SPH,skin,0,-.54,0,.055,.06,.055,p);return p;});
- part(CYL,skin,0,1.58,0,.06,.1,.06,body);part(SPH,skin,0,1.73,0,.13,.15,.13,body);part(SPH,M(0x3a2a1a,.9),0,1.76,.04,.135,.13,.12,body);
- part(CYL,hat,0,1.85,0,.32,.03,.32,body);part(CYL,hat,0,1.92,0,.15,.13,.15,body);part(CYL,M(0x3a2a1a,.9),0,1.875,0,.155,.03,.155,body);
- part(SPH,M(0x222222),.045,1.75,-.12,.015,.015,.01,body);part(SPH,M(0x222222),-.045,1.75,-.12,.015,.015,.01,body);
- part(BOX,pack,0,1.25,.2,.34,.44,.16,body);part(BOX,M(0x4a5a30,.9),0,1.12,.29,.26,.16,.04,body);
- part(BOX,blk,0,1.3,-.16,.17,.11,.08,body);part(CYL,lens,0,1.3,-.22,.04,.07,.04,body).rotation.x=Math.PI/2;
- for(const s of[-1,1]){const st=part(BOX,M(0x5a3a22,.8),s*.12,1.43,-.06,.025,.32,.02,body);st.rotation.z=s*.45;}
+{const skin=M(0xe2b48c,.8),pon=M(0xc8553a,.85),pon2=M(0xe8c06a,.85),pants=M(0x5a4a3a,.9),boot=M(0x4a3020,.8),hat=M(0x8a6a40,.85),blk=M(0x1e1e1e,.5),lens=M(0x3a4a5a,.2,{metalness:.5});
+ const body=new THREE.Group();AV.add(body);AV.userData.body=body;const torso=new THREE.Group();torso.position.y=.62;body.add(torso);AV.userData.torso=torso;
+ const legs=[-1,1].map(s=>{const p=new THREE.Group();p.position.set(s*.1,.52,0);body.add(p);part(CYL,pants,0,-.22,0,.07,.44,.07,p);part(SPH,boot,0,-.46,-.05,.09,.07,.14,p);return p;});
+ part(SPH,pon,0,.22,0,.28,.3,.24,torso);for(let i=0;i<3;i++)part(CYL,pon2,0,.06+i*.1,0,.282-i*.01,.025,.242-i*.01,torso);
+ const arms=[-1,1].map(s=>{const p=new THREE.Group();p.position.set(s*.25,.36,0);p.rotation.z=s*.35;torso.add(p);part(CYL,pon,0,-.15,0,.055,.3,.055,p);part(SPH,skin,0,-.33,0,.06,.06,.06,p);return p;});
+ const head=new THREE.Group();head.position.y=.62;torso.add(head);AV.userData.head=head;
+ part(SPH,skin,0,0,0,.21,.2,.2,head);part(SPH,M(0x3a2a1a,.9),0,.04,.05,.215,.17,.18,head);part(SPH,M(0x2a1a10),.07,.01,-.18,.025,.03,.02,head);part(SPH,M(0x2a1a10),-.07,.01,-.18,.025,.03,.02,head);
+ part(SPH,M(0xd8846a,.8),0,-.05,-.19,.035,.03,.03,head);part(SPH,M(0xe89a8a,.8),.12,-.05,-.15,.04,.025,.02,head);part(SPH,M(0xe89a8a,.8),-.12,-.05,-.15,.04,.025,.02,head);
+ const hg=new THREE.Group();hg.position.y=.15;head.add(hg);AV.userData.hat=hg;part(CYL,hat,0,0,0,.38,.03,.38,hg);part(CYL,hat,0,.08,0,.17,.15,.17,hg);part(CYL,M(0xc8553a,.9),0,.03,0,.175,.035,.175,hg);
+ part(BOX,M(0x6a7a4a,.9),0,.28,.22,.3,.32,.14,torso);
+ part(BOX,blk,0,.3,-.25,.15,.1,.08,torso);part(CYL,lens,0,.3,-.3,.04,.06,.04,torso).rotation.x=Math.PI/2;for(const s of[-1,1]){const st=part(BOX,M(0x5a3a22,.8),s*.1,.44,-.2,.02,.26,.02,torso);st.rotation.z=s*.5;}
  AV.userData.legs=legs;AV.userData.arms=arms;AV.traverse(o=>{if(o.isMesh)o.castShadow=true;});}
+
 function canWalk(){return started&&!WALK.on&&!photo&&!DIVE.on&&!caveView&&!bookOpen&&!mapOpen&&Math.abs(car.v)<1.2;}
 function startWalk(){if(!canWalk())return;Object.assign(PARK,{x:car.x,y:car.y,z:car.z,h:car.h,mh:car.mh,low:car.low});
  const fx=-Math.sin(car.h),fz=-Math.cos(car.h);let sx=car.x-fz*2.4,sz=car.z+fx*2.4;if(H(sx,sz)<-.5||hitObs(sx,sz,.3)){sx=car.x+fz*2.4;sz=car.z-fx*2.4;}
@@ -2308,8 +2309,11 @@ function updateWalk(dt,time){let tin=0,st=0;if(!photo&&!bookOpen&&!mapOpen){tin=
  if(ok&&Math.hypot(nx-PARK.x,nz-PARK.z)<2.1)ok=false;
  if(ok){car.x=nx;car.z=nz;}else car.v*=.3;car.y=H(car.x,car.z);
  AV.visible=!photo&&!DIVE.on&&!caveView;AV.position.set(car.x,car.y,car.z);AV.rotation.y=car.h;
- const sp=Math.abs(car.v);WALK.ph+=dt*sp*(sp>2?2.6:3.4);const sw=Math.min(1,sp/1.1)*(sp>2?.75:.5),U=AV.userData;
- U.legs[0].rotation.x=Math.sin(WALK.ph)*sw;U.legs[1].rotation.x=-Math.sin(WALK.ph)*sw;U.arms[0].rotation.x=-Math.sin(WALK.ph)*sw*.9;U.arms[1].rotation.x=Math.sin(WALK.ph)*sw*.9;U.body.position.y=Math.abs(Math.sin(WALK.ph))*.05*Math.min(1,sp/2);
+ const sp=Math.abs(car.v);WALK.ph+=dt*(sp>.1?sp*(sp>2?3:4.2):0);const mv=Math.min(1,sp/1.2),sw=mv*(sp>2?.9:.6),U=AV.userData,ph=WALK.ph,tt=time;
+ U.legs[0].rotation.x=Math.sin(ph)*sw;U.legs[1].rotation.x=-Math.sin(ph)*sw;U.arms[0].rotation.x=-Math.sin(ph)*sw*1.1;U.arms[1].rotation.x=Math.sin(ph)*sw*1.1;
+ U.arms[0].rotation.z=-.35-mv*.15*Math.abs(Math.sin(ph));U.arms[1].rotation.z=.35+mv*.15*Math.abs(Math.cos(ph));
+ U.body.position.y=Math.abs(Math.sin(ph))*.07*mv+(1-mv)*Math.sin(tt*2)*.008;U.torso.rotation.z=Math.sin(ph)*.09*mv;U.torso.rotation.x=sp>2?.12:.04*mv;U.body.rotation.y=Math.sin(ph)*.08*mv;
+ U.head.rotation.z=-Math.sin(ph-.6)*.07*mv;U.head.rotation.y=(1-mv)*Math.sin(tt*.5)*.5;U.hat.rotation.z=Math.sin(ph*2-1)*.06*mv;U.hat.rotation.x=Math.sin(ph*2)*.04*mv;
  $('#spd').textContent=Math.round(sp*3.6);}
 let walkUiT=0;function updateWalkUI(dt){walkUiT+=dt;if(walkUiT<.15)return;walkUiT=0;$('#walkBtn').classList.toggle('show',canWalk());const w=WALK.on&&!DIVE.on&&!caveView;$('#carBtn').classList.toggle('show',w);$('#slowBtn').classList.toggle('show',w&&!photo);$('#slowBtn').classList.toggle('on',!WALK.run);}
 
