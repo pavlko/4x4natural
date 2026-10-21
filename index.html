@@ -1893,7 +1893,7 @@ const CASITA={};{let px=LAG2.x+70,pz=COASTZ(LAG2.x+70)-36;px=LAG2.x+52;pz=LAG2.z
 function microFound(){if(SAVE.micro)return;SAVE.micro=true;save();chime();announce('El microscopio del naturalista','🔬 En la casita de pescador había un microscopio de bronce. Buscá los frascos de muestra junto al agua y en el monte.',{tab:'hallazgos',id:'hz-micro'});renderBook&&0;}
 // sitios de muestra: una estaca con un frasquito de vidrio
 const JARFLAGS=[];
-{const jar=(x,z)=>{const h=H(x,z),g=new THREE.Group();g.position.set(x,h-.05,z);scene.add(g);part(CYL,M(0x6b5440,.95),0,.45,0,.035,.9,.035,g);part(BOX,M(0x6b5440,.95),0,.9,0,.22,.14,.04,g);const jr=part(CYL,M(0xbfe3e8,.1,{transparent:true,opacity:.55}),0,1.05,0,.06,.16,.06,g);part(CYL,M(0x8a6a3a,.8),0,1.14,0,.065,.025,.065,g);const fl=new THREE.Mesh(new THREE.PlaneGeometry(.45,.12),M(0xd9b65e,.8,{side:THREE.DoubleSide}));fl.position.set(.25,.82,0);g.add(fl);JARFLAGS.push(fl);return g;};
+{const jar=(x,z,y0)=>{const h=y0!==undefined?y0:H(x,z),g=new THREE.Group();g.position.set(x,h-.05,z);scene.add(g);part(CYL,M(0x6b5440,.95),0,.45,0,.035,.9,.035,g);part(BOX,M(0x6b5440,.95),0,.9,0,.22,.14,.04,g);const jr=part(CYL,M(0xbfe3e8,.1,{transparent:true,opacity:.55}),0,1.05,0,.06,.16,.06,g);part(CYL,M(0x8a6a3a,.8),0,1.14,0,.065,.025,.065,g);const fl=new THREE.Mesh(new THREE.PlaneGeometry(.45,.12),M(0xd9b65e,.8,{side:THREE.DoubleSide}));fl.position.set(.25,.82,0);g.add(fl);JARFLAGS.push(fl);return g;};
  const band=(z0,z1)=>{for(let t=0;t<300;t++){const z=z0+rnd()*(z1-z0),x=riverX(z)+(rnd()<.5?-1:1)*(riverW(z)*.5+2+rnd()*3),h=H(x,z);if(h>.3&&h<8&&slopeAt(x,z)<.5&&!hitObs(x,z,1.5))return[x,z];}return null;};
  const pos={},away=(an,cx,cz,k)=>{const dx=an[0]-cx,dz=an[1]-cz,l=Math.hypot(dx,dz)||1;return[an[0]+dx/l*k,an[1]+dz/l*k];};
  {const dx=LAG2.x-CASITA.x,dz=LAG2.z-CASITA.z,l=Math.hypot(dx,dz);let p=[CASITA.x+dx/l*6,CASITA.z+dz/l*6];for(let k=6;k<l;k+=1){const x=CASITA.x+dx/l*k,z=CASITA.z+dz/l*k;if(H(x,z)<.7)break;if(!hitObs(x,z,1.2))p=[x,z];}pos.laguna=p;}
@@ -1901,7 +1901,8 @@ const JARFLAGS=[];
  pos.manantial=band(-283,-271)||[riverX(-278)+riverW(-278)*.5+4,-278];
  {const p=PUDDLES.find(p=>Math.hypot(p.x-BARRO.x,p.z-BARRO.z)<BARRO.r)||PUDDLES[0];pos.charco=p?[p.x+p.r+1.8,p.z]:[BARRO.x+8,BARRO.z];}
  {let p=null;for(let t=0;t<600&&!p;t++){const z=-230+rnd()*90,x=riverX(z)+(rnd()<.5?-1:1)*(riverW(z)*.5+10+rnd()*20),h=H(x,z);if(h>1.5&&h<12&&slopeAt(x,z)<.5&&hitObs(x,z,6)&&!hitObs(x,z,1.4))p=[x,z];}pos.monte=p||band(-230,-140)||[riverX(-180)+20,-180];}
- for(const s of MSITES){if(s.cave)continue;const p=pos[s.id];s.x=p[0];s.z=p[1];jar(p[0],p[1]);addObs(p[0],p[1],.2);}}
+ for(const s of MSITES){if(s.cave)continue;const p=pos[s.id];s.x=p[0];s.z=p[1];jar(p[0],p[1]);addObs(p[0],p[1],.2);}
+ {const xl=1.45,zl=3.2,j=jar(CAVE_OX-zl,CAVE_Z+xl,FLATS[2][3]+.02);j.scale.setScalar(.85);}}
 
 // el baúl de la tapera
 const CHEST={t:0};{const P=PLACES.find(q=>q.id==='tapera'),a=.35,cx=P.x-2.3*Math.sin(a),cz=P.z-2.3*Math.cos(a),g=new THREE.Group();g.position.set(cx,H(P.x,P.z)-.05,cz);g.rotation.y=a;scene.add(g);
