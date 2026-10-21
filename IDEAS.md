@@ -28,8 +28,12 @@ Patagonia (Cueva de las Manos), África (Serengeti y Laetoli), sur de China (Gua
 - Snorkel en el mar junto a la punta de piedra: sirí, lisas, lenguado, tiburón sarda, tortuga marina.
 - Biguá cazando sargos bajo el mar.
 - En las piedras de la costa, una bandada de playeritos; también biguáes posados.
-- Prueba del mar (solo terreno y vista): https://claude.ai/artifact/Dpys2qm8APi6hqmCBhXTsh
+- Prueba del mar (solo terreno y vista, punta rocosa en el extremo oeste): https://claude.ai/artifact/Dpys2qm8APi6hqmCBhXTsh
 
 ## Manantial de arriba de la cascada
 - Decidido: NO tirarse por la cascada (es muy peligroso en la vida real).
 - Sí bucear en el manantial de arriba: sin nada que encontrar, solo para sentir paz buceando y mirando el paisaje. Limitar con piedras el acceso al borde de la cascada.
+
+## Para pensar
+- Andar a caballo, quizás un caballo salvaje (bagual) que hay que conocer y ganarse.
+- El naturalista como personaje vivo: su rancho, su caballo, su huerta, y charlas con él sobre las pistas y lo que ya encontramos.

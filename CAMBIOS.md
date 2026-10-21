@@ -44,6 +44,7 @@ Un juego de Insight Reality
 - v41  La pestaña de peces aparece recién al encontrar el baúl; el aviso de buceo va dentro de esa pestaña
 - v42  Costa atlántica al sur (dunas, playa, mar y laguna costera más ancha), charcos inundables con juncos en los barriales, la lechuza gira la cabeza para mirarte; IDEAS.md con planes
 - v43  Nubes que se mueven con el viento; algunas bajas sobre la sierra, por debajo del vuelo del águila
+- v44  La lechuza gira la cabeza de verdad para mirarte; naranjos criollos y una higuera cerca de la tapera
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v43).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v44).
 La versión vigente es index.html (lista como app instalable).

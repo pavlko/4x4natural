@@ -1106,9 +1106,9 @@ const BUILD={
   g.userData.wings=[-1,1].map(s=>{const w=new THREE.Group();w.position.set(s*.1,.55,0);const p=part(BOX,k,s*.3,-.04,0,.6,.26,.025,w);part(BOX,M(0x2a2b2e,.6),s*.56,-.06,-.005,.16,.22,.02,w);g.add(w);return w;});
   for(const s of[-1,1])part(CYL,k,s*.05,.12,0,.015,.2,.015,g);},
  lechuza(g,L){const b=M(0xcfae7c),w=M(0xf3ece0),k=M(0x1a1410);
-  part(SPH,b,0,.24,0,.16,.24,.15,g);part(SPH,w,0,.21,-.06,.12,.17,.1,g);part(SPH,b,0,.48,0,.15,.13,.14,g);
-  part(SPH,w,0,.47,-.1,.13,.12,.05,g);part(SPH,k,.045,.48,-.145,.022,.022,.01,g);part(SPH,k,-.045,.48,-.145,.022,.022,.01,g);
-  g.userData.head=g.children[2];},
+  part(SPH,b,0,.24,0,.16,.24,.15,g);part(SPH,w,0,.21,-.06,.12,.17,.1,g);const hg=new THREE.Group();hg.position.set(0,.48,0);g.add(hg);part(SPH,b,0,0,0,.15,.13,.14,hg);
+  part(SPH,w,0,-.01,-.1,.13,.12,.05,hg);part(SPH,k,.045,0,-.145,.022,.022,.01,hg);part(SPH,k,-.045,0,-.145,.022,.022,.01,hg);part(CONE,M(0x8a7a5a),0,-.035,-.15,.012,.03,.012,hg).rotation.x=Math.PI;
+  g.userData.head=hg;},
  yacare(g,L){const b=M(0x4c5636,.75),l=M(0x8a8a5a,.8);
   part(SPH,b,0,.15,0,.36,.15,.85,g);part(SPH,b,0,.14,-1.05,.2,.1,.38,g);part(SPH,b,.1,.24,-.82,.05,.05,.05,g);part(SPH,b,-.1,.24,-.82,.05,.05,.05,g);
   const t=part(CONE,b,0,.12,1.45,.22,1.4,.12,g);t.rotation.x=Math.PI/2;
@@ -1253,6 +1253,13 @@ BUILD.tortuga=(g)=>{const mk=(x,z,ry,s)=>{const t=new THREE.Group();t.position.s
  mk(-.55,0,.1,1);mk(.1,.02,-.15,.85);mk(.7,-.02,.2,.7);};
 BUILD.aperea=(g,L)=>{const b=M(0x7a6248,.9),d=M(0x4a3a2a,.9);part(SPH,b,0,.1,0,.08,.075,.14,g);part(SPH,b,0,.12,-.13,.055,.05,.065,g);part(SPH,d,.035,.17,-.12,.018,.02,.01,g);part(SPH,d,-.035,.17,-.12,.018,.02,.01,g);
  part(SPH,M(0x111111),.04,.135,-.17,.01,.01,.01,g);part(SPH,M(0x111111),-.04,.135,-.17,.01,.01,.01,g);for(const[x,z] of[[.05,-.07],[-.05,-.07],[.05,.07],[-.05,.07]])L.push(legP(g,d,x,.05,z,.05,.012));};
+{// naranjos criollos y una higuera cerca de la tapera
+ const P=PLACES.find(q=>q.id==='tapera'),spots=[];for(let t=0;t<300&&spots.length<5;t++){const a=rnd()*6.28,r=12+rnd()*14,x=P.x+Math.cos(a)*r,z=P.z+Math.sin(a)*r;if(H(x,z)<.5||slopeAt(x,z)>.35||hitObs(x,z,3.2))continue;spots.push([x,z]);addObs(x,z,.35,1);}
+ const trunk=M(0x5a4636,.95),leaf=M(0x2f5a2a,.8,{flatShading:true}),fig=M(0x5d7a3a,.85,{flatShading:true}),orange=M(0xf08a1c,.5,{emissive:0x3a1800});
+ spots.forEach((p,i)=>{const g=new THREE.Group();g.position.set(p[0],H(p[0],p[1])-.05,p[1]);g.rotation.y=rnd()*6.28;scene.add(g);
+  if(i<4){part(CYL,trunk,0,.6,0,.09,1.2,.09,g);const c=part(SPH,leaf,0,1.9,0,1.15,1.05,1.15,g);c.castShadow=true;part(SPH,leaf,.5,1.6,.3,.7,.6,.7,g);
+   for(let k=0;k<26;k++){const a=rnd()*6.28,e=rnd()*1.1-.35,ce=Math.cos(e);part(SPH,orange,Math.cos(a)*1.16*ce,1.9+Math.sin(e)*1.06,Math.sin(a)*1.16*ce,.085,.085,.085,g);}}
+  else{for(const[dx,rz] of[[0,0],[.25,-.4],[-.25,.45]]){const tr=part(CYL,M(0x8e8a80,.9),dx,.7,0,.07,1.4,.07,g);tr.rotation.z=rz;}const c=part(SPH,fig,0,1.85,0,1.5,.9,1.4,g);c.castShadow=true;part(SPH,fig,.8,1.6,.4,.8,.55,.8,g);part(SPH,fig,-.7,1.65,-.3,.8,.55,.8,g);}});}
 // hornero con su nido de barro sobre un poste, cerca de la tapera
 const HORNO={};{const P=PLACES.find(q=>q.id==='tapera');let px=P.x+12,pz=P.z+8;for(let t=0;t<60;t++){const a=t*.7,r=10+t*.3,x=P.x+Math.cos(a)*r,z=P.z+Math.sin(a)*r;if(H(x,z)>.5&&slopeAt(x,z)<.3&&!hitObs(x,z,2)){px=x;pz=z;break;}}
  const h=H(px,pz),g=new THREE.Group();g.position.set(px,h,pz);scene.add(g);const wd=M(0x6b5440,.95),mud=M(0x9a6a42,.95);part(CYL,wd,0,.85,0,.08,1.7,.08,g);part(BOX,wd,0,1.72,0,.5,.06,.4,g);
