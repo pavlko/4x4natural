@@ -294,11 +294,12 @@ body.menu #touch{display:none!important}
 <div id="book" role="dialog" aria-label="Cuaderno de campo">
   <div class="cover">
     <header><h2>Cuaderno de campo<em>Sierras y humedal del este</em></h2><button class="close" id="bClose">Cerrar</button></header>
-    <nav class="tabs" id="bookTabs"><button data-t="portada" class="on" title="Portada" aria-label="Portada"></button><button data-t="lugares" title="Lugares" aria-label="Lugares"></button><button data-t="aves" title="Aves" aria-label="Aves"></button><button data-t="mamiferos" title="Mamíferos" aria-label="Mamíferos"></button><button data-t="reptiles" title="Reptiles" aria-label="Reptiles"></button><button data-t="invertebrados" title="Invertebrados" aria-label="Invertebrados"></button><button data-t="agua" title="Bajo el agua" aria-label="Bajo el agua"></button><button data-t="logros" title="Logros" aria-label="Logros"></button><button data-t="hallazgos" title="Hallazgos" aria-label="Hallazgos"></button></nav>
+    <nav class="tabs" id="bookTabs"><button data-t="portada" class="on" title="Portada" aria-label="Portada"></button><button data-t="lugares" title="Lugares" aria-label="Lugares"></button><button data-t="aves" title="Aves" aria-label="Aves"></button><button data-t="mamiferos" title="Mamíferos" aria-label="Mamíferos"></button><button data-t="reptiles" title="Reptiles" aria-label="Reptiles"></button><button data-t="anfibios" title="Anfibios" aria-label="Anfibios"></button><button data-t="invertebrados" title="Invertebrados" aria-label="Invertebrados"></button><button data-t="agua" title="Bajo el agua" aria-label="Bajo el agua"></button><button data-t="logros" title="Logros" aria-label="Logros"></button><button data-t="hallazgos" title="Hallazgos" aria-label="Hallazgos"></button></nav>
 <div class="pages"><section class="tp on" data-t="portada"><h4><span class="ich" data-ic="portada"></span> Portada</h4><div id="portada"></div></section>
 <section class="tp" data-t="aves"><h4><span class="ich" data-ic="aves"></span> Aves</h4><div class="grid" id="cards_aves"></div></section>
 <section class="tp" data-t="mamiferos"><h4><span class="ich" data-ic="mamiferos"></span> Mamíferos</h4><div class="grid" id="cards_mamiferos"></div></section>
 <section class="tp" data-t="reptiles"><h4><span class="ich" data-ic="reptiles"></span> Reptiles</h4><div class="grid" id="cards_reptiles"></div></section>
+<section class="tp" data-t="anfibios"><h4><span class="ich" data-ic="anfibios"></span> Anfibios</h4><div class="grid" id="cards_anfibios"></div></section>
 <section class="tp" data-t="invertebrados"><h4><span class="ich" data-ic="invertebrados"></span> Invertebrados</h4><div class="grid" id="cards_invertebrados"></div></section>
 <section class="tp" data-t="agua"><div id="agua"></div></section>
 <section class="tp" data-t="lugares"><h4><span class="ich" data-ic="lugares"></span> <span id="plH">Lugares</span></h4><div class="grid" id="plList"></div></section>
@@ -514,17 +515,45 @@ const SPECIES=[
  {id:'aperea',name:'Apereá',sci:'Cavia aperea',more:'Es pariente silvestre del cobayo que muchos tienen de mascota.',size:.35,hab:'land',spots:[],wander:6,walk:.5,run:2.5,shy:{d:12,v:-1},hides:true,
   hint:'En el pasto alto y húmedo, cerca del arroyo.',
   note:'Roedor chiquito, marrón y sin cola. Vive entre los pastos altos de bañados y orillas, donde arma caminitos. Sale a comer pasto temprano y al atardecer, y corre a esconderse ante cualquier peligro.'},
+ {id:'martin',name:'Martín pescador',sci:'Megaceryle torquata',more:'Es el martín pescador más grande de América: mide unos 40 cm. Hace su nido en un túnel que cava en la barranca.',size:.5,hab:'perch',hop:{fleeD:15,sally:true,dive:true},spots:[],
+  hint:'En las ramas sobre el arroyo, mirando el agua.',
+  note:'Pájaro gris azulado con copete, collar blanco y panza rojiza. Se posa en una rama sobre el agua, mira fijo y se tira de cabeza para atrapar un pez. Cuando vuela sobre el arroyo hace un ruido como una matraca.'},
+ {id:'lechucita',name:'Lechucita de las vizcacheras',sci:'Athene cunicularia',more:'A diferencia de otras lechuzas, anda mucho de día. A veces usa cuevas que cavaron otros animales.',size:.35,hab:'land',spots:[],wander:0,walk:.3,run:1,shy:{d:14,v:-1},hides:true,
+  hint:'Parada sobre un tacurú en el campo, con las patas largas.',
+  note:'Lechuza chiquita de patas largas que vive en cuevas en el suelo. Se para en la entrada o sobre un montículo, gira la cabeza para mirarte y, si te acercás mucho, se mete en su cueva.'},
+ {id:'dormilon',name:'Dormilón',sci:'Hydropsalis torquata',more:'Caza insectos en vuelo al atardecer y de noche. Pone los huevos directamente en el suelo, sin nido.',size:.4,hab:'land',spots:[],wander:0,walk:0,run:0,shy:null,
+  hint:'Quieto en el suelo de la sierra, camuflado entre el pasto y las piedras. Solo se ve cuando vuela.',
+  note:'Pájaro de colores tierra que de día se queda inmóvil en el suelo, tan camuflado que parece una piedra o una rama seca. Si te acercás mucho, vuela un tramito corto y se vuelve a quedar quieto.'},
+ {id:'picaflor',name:'Picaflor verde',sci:'Chlorostilbon lucidulus',more:'Bate las alas unas 50 veces por segundo y puede volar hacia atrás.',size:.25,hab:'perch',hop:{fleeD:4,hover:true},spots:[],
+  hint:'Entre las flores de la quebrada. Es muy chiquito y rápido.',
+  note:'Pajarito verde brillante, chiquito, que se queda suspendido en el aire frente a las flores para tomar el néctar con su pico largo. Va de flor en flor a toda velocidad.'},
+ {id:'zorrillo',name:'Zorrillo',sci:'Conepatus chinga',more:'Come insectos, lombrices y raíces que saca escarbando con sus uñas fuertes.',size:.55,hab:'land',spots:[],wander:12,walk:.5,run:.8,shy:null,
+  hint:'Caminando tranquilo por el campo. No le gusta que lo molesten.',
+  note:'Negro con dos rayas blancas en el lomo y cola peluda. Camina tranquilo porque casi nadie se le anima: si se siente en peligro levanta la cola y avisa que puede tirar un líquido de olor fortísimo.'},
+ {id:'comadreja',name:'Comadreja overa',sci:'Didelphis albiventris',more:'Es un marsupial, como el canguro: las crías crecen en una bolsa en la panza de la madre.',size:.5,hab:'land',spots:[],wander:10,walk:.4,run:.8,shy:null,
+  hint:'En el monte cerca de la tapera.',
+  note:'Animal gris con cara blanca, orejas negras y una cola larga y pelada que usa para agarrarse de las ramas. Cuando se asusta mucho, a veces se hace la muerta hasta que pasa el peligro.'},
+ {id:'coipo',name:'Coipo',sci:'Myocastor coypus',more:'También le dicen nutria. Tiene los dientes de adelante color naranja.',size:.55,hab:'perch',spots:[],
+  hint:'Nadando con la cabeza afuera en el arroyo y las lagunas.',
+  note:'Roedor grande de pelo marrón que vive en el agua. Nada con solo la cabeza afuera y, si se asusta, se sumerge y aparece más lejos. Come plantas de la orilla.'},
+ {id:'sapito',name:'Sapito de Darwin',sci:'Melanophryniscus montevidensis',more:'Está en peligro: vive solo en una franja de la costa sur y este de Uruguay.',size:.25,hab:'land',spots:[],wander:3,walk:.12,run:.2,shy:null,
+  hint:'Entre el pasto húmedo detrás de las dunas. Es diminuto.',
+  note:'Sapito negro con puntitos amarillos, de apenas 2 cm. Cuando se siente amenazado se da vuelta y muestra la panza roja: ese color avisa que es venenoso.'},
+ {id:'cangrejo',name:'Cangrejo de arroyo',sci:'Aegla sp.',more:'Solo vive en agua limpia y bien oxigenada: si está, el arroyo está sano.',size:.4,hab:'perch',spots:[],
+  hint:'Bajo el agua, entre las piedras del arroyo y la quebrada.',
+  note:'Crustáceo chiquito, marrón, que camina por el fondo entre las piedras. Si te acercás se esconde debajo de una piedra. Es parecido a un cangrejo, pero con la cola recogida debajo del cuerpo.'},
  {id:'puma',name:'Puma',sci:'Puma concolor',secret:true,high:true,more:'Puede medir más de 2 m con la cola. Caza de noche y al amanecer, y recorre territorios enormes: decenas de kilómetros.',size:1.2,hab:'land',minH:22,rest:8,spots:[[-160,-225]],wander:75,walk:1.3,run:8,shy:{d:85,v:-1},
   hint:'',
   note:'El gran felino de América. Anda por las partes más altas y solitarias de la sierra, donde puede vigilar sin ser visto. Es tan tímido que casi nadie lo ve: en Uruguay se lo creía desaparecido, y solo muy de vez en cuando aparecen rastros o avistamientos en sierras lejanas.'}
 ];
-const GRPN={aves:['','Aves'],mamiferos:['','Mamíferos'],reptiles:['','Reptiles'],invertebrados:['','Invertebrados']};
+const GRPN={aves:['','Aves'],mamiferos:['','Mamíferos'],reptiles:['','Reptiles'],anfibios:['','Anfibios'],invertebrados:['','Invertebrados']};
 // íconos simples al estilo del arte rupestre de la región
 const ICP={portada:'<circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/>',
  aves:'<path d="M5.5 12.5c2.2 2.6 6.4 2.6 9 0M14.5 12.5c1-2.6-.6-4.2 0-6.6.4-1.7 2-2.3 3.1-1.7M17.6 4.2l4 1.2M10 14.6V21M12.5 14.4l1 6.6"/>',
  mamiferos:'<path d="M4.5 10.5H17l2.5-3.5M19.5 7l.5-2.5M5.5 10.5 4.5 17M9 10.5V17M14 10.5V17M17 10.5l1 6.5M4.5 10.5 2.5 13"/>',
  reptiles:'<path d="M2.5 16 6 10l3.5 6 3.5-6 3.5 6 3-5h2"/><circle cx="21.2" cy="11" r=".9"/>',
  invertebrados:'<ellipse cx="12" cy="13" rx="2.6" ry="3.4"/><path d="M9.6 11.5 5 8.5 3.5 4M9.4 13 4 12.5 2.5 9M9.6 14.5 4.5 16.5 3.5 21M10 15.8 7 19.5M14.4 11.5l4.6-3 1.5-4.5M14.6 13l5.4-.5L21.5 9M14.4 14.5l5.1 2 1 4.5M14 15.8l3 3.7"/>',
+ anfibios:'<path d="M12 7c3.6 0 6 2.4 6 5.4S15.4 17.5 12 17.5 6 15.4 6 12.4 8.4 7 12 7ZM9 7.6 7.5 4.8M15 7.6l1.5-2.8M7 15.5l-3.5 3M17 15.5l3.5 3M7.2 11.5 3.8 10M16.8 11.5l3.4-1.5"/><circle cx="7.6" cy="4.6" r=".9"/><circle cx="16.4" cy="4.6" r=".9"/>',
  agua:'<path d="M3.5 12c4-5 9-5 13 0-4 5-9 5-13 0Zm13 0 4-3.5v7Z"/><circle cx="7.5" cy="11.3" r=".8"/>',
  lugares:'<path d="M2 19.5 8 9.5l4 6 3-4.5 7 8.5"/><circle cx="17" cy="5.5" r="2"/>',
  logros:'<path d="M12 2.5v19M2.5 12h19M5.5 5.5l13 13M18.5 5.5l-13 13"/><circle cx="12" cy="12" r="2.5"/>',
@@ -533,7 +562,7 @@ const ICP={portada:'<circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v
  fotos:'<path d="M12 3l2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4Z"/>'};
 const ICON=k=>'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">'+(ICP[k]||'')+'</svg>';
 function paintIcons(root){(root||document).querySelectorAll('#bookTabs button').forEach(b=>b.innerHTML=ICON(b.dataset.t));(root||document).querySelectorAll('.ich').forEach(e=>e.innerHTML=ICON(e.dataset.ic));}
-{const G={carpincho:'mamiferos',zorro:'mamiferos',mulita:'mamiferos',gato:'mamiferos',lobito:'mamiferos',venado:'mamiferos',puma:'mamiferos',yacare:'reptiles',yarara:'reptiles',arana:'invertebrados',lagarto:'reptiles',tortuga:'reptiles',aperea:'mamiferos'};SPECIES.forEach(s=>s.grp=G[s.id]||'aves');}
+{const G={carpincho:'mamiferos',zorro:'mamiferos',mulita:'mamiferos',gato:'mamiferos',lobito:'mamiferos',venado:'mamiferos',puma:'mamiferos',yacare:'reptiles',yarara:'reptiles',arana:'invertebrados',lagarto:'reptiles',tortuga:'reptiles',aperea:'mamiferos',zorrillo:'mamiferos',comadreja:'mamiferos',coipo:'mamiferos',sapito:'anfibios',cangrejo:'invertebrados'};SPECIES.forEach(s=>s.grp=G[s.id]||'aves');}
 const GOAL=SPECIES.filter(s=>!s.secret);
 const START={x:90,z:200,h:0};
 const ROADS=[[[90,206],[80,150],[60,100],[32,64],[riverX(55)+12,55],[riverX(55)-12,55],[-32,62],[-72,82],[-108,104],[-146,108]]];
@@ -1208,11 +1237,11 @@ BUILD.arana=(g,L)=>{const b=M(0x3a2a20,.95),h=M(0x55402e,.95);part(SPH,b,0,.12,.
  for(let i=0;i<8;i++){const s=i<4?-1:1,k=i%4,z=-.1+k*.05,p=new THREE.Group();p.position.set(s*.05,.12,z);p.rotation.y=s*(-.5+k*.35);g.add(p);const l1=part(CYL,b,s*.08,.02,0,.012,.18,.012,p);l1.rotation.z=s*1.1;const l2=part(CYL,b,s*.17,-.06,0,.01,.16,.01,p);l2.rotation.z=s*.35;L.push(p);}};
 function flapW(a,time,on){(a.g.userData.wingsAll||[]).forEach((w,i)=>{const s=Math.sign(w.position.x)||1;if(on){w.scale.x=1;w.rotation.z=s*Math.sin(time*18+i)*.85;}else{w.scale.x=.35;w.rotation.z=s*1.25;}});}
 function hopUpdate(a,dt,time,dc){const hp=a.sp.hop;if(!a.perch)return;
- if(a.state!=='fly'){if(a.sallyT){a.sallyT-=dt;const u=1-a.sallyT/1.6;a.g.position.y=a.perch[1]+Math.sin(u*Math.PI)*1.6;flapW(a,time,true);if(a.sallyT<=0){a.sallyT=0;a.t=3+Math.random()*5;flapW(a,time,false);a.g.position.y=a.perch[1];}return;}
+ if(a.state!=='fly'){if(a.sallyT){a.sallyT-=dt;const u=1-a.sallyT/1.6;a.g.position.y=hp.dive?a.perch[1]-Math.sin(u*Math.PI)*(a.perch[1]+.05):a.perch[1]+Math.sin(u*Math.PI)*1.6;flapW(a,time,true);if(a.sallyT<=0){a.sallyT=0;a.t=3+Math.random()*5;flapW(a,time,false);a.g.position.y=a.perch[1];}return;}
   a.t-=dt;const flee=dc<hp.fleeD;if(hp.sally&&!flee&&a.t<=0&&Math.random()<.5){a.sallyT=1.6;return;}
   if(flee||a.t<=0){let cand=a.perches.filter(p=>p!==a.perch&&Math.hypot(p[0]-a.perch[0],p[2]-a.perch[2])<50);if(flee){const far=cand.filter(p=>Math.hypot(p[0]-car.x,p[2]-car.z)>hp.fleeD+6);if(far.length)cand=far;}if(!cand.length)cand=a.perches.filter(p=>p!==a.perch);
    if(!cand.length){a.t=5;return;}const nx=cand[Math.floor(Math.random()*cand.length)];a.fl={from:a.perch,to:nx,t:0,dur:Math.max(1.2,Math.hypot(nx[0]-a.perch[0],nx[2]-a.perch[2])/7)};a.state='fly';}
-  else flapW(a,time,false);return;}
+  else if(hp.hover){flapW(a,time*3,true);a.g.position.y=a.perch[1]+Math.sin(time*3+a.phase)*.05;}else flapW(a,time,false);return;}
  const F=a.fl;F.t+=dt;const u=Math.min(1,F.t/F.dur),e=u*u*(3-2*u);a.x=mix(F.from[0],F.to[0],e);a.z=mix(F.from[2],F.to[2],e);a.y=mix(F.from[1],F.to[1],e)+Math.sin(u*Math.PI)*2.5;
  a.h=Math.atan2(-(F.to[0]-F.from[0]),-(F.to[2]-F.from[2]));a.g.position.set(a.x,a.y,a.z);a.g.rotation.y=a.h;flapW(a,time,true);
  if(u>=1){a.perch=F.to;a.state='perched';a.t=4+Math.random()*9;flapW(a,time,false);}}
@@ -1278,6 +1307,58 @@ function tortUpdate(a,dt,dc){if(a.mode==='sun'){a.g.position.y=a.y;if(dc<20){a.m
  if(a.mode==='dive'){a.dt+=dt;a.g.position.y=a.y-a.dt*.5;a.g.rotation.x=Math.min(.6,a.dt);if(a.dt>.9){a.mode='gone';a.g.visible=false;a.gt=25+Math.random()*15;a.g.rotation.x=0;}return;}
  a.gt-=dt;if(a.gt<=0&&dc>32){a.mode='sun';a.g.visible=true;a.g.position.y=a.y;}}
 
+// ===== TERCERA TANDA =====
+const SPUPD={};
+BUILD.martin=(g)=>{const b=birdMesh({body:0x5f7f9a,head:0x56768f,belly:0xb5532a,throat:0xf2f0ea,crest:0x56768f,beak:0x2a2a2a,longBeak:1,wing:0x58748c,tail:0x4f6a82,len:.3});b.userData.wingsAll.forEach(w=>{w.scale.x=.35;w.rotation.z=Math.sign(w.position.x)*1.25;});g.add(b);g.userData.wingsAll=b.userData.wingsAll;};
+BUILD.lechucita=(g)=>{const b=M(0x8a6a48,.85),w=M(0xe8dcc4,.85),k=M(0x1a1410),y=M(0xe8c22a,.5);part(SPH,b,0,.2,0,.09,.12,.08,g);part(SPH,w,0,.17,-.05,.07,.09,.04,g);
+ for(let i=0;i<6;i++)part(SPH,w,(Math.random()-.5)*.12,.15+Math.random()*.12,.03+Math.random()*.03,.012,.012,.01,g);const hg=new THREE.Group();hg.position.set(0,.34,0);g.add(hg);part(SPH,b,0,0,0,.075,.065,.07,hg);
+ part(SPH,y,.03,.005,-.065,.016,.016,.01,hg);part(SPH,y,-.03,.005,-.065,.016,.016,.01,hg);part(SPH,k,.03,.005,-.073,.007,.007,.005,hg);part(SPH,k,-.03,.005,-.073,.007,.007,.005,hg);part(SPH,w,0,-.03,-.06,.04,.015,.02,hg);
+ for(const s of[-1,1])part(CYL,M(0xc9b48a),s*.03,.05,0,.01,.12,.01,g);g.userData.head=hg;};
+BUILD.dormilon=(g)=>{const b=birdMesh({body:0x7a6650,head:0x6e5c48,belly:0x8a7660,wing:0x6a5642,tail:0x5e4c3a,throat:0xc9b48a,beak:0x3a3028,len:.26});b.scale.set(1,.7,1);b.userData.wingsAll.forEach(w=>{w.scale.x=.35;w.rotation.z=Math.sign(w.position.x)*1.25;});
+ for(const s of[-1,1]){const t=part(BOX,M(0x5e4c3a,.8),s*.03,.2,.38,.03,.01,.35,b);t.rotation.y=s*.15;}g.add(b);g.userData.wingsAll=b.userData.wingsAll;};
+BUILD.picaflor=(g)=>{const b=birdMesh({body:0x2f8a4a,head:0x3aa055,belly:0x3aa055,throat:0x46c068,beak:0x1a1a1a,longBeak:1,wing:0x2a3a30,tail:0x1f4a30,len:.11});g.add(b);g.userData.wingsAll=b.userData.wingsAll;};
+BUILD.zorrillo=(g,L)=>{const k=M(0x151515,.85),w=M(0xf2f2ee,.85);part(SPH,k,0,.17,0,.12,.11,.25,g);part(SPH,k,0,.17,-.27,.07,.065,.09,g);part(SPH,w,0,.24,-.28,.02,.03,.08,g);
+ for(const s of[-1,1])part(BOX,w,s*.06,.26,.02,.03,.02,.4,g);const tg=new THREE.Group();tg.position.set(0,.2,.24);g.add(tg);part(SPH,k,0,.04,.16,.08,.08,.2,tg);part(SPH,w,0,.08,.26,.05,.05,.1,tg);g.userData.tail=tg;tg.rotation.x=.3;
+ for(const[x,z] of[[.07,-.15],[-.07,-.15],[.07,.14],[-.07,.14]])L.push(legP(g,k,x,.1,z,.1,.025));};
+BUILD.comadreja=(g,L)=>{const gr=M(0x9a9a92,.9),w=M(0xf0ece2,.9),k=M(0x1a1a1a,.9),p=M(0xe8b8b0,.8);const bd=new THREE.Group();g.add(bd);part(SPH,gr,0,.16,0,.11,.1,.22,bd);part(SPH,w,0,.17,-.27,.06,.055,.1,bd);part(SPH,p,0,.15,-.37,.015,.015,.015,bd);
+ part(SPH,k,.045,.24,-.24,.03,.035,.01,bd);part(SPH,k,-.045,.24,-.24,.03,.035,.01,bd);const t=part(CONE,p,0,.12,.45,.025,.45,.025,bd);t.rotation.x=Math.PI/2;g.userData.body=bd;
+ for(const[x,z] of[[.07,-.12],[-.07,-.12],[.07,.12],[-.07,.12]])L.push(legP(bd,k,x,.09,z,.09,.02));};
+BUILD.coipo=(g)=>{const b=M(0x6a4a30,.85);part(SPH,b,0,.02,0,.16,.1,.3,g);part(SPH,b,0,.06,-.3,.09,.08,.11,g);part(SPH,M(0xe0882a,.6),0,.03,-.4,.03,.02,.012,g);part(SPH,M(0x111111),.05,.1,-.33,.012,.012,.012,g);part(SPH,M(0x111111),-.05,.1,-.33,.012,.012,.012,g);
+ for(const s of[-1,1]){const wh=part(BOX,M(0xeeeeee),s*.07,.04,-.38,.08,.003,.003,g);wh.rotation.y=s*.3;}};
+BUILD.sapito=(g)=>{const b=new THREE.Group();g.add(b);const k=M(0x151515,.6),y=M(0xe8c22a,.6),r=M(0xd8352a,.6);part(SPH,k,0,.035,0,.045,.03,.055,b);
+ for(let i=0;i<7;i++)part(SPH,y,(Math.random()-.5)*.06,.06,(Math.random()-.5)*.08,.008,.005,.008,b);part(SPH,r,0,.012,0,.04,.012,.05,b);for(const[x,z] of[[.04,-.03],[-.04,-.03],[.045,.04],[-.045,.04]])part(SPH,r,x,.01,z,.015,.008,.02,b);g.userData.body=b;};
+BUILD.cangrejo=(g)=>{};
+// ramas sobre el agua para el martín pescador
+const RAMAS=[];{const wd=M(0x6b5440,.95);for(let z=-140;z<230;z+=20+rnd()*12){const side=rnd()<.5?-1:1;let x=0,h=-9;for(let o=riverW(z)*.4;o<riverW(z)*.5+30;o+=.5){x=riverX(z)+side*o;h=H(x,z);if(h>.15){x+=side*.8;h=H(x,z);break;}}if(h<.1||h>5)continue;
+ const g=new THREE.Group();g.position.set(x,h,z);scene.add(g);part(CYL,wd,0,.95,0,.06,1.9,.06,g);const arm=part(CYL,wd,-side*1.15,1.85,0,.035,2.4,.035,g);arm.rotation.z=side*1.4;addObs(x,z,.2);RAMAS.push([x-side*2.25,h+2.0,z]);}}
+{const sp=SPECIES.find(s=>s.id==='martin');if(RAMAS.length>2){const c=RAMAS[Math.floor(RAMAS.length/2)],a=spawn(sp,c[0],c[2]);setPerch(a,RAMAS,c);}}
+// picaflor entre las flores de la quebrada
+{const sp=SPECIES.find(s=>s.id==='picaflor'),pts=[];const cz=-215,cx=riverX(cz);for(let t=0;t<800&&pts.length<10;t++){const z=cz+(rnd()-.5)*50,x=riverX(z)+(rnd()-.5)*40,h=H(x,z);if(h<.3||h>18||slopeAt(x,z)>.8)continue;pts.push([x,h+1.2+rnd()*.8,z]);}
+ if(pts.length>2){const a=spawn(sp,pts[0][0],pts[0][2]);setPerch(a,pts,pts[0]);}}
+// tacurúes del campo; dos con lechucitas de las vizcacheras
+const TACU=[];{const geo=jitter(new THREE.SphereGeometry(1,8,6),.18);geo.scale(.8,.55,.8);const m=new THREE.InstancedMesh(geo,M(0xffffff,.95,{flatShading:true}),70);let n=0;
+ for(let t=0;t<6000&&n<70;t++){const x=-60+rnd()*300,z=-60+rnd()*300,h=H(x,z);if(h<.8||h>7||slopeAt(x,z)>.25||clearing(x,z)||roadD(x,z)<5||sandAt(x,z)>.1||hitObs(x,z,2.5))continue;const s=.7+rnd()*.6;
+  dummy.position.set(x,h-.08,z);dummy.rotation.set(0,rnd()*6.28,0);dummy.scale.set(s,s*(.8+rnd()*.5),s);dummy.updateMatrix();m.setMatrixAt(n,dummy.matrix);tmpC.setRGB(.45+rnd()*.06,.36+rnd()*.05,.26);m.setColorAt(n,tmpC);addObs(x,z,.55*s);TACU.push([x,z,h-.08+.55*s*(.8)]);n++;}
+ m.count=n;m.castShadow=true;m.receiveShadow=true;m.instanceMatrix.needsUpdate=true;m.instanceColor.needsUpdate=true;scene.add(m);
+ const sp=SPECIES.find(s=>s.id==='lechucita');TACU.filter((p,i)=>i%25===3).slice(0,2).forEach(p=>{const a=spawn(sp,p[0],p[1]);a.y=p[2];a.g.position.y=a.y;a.perchY=p[2];});}
+{const sp=SPECIES.find(s=>s.id==='dormilon');spreadPts(3,45,(x,z)=>z<-110&&z>-250&&H(x,z)>8&&H(x,z)<26&&slopeAt(x,z)<.5&&!hitObs(x,z,1.5)).forEach(p=>spawn(sp,p[0],p[1]));}
+{const sp=SPECIES.find(s=>s.id==='zorrillo');spreadPts(2,60,(x,z)=>z>-80&&z<200&&H(x,z)>1.5&&slopeAt(x,z)<.35&&!clearing(x,z)&&!hitObs(x,z,1.5)).forEach(p=>spawn(sp,p[0],p[1]));}
+{const sp=SPECIES.find(s=>s.id==='comadreja'),P=PLACES.find(q=>q.id==='tapera');for(let t=0,n=0;t<200&&n<2;t++){const a=rnd()*6.28,r=20+rnd()*30,x=P.x+Math.cos(a)*r,z=P.z+Math.sin(a)*r;if(H(x,z)<.5||slopeAt(x,z)>.4||hitObs(x,z,1.5))continue;spawn(sp,x,z);n++;}}
+{const sp=SPECIES.find(s=>s.id==='coipo');for(const[cx,cz,R] of[[LAG2.x,LAG2.z,9],[riverX(30),30,0]]){const a=spawn(sp,cx,cz);a.home=[cx,cz];a.R=R;a.ang=rnd()*6.28;a.mode='swim';}}
+{const sp=SPECIES.find(s=>s.id==='sapito');spreadPts(3,30,(x,z)=>z>COASTZ(x)-48&&z<COASTZ(x)-26&&H(x,z)>.4&&H(x,z)<4&&slopeAt(x,z)<.35).forEach(p=>spawn(sp,p[0],p[1]));}
+SPUPD.dormilon=(a,dt,time,dc)=>{if(a.fl){const F=a.fl;F.t+=dt;const u=Math.min(1,F.t/F.dur);a.x=mix(F.fx,F.tx,u);a.z=mix(F.fz,F.tz,u);a.y=H(a.x,a.z)+Math.sin(u*Math.PI)*1.6;a.h=Math.atan2(-(F.tx-F.fx),-(F.tz-F.fz));
+  a.g.position.set(a.x,a.y,a.z);a.g.rotation.y=a.h;flapW(a,time,true);if(u>=1){a.fl=null;flapW(a,time,false);}return;}
+ a.y=H(a.x,a.z);a.g.position.set(a.x,a.y,a.z);a.g.rotation.y=a.h;if(dc<9){const ang=Math.atan2(a.z-car.z,a.x-car.x)+(Math.random()-.5)*1.2,d=10+Math.random()*8;let tx=a.x+Math.cos(ang)*d,tz=a.z+Math.sin(ang)*d;if(H(tx,tz)<.5){tx=a.x-Math.cos(ang)*d;tz=a.z-Math.sin(ang)*d;}a.fl={fx:a.x,fz:a.z,tx,tz,t:0,dur:1.3};}};
+SPUPD.coipo=(a,dt,time,dc)=>{if(a.mode==='gone'){a.gt-=dt;if(a.gt<=0&&dc>22){a.mode='swim';a.g.visible=true;}return;}
+ if(dc<14){a.mode='gone';a.g.visible=false;a.gt=15+Math.random()*10;return;}
+ if(a.R>0){a.ang+=dt*.12;a.x=a.home[0]+Math.cos(a.ang)*a.R;a.z=a.home[1]+Math.sin(a.ang)*a.R*.7;a.h=Math.PI-a.ang;}else{a.ang+=dt*.25;const z=a.home[1]+Math.sin(a.ang)*14;a.z=z;a.x=riverX(z)+Math.sin(a.ang*2.3)*1.2;a.h=Math.cos(a.ang)>0?Math.PI:0;}
+ a.y=-.1+Math.sin(time*2+a.phase)*.02;a.g.position.set(a.x,a.y,a.z);a.g.rotation.y=a.h;};
+function postAnim(dt,time){for(const a of animals){const id=a.sp.id;if(id!=='zorrillo'&&id!=='comadreja'&&id!=='sapito'&&id!=='lechucita')continue;const dc=Math.hypot(car.x-a.x,car.z-a.z);if(dc>120)continue;
+ if(id==='zorrillo'){const near=dc<10,t=a.g.userData.tail;if(near){a.state='idle';a.t=1;a.h=Math.atan2(car.x-a.x,car.z-a.z);a.g.rotation.y=a.h;}t.rotation.x+=((near?-1.3:.3)-t.rotation.x)*Math.min(1,dt*5);}
+ else if(id==='comadreja'){const b=a.g.userData.body;if(dc<8&&!a.dead)a.dead=8;if(a.dead){a.dead-=dt;a.state='idle';a.t=1;if(a.dead<=0&&dc<8)a.dead=1;}const tg=a.dead>0?1.45:0;b.rotation.z+=(tg-b.rotation.z)*Math.min(1,dt*6);b.position.y=a.dead>0?.06:0;}
+ else if(id==='sapito'){const b=a.g.userData.body,un=dc<5;if(un){a.state='idle';a.t=1;}b.rotation.z+=((un?2.7:0)-b.rotation.z)*Math.min(1,dt*6);b.position.y=un?.06:0;}
+ else if(id==='lechucita'){if(a.perchY!==undefined&&a.g.visible){a.g.position.y=a.perchY+Math.max(0,Math.sin(time*2.5+a.phase))*.03;}const hd=a.g.userData.head;if(hd){let rel=Math.atan2(-(camera.position.x-a.x),-(camera.position.z-a.z))-a.h;rel=Math.atan2(Math.sin(rel),Math.cos(rel));hd.rotation.y=Math.max(-2.3,Math.min(2.3,rel));}}}}
+
 {const sp=SPECIES.find(s=>s.id==='lechuza');const a=spawn(sp,lechuzaPerch.x,lechuzaPerch.z);a.y=lechuzaPerch.y;a.g.position.y=a.y;a.h=Math.PI*.8;}
 {const a=animals.find(a=>a.sp.id==='gato');a.x=a.home[0]=grutaPos.x;a.z=a.home[1]=grutaPos.z;a.h=-Math.PI/2;a.y=grutaPos.y;a.g.position.set(a.x,a.y,a.z);a.g.rotation.y=a.h;}
 
@@ -1287,6 +1368,7 @@ function updateAnimals(dt,time){
   if(dc>260){continue;}
   if(sp.id==='puma'){pumaUpdate(a,dt,time,dc);continue;}
   if(sp.id==='tortuga'){tortUpdate(a,dt,dc);continue;}
+  if(SPUPD[sp.id]){SPUPD[sp.id](a,dt,time,dc);continue;}
   if(sp.hop){hopUpdate(a,dt,time,dc);continue;}
   if(sp.hab==='perch'){const hd=a.g.userData.head;if(hd){if(sp.id==='lechuza'){let rel=Math.atan2(-(camera.position.x-a.x),-(camera.position.z-a.z))-a.h;rel=Math.atan2(Math.sin(rel),Math.cos(rel));rel=Math.max(-2.35,Math.min(2.35,rel));hd.rotation.y+=(rel-hd.rotation.y)*Math.min(1,dt*3);}else hd.rotation.y=Math.sin(time*.4+a.phase)*1.1;}a.g.rotation.y=a.h;a.g.position.y=a.y+Math.sin(time*1.3)*.005;
    if(a.g.userData.wings){a.wt=(a.wt||0)-dt;if(a.wt<=0){a.wopen=!a.wopen;a.wt=6+Math.random()*9;}a.ws=(a.ws||0)+((a.wopen?1:0)-(a.ws||0))*Math.min(1,dt*2);a.g.userData.wings.forEach(w=>{const s=Math.sign(w.position.x);w.scale.set(.3+.7*a.ws,1,1);w.rotation.z=s*(1.25-1.1*a.ws);});}continue;}
@@ -1468,10 +1550,13 @@ const CALLS={
  viudita(d,t){tn(d,t,.12,3200,3600,.15);},
  hornero(d,t){for(let i=0;i<9;i++)tn(d,t+i*.07,.06,2200+i*60,2400,.18);for(let i=0;i<7;i++)tn(d,t+.05+i*.09,.06,1700,1900,.12);},
  chaja(d,t){tn(d,t,.35,620,880,.55,'sawtooth');tn(d,t+.42,.5,900,560,.55,'sawtooth');},
+ martin(d,t){for(let i=0;i<10;i++)tn(d,t+i*.05,.04,1800,1500,.2,'square');},
+ lechucita(d,t){tn(d,t,.12,1400,1700,.2);tn(d,t+.18,.12,1400,1700,.2);},
+ picaflor(d,t){tn(d,t,.05,6000,6500,.06);},
  bigua(d,t){tn(d,t,.25,140,110,.6,'sawtooth');tn(d,t+.35,.2,130,100,.5,'sawtooth');},
  aguila(d,t){tn(d,t,.35,1800,2300,.35,'sawtooth');tn(d,t+.45,.5,2200,1600,.35,'sawtooth');}
 };
-const CALL_R={hornero:40,chaja:110,cardenal:45,federal:50,dragon:60,viudita:35,bigua:45,espatula:55,sirir:70,cuervo:55,aguila:170,nandu:95,lechuza:85,yacare:75,mulita:32,tero:80,carpincho:60,garza:60,zorro:75,gato:60,lobito:65,venado:80};
+const CALL_R={martin:50,lechucita:30,picaflor:12,hornero:40,chaja:110,cardenal:45,federal:50,dragon:60,viudita:35,bigua:45,espatula:55,sirir:70,cuervo:55,aguila:170,nandu:95,lechuza:85,yacare:75,mulita:32,tero:80,carpincho:60,garza:60,zorro:75,gato:60,lobito:65,venado:80};
 function playCall(a,dist){
  const t=AC.currentTime+.02,vol=Math.pow(1-dist/CALL_R[a.sp.id],1.4)*.55;if(vol<=.003)return;
  const g=AC.createGain();g.gain.value=vol;let out=g;
@@ -1640,8 +1725,8 @@ const FISH=[
  {id:'anguila',name:'Anguila criolla',sci:'Synbranchus marmoratus',hint:'Solo en una laguna oscura y escondida. Vive en el barro del fondo.',note:'Parece una anguila pero no lo es. Vive en el barro de lagunas y bañados y puede respirar aire: cuando el agua se seca, se entierra en el barro húmedo y espera la lluvia. Sale de su cueva para cazar y se esconde enseguida.'},
  {id:'tararira',name:'Tararira',sci:'Hoplias malabaricus',hint:'Quieta entre las plantas de una laguna.',note:'Cazadora de emboscada: se queda quieta entre las plantas, camuflada, y ataca de golpe a otros peces y ranas. Tiene dientes filosos y aguanta aguas con poco oxígeno.'}];
 const DIVES=[
- {id:'cascada',vis:7,mapOff:[-58,10],name:'La cascada y la quebrada',river:true,cx:riverX(-250),cz:-250,note:'Pozo hondo al pie de la caída y agua clara entre piedras. Vi un lobito nadando.',fog:0x2f6a6e,kinds:['mojarra','vieja','bagre','foam','lobito']},
- {id:'medio',vis:5,mapOff:[0,-48],name:'El arroyo, arriba del paso',river:true,cx:riverX(18),cz:18,note:'Agua tranquila con plantas y piedras. Hay peces de colores escondidos.',fog:0x3a6e62,kinds:['mojarra','castaneta','bagre','plants']},
+ {id:'cascada',vis:7,mapOff:[-58,10],name:'La cascada y la quebrada',river:true,cx:riverX(-250),cz:-250,note:'Pozo hondo al pie de la caída y agua clara entre piedras. Vi un lobito nadando.',fog:0x2f6a6e,kinds:['mojarra','vieja','bagre','foam','lobito','cangrejo']},
+ {id:'medio',vis:5,mapOff:[0,-48],name:'El arroyo, arriba del paso',river:true,cx:riverX(18),cz:18,note:'Agua tranquila con plantas y piedras. Hay peces de colores escondidos.',fog:0x3a6e62,kinds:['mojarra','castaneta','bagre','plants','cangrejo']},
  {id:'laguna2',vis:3.5,name:'La laguna de las espátulas',cx:LAG2.x,cz:LAG2.z,note:'Laguna con muchas plantas. Hay que mirar bien entre ellas.',fog:0x4b6a3c,kinds:['tararira','mojarra','castaneta','patos','carpincho','plants','bigua']},
  {id:'escondida',vis:3,name:'La laguna escondida',cx:190,cz:-110,note:'Laguna oscura entre cerros. Algo grande se mueve en el fondo, y algo largo vive en el barro.',fog:0x24463e,kinds:['bagre','mojarra','yacare','anguila','bigua','espesura']}];
 const DIVE={on:false,scene:null,d:null,cache:{},pos:new THREE.Vector3(),air:40,ents:[],near:null};
@@ -1728,6 +1813,10 @@ function buildUnder(d){if(UW.built[d.id])return;const G=new THREE.Group();G.visi
    const L=st.out*1.5;if(L<.06){eel.visible=false;return;}eel.visible=true;
    for(let i=0;i<12;i++){const u=i/11,s=L*(1-u),a=t*1.4-i*.55,up=Math.min(s,.45);pts[i].set(Math.sin(a)*.2*Math.min(1,s*2),up-.05,-(s>.45?s-.45:0)+Math.cos(a)*.06);}
    const curve=new THREE.CatmullRomCurve3(pts),old=eel.geometry;eel.geometry=new THREE.TubeGeometry(curve,22,.045,6,false);old.dispose();head.position.copy(pts[0]);eye.position.set(pts[0].x+.03,pts[0].y+.02,pts[0].z);});}
+ if(K.includes('cangrejo')){for(let n=0;n<2;n++){const[cx,cz]=waterPt(d.cx,d.cz,1,8,1.0),cy=H(cx,cz),rock=new THREE.Mesh(rg,rk);rock.position.set(cx,cy+.15,cz);rock.scale.set(.5,.3,.45);G.add(rock);
+  const cr=new THREE.Group(),b=M(0x7a5a3a,.7);part(SPH,b,0,.03,0,.05,.025,.06,cr);const tl=part(SPH,b,0,.02,.06,.035,.018,.035,cr);for(const s of[-1,1]){part(SPH,b,s*.06,.03,-.06,.022,.014,.03,cr);for(let k=0;k<3;k++){const l=part(BOX,b,s*.06,.015,-.01+k*.025,.05,.006,.006,cr);l.rotation.z=s*.4;}}
+  part(SPH,M(0x111111),.015,.05,-.055,.006,.006,.006,cr);part(SPH,M(0x111111),-.015,.05,-.055,.006,.006,.006,cr);cr.scale.setScalar(1.6);G.add(cr);const home=new THREE.Vector3(cx+.45,cy+.02,cz),hide=new THREE.Vector3(cx,cy-.02,cz);cr.position.copy(home);
+  ents.push({spec:'cangrejo',label:'Entre las piedras',obj:cr,size:.4,G});ups.push((t,dt)=>{const dd=cr.position.distanceTo(DIVE.pos),tg=dd<2.2?hide:(dd>4?home:null);if(tg)cr.position.lerp(tg,Math.min(1,dt*(dd<2.2?3:.6)));cr.rotation.y=Math.sin(t*.5+n)*.6;});}}
  if(K.includes('bigua')){const bg=new THREE.Group(),k=M(0x1c1d1f,.5);part(SPH,k,0,0,0,.1,.09,.28,bg);const nk=part(CYL,k,0,.02,-.32,.035,.22,.035,bg);nk.rotation.x=Math.PI/2;part(SPH,k,0,.02,-.45,.05,.045,.07,bg);
   const bk=part(CONE,M(0x8a8a80),0,.02,-.55,.015,.1,.015,bg);bk.rotation.x=-Math.PI/2;part(SPH,M(0xd9a43a),0,-.02,-.44,.03,.025,.035,bg);const ft=[];for(const s of[-1,1]){const f=new THREE.Mesh(new THREE.ConeGeometry(.06,.14,3),M(0x2a2b2e,.6,{side:THREE.DoubleSide}));f.rotation.x=Math.PI/2;f.scale.set(1,1,.2);f.position.set(s*.05,-.04,.34);bg.add(f);ft.push(f);}
   G.add(bg);ents.push({spec:'bigua',label:'Pescando bajo el agua',obj:bg,size:.85,G});const cyc={t:Math.random()*10};
@@ -1991,7 +2080,7 @@ function updateTrail(){if(caveView||DIVE.on){$('#trail').classList.remove('show'
  const el=$('#trail');if(na&&nd<55){let msg='Huellas frescas por acá';if(nd<25){const ref=photo?photoYaw:car.h;let d=Math.atan2(-(na.x-car.x),-(na.z-car.z))-ref;d=Math.atan2(Math.sin(d),Math.cos(d));const dir=Math.abs(d)<.5?'adelante':Math.abs(d)>2.6?'atrás':d>0?'a la izquierda':'a la derecha';const dy=na.y-car.y;msg='Hay algo muy cerca, '+dir+(dy>5?' y más arriba':dy<-5?' y más abajo':'')+'. Frená y usá la cámara';}el.textContent=msg;el.classList.add('show');}else el.classList.remove('show');}
 function loop(){
  const dt=Math.min(.05,clock.getDelta()),time=clock.elapsedTime;if(started)perfCheck();
- if(started){updateCar(dt,time);updateAnimals(dt,time);updateCalls(dt);updateRace(dt,time);updateChicks(dt);posT+=dt;if(posT>4){posT=0;savePos();}updateParts(dt);updateFalls(dt);updateCave(dt,time);updateDiving(dt,time);updateSurf(time);updateClouds(dt);truck.visible=!photo||DIVE.on||!!caveView;fogT+=dt;if(fogT>.25){fogT=0;revealFog();checkPlaces();}fogSaveT+=dt;if(fogSaveT>8){fogSaveT=0;saveFog();checkZoomUnlock();}trailT+=dt;if(trailT>.5){trailT=0;updateTrail();}}
+ if(started){updateCar(dt,time);updateAnimals(dt,time);postAnim(dt,time);updateCalls(dt);updateRace(dt,time);updateChicks(dt);posT+=dt;if(posT>4){posT=0;savePos();}updateParts(dt);updateFalls(dt);updateCave(dt,time);updateDiving(dt,time);updateSurf(time);updateClouds(dt);truck.visible=!photo||DIVE.on||!!caveView;fogT+=dt;if(fogT>.25){fogT=0;revealFog();checkPlaces();}fogSaveT+=dt;if(fogSaveT>8){fogSaveT=0;saveFog();checkZoomUnlock();}trailT+=dt;if(trailT>.5){trailT=0;updateTrail();}}
  else{if(!dragging)startA+=dt*.04;}
  if(started)updateCamera(dt);else{const a=startA+camOrbit,el=Math.max(.04,Math.min(1.35,.27+camTilt)),dd=22*camZoom;camera.position.set(car.x+Math.sin(a)*Math.cos(el)*dd,car.y+1.2+Math.sin(el)*dd,car.z+Math.cos(a)*Math.cos(el)*dd);const gh=H(camera.position.x,camera.position.z)+1;if(camera.position.y<gh)camera.position.y=gh;camera.lookAt(car.x,car.y+1.2,car.z);}
  sky.position.copy(camera.position);

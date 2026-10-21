@@ -45,6 +45,7 @@ Un juego de Insight Reality
 - v42  Costa atlántica al sur (dunas, playa, mar y laguna costera más ancha), charcos inundables con juncos en los barriales, la lechuza gira la cabeza para mirarte; IDEAS.md con planes
 - v43  Nubes que se mueven con el viento; algunas bajas sobre la sierra, por debajo del vuelo del águila
 - v44  La lechuza gira la cabeza de verdad para mirarte; naranjos criollos y una higuera cerca de la tapera
+- v45  Tercera tanda: martín pescador, lechucita de las vizcacheras, dormilón, picaflor verde, zorrillo, comadreja overa, coipo, sapito de Darwin, cangrejo de arroyo; tacurúes; pestaña de anfibios
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v44).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v45).
 La versión vigente es index.html (lista como app instalable).
