@@ -51,6 +51,7 @@ Un juego de Insight Reality
 - v48  El juego principal vuelve al terreno anterior en el sur (sin costa). Todo lo de la playa sigue en la rama `playa`
 - v49  Frasco de muestra de la laguna en la orilla, bajando desde la casita de pescador; banderines en los frascos; los sitios de muestra aparecen en el mapa
 - v50  La tarjeta del microscopio ya no habla de zoolitos
+- v51  Los sitios de muestra del microscopio se ven en el mapa aunque no tengas la máscara
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v50).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v51).
 La versión vigente es index.html (lista como app instalable).
