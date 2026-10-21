@@ -41,6 +41,7 @@ Un juego de Insight Reality
 - v38  Hornero con nido de barro, chajá, lagarto overo, tortuga pintada y apereá
 - v39  Primer hallazgo: el baúl del naturalista, con la máscara y su lista de peces; la cueva pasa a ser el segundo
 - v40  La portada ya no muestra la pista del viejo naturalista
+- v41  La pestaña de peces aparece recién al encontrar el baúl; el aviso de buceo va dentro de esa pestaña
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v40).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v41).
 La versión vigente es index.html (lista como app instalable).
