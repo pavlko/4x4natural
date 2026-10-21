@@ -64,6 +64,7 @@ Un juego de Insight Reality
 - v61  Número de versión chiquito en la pantalla de inicio, en el juego (abajo a la derecha) y en el pie del cuaderno
 - v62  La app instalada busca actualizaciones al abrirse y al volver a ella, y avisa con un botón "Hay una versión nueva"
 - v63  Links de fotos y lectura arreglados para especies con "sp." (araña pollito, castañeta); araña con las patas abiertas que camina más; cara del avatar con nariz y sonrisa
+- v64  Correa de la cámara del avatar bien orientada
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v63).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v64).
 La versión vigente es index.html (lista como app instalable).
