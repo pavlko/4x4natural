@@ -370,9 +370,6 @@ function baseH(x,z){
   // cresta que une el anillo de la laguna escondida con el borde alto del sureste
   {const ax=190+Math.cos(.8)*60,az=-110+Math.sin(.8)*60,bx=HALF-8,bz=-38,dx=bx-ax,dz=bz-az,l=dx*dx+dz*dz;let t=((x-ax)*dx+(z-az)*dz)/l;t=Math.max(0,Math.min(1,t));
    const dd=Math.hypot(x-(ax+dx*t),z-(az+dz*t)),hn=fbm(x*.05+21,z*.05+4,3),sg=3.4+(hn-.5)*1.4;const fade=ss(.0,.2,t);h+=fade*(10+hn*6)*Math.exp(-(dd*dd)/(2*sg*sg))+(fbm(x*.09,z*.09+8,3)-.5)*3*Math.exp(-(dd*dd)/(2*(sg*2.2)**2));}
-  // costa atlántica: cordón de dunas, playa y mar hacia el sur
-  if(z>240){const zs=COASTZ(x),dune=3.4*(.55+.9*fbm(x*.06+8,z*.06,3))*Math.exp(-((z-(zs-11))**2)/(2*4.8*4.8)),
-    tgt=z<zs+4?mix(1.1,-.3,ss(zs-5,zs+4,z)):-.3-ss(zs+4,zs+30,z)*5.5,k=ss(zs-24,zs-9,z);h=mix(h,tgt,k)+dune*(1-ss(zs-4,zs+2,z));}
   const hPre=h;
   // arroyo
   const w=riverW(z),d=Math.abs(x-riverX(z));
@@ -395,12 +392,12 @@ function baseH(x,z){
     h=mix(h,prof,q);
   }
   // laguna del arroyo: el cauce se ensancha al sur
-  {const LX=riverX(245)+8,le=Math.hypot((x-LX)/44,(z-247)/23);if(le<1.15){const tg=mix(-2.3,.9,ss(.3,1,le));h=mix(h,Math.min(h,tg),1-ss(.8,1.15,le));}}
+  {const LX=riverX(245)+8,le=Math.hypot((x-LX)/34,(z-245)/24);if(le<1.15){const tg=mix(-2.3,.9,ss(.3,1,le));h=mix(h,Math.min(h,tg),1-ss(.8,1.15,le));}}
   // cascada: paredón donde nace el arroyo y pozón al pie
   {const FZ=-263,dr=Math.abs(x-riverX(z)),LZ=lipZ(x);if(z<LZ+3.5&&dr<64){const wall=ss(LZ+2.5,LZ-2,z)*(1-ss(44,64,dr));if(dr<3.2&&z<FZ-1)h=mix(h,25,wall);else{const top=26+(fbm(x*.15,z*.15,2)-.5)*3*ss(4,12,x-riverX(z));h=mix(h,Math.max(h,top),wall);}}
    const pd=Math.hypot(x-riverX(FZ+6),z-(FZ+6));if(pd<10)h=mix(h,Math.min(h,-2.6),1-ss(6,10,pd));}
   // bordes del mundo
-  const e=Math.max(Math.abs(x)*(1-ss(250,285,z)),-z);
+  const e=Math.max(Math.abs(x),Math.abs(z));
   h+=ss(HALF-45,HALF-5,e)*22;
   return h;
 }
@@ -582,7 +579,7 @@ function roadD(x,z){let best=1e9;for(const R of ROADS)for(let i=0;i<R.length-1;i
 const MUD=[[BARRO.x,BARRO.z,BARRO.r/1.45],[86,168,8],[26,142,15],[riverX(55)+19,60,9],[riverX(55)-19,50,8],[-42,-18,12],[150,-58,11],[-130,190,9]].map(p=>[p[0],p[1],p[2]*1.45]);
 const SAND=[[118,232,17],[riverX(250)+21,250,20],[riverX(-60)+19,-60,13],[176,-94,11],[203,-131,9],[-176,140,10]].map(p=>[p[0],p[1],p[2]*1.45]);
 function zoneAt(L,x,z,sc){let m=0;for(const p of L){const d=Math.hypot(x-p[0],z-p[1]);if(d<p[2])m=Math.max(m,1-ss(p[2]*.45,p[2],d));}if(!m)return 0;return Math.min(1,m*(.7+.6*fbm(x*sc,z*sc,2)));}
-const mudAt=(x,z)=>zoneAt(MUD,x,z,.18),sandAt=(x,z)=>Math.max(zoneAt(SAND,x,z,.08),ss(COASTZ(x)-30,COASTZ(x)-18,z));
+const mudAt=(x,z)=>zoneAt(MUD,x,z,.18),sandAt=(x,z)=>zoneAt(SAND,x,z,.08);
 function clearing(x,z){const d=Math.abs(x-riverX(z)),w=riverW(z);return roadD(x,z)<6||(Math.abs(z-55)<15&&d<w+40)||(Math.abs(z+115)<11&&d<w+30)||(z<-122&&z>-272&&d<w*.5+8.5);}
 
 // ===== PERSISTENCIA =====
@@ -881,10 +878,7 @@ const wetPt=()=>{const z=-100+rnd()*370,x=riverX(z)+(rnd()<.5?-1:1)*(riverW(z)*.
   for(let i=0;i<Math.round(p.r*4);i++){const a=rnd()*6.28,r=p.r*(.92+rnd()*.35);reeds.push([p.x+Math.cos(a)*r,p.z+Math.sin(a)*r]);}}
  const im=new THREE.InstancedMesh(rg,M(0x3f6a2a,.85),Math.max(1,reeds.length));reeds.forEach((q,i)=>{const sc=.8+rnd()*.7;dummy.position.set(q[0],H(q[0],q[1])-.03,q[1]);dummy.rotation.set(0,rnd()*6.28,0);dummy.scale.set(sc,sc*1.3,sc);dummy.updateMatrix();im.setMatrixAt(i,dummy.matrix);});im.count=reeds.length;im.instanceMatrix.needsUpdate=true;scene.add(im);}
 const SURF=[];
-{// espuma de las olas en la playa
- const pts=[];for(let x=-HALF;x<=HALF;x+=4){const c=COASTZ(x);let zz=c+4;for(let z=c-8;z<c+22;z+=.5){if(H(x,z)<-.06){zz=z;break;}}pts.push([x,zz]);}
- const mk=w=>{const P=[],I=[];pts.forEach((p,i)=>{P.push(p[0],0,p[1]-w*.3,p[0],0,p[1]+w);if(i){const b=i*2;I.push(b-2,b-1,b,b-1,b+1,b);}});const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(P,3));g.setIndex(I);return g;};
- const f1=new THREE.Mesh(mk(1.3),new THREE.MeshBasicMaterial({color:0xf4f7f2,transparent:true,opacity:.5,depthWrite:false,side:THREE.DoubleSide})),f2=new THREE.Mesh(mk(.8),f1.material.clone());f1.position.y=-.03;f2.position.y=-.035;scene.add(f1,f2);SURF.push(f1,f2);}
+
 const CLOUDS=[];
 {// nubes que el viento va moviendo; algunas bajas sobre la sierra, por debajo del vuelo del águila
  const cm=M(0xffffff,1,{flatShading:true,emissive:0x8a8f96,emissiveIntensity:.55});
@@ -942,7 +936,7 @@ function scopeTap(ev){if(!SCOPE.on)return;const cv=$('#scopeCv'),rc=cv.getBoundi
  for(const o of SCOPE.orgs){const d=Math.hypot(o.x-px,o.y-py)/o.s;if(d<o.sp.r*1.3&&d<bd){bd=d;best=o;}}if(!best)return;
  SAVE.microFound=SAVE.microFound||{};const m=best.sp,isNew=!SAVE.microFound[m.id];if(isNew){SAVE.microFound[m.id]={where:SCOPE.site.name};save();chime();announce(m.name,'🔬 '+m.note,m.sci);checkComplete();}else toast('🔬 '+m.name+' — ya lo tenías anotado.');scopeList();}
 
-function updateSurf(t){SURF.forEach((m,i)=>{const ph=t*.55+i*2.2;m.position.z=1.2+Math.sin(ph)*1.6+i*1.5;m.material.opacity=.15+.4*Math.max(0,Math.sin(ph+1.2));});}
+function updateSurf(t){if(!SURF.length)return;SURF.forEach((m,i)=>{const ph=t*.55+i*2.2;m.position.z=1.2+Math.sin(ph)*1.6+i*1.5;m.material.opacity=.15+.4*Math.max(0,Math.sin(ph+1.2));});}
 // ===== LUGARES CONSTRUIDOS =====
 const SPH=new THREE.SphereGeometry(1,16,12),BOX=new THREE.BoxGeometry(1,1,1),CYL=new THREE.CylinderGeometry(1,1,1,10),CONE=new THREE.ConeGeometry(1,1,10);
 function part(geo,mat,x,y,z,sx=1,sy=1,sz=1,parent){const m=new THREE.Mesh(geo,mat);m.position.set(x,y,z);m.scale.set(sx,sy,sz);m.castShadow=true;m.receiveShadow=true;if(parent)parent.add(m);return m;}
@@ -1406,7 +1400,7 @@ const TACU=[];{const geo=jitter(new THREE.SphereGeometry(1,8,6),.18);geo.scale(.
 {const sp=SPECIES.find(s=>s.id==='zorrillo');spreadPts(2,60,(x,z)=>z>-80&&z<200&&H(x,z)>1.5&&slopeAt(x,z)<.35&&!clearing(x,z)&&!hitObs(x,z,1.5)).forEach(p=>spawn(sp,p[0],p[1]));}
 {const sp=SPECIES.find(s=>s.id==='comadreja'),P=PLACES.find(q=>q.id==='tapera');for(let t=0,n=0;t<200&&n<2;t++){const a=rnd()*6.28,r=20+rnd()*30,x=P.x+Math.cos(a)*r,z=P.z+Math.sin(a)*r;if(H(x,z)<.5||slopeAt(x,z)>.4||hitObs(x,z,1.5))continue;spawn(sp,x,z);n++;}}
 {const sp=SPECIES.find(s=>s.id==='coipo');for(const[cx,cz,R] of[[LAG2.x,LAG2.z,9],[riverX(30),30,0]]){const a=spawn(sp,cx,cz);a.home=[cx,cz];a.R=R;a.ang=rnd()*6.28;a.mode='swim';}}
-{const sp=SPECIES.find(s=>s.id==='sapito');spreadPts(3,30,(x,z)=>z>COASTZ(x)-48&&z<COASTZ(x)-26&&H(x,z)>.4&&H(x,z)<4&&slopeAt(x,z)<.35).forEach(p=>spawn(sp,p[0],p[1]));}
+{const sp=SPECIES.find(s=>s.id==='sapito');spreadPts(3,30,(x,z)=>z>200&&sandAt(x,z)>.25&&H(x,z)>.4&&H(x,z)<4&&slopeAt(x,z)<.35).forEach(p=>spawn(sp,p[0],p[1]));}
 SPUPD.dormilon=(a,dt,time,dc)=>{if(a.fl){const F=a.fl;F.t+=dt;const u=Math.min(1,F.t/F.dur);a.x=mix(F.fx,F.tx,u);a.z=mix(F.fz,F.tz,u);a.y=H(a.x,a.z)+Math.sin(u*Math.PI)*1.6;a.h=Math.atan2(-(F.tx-F.fx),-(F.tz-F.fz));
   a.g.position.set(a.x,a.y,a.z);a.g.rotation.y=a.h;flapW(a,time,true);if(u>=1){a.fl=null;flapW(a,time,false);}return;}
  a.y=H(a.x,a.z);a.g.position.set(a.x,a.y,a.z);a.g.rotation.y=a.h;if(dc<9){const ang=Math.atan2(a.z-car.z,a.x-car.x)+(Math.random()-.5)*1.2,d=10+Math.random()*8;let tx=a.x+Math.cos(ang)*d,tz=a.z+Math.sin(ang)*d;if(H(tx,tz)<.5){tx=a.x-Math.cos(ang)*d;tz=a.z-Math.sin(ang)*d;}a.fl={fx:a.x,fz:a.z,tx,tz,t:0,dur:1.3};}};

@@ -20,3 +20,8 @@ Idea, diseño y dirección: Insight Reality. Programado conversando con Claude (
 
 ## Licencia
 © 2026 Insight Reality. Todos los derechos reservados. El repositorio es público para consulta y para publicar el juego, pero no es código abierto: ver `LICENSE`.
+
+
+## Ramas
+- `main`: el juego publicado.
+- `playa`: versión con costa atlántica (dunas, playa, mar y laguna costera), en desarrollo. Incluye `prueba-mar.html`.
