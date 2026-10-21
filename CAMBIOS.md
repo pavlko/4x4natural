@@ -40,6 +40,7 @@ Un juego de Insight Reality
 - v37  Las fotos compartidas usan la dirección de GitHub Pages en vez de tinyurl
 - v38  Hornero con nido de barro, chajá, lagarto overo, tortuga pintada y apereá
 - v39  Primer hallazgo: el baúl del naturalista, con la máscara y su lista de peces; la cueva pasa a ser el segundo
+- v40  La portada ya no muestra la pista del viejo naturalista
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v39).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v40).
 La versión vigente es index.html (lista como app instalable).
