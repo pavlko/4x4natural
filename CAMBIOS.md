@@ -54,6 +54,7 @@ Un juego de Insight Reality
 - v51  Los sitios de muestra del microscopio se ven en el mapa aunque no tengas la máscara
 - v52  Cada microorganismo cuenta su relación con los bichos y el lugar; cada sitio de muestra con explicación y video (cerritos de indios en la cueva); en la cueva la muestra se toma al volver; los ojos se acostumbran a la oscuridad y afuera se ve deslumbrante
 - v53  El cartel de cada descubrimiento (bicho, pez, microorganismo, lugar, hallazgo) se toca y lleva directo a su ficha en el cuaderno
+- v54  Al tomar una muestra: frasco con el color y la textura de cada lugar, gotero, gota sobre el portaobjetos y zoom al microscopio
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v53).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v54).
 La versión vigente es index.html (lista como app instalable).
