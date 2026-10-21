@@ -63,6 +63,7 @@ Un juego de Insight Reality
 - v60  Avatar más gracioso y suelto (cabezón, poncho, balanceo); en el microscopio los nombres anotados llevan al cuaderno y los bichitos se van por el borde y vuelven; video de zoolitos de sambaquis; los primeros habitantes como último hallazgo; tortugas bien sobre el tronco
 - v61  Número de versión chiquito en la pantalla de inicio, en el juego (abajo a la derecha) y en el pie del cuaderno
 - v62  La app instalada busca actualizaciones al abrirse y al volver a ella, y avisa con un botón "Hay una versión nueva"
+- v63  Links de fotos y lectura arreglados para especies con "sp." (araña pollito, castañeta); araña con las patas abiertas que camina más; cara del avatar con nariz y sonrisa
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v62).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v63).
 La versión vigente es index.html (lista como app instalable).
