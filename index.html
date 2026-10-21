@@ -891,8 +891,8 @@ function updateClouds(dt){const L=WORLD*.68;for(const c of CLOUDS){c.m.position.
 const SCOPE={on:false,site:null,orgs:[],t:0};
 let microT=0;
 function updateMicro(dt){if(!SAVE.micro){if(!DIVE.on&&!photo&&Math.hypot(car.x-CASITA.mx,car.z-CASITA.mz)<5.5&&Math.abs(car.v)<3)microFound();return;}
- microT+=dt;if(microT<.15)return;microT=0;let near=null;
- if(caveView)near=MSITES.find(s=>s.cave);else if(!DIVE.on&&!photo&&Math.abs(car.v)<1.5){for(const s of MSITES){if(!s.cave&&Math.hypot(car.x-s.x,car.z-s.z)<9){near=s;break;}}}
+ JARFLAGS.forEach((f,i)=>f.rotation.y=Math.sin(performance.now()*.003+i)*.5);microT+=dt;if(microT<.15)return;microT=0;let near=null;
+ if(caveView)near=MSITES.find(s=>s.cave);else if(!DIVE.on&&!photo&&Math.abs(car.v)<2.5){for(const s of MSITES){if(!s.cave&&Math.hypot(car.x-s.x,car.z-s.z)<10){near=s;break;}}}
  SCOPE.near=near;$('#microBtn').classList.toggle('show',!!near&&!SCOPE.on);}
 function openScope(site){SCOPE.on=true;SCOPE.site=site;SCOPE.t=0;SAVE.samples=SAVE.samples||{};if(!SAVE.samples[site.id]){SAVE.samples[site.id]=1;save();}
  $('#scopeTitle').textContent='Muestra: '+site.name.toLowerCase();$('#scope').classList.add('show');$('#microBtn').classList.remove('show');
@@ -1708,7 +1708,8 @@ function drawBigMap(){const c=$('#bigc'),x=c.getContext('2d'),S=c.width,s=S/MM;x
  if(SAVE.teleOk){for(const p of TELE()){const[px,py]=P(p.x,p.z);x.strokeStyle='#F28C28';x.lineWidth=3;x.beginPath();x.arc(px,py,13,0,7);x.stroke();}
   const[ix,iy]=P(START.x,START.z);x.fillStyle='#f3ebdd';x.strokeStyle='#1f160e';x.lineWidth=4;x.font='600 22px "Barlow Condensed", sans-serif';x.strokeText('Inicio',ix,iy-18);x.fillText('Inicio',ix,iy-18);}
  const note=$('#mapnote');if(note)note.textContent=SAVE.teleOk?'Teletransporte: tocá un lugar marcado en naranja para ir hasta ahí.':'Lo más oscuro todavía no lo recorriste. Fotografiá todos los bichos y todos los lugares para desbloquear el teletransporte ('+teleProgress()+' de '+(GOAL.length+PLACES.length)+').';
- if(SAVE.mask){x.save();x.setLineDash([7,6]);x.lineWidth=2.5;for(const d of DIVES){const[px0,py0]=P(d.cx,d.cz),vis=SAVE.dives&&SAVE.dives[d.id],off=d.mapOff||[0,py0>S-70?-46:46],mx=px0+off[0],my=py0+off[1],ol=Math.hypot(off[0],off[1])||1;x.strokeStyle=vis?'#9fe0ec':'#e8dcc0';x.lineWidth=2;x.setLineDash([4,4]);x.beginPath();x.moveTo(px0,py0);x.lineTo(mx-off[0]/ol*17,my-off[1]/ol*17);x.stroke();
+ if(SAVE.mask){x.save();x.setLineDash([7,6]);x.lineWidth=2.5;if(SAVE.micro){for(const st of MSITES){if(st.cave)continue;const[mx2,my2]=P(st.x,st.z),dn=SAVE.samples&&SAVE.samples[st.id];x.setLineDash([]);x.fillStyle=dn?'rgba(217,182,94,.95)':'rgba(40,30,15,.85)';x.beginPath();x.arc(mx2,my2,10,0,7);x.fill();x.strokeStyle='#d9b65e';x.lineWidth=2;x.stroke();x.font='12px sans-serif';x.fillStyle='#fff';x.fillText('🔬',mx2,my2+4);}}
+  for(const d of DIVES){const[px0,py0]=P(d.cx,d.cz),vis=SAVE.dives&&SAVE.dives[d.id],off=d.mapOff||[0,py0>S-70?-46:46],mx=px0+off[0],my=py0+off[1],ol=Math.hypot(off[0],off[1])||1;x.strokeStyle=vis?'#9fe0ec':'#e8dcc0';x.lineWidth=2;x.setLineDash([4,4]);x.beginPath();x.moveTo(px0,py0);x.lineTo(mx-off[0]/ol*17,my-off[1]/ol*17);x.stroke();
   x.setLineDash([]);x.fillStyle='rgba(20,40,46,.85)';x.beginPath();x.arc(mx,my,17,0,7);x.fill();x.lineWidth=2.5;x.stroke();x.font='19px sans-serif';x.fillStyle='#fff';x.fillText('🤿',mx,my+7);x.beginPath();x.arc(px0,py0,4,0,7);x.fillStyle=x.strokeStyle;x.fill();}x.restore();}
  x.setTransform(1,0,0,1,0,0);x.fillStyle='#f3ebdd';x.font='700 26px "Barlow Condensed", sans-serif';x.fillText('N',S/2,28);}
 function TELE(){return [{id:'inicio',name:'Inicio',x:START.x,z:START.z}].concat(PLACES.filter(p=>SAVE.places.includes(p.id)));}
@@ -1854,10 +1855,11 @@ const CASITA={};{let px=LAG2.x+70,pz=COASTZ(LAG2.x+70)-36;px=LAG2.x+52;pz=LAG2.z
  addObs(px,pz,2.9);addObs(px-1.2,pz+2.2,.9);}
 function microFound(){if(SAVE.micro)return;SAVE.micro=true;save();chime();announce('El microscopio del naturalista','🔬 En la casita de pescador había un microscopio de bronce. Buscá los frascos de muestra junto al agua y en el monte.');renderBook&&0;}
 // sitios de muestra: una estaca con un frasquito de vidrio
-{const jar=(x,z)=>{const h=H(x,z),g=new THREE.Group();g.position.set(x,h-.05,z);scene.add(g);part(CYL,M(0x6b5440,.95),0,.45,0,.035,.9,.035,g);part(BOX,M(0x6b5440,.95),0,.9,0,.22,.14,.04,g);const jr=part(CYL,M(0xbfe3e8,.1,{transparent:true,opacity:.55}),0,1.05,0,.06,.16,.06,g);part(CYL,M(0x8a6a3a,.8),0,1.14,0,.065,.025,.065,g);return g;};
+const JARFLAGS=[];
+{const jar=(x,z)=>{const h=H(x,z),g=new THREE.Group();g.position.set(x,h-.05,z);scene.add(g);part(CYL,M(0x6b5440,.95),0,.45,0,.035,.9,.035,g);part(BOX,M(0x6b5440,.95),0,.9,0,.22,.14,.04,g);const jr=part(CYL,M(0xbfe3e8,.1,{transparent:true,opacity:.55}),0,1.05,0,.06,.16,.06,g);part(CYL,M(0x8a6a3a,.8),0,1.14,0,.065,.025,.065,g);const fl=new THREE.Mesh(new THREE.PlaneGeometry(.45,.12),M(0xd9b65e,.8,{side:THREE.DoubleSide}));fl.position.set(.25,.82,0);g.add(fl);JARFLAGS.push(fl);return g;};
  const band=(z0,z1)=>{for(let t=0;t<300;t++){const z=z0+rnd()*(z1-z0),x=riverX(z)+(rnd()<.5?-1:1)*(riverW(z)*.5+2+rnd()*3),h=H(x,z);if(h>.3&&h<8&&slopeAt(x,z)<.5&&!hitObs(x,z,1.5))return[x,z];}return null;};
  const pos={},away=(an,cx,cz,k)=>{const dx=an[0]-cx,dz=an[1]-cz,l=Math.hypot(dx,dz)||1;return[an[0]+dx/l*k,an[1]+dz/l*k];};
- pos.laguna=away(DIVES[2].anchors[0],DIVES[2].cx,DIVES[2].cz,2.5);
+ {const dx=LAG2.x-CASITA.x,dz=LAG2.z-CASITA.z,l=Math.hypot(dx,dz);let p=[CASITA.x+dx/l*6,CASITA.z+dz/l*6];for(let k=6;k<l;k+=1){const x=CASITA.x+dx/l*k,z=CASITA.z+dz/l*k;if(H(x,z)<.7)break;if(!hitObs(x,z,1.2))p=[x,z];}pos.laguna=p;}
  pos.escondida=away(DIVES[3].anchors[0],DIVES[3].cx,DIVES[3].cz,2.5);pos.arroyo=away(DIVES[1].anchors[0],riverX(DIVES[1].anchors[0][1]),DIVES[1].anchors[0][1],2.5);pos.pozon=away(DIVES[0].anchors[0],riverX(DIVES[0].anchors[0][1]),DIVES[0].anchors[0][1],2.5);
  pos.manantial=band(-283,-271)||[riverX(-278)+riverW(-278)*.5+4,-278];
  {const p=PUDDLES.find(p=>Math.hypot(p.x-BARRO.x,p.z-BARRO.z)<BARRO.r)||PUDDLES[0];pos.charco=p?[p.x+p.r+1.8,p.z]:[BARRO.x+8,BARRO.z];}
