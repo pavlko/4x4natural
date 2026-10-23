@@ -65,6 +65,7 @@ Un juego de Insight Reality
 - v62  La app instalada busca actualizaciones al abrirse y al volver a ella, y avisa con un botón "Hay una versión nueva"
 - v63  Links de fotos y lectura arreglados para especies con "sp." (araña pollito, castañeta); araña con las patas abiertas que camina más; cara del avatar con nariz y sonrisa
 - v64  Correa de la cámara del avatar bien orientada
+- v65  Salpicaduras en los charcos; el lagarto corre a su cueva entre piedras; yarará en forma de S que se desliza y escapa; botón de caminar más visible; foto con otro dedo moviendo la cámara (celular); gato montés echado; en modo desbloqueo el mapa muestra bichos, buceo, hallazgos y muestras para teletransportarse
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v64).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v65).
 La versión vigente es index.html (lista como app instalable).
