@@ -69,6 +69,7 @@ Un juego de Insight Reality
 - v66  Tortugas que aguantan más cerca y vuelven antes; teletransporte a bichos a distancia prudente; marcas del mapa separadas y fáciles de tocar; viudita en postes del pastizal y dragones caminando por el pastizal húmedo
 - v67  Lechuza de campo; araña marrón con las patas unidas al cuerpo; araña y dormilón en la sierra del noreste; picaflor tomando néctar de flores rojas junto a la cascada
 - v68  Araña negra; pozón de la cascada de 6 m de hondo con cuevas de piedra y castañetas en cada una; el ruido de la cascada baja al bucear lejos
+- v69  El desbloqueo de 3 toques abre todo: máscara, buceo en cualquier parte, microscopio, peces, microorganismos y vista lejana
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v68).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v69).
 La versión vigente es index.html (lista como app instalable).
