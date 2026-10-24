@@ -25,3 +25,5 @@ Idea, diseño y dirección: Insight Reality. Programado conversando con Claude (
 ## Ramas
 - `main`: el juego publicado.
 - `playa`: versión con costa atlántica (dunas, playa, mar y laguna costera), en desarrollo. Incluye `prueba-mar.html`.
+
+- En la rama `playa`, `index.html` y `playa.html` son el juego completo (v68) con la costa atlántica.
