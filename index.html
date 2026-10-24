@@ -268,7 +268,7 @@ body.menu #touch{display:none!important}
  <g stroke="#fff" stroke-opacity=".2" stroke-width=".25" fill="none"><path d="M44 34l8 5M118 24l-6 8M100 74l11-4M52 76l4-6M128 52q3 3 2 7"/></g>
 </svg>
 <div class="hud" id="hud">
-  <div id="verHud" data-ver>v65</div>
+  <div id="verHud" data-ver>v66</div>
   <div id="tally"><b id="tBichos">0 / 11 bichos</b><span id="tLugares">0 / 7 lugares</span></div>
   <div id="tools">
     <button class="tool" id="bMenu" title="Menú">☰<small>menú</small></button>
@@ -333,7 +333,7 @@ body.menu #touch{display:none!important}
 <section class="tp" data-t="lugares"><h4><span class="ich" data-ic="lugares"></span> <span id="plH">Lugares</span></h4><div class="grid" id="plList"></div></section>
 <section class="tp" data-t="logros"><h4><span class="ich" data-ic="logros"></span> <span id="logH">Logros especiales</span></h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
 <section class="tp" data-t="hallazgos"><h4><span class="ich" data-ic="hallazgos"></span> Hallazgos</h4><div id="hzList"></div></section>
-<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v65</span></p></div>
+<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v66</span></p></div>
   </div>
 </div>
 <div id="start">
@@ -344,7 +344,7 @@ body.menu #touch{display:none!important}
     <p id="iosHint" class="ioshint" hidden>Para instalarla en iPhone o iPad: tocá <b>Compartir</b> y después <b>Agregar a inicio</b>.</p>
     <div class="players"><div id="profList"></div><button id="profNew" type="button">👤 Nuevo jugador</button><span id="profNewBox" hidden><input id="profName" maxlength="16" placeholder="Nombre del jugador"> <button id="profOk" type="button">Listo</button> <button id="profCancel" type="button" aria-label="Cancelar">✕</button></span></div>
     <label class="opt"><input type="checkbox" id="optTrees"> Pasar a través de los árboles (para los más chicos)</label>
-    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v65</span></p>
+    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v66</span></p>
   </div>
 </div>
 <div id="loading">Armando el paisaje…</div>
@@ -521,10 +521,10 @@ const SPECIES=[
   hint:'En las varas del caraguatá falso, en la orilla del arroyo.',
   note:'Pájaro negro con la cabeza y el pecho rojo anaranjado. Vive en bañados y pajonales, posado en lo alto de plantas como el caraguatá, desde donde canta y vigila.'},
  {id:'dragon',name:'Dragón',sci:'Pseudoleistes virescens',more:'Andan en grupos ruidosos y se avisan entre todos cuando ven un peligro.',size:1.0,hab:'perch',hop:{fleeD:22},spots:[],
-  hint:'En grupo, de palmera en palmera en el palmar.',
+  hint:'En grupo, caminando por el pastizal húmedo cerca del arroyo. Vuelan juntos si te acercás.',
   note:'Pájaro pardo oliva con hombros y panza amarillos. Vive en grupos en bañados, pastizales húmedos y palmares, y busca insectos caminando por el suelo.'},
  {id:'viudita',name:'Viudita blanca',sci:'Xolmis irupero',more:'En el campo se la reconoce de lejos por su blanco brillante.',size:.4,hab:'perch',hop:{fleeD:18,sally:true},spots:[],
-  hint:'Blanca, en lo alto de una palmera del palmar.',
+  hint:'Blanca, posada en lo alto de una vara o un poste del pastizal.',
   note:'Pajarito blanco con la punta de las alas y de la cola negras. Se posa en lo alto, sale volando a cazar insectos en el aire y vuelve a su percha.'},
  {id:'hornero',name:'Hornero',sci:'Furnarius rufus',more:'Es el ave nacional de Argentina y uno de los pájaros más queridos de Uruguay. Su nido de barro puede pesar varios kilos.',size:.4,hab:'land',spots:[],wander:9,walk:.6,run:1.4,shy:{d:7,v:-1},
   hint:'Cerca de la tapera, caminando junto a su nido de barro.',
@@ -1359,7 +1359,10 @@ function spreadPts(n,minD,test){const out=[];for(let t=0;t<6000&&out.length<n;t+
 {const sp=SPECIES.find(s=>s.id==='arana');spreadPts(4,55,(x,z)=>z<-100&&H(x,z)>14&&slopeAt(x,z)<.6&&!hitObs(x,z,2)).forEach(p=>spawn(sp,p[0],p[1]));}
 {const sp=SPECIES.find(s=>s.id==='cardenal');if(ESPIN.length>2){const c=ESPIN[Math.floor(ESPIN.length/2)],list=ESPIN.filter(p=>Math.hypot(p[0]-c[0],p[2]-c[2])<60);const a=spawn(sp,c[0],c[2]);setPerch(a,list.length>2?list:ESPIN,c);}}
 {const sp=SPECIES.find(s=>s.id==='federal');const c=CFALSO.find(p=>p[2]>5&&p[2]<130)||CFALSO[0];if(c){const list=CFALSO.filter(p=>Math.hypot(p[0]-c[0],p[2]-c[2])<45);const a=spawn(sp,c[0],c[2]);setPerch(a,list,c);}}
-{for(const id of['dragon','viudita']){const sp=SPECIES.find(s=>s.id===id);if(PALMS.length>3){const c=PALMS[Math.floor(rnd()*PALMS.length)];const a=spawn(sp,c[0],c[2]);setPerch(a,PALMS,id==='viudita'?[c[0],c[1]+.15,c[2]]:c);}}}
+{const wd=M(0x6b5440,.95),posts=[];for(let t=0;t<3000&&posts.length<7;t++){const x=40+rnd()*160,z=-30+rnd()*170,h=H(x,z);if(h<1.5||slopeAt(x,z)>.3||roadD(x,z)<4||hitObs(x,z,3)||posts.some(p=>Math.hypot(p[0]-x,p[2]-z)<16))continue;const ht=1.9+rnd()*.8,g=new THREE.Group();g.position.set(x,h,z);scene.add(g);part(CYL,wd,0,ht/2,0,.045,ht,.05,g);part(CYL,wd,0,ht+.02,0,.06,.04,.06,g);addObs(x,z,.2);posts.push([x,h+ht+.04,z]);}
+ const sv=SPECIES.find(s=>s.id==='viudita');if(posts.length>2){const a=spawn(sv,posts[0][0],posts[0][2]);setPerch(a,posts,posts[0]);}
+ const sd=SPECIES.find(s=>s.id==='dragon'),grd=[];for(let t=0;t<4000&&grd.length<9;t++){const z=40+rnd()*170,x=riverX(z)+(rnd()<.5?-1:1)*(riverW(z)*.5+12+rnd()*45),h=H(x,z);if(h<.4||h>4||slopeAt(x,z)>.3||hitObs(x,z,2)||grd.some(p=>Math.hypot(p[0]-x,p[2]-z)<12))continue;grd.push([x,h+.02,z]);}
+ if(grd.length>2){const a=spawn(sd,grd[0][0],grd[0][2]);setPerch(a,grd,grd[0]);}}
 // puma: echado en lo alto del noroeste; si te acercás se va caminando hacia el borde
 const PUMA_SPOTS=spreadPts(4,22,(x,z)=>x<-150&&x>-250&&z<-190&&z>-250&&H(x,z)>24&&slopeAt(x,z)<.5);
 function pumaUpdate(a,dt,time,dc){
@@ -1414,9 +1417,9 @@ function hornoInShot(){const f=SAVE.found.hornero;if(!f||f.x2)return false;const
 const TORT={};{let p=null;for(let t=0;t<600&&!p;t++){const a=rnd()*6.28,r=8+rnd()*30,x=LAG2.x+Math.cos(a)*r,z=LAG2.z+Math.sin(a)*r,h=H(x,z);if(h>-.6&&h<-.15)p=[x,z,a];}
  if(p){const g=new THREE.Group();g.position.set(p[0],-.12,p[1]);g.rotation.y=p[2];scene.add(g);const log=part(CYL,M(0x5e4836,.95),0,0,0,.2,2.6,.2,g);log.rotation.z=Math.PI/2;log.rotation.y=.0;part(CYL,M(0x4f3c2c,.95),-.6,.18,.12,.05,.5,.05,g).rotation.z=-.7;
   TORT.x=p[0];TORT.z=p[1];const sp=SPECIES.find(s=>s.id==='tortuga');const a=spawn(sp,p[0],p[1]);a.y=-.12+.19;a.h=p[2];a.g.position.set(a.x,a.y,a.z);a.g.rotation.y=a.h;a.mode='sun';}}
-function tortUpdate(a,dt,dc){if(a.mode==='sun'){a.g.position.y=a.y;if(dc<20){a.mode='dive';a.dt=0;}return;}
- if(a.mode==='dive'){a.dt+=dt;a.g.position.y=a.y-a.dt*.5;a.g.rotation.x=Math.min(.6,a.dt);if(a.dt>.9){a.mode='gone';a.g.visible=false;a.gt=25+Math.random()*15;a.g.rotation.x=0;}return;}
- a.gt-=dt;if(a.gt<=0&&dc>32){a.mode='sun';a.g.visible=true;a.g.position.y=a.y;}}
+function tortUpdate(a,dt,dc){if(a.mode==='sun'){a.g.position.y=a.y;if(dc<13||(dc<24&&Math.abs(car.v)>6)){a.mode='dive';a.dt=0;}return;}
+ if(a.mode==='dive'){a.dt+=dt;a.g.position.y=a.y-a.dt*.5;a.g.rotation.x=Math.min(.6,a.dt);if(a.dt>.9){a.mode='gone';a.g.visible=false;a.gt=14+Math.random()*10;a.g.rotation.x=0;}return;}
+ a.gt-=dt;if(a.gt<=0&&dc>20){a.mode='sun';a.g.visible=true;a.g.position.y=a.y;}}
 
 // ===== TERCERA TANDA =====
 const SPUPD={};
@@ -1765,9 +1768,9 @@ function drawBigMap(){const c=$('#bigc'),x=c.getContext('2d'),S=c.width,s=S/MM;x
  for(const p of PLACES){if(!SAVE.places.includes(p.id))continue;const[px,py]=P(p.x,p.z);x.fillStyle='#f3ebdd';x.strokeStyle='#1f160e';x.lineWidth=2;x.beginPath();x.arc(px,py,5,0,7);x.fill();x.stroke();x.lineWidth=4;const ly=p.id==='gruta'?py+24:py-11;x.strokeText(p.name,px,ly);x.fillText(p.name,px,ly);}
  for(const sp of SPECIES){const f=SAVE.found[sp.id];if(!f||f.x===undefined)continue;const[px,py]=P(f.x,f.z);x.fillStyle='#D9B65E';x.strokeStyle='#1f160e';x.lineWidth=1.5;x.beginPath();x.moveTo(px,py-6);x.lineTo(px+5,py);x.lineTo(px,py+6);x.lineTo(px-5,py);x.closePath();x.fill();x.stroke();}
  const[cx,cy]=P(car.x,car.z);x.save();x.translate(cx,cy);x.rotate(-car.h);x.fillStyle='#F28C28';x.strokeStyle='#1f160e';x.lineWidth=2;x.beginPath();x.moveTo(0,-14);x.lineTo(9,9);x.lineTo(0,4);x.lineTo(-9,9);x.closePath();x.fill();x.stroke();x.restore();
- if(SAVE.teleOk){for(const p of TELE()){const[px,py]=P(p.x,p.z);x.strokeStyle=({b:'#7fd06a',p:'#6ac6e0',h:'#e8c84a',m:'#c89a5a'})[p.k]||'#F28C28';x.lineWidth=3;x.beginPath();x.arc(px,py,p.k?9:13,0,7);x.stroke();}
+ if(SAVE.teleOk){const LAY=[];for(const p of TELE()){let[px,py]=P(p.x,p.z);for(let k=0;k<12;k++){const hit=LAY.find(q=>Math.hypot(q.px-px,q.py-py)<20);if(!hit)break;const an=k*2.4;px=hit.px+Math.cos(an)*21;py=hit.py+Math.sin(an)*21;}LAY.push({p,px,py});x.strokeStyle=({b:'#7fd06a',p:'#6ac6e0',h:'#e8c84a',m:'#c89a5a'})[p.k]||'#F28C28';x.lineWidth=3;x.beginPath();x.arc(px,py,p.k?9:13,0,7);x.stroke();}window._mapLay=LAY;window._mapP=P;
   const[ix,iy]=P(START.x,START.z);x.fillStyle='#f3ebdd';x.strokeStyle='#1f160e';x.lineWidth=4;x.font='600 22px "Barlow Condensed", sans-serif';x.strokeText('Inicio',ix,iy-18);x.fillText('Inicio',ix,iy-18);}
- const note=$('#mapnote');if(note)note.textContent=SAVE.teleOk?'Teletransporte: tocá un lugar marcado en naranja para ir hasta ahí.':'Lo más oscuro todavía no lo recorriste. Fotografiá todos los bichos y todos los lugares para desbloquear el teletransporte ('+teleProgress()+' de '+(GOAL.length+PLACES.length)+').';
+ const note=$('#mapnote');if(note)note.textContent=SAVE.teleOk?(SAVE.dev?'Teletransporte: tocá un círculo. Naranja: lugares · verde: bichos · celeste: buceo · dorado: hallazgos · marrón: muestras.':'Teletransporte: tocá un lugar marcado en naranja para ir hasta ahí.'):'Lo más oscuro todavía no lo recorriste. Fotografiá todos los bichos y todos los lugares para desbloquear el teletransporte ('+teleProgress()+' de '+(GOAL.length+PLACES.length)+').';
  x.save();if(SAVE.micro){for(const st of MSITES){if(st.cave)continue;const[mx2,my2]=P(st.x,st.z),dn=SAVE.samples&&SAVE.samples[st.id];x.setLineDash([]);x.fillStyle=dn?'rgba(217,182,94,.95)':'rgba(40,30,15,.85)';x.beginPath();x.arc(mx2,my2,14,0,7);x.fill();x.strokeStyle='#d9b65e';x.lineWidth=2.5;x.stroke();x.font='17px sans-serif';x.fillStyle='#fff';x.textAlign='center';x.fillText('🔬',mx2,my2+6);}}x.restore();
  if(SAVE.mask){x.save();x.setLineDash([7,6]);x.lineWidth=2.5;  for(const d of DIVES){const[px0,py0]=P(d.cx,d.cz),vis=SAVE.dives&&SAVE.dives[d.id],off=d.mapOff||[0,py0>S-70?-46:46],mx=px0+off[0],my=py0+off[1],ol=Math.hypot(off[0],off[1])||1;x.strokeStyle=vis?'#9fe0ec':'#e8dcc0';x.lineWidth=2;x.setLineDash([4,4]);x.beginPath();x.moveTo(px0,py0);x.lineTo(mx-off[0]/ol*17,my-off[1]/ol*17);x.stroke();
   x.setLineDash([]);x.fillStyle='rgba(20,40,46,.85)';x.beginPath();x.arc(mx,my,17,0,7);x.fill();x.lineWidth=2.5;x.stroke();x.font='19px sans-serif';x.fillStyle='#fff';x.fillText('🤿',mx,my+7);x.beginPath();x.arc(px0,py0,4,0,7);x.fillStyle=x.strokeStyle;x.fill();}x.restore();}
@@ -1779,7 +1782,7 @@ function TELE(){const L=[{id:'inicio',name:'Inicio',x:START.x,z:START.z}].concat
   for(const st of MSITES)if(!st.cave)L.push({id:'m-'+st.id,name:st.name+' (muestra)',x:st.x,z:st.z,k:'m'});}
  return L;}
 function landSpot(cx,cz){for(let r=0;r<80;r+=2)for(let k=0;k<16;k++){const a=k/16*6.283,x=cx+Math.cos(a)*r,z=cz+Math.sin(a)*r;if(H(x,z)>0.4&&slopeAt(x,z)<.35&&!hitObs(x,z,2.5))return[x,z];}return[START.x,START.z];}
-function teleport(p){if(WALK.on){WALK.on=false;AV.visible=false;document.body.classList.remove('walking');}const[x,z]=landSpot(p.x,p.z);car.x=x;car.z=z;car.h=(Math.hypot(p.x-x,p.z-z)>1)?Math.atan2(-(p.x-x),-(p.z-z)):car.h;car.v=0;car.vy=0;car.air=false;car.y=H(x,z);car.safe=[x,z,car.h];car.mh=car.h;camPos.set(x+Math.sin(car.h)*10.5,car.y+4.3,z+Math.cos(car.h)*10.5);toggleMap(false);revealFog();toast('Teletransporte: '+p.name,'place');}
+function teleport(p){if(WALK.on){WALK.on=false;AV.visible=false;document.body.classList.remove('walking');}let tx=p.x,tz=p.z;if(p.k==='b'){const a=Math.atan2(START.z-p.z,START.x-p.x);tx=p.x+Math.cos(a)*26;tz=p.z+Math.sin(a)*26;}const[x,z]=landSpot(tx,tz);car.x=x;car.z=z;car.h=(Math.hypot(p.x-x,p.z-z)>1)?Math.atan2(-(p.x-x),-(p.z-z)):car.h;car.v=0;car.vy=0;car.air=false;car.y=H(x,z);car.safe=[x,z,car.h];car.mh=car.h;camPos.set(x+Math.sin(car.h)*10.5,car.y+4.3,z+Math.cos(car.h)*10.5);toggleMap(false);revealFog();toast('Teletransporte: '+p.name,'place');}
 {const bc=$('#bigc'),MP=new Map();let pin=null,moved=0;
  const toN=e=>{const r=bc.getBoundingClientRect();return[(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height];};
  bc.addEventListener('pointerdown',e=>{MP.set(e.pointerId,toN(e));bc.setPointerCapture(e.pointerId);moved=0;if(MP.size===2){const p=[...MP.values()];pin={d:Math.hypot(p[0][0]-p[1][0],p[0][1]-p[1][1]),z:MAPV.z};}});
@@ -1790,7 +1793,7 @@ function teleport(p){if(WALK.on){WALK.on=false;AV.visible=false;document.body.cl
  bc.addEventListener('wheel',e=>{e.preventDefault();const n=toN(e),wxn=MAPV.x+(n[0]-.5)/MAPV.z,wyn=MAPV.y+(n[1]-.5)/MAPV.z;MAPV.z=Math.max(1,Math.min(5,MAPV.z*(e.deltaY>0?.88:1.14)));MAPV.x=wxn-(n[0]-.5)/MAPV.z;MAPV.y=wyn-(n[1]-.5)/MAPV.z;drawBigMap();},{passive:false});
  bc.addEventListener('dblclick',()=>{MAPV.z=1;MAPV.x=MAPV.y=.5;drawBigMap();});
  window._mapMoved=()=>moved;window._mapN=toN;}
-$('#bigc').addEventListener('click',e=>{if(!SAVE.teleOk||window._mapMoved()>.02)return;const n=window._mapN(e),ux=MAPV.x+(n[0]-.5)/MAPV.z,uy=MAPV.y+(n[1]-.5)/MAPV.z;const wx=ux*WORLD-HALF,wz=uy*WORLD-HALF;let best=null,bd=30;for(const p of TELE()){const d=Math.hypot(p.x-wx,p.z-wz);if(d<bd){bd=d;best=p;}}if(best)teleport(best);});
+$('#bigc').addEventListener('click',e=>{if(!SAVE.teleOk||window._mapMoved()>.02)return;const n=window._mapN(e),ux=MAPV.x+(n[0]-.5)/MAPV.z,uy=MAPV.y+(n[1]-.5)/MAPV.z;const wx=ux*WORLD-HALF,wz=uy*WORLD-HALF;let best=null,bd=30;if(window._mapLay){const S0=$('#bigc').width,cx=ux*S0,cy=uy*S0;let b2=22/Math.sqrt(MAPV.z);for(const q of window._mapLay){const d=Math.hypot(q.px-cx,q.py-cy);if(d<b2){b2=d;best=q.p;}}}if(!best)for(const p of TELE()){const d=Math.hypot(p.x-wx,p.z-wz);if(d<bd){bd=d;best=p;}}if(best)teleport(best);});
 // ===== PARTÍCULAS =====
 const PN=700,pPos=new Float32Array(PN*3),pCol=new Float32Array(PN*3),pVel=new Float32Array(PN*3),pLife=new Float32Array(PN),pGrav=new Float32Array(PN);
 const pGeo=new THREE.BufferGeometry();pGeo.setAttribute('position',new THREE.BufferAttribute(pPos,3));pGeo.setAttribute('color',new THREE.BufferAttribute(pCol,3));
