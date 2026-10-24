@@ -74,6 +74,7 @@ Un juego de Insight Reality
 - v71  Carpa derecha, letras sin espejar, sombreros vaqueros (marrón, negro, blanco) y gorra con visera, mate con yerba y bombilla más termo bajo el brazo, color de piel (indígena por defecto), dragones negro y amarillo intenso
 - v72  Cajas del techo se ocultan con objetos arriba; gorra normal; rastas, barba de chivo, bigotes largos; nido de hornero en la cabeza; termo y mate con bombilla; selector de cualquier color (camioneta, piel, pelo, poncho, rayas, gorro, pincel); explorador más flaco con nariz aguileña; botones de muestra y buceo a la vez; mojarras hacia adelante; cuevas del pozón siempre bajo el agua
 - v73  Paredón de la cascada reparado (el pozón hondo le había hecho un agujero); nuevo hallazgo detrás de la cascada: alero con vasijas de barro y pinturas de manos; botones de buceo y muestra solo con ícono, uno al lado del otro
+- v74  La cortina de la cascada llega hasta el pozo; el alero con cerámicas queda en un hueco del paredón detrás del agua; la tarjeta suma la cerámica chaná (Goya-Malabrigo, campanas) con links
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v73).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v74).
 La versión vigente es index.html (lista como app instalable).
