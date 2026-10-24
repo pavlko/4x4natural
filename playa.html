@@ -31,9 +31,9 @@ button:focus-visible{outline:2px solid var(--senal);outline-offset:2px}
 .tool{background:var(--panel);border:0;border-radius:3px;padding:8px 12px;font-size:17px;font-weight:600;min-width:52px;display:flex;flex-direction:column;align-items:center;gap:1px}
 .tool small{font-size:12px;font-weight:500;color:var(--sub)}
 .tool.on{background:var(--senal);color:#1f160e}
-#diveBtn{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 70px);display:none;background:#1f5f6e;color:#eaf8fb;border:2px solid #9fe0ec;border-radius:26px;padding:10px 22px;font-size:22px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+#diveBtn{position:absolute;left:calc(50% - 46px);transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 70px);width:66px;height:66px;padding:0!important;border-radius:50%!important;font-size:32px!important;display:none;background:#1f5f6e;color:#eaf8fb;border:2px solid #9fe0ec;border-radius:26px;padding:10px 22px;font-size:22px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.4)}
 #diveBtn.show{display:block}
-#microBtn{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 128px);display:none;background:#5a3f1c;color:#f7ecd2;border:2px solid #d9b65e;border-radius:26px;padding:10px 22px;font-size:22px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.4)}#microBtn.show{display:block}
+#microBtn{position:absolute;left:calc(50% + 46px);transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 70px);width:66px;height:66px;padding:0!important;border-radius:50%!important;font-size:32px!important;display:none;background:#5a3f1c;color:#f7ecd2;border:2px solid #d9b65e;border-radius:26px;padding:10px 22px;font-size:22px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.4)}#microBtn.show{display:block}
 #walkBtn,#carBtn,#slowBtn{position:absolute;left:12px;top:calc(env(safe-area-inset-top,0px) + 96px);display:none;background:rgba(35,64,47,.9);color:#F3EBDD;border:2px solid #D9B65E;border-radius:22px;padding:9px 18px;font-size:19px;font-weight:700;box-shadow:0 3px 10px rgba(0,0,0,.35);z-index:4}
 #walkBtn small,#carBtn small{font-size:11px;opacity:.7;margin-left:4px}#walkBtn.show,#carBtn.show,#slowBtn.show{display:block}
 #slowBtn{top:calc(env(safe-area-inset-top,0px) + 142px);border-color:#8a7a5a;font-size:15px}#slowBtn.on{background:#D9B65E;color:#1f160e}
@@ -58,7 +58,7 @@ body.cave #microBtn,body.diving #microBtn{bottom:calc(env(safe-area-inset-bottom
 #scopeCv{border-radius:50%;transition:border-radius .5s,box-shadow .5s;box-shadow:0 0 0 10px #8a5e22,0 0 0 14px #3a2510,0 10px 40px rgba(0,0,0,.6);background:#cfe0d6;cursor:crosshair;touch-action:manipulation}
 .scopehint{margin:12px 0 6px;font-size:15px;color:#bfae8a}#scopeList{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:0 0 10px}#scopeList span{border:1.5px dashed #8a7a5a;border-radius:4px;padding:2px 10px;font-size:15px;min-width:34px}#scopeList span.ok{cursor:pointer;border-style:solid;border-color:#d9b65e;color:#f7ecd2}
 #scopeClose{background:#d9b65e;color:#1f160e;border:0;border-radius:4px;padding:8px 22px;font-size:17px;font-weight:700}
-@media (orientation:portrait) and (max-width:700px){#microBtn{bottom:calc(env(safe-area-inset-bottom,0px) + 208px)}}
+@media (orientation:portrait) and (max-width:700px){#microBtn{bottom:calc(env(safe-area-inset-bottom,0px) + 150px)}}
 #announce.go{pointer-events:auto;cursor:pointer}#announce em{display:block;margin-top:6px;font-size:14px;font-style:normal;color:#D9B65E;font-weight:700}
 .card.hl{outline:4px solid #F28C28;outline-offset:2px;transition:outline .3s}
 #announce{position:fixed;left:50%;top:22%;transform:translate(-50%,-8px);z-index:30;background:rgba(35,64,47,.93);color:#F3EBDD;border-bottom:4px solid #D9B65E;border-radius:6px;padding:12px 26px 14px;text-align:center;pointer-events:none;opacity:0;transition:opacity .35s,transform .35s;max-width:92vw}
@@ -269,7 +269,7 @@ body.menu #touch{display:none!important}
  <g stroke="#fff" stroke-opacity=".2" stroke-width=".25" fill="none"><path d="M44 34l8 5M118 24l-6 8M100 74l11-4M52 76l4-6M128 52q3 3 2 7"/></g>
 </svg>
 <div class="hud" id="hud">
-  <div id="verHud" data-ver>v72 playa</div>
+  <div id="verHud" data-ver>v73 playa</div>
   <div id="tally"><b id="tBichos">0 / 11 bichos</b><span id="tLugares">0 / 7 lugares</span></div>
   <div id="tools">
     <button class="tool" id="bMenu" title="Menú">☰<small>menú</small></button>
@@ -282,8 +282,8 @@ body.menu #touch{display:none!important}
   </div>
   <div id="toasts"></div>
   <div id="trail"></div>
-  <button id="diveBtn" type="button">🤿 Zambullirse</button>
-  <button id="microBtn" type="button">🔬 Tomar muestra</button>
+  <button id="diveBtn" type="button" title="Zambullirse">🤿</button>
+  <button id="microBtn" type="button" title="Tomar muestra">🔬</button>
   <button id="walkBtn" type="button" title="Bajarse a caminar (B)">🚶 Bajarse <small>B</small></button>
   <button id="carBtn" type="button" title="Volver a la camioneta (B)">🚙 Volver a la camioneta <small>B</small></button>
   <button id="slowBtn" type="button" title="Ir despacio (Shift)">🐢 Despacio</button>
@@ -340,7 +340,7 @@ body.menu #touch{display:none!important}
 <section class="tp" data-t="lugares"><h4><span class="ich" data-ic="lugares"></span> <span id="plH">Lugares</span></h4><div class="grid" id="plList"></div></section>
 <section class="tp" data-t="logros"><h4><span class="ich" data-ic="logros"></span> <span id="logH">Logros especiales</span></h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
 <section class="tp" data-t="hallazgos"><h4><span class="ich" data-ic="hallazgos"></span> Hallazgos</h4><div id="hzList"></div></section>
-<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v72 playa</span></p></div>
+<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v73 playa</span></p></div>
   </div>
 </div>
 <div id="start">
@@ -350,7 +350,7 @@ body.menu #touch{display:none!important}
     <div class="startbtns"><button id="go">Arrancar</button><button id="goBook">📓 Cuaderno de campo</button><button id="goCustom">🎨 Personalizar</button></div>
     <div class="players"><div id="profList"></div><button id="profNew" type="button">👤 Nuevo jugador</button><span id="profNewBox" hidden><input id="profName" maxlength="16" placeholder="Nombre del jugador"> <button id="profOk" type="button">Listo</button> <button id="profCancel" type="button" aria-label="Cancelar">✕</button></span></div>
     <label class="opt"><input type="checkbox" id="optTrees"> Pasar a través de los árboles (para los más chicos)</label>
-    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v72 playa</span></p>
+    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v73 playa</span></p>
   </div>
 </div>
 <div id="loading">Armando el paisaje…</div>
@@ -423,7 +423,7 @@ function baseH(x,z){
   {const LX=riverX(245)+8,le=Math.hypot((x-LX)/44,(z-247)/23);if(le<1.15){const tg=mix(-2.3,.9,ss(.3,1,le));h=mix(h,Math.min(h,tg),1-ss(.8,1.15,le));}}
   // cascada: paredón donde nace el arroyo y pozón al pie
   {const FZ=-263,dr=Math.abs(x-riverX(z)),LZ=lipZ(x);if(z<LZ+3.5&&dr<64){const wall=ss(LZ+2.5,LZ-2,z)*(1-ss(44,64,dr));if(dr<3.2&&z<FZ-1)h=mix(h,25,wall);else{const top=26+(fbm(x*.15,z*.15,2)-.5)*3*ss(4,12,x-riverX(z));h=mix(h,Math.max(h,top),wall);}}
-   const pd=Math.hypot(x-riverX(FZ+6),z-(FZ+6));if(pd<11.5){const dep=mix(-6.2,-2.5,ss(2.5,9.5,pd))+(fbm(x*.3,z*.3,2)-.5)*.8;h=mix(h,Math.min(h,dep),1-ss(8.5,11.5,pd));}}
+   const pd=Math.hypot(x-riverX(FZ+6),z-(FZ+6));if(pd<11.5){const dep=mix(-6.2,-2.5,ss(2.5,9.5,pd))+(fbm(x*.3,z*.3,2)-.5)*.8;h=mix(h,Math.min(h,dep),(1-ss(8.5,11.5,pd))*ss(FZ+.5,FZ+3.5,z));}}
   // bordes del mundo
   const e=Math.max(Math.abs(x)*(1-ss(250,285,z)),-z);
   h+=ss(HALF-45,HALF-5,e)*22;
@@ -1419,6 +1419,21 @@ BUILD.aperea=(g,L)=>{const b=M(0x7a6248,.9),d=M(0x4a3a2a,.9);part(SPH,b,0,.1,0,.
   if(i<4){part(CYL,trunk,0,.6,0,.09,1.2,.09,g);const c=part(SPH,leaf,0,1.9,0,1.15,1.05,1.15,g);c.castShadow=true;part(SPH,leaf,.5,1.6,.3,.7,.6,.7,g);
    for(let k=0;k<26;k++){const a=rnd()*6.28,e=rnd()*1.1-.35,ce=Math.cos(e);part(SPH,orange,Math.cos(a)*1.16*ce,1.9+Math.sin(e)*1.06,Math.sin(a)*1.16*ce,.085,.085,.085,g);}}
   else{for(const[dx,rz] of[[0,0],[.25,-.4],[-.25,.45]]){const tr=part(CYL,M(0x8e8a80,.9),dx,.7,0,.07,1.4,.07,g);tr.rotation.z=rz;}const c=part(SPH,fig,0,1.85,0,1.5,.9,1.4,g);c.castShadow=true;part(SPH,fig,.8,1.6,.4,.8,.55,.8,g);part(SPH,fig,-.7,1.65,-.3,.8,.55,.8,g);}});}
+// detrás de la cascada: un alero con cerámicas y pinturas
+const ALERO={};{const ax=FALLS.x+2.2;let az=FALLS.z+1.1;for(let z=FALLS.z-2;z<FALLS.z+8;z+=.2){if(H(ax,z)<.25){az=z+.6;break;}}const y0=.22,g=new THREE.Group();g.position.set(ax,y0,az);scene.add(g);ALERO.x=ax;ALERO.y=y0+.5;ALERO.z=az;
+ const rk=M(0x55524a,.95,{flatShading:true}),rg=jitter(new THREE.DodecahedronGeometry(1,1),.3);
+ const ledge=new THREE.Mesh(rg,rk);ledge.scale.set(2.2,.35,1.3);ledge.position.set(0,-.15,.1);g.add(ledge);
+ const back=new THREE.Mesh(new THREE.SphereGeometry(1.5,16,10,0,Math.PI*2,0,Math.PI/2),M(0x1a1612,1,{side:THREE.BackSide}));back.scale.set(1.25,1.15,.9);back.position.set(0,.05,-.55);g.add(back);
+ const cv=document.createElement('canvas');cv.width=256;cv.height=128;const x=cv.getContext('2d');x.fillStyle='#2a221a';x.fillRect(0,0,256,128);x.fillStyle='rgba(176,72,40,.85)';
+ for(const[hx,hy] of[[50,60],[90,48],[200,64]]){x.beginPath();x.ellipse(hx,hy,10,13,0,0,7);x.fill();for(let k=0;k<5;k++){x.save();x.translate(hx,hy);x.rotate(-.7+k*.35);x.fillRect(-2.5,-30,5,18);x.restore();}}
+ x.strokeStyle='rgba(200,150,70,.9)';x.lineWidth=4;x.beginPath();for(let i=0;i<8;i++)x.lineTo(120+i*8,30+(i%2)*14);x.stroke();x.beginPath();x.arc(150,90,14,0,7);x.stroke();
+ const pm=new THREE.Mesh(new THREE.PlaneGeometry(2.6,1.3),new THREE.MeshStandardMaterial({map:new THREE.CanvasTexture(cv),roughness:1}));pm.position.set(0,.75,-.95);g.add(pm);
+ const pot=(px,pz,s2,col)=>{const pr=[[0,0],[.12,0],[.2,.08],[.24,.2],[.2,.32],[.13,.38],[.14,.44]].map(q=>new THREE.Vector2(q[0],q[1]));const cvs=document.createElement('canvas');cvs.width=64;cvs.height=32;const cx2=cvs.getContext('2d');cx2.fillStyle=col;cx2.fillRect(0,0,64,32);cx2.strokeStyle='rgba(40,22,12,.8)';cx2.lineWidth=2;for(let i=0;i<64;i+=8){cx2.beginPath();cx2.moveTo(i,10);cx2.lineTo(i+4,18);cx2.lineTo(i+8,10);cx2.stroke();}
+  const m=new THREE.Mesh(new THREE.LatheGeometry(pr,14),new THREE.MeshStandardMaterial({map:new THREE.CanvasTexture(cvs),roughness:.9,side:THREE.DoubleSide}));m.position.set(px,.05,pz);m.scale.setScalar(s2);g.add(m);};
+ pot(-.6,-.2,1.1,'#9a5a34');pot(.15,-.35,.85,'#b0703e');pot(.7,-.1,1.3,'#8a4a2a');const sh=part(SPH,M(0x9a5a34,.9),-.15,.06,.25,.12,.05,.08,g);sh.rotation.z=.4;
+ g.traverse(o=>{if(o.isMesh)o.receiveShadow=true;});}
+function aleroInShot(){if(SAVE.alero)return false;const p=new THREE.Vector3(ALERO.x,ALERO.y,ALERO.z),dist=camera.position.distanceTo(p);if(dist>9)return false;const v=p.clone().project(camera);return v.z<1&&Math.abs(v.x)<.45&&Math.abs(v.y)<.45;}
+function aleroFound(){SAVE.alero=true;save();chime();announce('Detrás de la cascada','🏺 Un alero escondido con vasijas de barro y pinturas de manos. Nuevo hallazgo.',{tab:'hallazgos',id:'hz-alero'});}
 // hornero con su nido de barro sobre un poste, cerca de la tapera
 const HORNO={};{const P=PLACES.find(q=>q.id==='tapera');let px=P.x+12,pz=P.z+8;for(let t=0;t<60;t++){const a=t*.7,r=10+t*.3,x=P.x+Math.cos(a)*r,z=P.z+Math.sin(a)*r;if(H(x,z)>.5&&slopeAt(x,z)<.3&&!hitObs(x,z,2)){px=x;pz=z;break;}}
  const h=H(px,pz),g=new THREE.Group();g.position.set(px,h,pz);scene.add(g);const wd=M(0x6b5440,.95),mud=M(0x9a6a42,.95);part(CYL,wd,0,.85,0,.08,1.7,.08,g);part(BOX,wd,0,1.72,0,.5,.06,.4,g);
@@ -1594,7 +1609,7 @@ function renderBook(){{const tb=document.querySelector('#bookTabs [data-t=agua]'
   lg.innerHTML=L.map(l=>l[0]?`<div class="logro on"><b>${l[1]}</b><div><h5>${l[2]}</h5><p>${l[3]} ${l[4]}</p></div></div>`:`<div class="logro"><b>?</b><div><h5>Logro escondido</h5></div></div>`).join('');$('#logH').textContent='Logros especiales ('+L.filter(l=>l[0]).length+' de 3)';}
  const hz=$('#hzList');const H0=SAVE.hall;const q=t=>encodeURIComponent(t);
  const lk=(href,t)=>`<a href="${href}" target="_blank" rel="noopener">${t}</a>`;
- hz.innerHTML=maskCard()+microCard()+(H0?`<div class="card hz"><div class="ph">${H0.img?`<img alt="Pinturas en la cueva" src="${H0.img}">`:'🔥'}</div><div><h3>Los primeros habitantes</h3>
+ hz.innerHTML=maskCard()+microCard()+aleroCard()+(H0?`<div class="card hz"><div class="ph">${H0.img?`<img alt="Pinturas en la cueva" src="${H0.img}">`:'🔥'}</div><div><h3>Los primeros habitantes</h3>
   <p>Mucho antes de que llegaran los europeos, en lo que hoy es Uruguay vivieron pueblos cazadores, pescadores y recolectores. Hay rastros de personas de hace más de 10.000 años.</p>
   <p><b>Pinturas en la roca.</b> En Chamangá, en Flores, está el mayor conjunto de pinturas rupestres del país, hechas con pigmento rojo sobre piedras de granito. La mayoría son dibujos geométricos: líneas, círculos y figuras que todavía no sabemos leer del todo.</p>
   <p><b>Cerritos de indios.</b> En los bañados del este, desde hace unos 5.000 años, se construyeron montículos de tierra para vivir por encima del agua y enterrar a sus muertos.</p>
@@ -1613,6 +1628,12 @@ function microCard(){if(!SAVE.micro)return `<div class="card locked hz"><div cla
   <p><b>Lugares donde tomó muestras</b> (las tildes son las tuyas):</p><ul class="hzfish">${MSITES.map(st=>`<li>${sm[st.id]?'✓':'·'} ${st.name}</li>`).join('')}</ul>
   <p><b>Identificaste ${Object.keys(f).length} de ${MICRO.length}.</b></p>
   <div class="links">${lk('https://www.youtube.com/results?search_query='+q('microorganismos agua de charco microscopio'),'Videos: una gota de agua al microscopio')}</div></div></div>`;}
+function aleroCard(){if(!SAVE.alero)return `<div class="card locked hz"><div class="ph">?</div><div><h3>Sin descubrir</h3><p>Dicen que detrás del agua que cae hay algo escondido.</p></div></div>`;
+ const q=t=>encodeURIComponent(t),lk=(href,t)=>`<a href="${href}" target="_blank" rel="noopener">${t}</a>`;
+ return `<div class="card hz" data-id="hz-alero"><div class="ph" style="background:#2a221a"><svg viewBox="0 0 120 80" width="100%" height="100%"><path d="M30 70c-8-2-10-14-6-22 3-6 2-10 1-14h18c-1 4-2 8 1 14 4 8 2 20-6 22z" fill="#9a5a34"/><path d="M62 70c-6-2-8-11-5-17 2-4 2-7 1-10h14c-1 3-1 6 1 10 3 6 1 15-5 17z" fill="#b0703e"/><path d="M88 70c-9-2-12-16-7-25 3-6 2-10 1-14h20c-1 4-2 8 1 14 5 9 2 23-7 25z" fill="#8a4a2a"/><path d="M24 50l4 4 4-4 4 4 4-4M84 48l4 4 4-4 4 4 4-4" stroke="#2a160c" fill="none" stroke-width="1.5"/><g fill="#b04828" opacity=".8"><ellipse cx="60" cy="16" rx="4" ry="5"/><rect x="57" y="4" width="2" height="7"/><rect x="60" y="3" width="2" height="8"/><rect x="63" y="5" width="2" height="7"/></g></svg></div><div><h3>Detrás de la cascada</h3>
+  <p>Escondido detrás del agua que cae hay un alero de piedra. Adentro hay vasijas de barro cocido decoradas con líneas en zigzag y, en la pared, pinturas de manos y dibujos.</p>
+  <p><b>La cerámica de los primeros habitantes.</b> En el este de Uruguay se encontraron muchos restos de vasijas hechas a mano con barro, algunas decoradas con marcas hechas con palitos o con la uña. Servían para cocinar, guardar agua y semillas.</p>
+  <div class="links">${lk('https://es.wikipedia.org/w/index.php?search='+q('cerámica indígena Uruguay'),'Leer: cerámica indígena')}${lk('https://www.youtube.com/results?search_query='+q('cerámica indígena Uruguay arqueología'),'Videos: cerámica indígena')}</div></div></div>`;}
 function maskCard(){if(!SAVE.mask)return `<div class="card locked hz"><div class="ph">?</div><div><h3>Sin descubrir</h3><p>Dicen que un viejo naturalista vivía por acá. Tal vez quedan algunos restos.</p></div></div>`;
  const fish=SAVE.fish||{},q=t=>encodeURIComponent(t),lk=(href,t)=>`<a href="${href}" target="_blank" rel="noopener">${t}</a>`;
  const list=FISH.map(fi=>`<li>${fish[fi.id]?'✓':'·'} ${fi.name} <i>${fish[fi.id]?'':'(sin fotografiar)'}</i></li>`).join('');
@@ -1767,6 +1788,7 @@ function shootCore(){if(photo&&nestInShot()){shotLabel='Nido del tero';SAVE.nest
   if(inFlight&&!prev.flyImg)setTimeout(()=>{chime();toast('✦ ¡Foto especial: '+sp.name.toLowerCase()+' en vuelo!','place');},900);
   if(first){chime();announce(sp.name,(sp.secret?'★ ¡Bicho secreto! Casi nadie lo ve':'Nuevo en el cuaderno')+' · '+sp.sci,{tab:sp.grp,id:sp.id});refreshTally();if(!sp.secret&&GOAL.every(s=>SAVE.found[s.id]))setTimeout(()=>toast('¡Completaste el cuaderno de este ambiente!','place'),1500);}
   else toast('Foto nueva de '+sp.name.toLowerCase()+' en el cuaderno');
+ }else if(aleroInShot()){aleroFound();
  }else if(hornoInShot()){shotLabel='Nido del hornero';const fh=SAVE.found.hornero;fh.x2={img:grabThumb(),label:'Su nido de barro'};save();chime();toast('✦ ¡Foto especial: el nido de barro del hornero!','place');
  }else if(burrowInShot()){shotLabel='Cueva de la mulita';const fm=SAVE.found.mulita;if(fm){fm.x2={img:grabThumb(),label:'Su cueva'};save();chime();toast('✦ ¡Foto especial: la cueva de la mulita!','place');}else toast('Una cueva en la tierra blanda… ¿de quién será?');
  }else{const pl=placeInShot();
@@ -1802,7 +1824,7 @@ function drawBigMap(){const c=$('#bigc'),x=c.getContext('2d'),S=c.width,s=S/MM;x
 function TELE(){const L=[{id:'inicio',name:'Inicio',x:START.x,z:START.z}].concat(PLACES.filter(p=>SAVE.places.includes(p.id)));
  if(SAVE.dev){const seen=new Set();for(const a of animals){if(seen.has(a.sp.id))continue;seen.add(a.sp.id);L.push({id:'b-'+a.sp.id,name:a.sp.name,x:a.home[0],z:a.home[1],k:'b'});}
   for(const d of DIVES)L.push({id:'p-'+d.id,name:d.name+' (buceo)',x:d.anchors[0][0],z:d.anchors[0][1],k:'p'});
-  L.push({id:'h-baul',name:'El baúl del naturalista',x:CHEST.x,z:CHEST.z,k:'h'},{id:'h-cueva',name:'Los primeros habitantes',x:CAVE_X+6,z:CAVE_Z,k:'h'},{id:'h-micro',name:'El microscopio',x:CASITA.x,z:CASITA.z,k:'h'});
+  L.push({id:'h-alero',name:'Detrás de la cascada',x:ALERO.x+4,z:ALERO.z+6,k:'h'},{id:'h-baul',name:'El baúl del naturalista',x:CHEST.x,z:CHEST.z,k:'h'},{id:'h-cueva',name:'Los primeros habitantes',x:CAVE_X+6,z:CAVE_Z,k:'h'},{id:'h-micro',name:'El microscopio',x:CASITA.x,z:CASITA.z,k:'h'});
   for(const st of MSITES)if(!st.cave)L.push({id:'m-'+st.id,name:st.name+' (muestra)',x:st.x,z:st.z,k:'m'});}
  return L;}
 function landSpot(cx,cz){for(let r=0;r<80;r+=2)for(let k=0;k<16;k++){const a=k/16*6.283,x=cx+Math.cos(a)*r,z=cz+Math.sin(a)*r;if(H(x,z)>0.4&&slopeAt(x,z)<.35&&!hitObs(x,z,2.5))return[x,z];}return[START.x,START.z];}
@@ -2102,7 +2124,7 @@ function swim(dt){const mv=((k('KeyW')||k('ArrowUp')||T.up)?1:0)-((k('KeyS')||k(
  const el=$('#airFill');if(el){el.style.width=Math.max(0,DIVE.air/40*100)+'%';el.style.background=DIVE.air<10?'#d9534f':'#7fd0e0';}
  UW.fx.position.set(DIVE.pos.x,DIVE.wl,DIVE.pos.z);
  if(!DIVE.out&&scene.fog&&scene.fog.isFogExp2){let nd=null,bd=1e9;for(const q of DIVES){const dd=Math.hypot(DIVE.pos.x-q.cx,DIVE.pos.z-q.cz);if(dd<bd){bd=dd;nd=q;}}const tc=new THREE.Color(nd.fog),k=Math.min(1,dt*.8);scene.fog.color.lerp(tc,k);scene.background.copy(scene.fog.color);scene.fog.density+=(1.52/nd.vis-scene.fog.density)*k;}if(DIVE.air<=0){togglePhoto(false);endDive(true);}}
-function shootDive(){camera.updateMatrixWorld();const tanH=Math.tan(THREE.MathUtils.degToRad(camera.fov/2)),wp=new THREE.Vector3();let best=null,far=false;
+function shootDive(){camera.updateMatrixWorld();if(aleroInShot()){aleroFound();return;}const tanH=Math.tan(THREE.MathUtils.degToRad(camera.fov/2)),wp=new THREE.Vector3();let best=null,far=false;
  for(const e of UW.ents){if(e.hidden&&e.hidden())continue;e.obj.getWorldPosition(wp);const dist=camera.position.distanceTo(wp);if(dist>16)continue;const v=wp.clone().project(camera);if(v.z>1||Math.abs(v.x)>.45||Math.abs(v.y)>.45)continue;const fr=e.size/(2*dist*tanH);if(fr<.05){far=true;continue;}if(!best||fr>best.fr)best={e,fr};}
  if(!best){toast(far?'Está muy lejos. Acercate nadando o hacé zoom.':'No hay ningún pez en el cuadro.');return;}
  const e=best.e,img=grabThumb();let dn=DIVE.d.name;{let bd=1e9;for(const d of DIVES){const q=Math.hypot(camera.position.x-d.cx,camera.position.z-d.cz);if(q<bd){bd=q;dn=q<30?d.name:'El arroyo';}}}
@@ -2127,7 +2149,7 @@ function updateDiving(dt,time){
  if(DIVE.on){genFish(dt,time);for(const u of UW.ups)u(time,dt);UW.ct.offset.x=time*.02;UW.ct.offset.y=time*.015;UW.shafts.rotation.y=time*.03;return;}
  let near=null;if(!photo)for(const d of DIVES){for(const an of d.anchors)if(Math.hypot(car.x-an[0],car.z-an[1])<8&&Math.abs(car.v)<1.2){near=d;DIVE.entry=an;break;}if(near)break;}
  if(!near&&!photo&&diveAllOk()&&Math.abs(car.v)<1.2){const p=deepNear(WALK.on?4.5:9);if(p){near=genDive(p[0],p[1],WALK.on);DIVE.entry=[car.x,car.z];}}
- DIVE.near=near;$('#diveBtn').classList.toggle('show',!!near&&!!SAVE.mask);$('#diveBtn').textContent=WALK.on?'🤿 Ponerse la máscara':'🤿 Zambullirse';
+ DIVE.near=near;$('#diveBtn').classList.toggle('show',!!near&&!!SAVE.mask);$('#diveBtn').textContent='🤿';$('#diveBtn').title=WALK.on?'Ponerse la máscara':'Zambullirse';
  if(near&&!SAVE.mask)toastOnce('nomask'+near.id,'El agua acá es honda y clara… haría falta una máscara para mirar abajo.',60);}
 
 let ANN_GO=null;
@@ -2550,7 +2572,7 @@ $('#bMenu').onclick=openMenu;
 function resetAll(){SAVE={found:{},places:[],placePics:{},settings:SAVE.settings,fish:{},dives:{}};CHEST.t=0;CHEST.lid.rotation.x=0;save();refreshTally();const go=$('#go');if(go)go.textContent='Arrancar';toast('🧹','place');const sup=$('#start sup');if(sup){sup.style.transition='color .3s';sup.style.color='#c0392b';setTimeout(()=>sup.style.color='',900);}}
 function longPress(el,ms,fn){if(!el)return;let tm=null;const stop=()=>{clearTimeout(tm);tm=null;};el.addEventListener('pointerdown',()=>{stop();tm=setTimeout(()=>{tm=null;fn();},ms);});el.addEventListener('pointerup',stop);el.addEventListener('pointerleave',stop);el.addEventListener('pointercancel',stop);el.addEventListener('contextmenu',e=>e.preventDefault());}
 longPress($('#start sup'),3000,resetAll);longPress($('#tally'),3000,resetAll);
-function unlockAll(){SAVE.dev=true;SAVE.mask=true;SAVE.micro=true;SAVE.zoomOk=true;SAVE.dives=SAVE.dives||{};for(const d of DIVES)SAVE.dives[d.id]=true;SAVE.fish=SAVE.fish||{};for(const fi of FISH)if(!SAVE.fish[fi.id])SAVE.fish[fi.id]={img:'',where:'Desbloqueado'};SAVE.samples=SAVE.samples||{};SAVE.microFound=SAVE.microFound||{};for(const st of MSITES)SAVE.samples[st.id]=1;for(const m of MICRO)if(!SAVE.microFound[m.id])SAVE.microFound[m.id]={where:'Desbloqueado'};SAVE.cel=Object.assign(SAVE.cel||{},{bichos:1,lugares:1,peces:1,buceo:1,micro:1,migr:1});CHEST.t=1;CHEST.lid.rotation.x=-1.9;SAVE.placePics=SAVE.placePics||{};for(const sp of GOAL)if(!SAVE.found[sp.id])SAVE.found[sp.id]={img:'',where:'Desbloqueado'};for(const p of PLACES){if(!SAVE.places.includes(p.id))SAVE.places.push(p.id);if(!(p.id in SAVE.placePics))SAVE.placePics[p.id]='';}if(!SAVE.hall)SAVE.hall={img:''};SAVE.teleOk=true;save();refreshTally();const go=$('#go');if(go)go.textContent='Seguir explorando';toast('✨','place');checkComplete();const sup=$('#start sup');if(sup){sup.style.transition='color .3s';sup.style.color='#F28C28';setTimeout(()=>sup.style.color='',900);}}
+function unlockAll(){SAVE.dev=true;SAVE.alero=true;SAVE.mask=true;SAVE.micro=true;SAVE.zoomOk=true;SAVE.dives=SAVE.dives||{};for(const d of DIVES)SAVE.dives[d.id]=true;SAVE.fish=SAVE.fish||{};for(const fi of FISH)if(!SAVE.fish[fi.id])SAVE.fish[fi.id]={img:'',where:'Desbloqueado'};SAVE.samples=SAVE.samples||{};SAVE.microFound=SAVE.microFound||{};for(const st of MSITES)SAVE.samples[st.id]=1;for(const m of MICRO)if(!SAVE.microFound[m.id])SAVE.microFound[m.id]={where:'Desbloqueado'};SAVE.cel=Object.assign(SAVE.cel||{},{bichos:1,lugares:1,peces:1,buceo:1,micro:1,migr:1});CHEST.t=1;CHEST.lid.rotation.x=-1.9;SAVE.placePics=SAVE.placePics||{};for(const sp of GOAL)if(!SAVE.found[sp.id])SAVE.found[sp.id]={img:'',where:'Desbloqueado'};for(const p of PLACES){if(!SAVE.places.includes(p.id))SAVE.places.push(p.id);if(!(p.id in SAVE.placePics))SAVE.placePics[p.id]='';}if(!SAVE.hall)SAVE.hall={img:''};SAVE.teleOk=true;save();refreshTally();const go=$('#go');if(go)go.textContent='Seguir explorando';toast('✨','place');checkComplete();const sup=$('#start sup');if(sup){sup.style.transition='color .3s';sup.style.color='#F28C28';setTimeout(()=>sup.style.color='',900);}}
 function tripleTap(el,fn){if(!el)return;let n=0,t=0;el.addEventListener('pointerdown',()=>{const now=performance.now();n=now-t<450?n+1:1;t=now;if(n>=3){n=0;fn();}});}
 tripleTap($('#start sup'),unlockAll);tripleTap($('#tally'),unlockAll);
 requestAnimationFrame(loop);
