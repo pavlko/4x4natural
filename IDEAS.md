@@ -48,7 +48,7 @@ Patagonia (Cueva de las Manos), África (Serengeti y Laetoli), sur de China (Gua
 - Lejos de los 4 puntos de buceo, el fondo se arma con lo típico de esa zona (arroyo, laguna, pozón) y algunos peces comunes.
 - Pasajes de modo: caminando cerca de una entrada de buceo aparece 🤿 y al salir del agua quedás caminando en la orilla; la cueva se entra caminando (adentro en primera persona) y al salir quedás afuera caminando; la foto caminando es en primera persona a la altura de los ojos.
 
-## Personalizar (más adelante)
+## Personalizar (HECHO en v70)
 - Camioneta: color, pintarla o dibujarle cosas, calcomanías, cosas en el techo (un sombrero gigante, cuernos de vaca…).
 - Avatar: unas pocas opciones (sombrero, colores, mochila) y alguna graciosa (un mate en la mano, bigotes, una gallina en la cabeza).
 
