@@ -71,6 +71,7 @@ Un juego de Insight Reality
 - v68  Araña negra; pozón de la cascada de 6 m de hondo con cuevas de piedra y castañetas en cada una; el ruido de la cascada baja al bucear lejos
 - v69  El desbloqueo de 3 toques abre todo: máscara, buceo en cualquier parte, microscopio, peces, microorganismos y vista lejana
 - v70  Personalizar (desde el inicio): camioneta con color, dibujos en las puertas (o uno propio dibujado a mano) y cosas en el techo; explorador con poncho, sombrero, boina o gorro y cosas graciosas (bigotes, anteojos, mate, gallina)
+- v71  Carpa derecha, letras sin espejar, sombreros vaqueros (marrón, negro, blanco) y gorra con visera, mate con yerba y bombilla más termo bajo el brazo, color de piel (indígena por defecto), dragones negro y amarillo intenso
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v70).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v71).
 La versión vigente es index.html (lista como app instalable).
