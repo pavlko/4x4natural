@@ -73,6 +73,7 @@ Un juego de Insight Reality
 - v70  Personalizar (desde el inicio): camioneta con color, dibujos en las puertas (o uno propio dibujado a mano) y cosas en el techo; explorador con poncho, sombrero, boina o gorro y cosas graciosas (bigotes, anteojos, mate, gallina)
 - v71  Carpa derecha, letras sin espejar, sombreros vaqueros (marrón, negro, blanco) y gorra con visera, mate con yerba y bombilla más termo bajo el brazo, color de piel (indígena por defecto), dragones negro y amarillo intenso
 - v72  Cajas del techo se ocultan con objetos arriba; gorra normal; rastas, barba de chivo, bigotes largos; nido de hornero en la cabeza; termo y mate con bombilla; selector de cualquier color (camioneta, piel, pelo, poncho, rayas, gorro, pincel); explorador más flaco con nariz aguileña; botones de muestra y buceo a la vez; mojarras hacia adelante; cuevas del pozón siempre bajo el agua
+- v73  Paredón de la cascada reparado (el pozón hondo le había hecho un agujero); nuevo hallazgo detrás de la cascada: alero con vasijas de barro y pinturas de manos; botones de buceo y muestra solo con ícono, uno al lado del otro
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v72).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v73).
 La versión vigente es index.html (lista como app instalable).
