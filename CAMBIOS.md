@@ -76,6 +76,7 @@ Un juego de Insight Reality
 - v73  Paredón de la cascada reparado (el pozón hondo le había hecho un agujero); nuevo hallazgo detrás de la cascada: alero con vasijas de barro y pinturas de manos; botones de buceo y muestra solo con ícono, uno al lado del otro
 - v74  La cortina de la cascada llega hasta el pozo; el alero con cerámicas queda en un hueco del paredón detrás del agua; la tarjeta suma la cerámica chaná (Goya-Malabrigo, campanas) con links
 - v75  Arreglado un error que impedía bucear en la cascada (desde v72); cangrejos en lugares fijos debajo de las entradas de buceo, más grandes y visibles, que no desaparecen al esconderse
+- v76  Caminando, arrastrar en la pantalla gira al explorador (como al bucear); la cortina de la cascada cae 2 m más adelante dejando el alero más atrás; sin piedras tapando el alero
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v75).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v76).
 La versión vigente es index.html (lista como app instalable).
