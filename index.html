@@ -268,7 +268,7 @@ body.menu #touch{display:none!important}
  <g stroke="#fff" stroke-opacity=".2" stroke-width=".25" fill="none"><path d="M44 34l8 5M118 24l-6 8M100 74l11-4M52 76l4-6M128 52q3 3 2 7"/></g>
 </svg>
 <div class="hud" id="hud">
-  <div id="verHud" data-ver>v67</div>
+  <div id="verHud" data-ver>v68</div>
   <div id="tally"><b id="tBichos">0 / 11 bichos</b><span id="tLugares">0 / 7 lugares</span></div>
   <div id="tools">
     <button class="tool" id="bMenu" title="Menú">☰<small>menú</small></button>
@@ -333,7 +333,7 @@ body.menu #touch{display:none!important}
 <section class="tp" data-t="lugares"><h4><span class="ich" data-ic="lugares"></span> <span id="plH">Lugares</span></h4><div class="grid" id="plList"></div></section>
 <section class="tp" data-t="logros"><h4><span class="ich" data-ic="logros"></span> <span id="logH">Logros especiales</span></h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
 <section class="tp" data-t="hallazgos"><h4><span class="ich" data-ic="hallazgos"></span> Hallazgos</h4><div id="hzList"></div></section>
-<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v67</span></p></div>
+<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v68</span></p></div>
   </div>
 </div>
 <div id="start">
@@ -344,7 +344,7 @@ body.menu #touch{display:none!important}
     <p id="iosHint" class="ioshint" hidden>Para instalarla en iPhone o iPad: tocá <b>Compartir</b> y después <b>Agregar a inicio</b>.</p>
     <div class="players"><div id="profList"></div><button id="profNew" type="button">👤 Nuevo jugador</button><span id="profNewBox" hidden><input id="profName" maxlength="16" placeholder="Nombre del jugador"> <button id="profOk" type="button">Listo</button> <button id="profCancel" type="button" aria-label="Cancelar">✕</button></span></div>
     <label class="opt"><input type="checkbox" id="optTrees"> Pasar a través de los árboles (para los más chicos)</label>
-    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v67</span></p>
+    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v68</span></p>
   </div>
 </div>
 <div id="loading">Armando el paisaje…</div>
@@ -412,7 +412,7 @@ function baseH(x,z){
   {const LX=riverX(245)+8,le=Math.hypot((x-LX)/34,(z-245)/24);if(le<1.15){const tg=mix(-2.3,.9,ss(.3,1,le));h=mix(h,Math.min(h,tg),1-ss(.8,1.15,le));}}
   // cascada: paredón donde nace el arroyo y pozón al pie
   {const FZ=-263,dr=Math.abs(x-riverX(z)),LZ=lipZ(x);if(z<LZ+3.5&&dr<64){const wall=ss(LZ+2.5,LZ-2,z)*(1-ss(44,64,dr));if(dr<3.2&&z<FZ-1)h=mix(h,25,wall);else{const top=26+(fbm(x*.15,z*.15,2)-.5)*3*ss(4,12,x-riverX(z));h=mix(h,Math.max(h,top),wall);}}
-   const pd=Math.hypot(x-riverX(FZ+6),z-(FZ+6));if(pd<10)h=mix(h,Math.min(h,-2.6),1-ss(6,10,pd));}
+   const pd=Math.hypot(x-riverX(FZ+6),z-(FZ+6));if(pd<11.5){const dep=mix(-6.2,-2.5,ss(2.5,9.5,pd))+(fbm(x*.3,z*.3,2)-.5)*.8;h=mix(h,Math.min(h,dep),1-ss(8.5,11.5,pd));}}
   // bordes del mundo
   const e=Math.max(Math.abs(x),Math.abs(z));
   h+=ss(HALF-45,HALF-5,e)*22;
@@ -1158,7 +1158,7 @@ function updateFalls(dt){fallTex.offset.y+=dt*1.7;fallTex2.offset.y+=dt*2.4;
  const d=Math.hypot(car.x-FALLS.x,car.z-FALLS.z);
  if(d<170){for(let i=0;i<2;i++)emit(FALLS.x+(Math.random()-.5)*7,.3,FALLS.z+1.2+Math.random()*1.5,(Math.random()-.5)*2.5,1.2+Math.random()*2.2,.8+Math.random()*2,C_WATER,1.5,1.1);}
  if(AC){if(!fallSnd){try{const s=AC.createBufferSource();s.buffer=nzBuf();s.loop=true;const f=AC.createBiquadFilter();f.type='lowpass';f.frequency.value=900;const g=AC.createGain();g.gain.value=0;s.connect(f).connect(g).connect(AC.destination);s.start();fallSnd=g;}catch(e){}}
-  if(fallSnd)fallSnd.gain.setTargetAtTime(muted?0:Math.pow(Math.max(0,1-d/150),2)*(DIVE.on?.12:.3),AC.currentTime,.3);}}
+  if(fallSnd){const ds=DIVE.on?Math.hypot(DIVE.pos.x-FALLS.x,DIVE.pos.z-FALLS.z):d;fallSnd.gain.setTargetAtTime(muted?0:Math.pow(Math.max(0,1-ds/(DIVE.on?60:150)),2)*(DIVE.on?(DIVE.out?.2:.1):.3),AC.currentTime,.3);}}}
 // cueva de la mulita
 const mulitaHome=SPECIES.find(s=>s.id==='mulita').spots[0];
 const BURROW={x:mulitaHome[0]+1.2,z:mulitaHome[1]};
@@ -1339,7 +1339,7 @@ BUILD.yarara=(g)=>{const b=M(0x8a6a44,.7),dk=M(0x2e2216,.8),N=22,pts=Array.from(
  const shape=(t,mv)=>{const amp=mv?.13:.07,k=mv?5.2:1.2;for(let i=0;i<N;i++){const u=i/(N-1),z=-.62+u*1.3;pts[i].set(Math.sin(u*9-t*k)*amp*(.35+u*.65),.045,z);}};
  g.userData.anim=(t,mv)=>{shape(t,mv);const old=tube.geometry;tube.geometry=new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),44,.042,6,false);old.dispose();head.position.set(pts[0].x,.055,pts[0].z-.04);spots.forEach((sp,i)=>{const p=pts[2+i*2];sp.position.set(p.x,.08,p.z);});};
  g.userData.anim(0,false);};
-BUILD.arana=(g,L)=>{const b=M(0x6a4a32,.95),h=M(0x7a5a3e,.95),lg=M(0x5a3e2a,.95);part(SPH,b,0,.12,.1,.09,.075,.11,g);part(SPH,h,0,.11,-.05,.065,.05,.07,g);
+BUILD.arana=(g,L)=>{const b=M(0x1c1612,.95),h=M(0x2a211a,.95),lg=M(0x18120e,.95);part(SPH,b,0,.12,.1,.09,.075,.11,g);part(SPH,h,0,.11,-.05,.065,.05,.07,g);
  const t1=.5,t2=-1.15,l1=.2,l2=.21,e1=[Math.cos(t1)*l1,Math.sin(t1)*l1];
  for(let i=0;i<8;i++){const s=i<4?-1:1,k=i%4,fan=(k-1.5)*.42,hip=new THREE.Group();hip.position.set(s*.045,.12,-.07+k*.035);hip.rotation.y=s>0?-fan:Math.PI+fan;g.add(hip);
   const p=new THREE.Group();hip.add(p);const fem=part(CYL,lg,e1[0]/2,e1[1]/2,0,.016,l1,.016,p);fem.rotation.z=t1-Math.PI/2;
@@ -1897,7 +1897,7 @@ const FISH=[
  {id:'anguila',name:'Anguila criolla',sci:'Synbranchus marmoratus',hint:'Solo en una laguna oscura y escondida. Vive en el barro del fondo.',note:'Parece una anguila pero no lo es. Vive en el barro de lagunas y bañados y puede respirar aire: cuando el agua se seca, se entierra en el barro húmedo y espera la lluvia. Sale de su cueva para cazar y se esconde enseguida.'},
  {id:'tararira',name:'Tararira',sci:'Hoplias malabaricus',hint:'Quieta entre las plantas de una laguna.',note:'Cazadora de emboscada: se queda quieta entre las plantas, camuflada, y ataca de golpe a otros peces y ranas. Tiene dientes filosos y aguanta aguas con poco oxígeno.'}];
 const DIVES=[
- {id:'cascada',vis:7,mapOff:[-58,10],name:'La cascada y la quebrada',river:true,cx:riverX(-250),cz:-250,note:'Pozo hondo al pie de la caída y agua clara entre piedras. Vi un lobito nadando.',fog:0x2f6a6e,kinds:['mojarra','vieja','bagre','foam','lobito','cangrejo']},
+ {id:'cascada',vis:7,mapOff:[-58,10],name:'La cascada y la quebrada',river:true,cx:riverX(-250),cz:-250,note:'Pozo hondo al pie de la caída y agua clara entre piedras. Vi un lobito nadando.',fog:0x2f6a6e,kinds:['mojarra','vieja','bagre','foam','lobito','cangrejo','cuevas']},
  {id:'medio',vis:5,mapOff:[0,-48],name:'El arroyo, arriba del paso',river:true,cx:riverX(18),cz:18,note:'Agua tranquila con plantas y piedras. Hay peces de colores escondidos.',fog:0x3a6e62,kinds:['mojarra','castaneta','bagre','plants','cangrejo']},
  {id:'laguna2',vis:3.5,name:'La laguna de las espátulas',cx:LAG2.x,cz:LAG2.z,note:'Laguna con muchas plantas. Hay que mirar bien entre ellas.',fog:0x4b6a3c,kinds:['tararira','mojarra','castaneta','patos','carpincho','plants','bigua']},
  {id:'escondida',vis:3,name:'La laguna escondida',cx:190,cz:-110,note:'Laguna oscura entre cerros. Algo grande se mueve en el fondo, y algo largo vive en el barro.',fog:0x24463e,kinds:['bagre','mojarra','yacare','anguila','bigua','espesura']},
@@ -2005,6 +2005,13 @@ function buildUnder(d){if(UW.built[d.id])return;const G=new THREE.Group();G.visi
    fs.forEach((f,i)=>{const o=f.userData.o,a=o[0]+t*1.2;f.position.set(Math.cos(a)*o[1],o[2]*.5+Math.sin(t*2+i)*.06,Math.sin(a)*o[1]);f.rotation.y=Math.PI-a;f.userData.tail.rotation.y=Math.sin(t*12+i)*.4;});});}
  if(K.includes('plants')){const pm=M(0x3f6a2a,.9,{side:THREE.DoubleSide}),reeds=[];for(let i=0;i<80;i++){const[x,z]=waterPt(d.cx,d.cz,2,16,.9,d.wl||0),y0=Hf(x,z),hh=Math.max(.4,Math.min(-y0-.2,.8+Math.random()*1.6));
    const pl=new THREE.Mesh(new THREE.PlaneGeometry(.16,hh,1,3),pm);pl.geometry.translate(0,hh/2,0);pl.position.set(x,y0,z);pl.rotation.y=Math.random()*3;G.add(pl);reeds.push(pl);}ups.push(t=>reeds.forEach((r,i)=>r.rotation.z=Math.sin(t*.8+i)*.12));}
+ if(K.includes('cuevas')){const pcx=riverX(-257),pcz=-257,rk2=M(0x4a4c46,.95,{flatShading:true}),dk2=M(0x0e1210,1),fin=M(0xc8552c,.7,{side:THREE.DoubleSide}),line=M(0x5fd0ff,.3,{emissive:0x2a8fc0,emissiveIntensity:.6}),bm=M(0x6f6a3e,.5);
+  const mk=()=>{const g=new THREE.Group();part(SPH,bm,0,0,0,.055,.1,.16,g);for(const sd of[-1,1])for(const y of[-.03,.01,.05])part(BOX,line,sd*.05,y,0,.004,.008,.2,g);const df=new THREE.Mesh(new THREE.PlaneGeometry(.26,.07),fin);df.rotation.y=Math.PI/2;df.position.set(0,.1,.01);g.add(df);const tl=new THREE.Mesh(new THREE.ConeGeometry(.06,.1,3),fin);tl.rotation.x=Math.PI/2;tl.scale.set(.15,1,1);tl.position.z=.2;g.add(tl);g.userData.tail=tl;return g;};
+  for(let c=0;c<5;c++){const an=c/5*6.28+.4,r=6.4,cx=pcx+Math.cos(an)*r,cz=pcz+Math.sin(an)*r,fy=H(cx,cz),out=an+Math.PI,ox=Math.cos(out),oz=Math.sin(out),px=-oz,pz=ox,cg=new THREE.Group();cg.position.set(cx,fy,cz);G.add(cg);
+   for(const sd of[-1,1]){const b=new THREE.Mesh(rg,rk2);b.position.set(px*sd*.75,.45,pz*sd*.75);b.scale.set(.65,.6,.7);cg.add(b);}const roof=new THREE.Mesh(rg,rk2);roof.position.set(-ox*.2,1.05,-oz*.2);roof.scale.set(1.25,.32,1.05);cg.add(roof);const back=new THREE.Mesh(rg,rk2);back.position.set(-ox*.9,.6,-oz*.9);back.scale.set(.9,.75,.6);cg.add(back);
+   const hole=new THREE.Mesh(new THREE.SphereGeometry(.5,10,8),dk2);hole.position.set(-ox*.35,.42,-oz*.35);hole.scale.set(.9,.6,.9);cg.add(hole);
+   const pair=new THREE.Group(),a1=mk(),a2=mk();a1.position.x=-.16;a2.position.set(.16,.05,.1);pair.add(a1,a2);const home=new THREE.Vector3(cx+ox*.9,fy+.55,cz+oz*.9),hide=new THREE.Vector3(cx-ox*.35,fy+.35,cz-oz*.35);pair.position.copy(home);G.add(pair);ents.push({fish:'castaneta',obj:pair,size:.6,G});
+   ups.push((t,dt)=>{const dd=pair.position.distanceTo(DIVE.pos),tg=dd<3?hide:(dd>5?home:null);if(tg)pair.position.lerp(tg,Math.min(1,dt*(dd<3?3:.7)));pair.rotation.y=Math.atan2(ox,oz)+Math.sin(t*.4+c)*.7;a1.position.y=Math.sin(t*1.7+c)*.04;a2.position.y=.05+Math.sin(t*1.5+1+c)*.04;[a1,a2].forEach((f,i)=>f.userData.tail.rotation.y=Math.sin(t*9+i+c)*.4);});}}
  if(K.includes('castaneta')){const[hx,hz]=waterPt(d.cx,d.cz,2,9,1.3,d.wl||0),hy=H(hx,hz),rock=new THREE.Mesh(rg,rk);rock.position.set(hx+.5,hy+.25,hz);rock.scale.set(.7,.55,.6);G.add(rock);
   const pm=M(0x4f7a30,.9,{side:THREE.DoubleSide});for(let i=0;i<7;i++){const hh=.6+Math.random()*.7,pl=new THREE.Mesh(new THREE.PlaneGeometry(.14,hh),pm);pl.geometry.translate(0,hh/2,0);pl.position.set(hx-.3+(Math.random()-.5)*.6,hy,hz+(Math.random()-.5)*.8);pl.rotation.y=Math.random()*3;G.add(pl);}
   const mk=()=>{const g=new THREE.Group(),b=M(0x6f6a3e,.5),line=M(0x5fd0ff,.3,{emissive:0x2a8fc0,emissiveIntensity:.6}),fin=M(0xc8552c,.7,{side:THREE.DoubleSide});part(SPH,b,0,0,0,.055,.1,.16,g);
