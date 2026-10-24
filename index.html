@@ -544,7 +544,7 @@ const SPECIES=[
   note:'Pájaro negro con la cabeza y el pecho rojo anaranjado. Vive en bañados y pajonales, posado en lo alto de plantas como el caraguatá, desde donde canta y vigila.'},
  {id:'dragon',name:'Dragón',sci:'Pseudoleistes virescens',more:'Andan en grupos ruidosos y se avisan entre todos cuando ven un peligro.',size:1.0,hab:'perch',hop:{fleeD:22},spots:[],
   hint:'En grupo, caminando por el pastizal húmedo cerca del arroyo. Vuelan juntos si te acercás.',
-  note:'Pájaro pardo oliva con hombros y panza amarillos. Vive en grupos en bañados, pastizales húmedos y palmares, y busca insectos caminando por el suelo.'},
+  note:'Pájaro negro pardusco con los hombros y la panza de un amarillo intenso. Vive en grupos en bañados, pastizales húmedos y palmares, y busca insectos caminando por el suelo.'},
  {id:'viudita',name:'Viudita blanca',sci:'Xolmis irupero',more:'En el campo se la reconoce de lejos por su blanco brillante.',size:.4,hab:'perch',hop:{fleeD:18,sally:true},spots:[],
   hint:'Blanca, posada en lo alto de una vara o un poste del pastizal.',
   note:'Pajarito blanco con la punta de las alas y de la cola negras. Se posa en lo alto, sale volando a cazar insectos en el aire y vuelve a su percha.'},
@@ -1360,7 +1360,7 @@ function birdMesh(o){const g=new THREE.Group(),L=o.len||.2,b=M(o.body,.7),h=M(o.
 function birdGroup(g,specs,offs){const all=[];specs.forEach((o,i)=>{const b=birdMesh(o);b.position.set(offs[i][0],offs[i][1]||0,offs[i][2]);b.rotation.y=offs[i][3]||0;g.add(b);all.push(...b.userData.wingsAll);});g.userData.wingsAll=all;}
 BUILD.cardenal=(g)=>birdGroup(g,[{body:0xd9b81f,head:0xe6c41f,crest:0x111111,throat:0x111111,wing:0x7c7a32,tail:0x3a3a26,len:.2},{body:0xb9ab5a,head:0xb9ab5a,crest:0x2a2a2a,throat:0x3a3a3a,wing:0x6f6c40,tail:0x3a3a2a,len:.19}],[[-.15,0,0,.3],[.17,0,.06,-.4]]);
 BUILD.federal=(g)=>birdGroup(g,[{body:0x151515,head:0xe2552a,throat:0xe2552a,longBeak:1,len:.22},{body:0x151515,head:0xd94e24,throat:0xd94e24,longBeak:1,len:.21}],[[-.15,0,0,.2],[.16,-.05,.08,-.3]]);
-BUILD.dragon=(g)=>birdGroup(g,Array.from({length:5},()=>({body:0x5f5a33,head:0x5a5532,belly:0xe0b52a,wing:0x55502c,shoulder:0xe0b52a,len:.21})),[[0,0,0,0],[.5,0,.3,.5],[-.45,0,.2,-.4],[.2,0,-.45,1],[-.3,0,-.4,2]]);
+BUILD.dragon=(g)=>birdGroup(g,Array.from({length:5},()=>({body:0x2a2418,head:0x221d14,belly:0xf5c414,wing:0x2e281c,shoulder:0xf5c414,tail:0x1e1a12,len:.21})),[[0,0,0,0],[.5,0,.3,.5],[-.45,0,.2,-.4],[.2,0,-.45,1],[-.3,0,-.4,2]]);
 BUILD.viudita=(g)=>birdGroup(g,[{body:0xf4f4ef,head:0xf7f7f3,tip:0x111111,tail:0x161616,len:.19}],[[0,0,0,0]]);
 BUILD.yarara=(g)=>{const b=M(0x8a6a44,.7),dk=M(0x2e2216,.8),N=22,pts=Array.from({length:N},()=>new THREE.Vector3());let tube=new THREE.Mesh(new THREE.BufferGeometry(),b);tube.castShadow=true;tube.frustumCulled=false;g.add(tube);
  const head=part(SPH,b,0,.05,0,.055,.035,.075,g),spots=[];for(let i=0;i<8;i++)spots.push(part(SPH,dk,0,0,0,.032,.012,.03,g));g.userData.head=head;
@@ -2343,7 +2343,7 @@ function updateCamera(dt){
 // ===== MODO CAMINAR =====
 const WALK={on:false,run:true,ph:0},PARK={};
 const AV=new THREE.Group();scene.add(AV);AV.visible=false;
-{const skin=M(0xe2b48c,.8),pon=M(0xc8553a,.85),pon2=M(0xe8c06a,.85),pants=M(0x5a4a3a,.9),boot=M(0x4a3020,.8),hat=M(0x8a6a40,.85),__m=(AV.userData.mats={pon,pon2,hat}),blk=M(0x1e1e1e,.5),lens=M(0x3a4a5a,.2,{metalness:.5});
+{const skin=M(0x9a6440,.8),pon=M(0xc8553a,.85),pon2=M(0xe8c06a,.85),pants=M(0x5a4a3a,.9),boot=M(0x4a3020,.8),hat=M(0x8a6a40,.85),__m=(AV.userData.mats={pon,pon2,hat,skin}),blk=M(0x1e1e1e,.5),lens=M(0x3a4a5a,.2,{metalness:.5});
  const body=new THREE.Group();AV.add(body);AV.userData.body=body;const torso=new THREE.Group();torso.position.y=.62;body.add(torso);AV.userData.torso=torso;
  const legs=[-1,1].map(s=>{const p=new THREE.Group();p.position.set(s*.1,.52,0);body.add(p);part(CYL,pants,0,-.22,0,.07,.44,.07,p);part(SPH,boot,0,-.46,-.05,.09,.07,.14,p);return p;});
  part(SPH,pon,0,.22,0,.28,.3,.24,torso);for(let i=0;i<3;i++)part(CYL,pon2,0,.06+i*.1,0,.282-i*.01,.025,.242-i*.01,torso);
@@ -2360,13 +2360,17 @@ const AV=new THREE.Group();scene.add(AV);AV.visible=false;
 const TRUCK_COLORS={naranja:0xd2651f,rojo:0xb5302a,azul:0x2f5f9a,verde:0x3f6a3a,amarillo:0xe0b22a,celeste:0x7fb8d8,rosa:0xe08aa8,blanco:0xe8e4da,negro:0x2a2a2a};
 const PONCHOS={rojo:[0xc8553a,0xe8c06a],azul:[0x3a5a9a,0xe8e0c0],verde:[0x4a7a3a,0xe8c06a],violeta:[0x7a4a9a,0xf0d080],amarillo:[0xe0b030,0x8a3a2a],gris:[0x8a8478,0xc8553a]};
 const DECOS={nada:'Nada',rayas:'Rayas',llamas:'Llamas',nandu:'Ñandú',flores:'Flores',dibujo:'Mi dibujo'};
-const ROOFS={nada:'Nada',sombrero:'Sombrero gigante',cuernos:'Cuernos de vaca',mate:'Mate gigante',carpa:'Carpa'};
-const HATS={ala:'Sombrero',boina:'Boina',gorro:'Gorro de lana',sin:'Sin nada'};
-const EXTRAS={bigotes:'Bigotes',anteojos:'Anteojos',mate:'Mate en la mano',gallina:'Gallina en la cabeza'};
-const custom=()=>Object.assign({color:'naranja',deco:'nada',roof:'nada',draw:null,poncho:'rojo',hat:'ala',extras:[]},SAVE.custom||{});
+const ROOFS={nada:'Nada',sombrero:'Sombrero vaquero gigante',cuernos:'Cuernos de vaca',mate:'Mate gigante',carpa:'Carpa'};
+const HATS={vaquero:'Vaquero marrón',vaqueron:'Vaquero negro',vaquerob:'Vaquero blanco',gorra:'Gorra con visera',boina:'Boina',gorro:'Gorro de lana',sin:'Sin nada'};
+const SKINS={indigena:0x9a6440,morena:0x7a4a2e,trigueña:0xb87e52,clara:0xe2b48c,rosada:0xf0c8a8,oscura:0x4e3020};
+const EXTRAS={bigotes:'Bigotes',anteojos:'Anteojos',mate:'Mate y termo',gallina:'Gallina en la cabeza'};
+const custom=()=>{const c=Object.assign({color:'naranja',deco:'nada',roof:'nada',draw:null,poncho:'rojo',hat:'vaquero',skin:'indigena',extras:[]},SAVE.custom||{});if(c.hat==='ala')c.hat='vaquero';return c;};
+function cowboyHat(G,r,col,band){const bg=new THREE.CylinderGeometry(r,r,r*.05,36,1),p=bg.attributes.position;for(let i=0;i<p.count;i++){const x=p.getX(i),z=p.getZ(i);p.setY(i,p.getY(i)+Math.pow(Math.abs(x)/r,2.2)*r*.32-Math.pow(Math.abs(z)/r,2)*r*.06);}bg.computeVertexNormals();
+ const m=M(col,.8,{side:THREE.DoubleSide});G.add(new THREE.Mesh(bg,m));const pr=[[0,0],[r*.46,0],[r*.48,r*.28],[r*.42,r*.5],[r*.22,r*.55],[0,r*.46]].map(q=>new THREE.Vector2(q[0],q[1]));const cr=new THREE.Mesh(new THREE.LatheGeometry(pr,18),m);cr.scale.set(1,1,1.18);G.add(cr);
+ const bd=new THREE.Mesh(new THREE.CylinderGeometry(r*.475,r*.475,r*.09,18,1,true),M(band,.7,{side:THREE.DoubleSide}));bd.position.y=r*.07;bd.scale.set(1,1,1.18);G.add(bd);}
 const decoCv=document.createElement('canvas');decoCv.width=512;decoCv.height=96;const decoTex=new THREE.CanvasTexture(decoCv);
 const decoMat=new THREE.MeshStandardMaterial({map:decoTex,transparent:true,roughness:.5,polygonOffset:true,polygonOffsetFactor:-2});
-const DECOP=[1,-1].map(s=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(3.4,.62),decoMat);m.position.set(s*.965,1.06,.2);m.rotation.y=s*Math.PI/2;if(s<0)m.scale.x=-1;truck.userData.body.add(m);return m;});
+const DECOP=[1,-1].map(s=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(3.4,.62),decoMat);m.position.set(s*.965,1.06,.2);m.rotation.y=s*Math.PI/2;truck.userData.body.add(m);return m;});
 const ROOFG=new THREE.Group();ROOFG.position.set(0,2.06,.45);truck.userData.body.add(ROOFG);
 function drawDeco(c,done){const x=decoCv.getContext('2d');x.clearRect(0,0,512,96);const W=512,Hh=96;
  if(c.deco==='rayas'){x.fillStyle='#f3ebdd';x.fillRect(0,30,W,10);x.fillStyle='#1f160e';x.fillRect(0,46,W,6);x.fillStyle='#f3ebdd';x.fillRect(0,58,W,10);}
@@ -2376,13 +2380,14 @@ function drawDeco(c,done){const x=decoCv.getContext('2d');x.clearRect(0,0,512,96
  else if(c.deco==='dibujo'&&c.draw){const im=new Image();im.onload=()=>{x.clearRect(0,0,W,Hh);x.drawImage(im,0,0,W,Hh);decoTex.needsUpdate=true;};im.src=c.draw;}
  decoTex.needsUpdate=true;}
 function buildRoof(type){while(ROOFG.children.length)ROOFG.remove(ROOFG.children[0]);const G=ROOFG;
- if(type==='sombrero'){const hm=M(0x5a3a22,.85);part(CYL,hm,0,.1,0,1.25,.06,1.25,G);part(CYL,hm,0,.42,0,.62,.62,.62,G);part(CYL,M(0xc8553a,.9),0,.18,0,.64,.1,.64,G);}
+ if(type==='sombrero'){const hg2=new THREE.Group();hg2.position.y=.08;G.add(hg2);cowboyHat(hg2,1.3,0x8a5a32,0x3a2414);}
  else if(type==='cuernos'){const hm=M(0xf2ead8,.6);for(const s of[-1,1]){const c1=part(CONE,hm,s*.75,.32,-.4,.12,.7,.12,G);c1.rotation.z=-s*1.05;const c2=part(CONE,M(0x3a2a1a,.6),s*1.06,.6,-.4,.06,.18,.06,G);c2.rotation.z=-s*.35;}part(BOX,M(0x6a4a2e,.8),0,.08,-.4,1.3,.14,.3,G);}
  else if(type==='mate'){const gm=M(0x7a5a2e,.7);part(SPH,gm,0,.6,0,.55,.62,.55,G);part(CYL,M(0xc8b080,.6,{metalness:.4}),0,1.12,0,.4,.12,.4,G);part(CYL,M(0x3f6a2a,.9),0,1.2,0,.36,.04,.36,G);const bo=part(CYL,M(0xd8d0c0,.3,{metalness:.8}),.15,1.5,0,.035,1.0,.035,G);bo.rotation.z=-.3;}
- else if(type==='carpa'){const tm=M(0x4a7a5a,.8,{side:THREE.DoubleSide});const geo=new THREE.CylinderGeometry(.7,.7,2,3,1,false);geo.rotateZ(Math.PI/2);geo.rotateX(Math.PI/2);const m=new THREE.Mesh(geo,tm);m.rotation.set(0,0,0);m.position.set(0,.35,0);m.scale.set(1,.85,1);G.add(m);}
+ else if(type==='carpa'){const tm=M(0x4a7a5a,.8,{side:THREE.DoubleSide});const geo=new THREE.CylinderGeometry(.7,.7,2,3,1,false);geo.rotateZ(Math.PI/2);geo.rotateX(Math.PI/2);const m=new THREE.Mesh(geo,tm);m.rotation.set(Math.PI,0,0);m.position.set(0,.36,0);m.scale.set(1,.85,1);G.add(m);}
  G.traverse(o=>{if(o.isMesh)o.castShadow=true;});}
 function buildHat(type){const hg=AV.userData.hat;while(hg.children.length)hg.remove(hg.children[0]);const hm=AV.userData.mats.hat;
- if(type==='ala'){part(CYL,hm,0,0,0,.38,.03,.38,hg);part(CYL,hm,0,.08,0,.17,.15,.17,hg);part(CYL,M(0xc8553a,.9),0,.03,0,.175,.035,.175,hg);}
+ if(type==='vaquero'||type==='ala')cowboyHat(hg,.36,0x8a5a32,0x3a2414);else if(type==='vaqueron')cowboyHat(hg,.36,0x1e1c1a,0xb08a4a);else if(type==='vaquerob')cowboyHat(hg,.36,0xe8dcc0,0x5a3a22);
+ else if(type==='gorra'){const cm=M(0x2f5f9a,.8);part(SPH,cm,0,-.02,0,.205,.13,.205,hg);const v=part(SPH,cm,0,-.06,-.2,.16,.015,.12,hg);v.scale.z=1;part(CYL,M(0xf3ebdd,.8),0,.1,0,.02,.02,.02,hg);}
  else if(type==='boina'){part(CYL,M(0x1f2430,.9),0,-.01,0,.23,.06,.23,hg);part(SPH,M(0x1f2430,.9),0,.03,0,.22,.06,.22,hg);part(CYL,M(0x1f2430,.9),0,.08,0,.015,.04,.015,hg);}
  else if(type==='gorro'){const wm=M(0xc8553a,.95);part(SPH,wm,0,-.02,0,.215,.17,.215,hg);part(CYL,M(0xe8c06a,.95),0,-.08,0,.218,.05,.218,hg);part(SPH,M(0xf3ebdd,.95),0,.16,0,.06,.06,.06,hg);}}
 function buildExtras(list){const U=AV.userData;if(!U.extras){U.extras=new THREE.Group();U.head.add(U.extras);U.handX=new THREE.Group();U.handX.position.y=-.36;U.arms[1].add(U.handX);}
@@ -2390,16 +2395,18 @@ function buildExtras(list){const U=AV.userData;if(!U.extras){U.extras=new THREE.
  if(list.includes('bigotes'))for(const s of[-1,1]){const b=part(SPH,k,s*.05,-.065,-.19,.055,.018,.02,E);b.rotation.z=s*.35;}
  if(list.includes('anteojos')){const gm=M(0x1a1a1a,.4);for(const s of[-1,1]){const r=new THREE.Mesh(new THREE.TorusGeometry(.045,.008,6,14),gm);r.position.set(s*.07,.01,-.195);E.add(r);}part(BOX,gm,0,.012,-.197,.05,.008,.008,E);}
  if(list.includes('gallina')){const ch=new THREE.Group();ch.position.set(0,.26,0);E.add(ch);const wm=M(0xf3efe4,.8);part(SPH,wm,0,.07,0,.09,.08,.12,ch);part(SPH,wm,0,.15,-.08,.05,.05,.05,ch);part(CONE,M(0xd8a020),0,.15,-.14,.014,.04,.014,ch).rotation.x=-Math.PI/2;part(BOX,M(0xc8302a),0,.21,-.08,.012,.04,.04,ch);part(BOX,wm,0,.11,.1,.03,.08,.06,ch);}
- if(list.includes('mate')){const gm=M(0x7a5a2e,.7);part(SPH,gm,0,-.02,-.04,.055,.065,.055,U.handX);part(CYL,M(0xd8d0c0,.3,{metalness:.8}),.01,.06,-.04,.006,.12,.006,U.handX);}
+ if(list.includes('mate')){const gm=M(0x7a5a2e,.7),mt=new THREE.Group();mt.position.set(0,-.02,-.05);mt.rotation.x=.5;U.handX.add(mt);part(SPH,gm,0,0,0,.065,.075,.065,mt);part(CYL,M(0xc8b080,.4,{metalness:.5}),0,.06,0,.048,.02,.048,mt);part(CYL,M(0x5f9a2e,.9),0,.068,0,.042,.01,.042,mt);const bo=part(CYL,M(0xd8d0c0,.25,{metalness:.85}),.02,.12,0,.006,.13,.006,mt);bo.rotation.z=-.25;
+  if(!U.termo){U.termo=new THREE.Group();U.torso.add(U.termo);}while(U.termo.children.length)U.termo.remove(U.termo.children[0]);U.termo.position.set(-.27,.12,.02);U.termo.rotation.z=.25;part(CYL,M(0x3f7a4a,.5,{metalness:.3}),0,0,0,.045,.26,.045,U.termo);part(CYL,M(0xd8d0c0,.3,{metalness:.8}),0,.15,0,.035,.05,.035,U.termo);part(CYL,M(0x2a2a2a,.6),0,.185,0,.03,.03,.03,U.termo);}
+ else if(U.termo){while(U.termo.children.length)U.termo.remove(U.termo.children[0]);}
  AV.traverse(o=>{if(o.isMesh)o.castShadow=true;});}
 function applyCustom(){const c=custom();truck.userData.paint.color.setHex(TRUCK_COLORS[c.color]||TRUCK_COLORS.naranja);drawDeco(c);DECOP.forEach(m=>m.visible=c.deco!=='nada'&&(c.deco!=='dibujo'||!!c.draw));buildRoof(c.roof);
- const P=PONCHOS[c.poncho]||PONCHOS.rojo;AV.userData.mats.pon.color.setHex(P[0]);AV.userData.mats.pon2.color.setHex(P[1]);buildHat(c.hat);buildExtras(c.extras||[]);}
+ AV.userData.mats.skin.color.setHex(SKINS[c.skin]||SKINS.indigena);const P=PONCHOS[c.poncho]||PONCHOS.rojo;AV.userData.mats.pon.color.setHex(P[0]);AV.userData.mats.pon2.color.setHex(P[1]);buildHat(c.hat);buildExtras(c.extras||[]);}
 // panel
 const CUST={on:false,tab:'truck',a:0};
 function setCustom(k,v){SAVE.custom=Object.assign(custom(),{[k]:v});save();applyCustom();renderCustom();}
 function renderCustom(){const c=custom(),el=$('#custBody');const sw=(obj,key,col)=>Object.keys(obj).map(k=>`<button class="sw${c[key]===k?' on':''}" data-k="${key}" data-v="${k}" ${col?`style="background:#${obj[k].toString(16).padStart(6,'0')}"`:''} title="${k}">${col?'':obj[k]}</button>`).join('');
  if(CUST.tab==='truck')el.innerHTML=`<h4>Color</h4><div class="swrow">${sw(TRUCK_COLORS,'color',1)}</div><h4>Dibujo en las puertas</h4><div class="swrow">${sw(DECOS,'deco')}</div><button id="custDraw" class="cbtn">✏️ Dibujar el mío</button><h4>En el techo</h4><div class="swrow">${sw(ROOFS,'roof')}</div>`;
- else el.innerHTML=`<h4>Poncho</h4><div class="swrow">${Object.keys(PONCHOS).map(k=>`<button class="sw${c.poncho===k?' on':''}" data-k="poncho" data-v="${k}" style="background:linear-gradient(#${PONCHOS[k][0].toString(16).padStart(6,'0')} 60%,#${PONCHOS[k][1].toString(16).padStart(6,'0')} 60%)" title="${k}"></button>`).join('')}</div><h4>En la cabeza</h4><div class="swrow">${sw(HATS,'hat')}</div><h4>Cosas graciosas</h4><div class="swrow">${Object.keys(EXTRAS).map(k=>`<button class="sw tog${(c.extras||[]).includes(k)?' on':''}" data-x="${k}">${EXTRAS[k]}</button>`).join('')}</div>`;
+ else el.innerHTML=`<h4>Piel</h4><div class="swrow">${sw(SKINS,'skin',1)}</div><h4>Poncho</h4><div class="swrow">${Object.keys(PONCHOS).map(k=>`<button class="sw${c.poncho===k?' on':''}" data-k="poncho" data-v="${k}" style="background:linear-gradient(#${PONCHOS[k][0].toString(16).padStart(6,'0')} 60%,#${PONCHOS[k][1].toString(16).padStart(6,'0')} 60%)" title="${k}"></button>`).join('')}</div><h4>En la cabeza</h4><div class="swrow">${sw(HATS,'hat')}</div><h4>Cosas graciosas</h4><div class="swrow">${Object.keys(EXTRAS).map(k=>`<button class="sw tog${(c.extras||[]).includes(k)?' on':''}" data-x="${k}">${EXTRAS[k]}</button>`).join('')}</div>`;
  el.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>setCustom(b.dataset.k,b.dataset.v));
  el.querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>{const L=(custom().extras||[]).slice(),k=b.dataset.x,i=L.indexOf(k);if(i>=0)L.splice(i,1);else L.push(k);setCustom('extras',L);});
  const db=$('#custDraw');if(db)db.onclick=openDraw;document.querySelectorAll('#custTabs button').forEach(b=>b.classList.toggle('on',b.dataset.t===CUST.tab));}
