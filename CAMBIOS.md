@@ -67,6 +67,7 @@ Un juego de Insight Reality
 - v64  Correa de la cámara del avatar bien orientada
 - v65  Salpicaduras en los charcos; el lagarto corre a su cueva entre piedras; yarará en forma de S que se desliza y escapa; botón de caminar más visible; foto con otro dedo moviendo la cámara (celular); gato montés echado; en modo desbloqueo el mapa muestra bichos, buceo, hallazgos y muestras para teletransportarse
 - v66  Tortugas que aguantan más cerca y vuelven antes; teletransporte a bichos a distancia prudente; marcas del mapa separadas y fáciles de tocar; viudita en postes del pastizal y dragones caminando por el pastizal húmedo
+- v67  Lechuza de campo; araña marrón con las patas unidas al cuerpo; araña y dormilón en la sierra del noreste; picaflor tomando néctar de flores rojas junto a la cascada
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v66).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v67).
 La versión vigente es index.html (lista como app instalable).

@@ -268,7 +268,7 @@ body.menu #touch{display:none!important}
  <g stroke="#fff" stroke-opacity=".2" stroke-width=".25" fill="none"><path d="M44 34l8 5M118 24l-6 8M100 74l11-4M52 76l4-6M128 52q3 3 2 7"/></g>
 </svg>
 <div class="hud" id="hud">
-  <div id="verHud" data-ver>v66</div>
+  <div id="verHud" data-ver>v67</div>
   <div id="tally"><b id="tBichos">0 / 11 bichos</b><span id="tLugares">0 / 7 lugares</span></div>
   <div id="tools">
     <button class="tool" id="bMenu" title="Menú">☰<small>menú</small></button>
@@ -333,7 +333,7 @@ body.menu #touch{display:none!important}
 <section class="tp" data-t="lugares"><h4><span class="ich" data-ic="lugares"></span> <span id="plH">Lugares</span></h4><div class="grid" id="plList"></div></section>
 <section class="tp" data-t="logros"><h4><span class="ich" data-ic="logros"></span> <span id="logH">Logros especiales</span></h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
 <section class="tp" data-t="hallazgos"><h4><span class="ich" data-ic="hallazgos"></span> Hallazgos</h4><div id="hzList"></div></section>
-<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v66</span></p></div>
+<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v67</span></p></div>
   </div>
 </div>
 <div id="start">
@@ -344,7 +344,7 @@ body.menu #touch{display:none!important}
     <p id="iosHint" class="ioshint" hidden>Para instalarla en iPhone o iPad: tocá <b>Compartir</b> y después <b>Agregar a inicio</b>.</p>
     <div class="players"><div id="profList"></div><button id="profNew" type="button">👤 Nuevo jugador</button><span id="profNewBox" hidden><input id="profName" maxlength="16" placeholder="Nombre del jugador"> <button id="profOk" type="button">Listo</button> <button id="profCancel" type="button" aria-label="Cancelar">✕</button></span></div>
     <label class="opt"><input type="checkbox" id="optTrees"> Pasar a través de los árboles (para los más chicos)</label>
-    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v66</span></p>
+    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v67</span></p>
   </div>
 </div>
 <div id="loading">Armando el paisaje…</div>
@@ -512,7 +512,7 @@ const SPECIES=[
   hint:'Asoleándose sobre las piedras, en lo alto de la sierra.',
   note:'Serpiente de pastizales y sierras, con un dibujo de crucecitas oscuras que la camufla entre piedras y pasto seco. Se calienta al sol sobre las rocas y no ataca si no la molestan.'},
  {id:'arana',name:'Araña pollito',sci:'Grammostola sp.',more:'Es una tarántula grande, peluda y tranquila. Las hembras pueden vivir más de 20 años.',size:.3,hab:'land',spots:[],wander:60,walk:.5,run:.7,shy:null,
-  hint:'Caminando despacio por las piedras de la sierra.',
+  hint:'Caminando despacio por las piedras de la sierra del noreste.',
   note:'Vive en cuevitas entre las piedras y sale a caminar, sobre todo al atardecer. Aunque parece temible, es tranquila: se defiende soltando pelitos que pican. Come insectos y otros bichitos.'},
  {id:'cardenal',name:'Cardenal amarillo',sci:'Gubernatrix cristata',more:'Está en peligro de extinción: quedan muy pocos, porque durante años los atraparon para tenerlos en jaula.',size:.5,hab:'perch',hop:{fleeD:14},spots:[],
   hint:'En pareja, volando entre los espinillos del campo.',
@@ -544,14 +544,14 @@ const SPECIES=[
  {id:'martin',name:'Martín pescador',sci:'Megaceryle torquata',more:'Es el martín pescador más grande de América: mide unos 40 cm. Hace su nido en un túnel que cava en la barranca.',size:.5,hab:'perch',hop:{fleeD:15,sally:true,dive:true},spots:[],
   hint:'En las ramas sobre el arroyo, mirando el agua.',
   note:'Pájaro gris azulado con copete, collar blanco y panza rojiza. Se posa en una rama sobre el agua, mira fijo y se tira de cabeza para atrapar un pez. Cuando vuela sobre el arroyo hace un ruido como una matraca.'},
- {id:'lechucita',name:'Lechucita de las vizcacheras',sci:'Athene cunicularia',more:'A diferencia de otras lechuzas, anda mucho de día. A veces usa cuevas que cavaron otros animales.',size:.35,hab:'land',spots:[],wander:0,walk:.3,run:1,shy:{d:14,v:-1},hides:true,
+ {id:'lechucita',name:'Lechuza de campo',sci:'Athene cunicularia',more:'A diferencia de otras lechuzas, anda mucho de día. A veces usa cuevas que cavaron otros animales.',size:.35,hab:'land',spots:[],wander:0,walk:.3,run:1,shy:{d:14,v:-1},hides:true,
   hint:'Parada sobre un tacurú en el campo, con las patas largas.',
   note:'Lechuza chiquita de patas largas que vive en cuevas en el suelo. Se para en la entrada o sobre un montículo, gira la cabeza para mirarte y, si te acercás mucho, se mete en su cueva.'},
  {id:'dormilon',name:'Dormilón',sci:'Hydropsalis torquata',more:'Caza insectos en vuelo al atardecer y de noche. Pone los huevos directamente en el suelo, sin nido.',size:.4,hab:'land',spots:[],wander:0,walk:0,run:0,shy:null,
-  hint:'Quieto en el suelo de la sierra, camuflado entre el pasto y las piedras. Solo se ve cuando vuela.',
+  hint:'Quieto en el suelo de la sierra del noreste, camuflado entre el pasto y las piedras. Solo se ve cuando vuela.',
   note:'Pájaro de colores tierra que de día se queda inmóvil en el suelo, tan camuflado que parece una piedra o una rama seca. Si te acercás mucho, vuela un tramito corto y se vuelve a quedar quieto.'},
  {id:'picaflor',name:'Picaflor verde',sci:'Chlorostilbon lucidulus',more:'Bate las alas unas 50 veces por segundo y puede volar hacia atrás.',size:.25,hab:'perch',hop:{fleeD:4,hover:true},spots:[],
-  hint:'Entre las flores de la quebrada. Es muy chiquito y rápido.',
+  hint:'En las flores rojas junto a la cascada. Es muy chiquito y rápido.',
   note:'Pajarito verde brillante, chiquito, que se queda suspendido en el aire frente a las flores para tomar el néctar con su pico largo. Va de flor en flor a toda velocidad.'},
  {id:'zorrillo',name:'Zorrillo',sci:'Conepatus chinga',more:'Come insectos, lombrices y raíces que saca escarbando con sus uñas fuertes.',size:.55,hab:'land',spots:[],wander:12,walk:.5,run:.8,shy:null,
   hint:'Caminando tranquilo por el campo. No le gusta que lo molesten.',
@@ -1339,9 +1339,11 @@ BUILD.yarara=(g)=>{const b=M(0x8a6a44,.7),dk=M(0x2e2216,.8),N=22,pts=Array.from(
  const shape=(t,mv)=>{const amp=mv?.13:.07,k=mv?5.2:1.2;for(let i=0;i<N;i++){const u=i/(N-1),z=-.62+u*1.3;pts[i].set(Math.sin(u*9-t*k)*amp*(.35+u*.65),.045,z);}};
  g.userData.anim=(t,mv)=>{shape(t,mv);const old=tube.geometry;tube.geometry=new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),44,.042,6,false);old.dispose();head.position.set(pts[0].x,.055,pts[0].z-.04);spots.forEach((sp,i)=>{const p=pts[2+i*2];sp.position.set(p.x,.08,p.z);});};
  g.userData.anim(0,false);};
-BUILD.arana=(g,L)=>{const b=M(0x3a2a20,.95),h=M(0x55402e,.95);part(SPH,b,0,.12,.1,.09,.075,.11,g);part(SPH,h,0,.11,-.05,.065,.05,.07,g);
- for(let i=0;i<8;i++){const s=i<4?-1:1,k=i%4,fan=(k-1.5)*.42,hip=new THREE.Group();hip.position.set(s*.05,.12,-.07+k*.035);hip.rotation.y=s>0?-fan:Math.PI+fan;g.add(hip);
-  const p=new THREE.Group();hip.add(p);const fem=part(CYL,b,.09,.05,0,.014,.2,.014,p);fem.rotation.z=-1.05;const tib=part(CYL,b,.19,-.04,0,.011,.2,.011,p);tib.rotation.z=.55;L.push(p);}
+BUILD.arana=(g,L)=>{const b=M(0x6a4a32,.95),h=M(0x7a5a3e,.95),lg=M(0x5a3e2a,.95);part(SPH,b,0,.12,.1,.09,.075,.11,g);part(SPH,h,0,.11,-.05,.065,.05,.07,g);
+ const t1=.5,t2=-1.15,l1=.2,l2=.21,e1=[Math.cos(t1)*l1,Math.sin(t1)*l1];
+ for(let i=0;i<8;i++){const s=i<4?-1:1,k=i%4,fan=(k-1.5)*.42,hip=new THREE.Group();hip.position.set(s*.045,.12,-.07+k*.035);hip.rotation.y=s>0?-fan:Math.PI+fan;g.add(hip);
+  const p=new THREE.Group();hip.add(p);const fem=part(CYL,lg,e1[0]/2,e1[1]/2,0,.016,l1,.016,p);fem.rotation.z=t1-Math.PI/2;
+  const tib=part(CYL,lg,e1[0]+Math.cos(t2)*l2/2,e1[1]+Math.sin(t2)*l2/2,0,.013,l2,.013,p);tib.rotation.z=t2-Math.PI/2;part(SPH,lg,e1[0],e1[1],0,.02,.02,.02,p);L.push(p);}
  part(SPH,M(0x111111),.02,.14,-.11,.01,.01,.01,g);part(SPH,M(0x111111),-.02,.14,-.11,.01,.01,.01,g);};
 function flapW(a,time,on){(a.g.userData.wingsAll||[]).forEach((w,i)=>{const s=Math.sign(w.position.x)||1;if(on){w.scale.x=1;w.rotation.z=s*Math.sin(time*18+i)*.85;}else{w.scale.x=.35;w.rotation.z=s*1.25;}});}
 function hopUpdate(a,dt,time,dc){const hp=a.sp.hop;if(!a.perch)return;
@@ -1349,14 +1351,14 @@ function hopUpdate(a,dt,time,dc){const hp=a.sp.hop;if(!a.perch)return;
   a.t-=dt;const flee=dc<hp.fleeD;if(hp.sally&&!flee&&a.t<=0&&Math.random()<.5){a.sallyT=1.6;return;}
   if(flee||a.t<=0){let cand=a.perches.filter(p=>p!==a.perch&&Math.hypot(p[0]-a.perch[0],p[2]-a.perch[2])<50);if(flee){const far=cand.filter(p=>Math.hypot(p[0]-car.x,p[2]-car.z)>hp.fleeD+6);if(far.length)cand=far;}if(!cand.length)cand=a.perches.filter(p=>p!==a.perch);
    if(!cand.length){a.t=5;return;}const nx=cand[Math.floor(Math.random()*cand.length)];a.fl={from:a.perch,to:nx,t:0,dur:Math.max(1.2,Math.hypot(nx[0]-a.perch[0],nx[2]-a.perch[2])/7)};a.state='fly';}
-  else if(hp.hover){flapW(a,time*3,true);a.g.position.y=a.perch[1]+Math.sin(time*3+a.phase)*.05;}else flapW(a,time,false);return;}
+  else if(hp.hover){flapW(a,time*3,true);a.g.position.y=a.perch[1]+Math.sin(time*6+a.phase)*.01;}else flapW(a,time,false);return;}
  const F=a.fl;F.t+=dt;const u=Math.min(1,F.t/F.dur),e=u*u*(3-2*u);a.x=mix(F.from[0],F.to[0],e);a.z=mix(F.from[2],F.to[2],e);a.y=mix(F.from[1],F.to[1],e)+Math.sin(u*Math.PI)*2.5;
  a.h=Math.atan2(-(F.to[0]-F.from[0]),-(F.to[2]-F.from[2]));a.g.position.set(a.x,a.y,a.z);a.g.rotation.y=a.h;flapW(a,time,true);
- if(u>=1){a.perch=F.to;a.state='perched';a.t=4+Math.random()*9;flapW(a,time,false);}}
-function setPerch(a,list,start){a.perches=list;a.perch=start;a.x=start[0];a.y=start[1];a.z=start[2];a.g.position.set(a.x,a.y,a.z);a.state='perched';a.t=2+Math.random()*6;flapW(a,0,false);}
+ if(u>=1){a.perch=F.to;a.state='perched';a.t=4+Math.random()*9;flapW(a,time,false);if(F.to.length>3){a.h=Math.atan2(-(F.to[3]-F.to[0]),-(F.to[5]-F.to[2]));a.g.rotation.y=a.h;}}}
+function setPerch(a,list,start){a.perches=list;a.perch=start;a.x=start[0];a.y=start[1];a.z=start[2];a.g.position.set(a.x,a.y,a.z);if(start.length>3){a.h=Math.atan2(-(start[3]-start[0]),-(start[5]-start[2]));a.g.rotation.y=a.h;}a.state='perched';a.t=2+Math.random()*6;flapW(a,0,false);}
 function spreadPts(n,minD,test){const out=[];for(let t=0;t<6000&&out.length<n;t++){const x=(rnd()*2-1)*(HALF-40),z=(rnd()*2-1)*(HALF-40);if(!test(x,z))continue;if(out.some(p=>Math.hypot(p[0]-x,p[1]-z)<minD))continue;out.push([x,z]);}return out;}
 {const sp=SPECIES.find(s=>s.id==='yarara');spreadPts(4,60,(x,z)=>z<-110&&H(x,z)>20&&slopeAt(x,z)<.5&&!hitObs(x,z,2)).forEach(p=>spawn(sp,p[0],p[1]));}
-{const sp=SPECIES.find(s=>s.id==='arana');spreadPts(4,55,(x,z)=>z<-100&&H(x,z)>14&&slopeAt(x,z)<.6&&!hitObs(x,z,2)).forEach(p=>spawn(sp,p[0],p[1]));}
+{const sp=SPECIES.find(s=>s.id==='arana');spreadPts(4,45,(x,z)=>x>40&&x<250&&z<-130&&z>-262&&H(x,z)>10&&slopeAt(x,z)<.6&&Math.hypot(x-190,z+110)>70&&!hitObs(x,z,2)).forEach(p=>spawn(sp,p[0],p[1]));}
 {const sp=SPECIES.find(s=>s.id==='cardenal');if(ESPIN.length>2){const c=ESPIN[Math.floor(ESPIN.length/2)],list=ESPIN.filter(p=>Math.hypot(p[0]-c[0],p[2]-c[2])<60);const a=spawn(sp,c[0],c[2]);setPerch(a,list.length>2?list:ESPIN,c);}}
 {const sp=SPECIES.find(s=>s.id==='federal');const c=CFALSO.find(p=>p[2]>5&&p[2]<130)||CFALSO[0];if(c){const list=CFALSO.filter(p=>Math.hypot(p[0]-c[0],p[2]-c[2])<45);const a=spawn(sp,c[0],c[2]);setPerch(a,list,c);}}
 {const wd=M(0x6b5440,.95),posts=[];for(let t=0;t<3000&&posts.length<7;t++){const x=40+rnd()*160,z=-30+rnd()*170,h=H(x,z);if(h<1.5||slopeAt(x,z)>.3||roadD(x,z)<4||hitObs(x,z,3)||posts.some(p=>Math.hypot(p[0]-x,p[2]-z)<16))continue;const ht=1.9+rnd()*.8,g=new THREE.Group();g.position.set(x,h,z);scene.add(g);part(CYL,wd,0,ht/2,0,.045,ht,.05,g);part(CYL,wd,0,ht+.02,0,.06,.04,.06,g);addObs(x,z,.2);posts.push([x,h+ht+.04,z]);}
@@ -1447,7 +1449,12 @@ const RAMAS=[];{const wd=M(0x6b5440,.95);for(let z=-140;z<230;z+=20+rnd()*12){co
  const g=new THREE.Group();g.position.set(x,h,z);scene.add(g);part(CYL,wd,0,.95,0,.06,1.9,.06,g);const arm=part(CYL,wd,-side*1.15,1.85,0,.035,2.4,.035,g);arm.rotation.z=side*1.4;addObs(x,z,.2);RAMAS.push([x-side*2.25,h+2.0,z]);}}
 {const sp=SPECIES.find(s=>s.id==='martin');if(RAMAS.length>2){const c=RAMAS[Math.floor(RAMAS.length/2)],a=spawn(sp,c[0],c[2]);setPerch(a,RAMAS,c);}}
 // picaflor entre las flores de la quebrada
-{const sp=SPECIES.find(s=>s.id==='picaflor'),pts=[];const cz=-215,cx=riverX(cz);for(let t=0;t<800&&pts.length<10;t++){const z=cz+(rnd()-.5)*50,x=riverX(z)+(rnd()-.5)*40,h=H(x,z);if(h<.3||h>18||slopeAt(x,z)>.8)continue;pts.push([x,h+1.2+rnd()*.8,z]);}
+{const sp=SPECIES.find(s=>s.id==='picaflor'),pts=[],leaf=M(0x2f5a2a,.85,{flatShading:true}),fl=M(0xd8342a,.5,{emissive:0x3a0a06}),fl2=M(0xe85a8a,.5,{emissive:0x3a0a1a});
+ for(let t=0;t<1500&&pts.length<9;t++){const z=-262+rnd()*30,side=rnd()<.5?-1:1,x=riverX(z)+side*(riverW(z)*.5+2+rnd()*9),h=H(x,z);if(h<.25||h>14||slopeAt(x,z)>.9||hitObs(x,z,1.2)||pts.some(p=>Math.hypot(p[0]-x,p[2]-z)<4))continue;
+  const g=new THREE.Group();g.position.set(x,h-.05,z);g.rotation.y=rnd()*6;scene.add(g);part(SPH,leaf,0,.55,0,.55,.5,.5,g);part(SPH,leaf,.3,.4,.2,.35,.3,.35,g);const fls=[];
+  for(let k=0;k<7;k++){const a=k/7*6.28+rnd()*.4,r=.5,y=.75+rnd()*.25,c=part(CONE,k%2?fl:fl2,Math.cos(a)*r,y,Math.sin(a)*r,.045,.16,.045,g);c.rotation.z=Math.cos(a)*1.2;c.rotation.x=-Math.sin(a)*1.2;fls.push([Math.cos(a)*.62,y,Math.sin(a)*.62]);}
+  g.updateMatrixWorld(true);const f0=new THREE.Vector3(...fls[Math.floor(rnd()*fls.length)]).applyMatrix4(g.matrixWorld),dx=f0.x-g.position.x,dz=f0.z-g.position.z,dl=Math.hypot(dx,dz)||1;
+  pts.push([f0.x+dx/dl*.14,f0.y-.135,f0.z+dz/dl*.14,f0.x,f0.y,f0.z]);}
  if(pts.length>2){const a=spawn(sp,pts[0][0],pts[0][2]);setPerch(a,pts,pts[0]);}}
 // tacurúes del campo; dos con lechucitas de las vizcacheras
 const TACU=[];{const geo=jitter(new THREE.SphereGeometry(1,8,6),.18);geo.scale(.8,.55,.8);const m=new THREE.InstancedMesh(geo,M(0xffffff,.95,{flatShading:true}),70);let n=0;
@@ -1455,7 +1462,7 @@ const TACU=[];{const geo=jitter(new THREE.SphereGeometry(1,8,6),.18);geo.scale(.
   dummy.position.set(x,h-.08,z);dummy.rotation.set(0,rnd()*6.28,0);dummy.scale.set(s,s*(.8+rnd()*.5),s);dummy.updateMatrix();m.setMatrixAt(n,dummy.matrix);tmpC.setRGB(.45+rnd()*.06,.36+rnd()*.05,.26);m.setColorAt(n,tmpC);addObs(x,z,.55*s);TACU.push([x,z,h-.08+.55*s*(.8)]);n++;}
  m.count=n;m.castShadow=true;m.receiveShadow=true;m.instanceMatrix.needsUpdate=true;m.instanceColor.needsUpdate=true;scene.add(m);
  const sp=SPECIES.find(s=>s.id==='lechucita');TACU.filter((p,i)=>i%25===3).slice(0,2).forEach(p=>{const a=spawn(sp,p[0],p[1]);a.y=p[2];a.g.position.y=a.y;a.perchY=p[2];});}
-{const sp=SPECIES.find(s=>s.id==='dormilon');spreadPts(3,45,(x,z)=>z<-110&&z>-250&&H(x,z)>8&&H(x,z)<26&&slopeAt(x,z)<.5&&!hitObs(x,z,1.5)).forEach(p=>spawn(sp,p[0],p[1]));}
+{const sp=SPECIES.find(s=>s.id==='dormilon');spreadPts(3,40,(x,z)=>x>40&&x<250&&z<-130&&z>-262&&H(x,z)>8&&H(x,z)<32&&slopeAt(x,z)<.5&&Math.hypot(x-190,z+110)>70&&!hitObs(x,z,1.5)).forEach(p=>spawn(sp,p[0],p[1]));}
 {const sp=SPECIES.find(s=>s.id==='zorrillo');spreadPts(2,60,(x,z)=>z>-80&&z<200&&H(x,z)>1.5&&slopeAt(x,z)<.35&&!clearing(x,z)&&!hitObs(x,z,1.5)).forEach(p=>spawn(sp,p[0],p[1]));}
 {const sp=SPECIES.find(s=>s.id==='comadreja'),P=PLACES.find(q=>q.id==='tapera');for(let t=0,n=0;t<200&&n<2;t++){const a=rnd()*6.28,r=20+rnd()*30,x=P.x+Math.cos(a)*r,z=P.z+Math.sin(a)*r;if(H(x,z)<.5||slopeAt(x,z)>.4||hitObs(x,z,1.5))continue;spawn(sp,x,z);n++;}}
 {const sp=SPECIES.find(s=>s.id==='coipo');for(const[cx,cz,R] of[[LAG2.x,LAG2.z,9],[riverX(30),30,0]]){const a=spawn(sp,cx,cz);a.home=[cx,cz];a.R=R;a.ang=rnd()*6.28;a.mode='swim';}}
