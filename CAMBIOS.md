@@ -80,6 +80,7 @@ Un juego de Insight Reality
 - v77  Alero detrás de la cascada visible: apoyado contra el pie del paredón, fondo oscuro solo detrás, y la espuma de la cascada delante de la cortina
 - v78  Todos los bichos del juego pintados en la sala del fogón; alero detrás de la cascada más grande, al que se sube desde el agua y se camina, con campanas de cerámica y zoolitos (paloma, pájaro, lobo marino, tiburón)
 - v79  Fondo del alero cerrado (pared, costados y techo oscuros); remo de canoa, huesos de lobo marino, mandíbula y dientes de tiburón y astas de ciervo
+- v80  Alero con piso plano (nada enterrado) y fondo de roca continuo; se entra con "Salir del agua" frente al alero y se camina en primera persona como en la cueva del fogón; caminando hacia el borde se vuelve al agua; luz suave adentro
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v79).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v80).
 La versión vigente es index.html (lista como app instalable).
