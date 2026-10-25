@@ -78,6 +78,7 @@ Un juego de Insight Reality
 - v75  Arreglado un error que impedía bucear en la cascada (desde v72); cangrejos en lugares fijos debajo de las entradas de buceo, más grandes y visibles, que no desaparecen al esconderse
 - v76  Caminando, arrastrar en la pantalla gira al explorador (como al bucear); la cortina de la cascada cae 2 m más adelante dejando el alero más atrás; sin piedras tapando el alero
 - v77  Alero detrás de la cascada visible: apoyado contra el pie del paredón, fondo oscuro solo detrás, y la espuma de la cascada delante de la cortina
+- v78  Todos los bichos del juego pintados en la sala del fogón; alero detrás de la cascada más grande, al que se sube desde el agua y se camina, con campanas de cerámica y zoolitos (paloma, pájaro, lobo marino, tiburón)
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v77).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v78).
 La versión vigente es index.html (lista como app instalable).
