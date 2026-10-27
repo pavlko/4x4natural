@@ -61,6 +61,9 @@ body.walking #bLow,body.walking #bReset{opacity:.35;pointer-events:none}body.wal
 #drawPal{display:flex;gap:6px;align-items:center;margin:8px 0;flex-wrap:wrap}#drawPal button{width:32px;height:32px;border-radius:16px;border:3px solid rgba(255,255,255,.3);font-size:16px}#drawPal button.on{border-color:#F28C28}#drawPal input{flex:1;min-width:100px}
 .drawact{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}.drawact button{background:rgba(216,198,160,.14);border:0;border-radius:4px;padding:7px 14px;font-size:16px;font-weight:600}.drawact .okb{background:#D9B65E;color:#1f160e}
 #fbText{width:100%;box-sizing:border-box;border-radius:6px;border:2px solid #D9B65E;background:#f6efe0;color:#1f160e;padding:8px;font:16px/1.35 Newsreader,serif}.fbact{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.fbact button{background:#D9B65E;color:#1f160e;border:0;border-radius:4px;padding:7px 14px;font-weight:700;font-size:15px}.fbnote{font-size:13px;opacity:.75}
+#bLow,#bReset{display:none!important}
+#photoExit{position:fixed;left:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);z-index:6;display:none;background:rgba(35,64,47,.92);color:#F3EBDD;border:2px solid #D9B65E;border-radius:22px;padding:9px 18px;font-size:18px;font-weight:700}
+body.photo:not(.diving):not(.cave) #photoExit{display:block}
 #fade{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none;transition:opacity .25s;z-index:40}#fade.show{opacity:1}
 body.cave #microBtn,body.diving #microBtn{bottom:calc(env(safe-area-inset-bottom,0px) + 150px)}
 #scope{position:fixed;inset:0;z-index:25;display:none;align-items:center;justify-content:center;background:rgba(10,8,5,.9)}#scope.show{display:flex}
@@ -86,7 +89,10 @@ body.diving #air{display:flex}
 #gauge{position:absolute;left:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);background:var(--panel);padding:8px 16px 10px;border-radius:3px;display:flex;align-items:flex-end;gap:16px}
 #spd{font-size:46px;font-weight:700;line-height:.9;font-variant-numeric:tabular-nums;min-width:2ch;text-align:right}
 #gauge .u{font-size:14px;color:var(--sub)}
-#gear{font-size:22px;font-weight:700;padding:2px 8px;border:2px solid var(--sub);border-radius:3px;color:var(--sub)}
+#gear{font-size:22px;font-weight:700;padding:2px 8px;border:2px solid var(--sub);border-radius:3px;color:var(--sub);background:none;cursor:pointer}
+#resetBtn{position:absolute;left:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 92px);width:46px;height:46px;border-radius:50%;background:var(--panel);color:#F3EBDD;border:2px solid rgba(243,235,221,.35);font-size:24px;font-weight:700}
+body.walking #resetBtn,body.walking #gear{display:none}
+@media (orientation:portrait) and (max-width:700px){#resetBtn{left:auto;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 250px)}}
 #gear.low{border-color:var(--senal);color:var(--senal)}
 #toasts{position:absolute;left:50%;top:calc(env(safe-area-inset-top,0px) + 70px);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none;width:min(92vw,520px)}
 .toast{background:var(--panel);padding:7px 16px;border-radius:3px;font-size:19px;font-weight:500;text-align:center;animation:tin .25s ease-out}
@@ -282,15 +288,15 @@ body.menu #touch{display:none!important}
  <g stroke="#fff" stroke-opacity=".2" stroke-width=".25" fill="none"><path d="M44 34l8 5M118 24l-6 8M100 74l11-4M52 76l4-6M128 52q3 3 2 7"/></g>
 </svg>
 <div class="hud" id="hud">
-  <div id="verHud" data-ver>v82</div>
+  <div id="verHud" data-ver>v83</div>
   <div id="tally"><b id="tBichos">0 / 11 bichos</b><span id="tLugares">0 / 7 lugares</span></div>
   <div id="tools">
     <button class="tool" id="bMenu" title="Menú">☰<small>menú</small></button>
     <button class="tool" id="bCam" title="Cámara (F)">📷<small>F</small></button>
     <button class="tool" id="bBook" title="Cuaderno (N)">📓<small>N</small></button>
     <button class="tool" id="bMap" title="Mapa (M)">🗺️<small>M</small></button>
-    <button class="tool" id="bLow" title="Tracción baja (Q)">4L<small>Q</small></button>
-    <button class="tool" id="bReset" title="Destrabar (R)">↺<small>R</small></button>
+    <button class="tool" id="bLow" title="Tracción baja (Q)" hidden>4L<small>Q</small></button>
+    <button class="tool" id="bReset" title="Destrabar (R)" hidden>↺<small>R</small></button>
     <button class="tool" id="bSnd" title="Sonido">🔊<small>son.</small></button>
   </div>
   <div id="toasts"></div>
@@ -303,11 +309,13 @@ body.menu #touch{display:none!important}
   <button id="slowBtn" type="button" title="Ir despacio (Shift)">🐢 Despacio</button>
   <div id="race"></div>
   <div id="raceArrow" aria-hidden="true">➤</div>
-  <div id="gauge"><div><div id="spd">0</div><div class="u">km/h</div></div><div id="gear">4H</div></div>
+  <div id="gauge"><div><div id="spd">0</div><div class="u">km/h</div></div><button id="gear" type="button" title="Tracción baja (Q)">4H</button></div>
+  <button id="resetBtn" type="button" title="Destrabar (R)">↺</button>
   <div id="mapwrap"><canvas id="minimap" width="200" height="200"></canvas></div>
 </div>
 <div id="finder"><div class="vig"></div><div class="frame"><i></i><i></i><i></i><i></i></div><div class="dot"></div><div id="zoomlbl">1×</div></div>
 <button id="shareBtn" type="button">↗ Compartir foto</button>
+<button id="photoExit" type="button">🚙 Volver</button>
 <div id="shareMenu" role="menu"><button id="smCopy" type="button">📋 Copiar foto</button><button id="smMail" type="button">✉️ Mail</button><button id="smWA" type="button">💬 WhatsApp</button><button id="smX" type="button" aria-label="Cerrar">✕</button></div>
 <div id="photoCtl"><button class="zb" id="zOut" aria-label="Alejar">−</button><button id="shoot" aria-label="Sacar foto">FOTO</button><button class="zb" id="zIn" aria-label="Acercar">+</button></div>
 <div id="touch">
@@ -338,7 +346,7 @@ body.menu #touch{display:none!important}
 <h4>Jugadores</h4><p>Cada jugador guarda sus fotos, logros y el lugar donde dejó la camioneta. Se elige o se crea en el menú de inicio.</p>
 <h4>¿Encontraste un error o tenés una idea?</h4>
 <p>Contanos qué pasó o qué te gustaría que tenga el juego.</p>
-<textarea id="fbText" rows="4" placeholder="Por ejemplo: la tortuga no aparece en el tronco… / me gustaría que haya…"></textarea>
+<textarea id="fbText" rows="4" placeholder="Por ejemplo: No puedo encontrar la tortuga en la laguna del arroyo / El ceibo tiene las ramas desconectadas / La cola del águila mora debe ser más triangular / Me gustaría ver un…"></textarea>
 <div class="fbact"><button id="fbGit" type="button">Enviar por GitHub</button><button id="fbMail" type="button">Enviar por mail</button><button id="fbCopy" type="button">Copiar el texto</button></div>
 <p class="fbnote">Se agrega solo la versión del juego y el tipo de aparato, para entender mejor el problema.</p>
 <h4 id="howWeMade">Cómo lo hicimos</h4><p>Idea, diseño y dirección: Insight Reality. El juego se programó conversando con Claude, una inteligencia artificial de Anthropic, pidiendo cambios y probándolos una y otra vez. Todo se dibuja en el navegador con Three.js: el paisaje, los animales, las plantas y los sonidos se generan con código, sin fotos ni grabaciones.</p>
@@ -359,7 +367,7 @@ body.menu #touch{display:none!important}
 <section class="tp" data-t="lugares"><h4><span class="ich" data-ic="lugares"></span> <span id="plH">Lugares</span></h4><div class="grid" id="plList"></div></section>
 <section class="tp" data-t="logros"><h4><span class="ich" data-ic="logros"></span> <span id="logH">Logros especiales</span></h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
 <section class="tp" data-t="hallazgos"><h4><span class="ich" data-ic="hallazgos"></span> Hallazgos</h4><div id="hzList"></div></section>
-<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v82</span></p></div>
+<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v83</span></p></div>
   </div>
 </div>
 <div id="start">
@@ -370,7 +378,7 @@ body.menu #touch{display:none!important}
     <p id="iosHint" class="ioshint" hidden>Para instalarla en iPhone o iPad: tocá <b>Compartir</b> y después <b>Agregar a inicio</b>.</p>
     <div class="players"><div id="profList"></div><button id="profNew" type="button">👤 Nuevo jugador</button><span id="profNewBox" hidden><input id="profName" maxlength="16" placeholder="Nombre del jugador"> <button id="profOk" type="button">Listo</button> <button id="profCancel" type="button" aria-label="Cancelar">✕</button></span></div>
     <label class="opt"><input type="checkbox" id="optTrees"> Pasar a través de los árboles (para los más chicos)</label>
-    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v82</span></p>
+    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v83</span></p>
   </div>
 </div>
 <div id="loading">Armando el paisaje…</div>
@@ -556,13 +564,13 @@ const SPECIES=[
   hint:'Cerca de la tapera, caminando junto a su nido de barro.',
   note:'Pájaro color canela que camina dando pasitos. Construye con barro y pasto un nido con forma de horno, con la entrada de costado y una pared por dentro que protege a los pichones. La pareja canta a dúo.'},
  {id:'chaja',name:'Chajá',sci:'Chauna torquata',more:'Tiene dos espolones filosos en cada ala. Su grito, “cha-já”, se oye desde muy lejos.',size:1.3,hab:'land',spots:[],wander:18,walk:.5,run:1.6,shy:{d:22,v:-1},
-  hint:'En pareja, en las orillas húmedas de la laguna de las espátulas.',
+  hint:'En pareja, en las orillas húmedas de la laguna del arroyo.',
   note:'Ave grande y gris, con un collar negro y blanco y las patas rojas. Vive en pareja en bañados y lagunas. Cuando algo se acerca, grita fuerte y avisa a todos los animales del lugar.'},
  {id:'lagarto',name:'Lagarto overo',sci:'Salvator merianae',more:'Puede medir más de un metro. En invierno se mete en su cueva y casi no sale hasta la primavera.',size:1.0,hab:'land',spots:[],wander:10,walk:.6,run:3.5,shy:{d:14,v:-1},
   hint:'Tomando sol en las piedras, al borde de la sierra.',
   note:'El lagarto más grande de Uruguay: negro con bandas de manchitas blancas. Come de todo: insectos, frutos, huevos y animales chicos. Le gusta tomar sol sobre las piedras y, si lo asustan, corre a esconderse.'},
  {id:'tortuga',name:'Tortuga pintada',sci:'Trachemys dorbigni',more:'Pone sus huevos enterrados en la tierra, lejos del agua. Las tortuguitas nacen solas y caminan hasta la laguna.',size:1.0,hab:'perch',spots:[],
-  hint:'Tomando sol sobre un tronco caído, en la laguna de las espátulas.',
+  hint:'Tomando sol sobre un tronco caído, en la laguna del arroyo.',
   note:'Tortuga de agua dulce con el caparazón verde oscuro y dibujos amarillos, y una mancha naranja detrás del ojo. Pasa horas tomando sol sobre troncos y piedras, y al menor ruido se tira al agua.'},
  {id:'aperea',name:'Apereá',sci:'Cavia aperea',more:'Es pariente silvestre del cobayo que muchos tienen de mascota.',size:.35,hab:'land',spots:[],wander:6,walk:.5,run:2.5,shy:{d:12,v:-1},hides:true,
   hint:'En el pasto alto y húmedo, cerca del arroyo.',
@@ -589,7 +597,7 @@ const SPECIES=[
   hint:'Nadando con la cabeza afuera en el arroyo y las lagunas.',
   note:'Roedor grande de pelo marrón que vive en el agua. Nada con solo la cabeza afuera y, si se asusta, se sumerge y aparece más lejos. Come plantas de la orilla.'},
  {id:'sapito',name:'Sapito de Darwin',sci:'Melanophryniscus montevidensis',more:'Está en peligro: vive solo en una franja de la costa sur y este de Uruguay.',size:.25,hab:'land',spots:[],wander:3,walk:.12,run:.2,shy:null,
-  hint:'Entre el pasto húmedo detrás de las dunas. Es diminuto.',
+  hint:'Entre el pasto húmedo de los arenales de la laguna del arroyo. Es diminuto.',
   note:'Sapito negro con puntitos amarillos, de apenas 2 cm. Cuando se siente amenazado se da vuelta y muestra la panza roja: ese color avisa que es venenoso.'},
  {id:'cangrejo',name:'Cangrejo de arroyo',sci:'Aegla sp.',more:'Solo vive en agua limpia y bien oxigenada: si está, el arroyo está sano.',size:.4,hab:'perch',spots:[],
   hint:'Bajo el agua, junto a piedras chatas del fondo, justo debajo de las entradas de buceo de la cascada y del arroyo.',
@@ -881,7 +889,7 @@ const wetPt=()=>{const z=-100+rnd()*370,x=riverX(z)+(rnd()<.5?-1:1)*(riverW(z)*.
  const CL={c:null,left:0},clumpPt=()=>{if(!CL.left){let c=null;for(let t=0;t<40&&!c;t++){const p=quebradaPt();if(p&&hitObs(p[0],p[1],5))c=p;}if(!c)return null;CL.c=c;CL.left=3+Math.floor(rnd()*5);}
   CL.left--;const a=rnd()*6.28,r=.8+rnd()*2.6,x=CL.c[0]+Math.cos(a)*r,z=CL.c[1]+Math.sin(a)*r,h=H(x,z);return(h>.4&&slopeAt(x,z)<.85&&!clearing(x,z))?[x,z,h]:null;};
  const leaves=placeInst(g1,M(0xffffff,.7),170,4000,clumpPt,(m,i,p)=>{const s=1.2+rnd()*1;dummy.position.set(p[0],p[2]-.05,p[1]);dummy.rotation.set(0,rnd()*6.28,0);dummy.scale.set(s,s*.8,s);dummy.updateMatrix();m.setMatrixAt(i,dummy.matrix);tmpC.setRGB(.16+rnd()*.06,.32+rnd()*.08,.14);m.setColorAt(i,tmpC);});
- const fruits=new THREE.InstancedMesh(g2,M(0xf0b92a,.45,{emissive:0x3a2a00}),leaves.count);const mt=new THREE.Matrix4();let nf=0;for(let i=0;i<leaves.count;i++){if(rnd()<.7){leaves.getMatrixAt(i,mt);fruits.setMatrixAt(nf++,mt);}}fruits.count=nf;fruits.castShadow=true;fruits.instanceMatrix.needsUpdate=true;scene.add(fruits);}
+ const fruits=new THREE.InstancedMesh(g2,M(0xf0922a,.45,{emissive:0x3a1a00}),leaves.count);const mt=new THREE.Matrix4();let nf=0;for(let i=0;i<leaves.count;i++){if(rnd()<.7){leaves.getMatrixAt(i,mt);fruits.setMatrixAt(nf++,mt);}}fruits.count=nf;fruits.castShadow=true;fruits.instanceMatrix.needsUpdate=true;scene.add(fruits);}
 {// caraguatá falso en el arroyo medio y bajo: hojas finas y rígidas, vara florida alta
  const g1=bladeGeo(18,1.3,.045,.35,.1,rnd),stalk=mergeGeos([tf(new THREE.CylinderGeometry(.02,.03,1.6,5),0,.8,0),tf(new THREE.SphereGeometry(.06,6,4),0,1.62,0),tf(new THREE.SphereGeometry(.045,6,4),.12,1.45,0),tf(new THREE.SphereGeometry(.045,6,4),-.1,1.5,.05)]);
  const put=(m,i,p,s)=>{dummy.position.set(p[0],p[2]-.03,p[1]);dummy.rotation.set(0,rnd()*6.28,0);dummy.scale.set(s,s,s);dummy.updateMatrix();m.setMatrixAt(i,dummy.matrix);};
@@ -1300,7 +1308,8 @@ const BUILD={
   for(const z of[-.6,-.3,0,.3,.6])part(BOX,l,0,.28,z,.4,.03,.08,g);
   for(const[x,z]of[[.32,-.45],[-.32,-.45],[.32,.45],[-.32,.45]]){const p=legP(g,b,x,.12,z,.14,.05);p.rotation.z=x>0?.8:-.8;L.push(p);}},
  gato(g,L){const b=M(0xb5a37a),d=M(0x2b241d);
-  part(SPH,b,0,.33,0,.15,.16,.32,g);part(SPH,b,0,.45,-.34,.12,.11,.12,g);part(CONE,b,.06,.58,-.32,.035,.08,.025,g);part(CONE,b,-.06,.58,-.32,.035,.08,.025,g);
+  part(SPH,b,0,.33,0,.15,.16,.32,g);part(SPH,b,0,.45,-.34,.12,.11,.12,g);part(CONE,b,.06,.58,-.32,.035,.08,.025,g);part(CONE,b,-.06,.58,-.32,.035,.08,.025,g);part(CONE,d,.06,.6,-.315,.02,.05,.015,g);part(CONE,d,-.06,.6,-.315,.02,.05,.015,g);
+  for(const sx of[-1,1]){part(SPH,M(0xd8c040,.4),sx*.048,.48,-.44,.024,.02,.012,g);part(SPH,M(0x111111),sx*.048,.48,-.452,.008,.016,.005,g);}part(SPH,M(0xe8dcc0,.8),0,.41,-.44,.06,.045,.04,g);part(SPH,M(0xc87a7a,.6),0,.435,-.462,.016,.012,.01,g);for(const sx of[-1,1])for(const dy of[0,.012]){const w=part(BOX,M(0xf0ece0,.6),sx*.07,.42+dy,-.44,.08,.003,.003,g);w.rotation.z=sx*(.12-dy*8);}
   for(let i=0;i<12;i++)part(SPH,d,(rnd()-.5)*.26,.3+rnd()*.15,(rnd()-.5)*.5,.03,.03,.03,g);
   const t=part(CYL,b,0,.32,.55,.03,.42,.03,g);t.rotation.x=1.1;
   for(const[x,z]of[[.08,-.2],[-.08,-.2],[.08,.2],[-.08,.2]])L.push(legP(g,b,x,.24,z,.24,.03));},
@@ -1705,7 +1714,7 @@ function maskCard(){if(!SAVE.mask)return `<div class="card locked hz"><div class
 let mapOpen=false;
 function toggleMap(force){mapOpen=force!==undefined?force:!mapOpen;if(mapOpen){if(bookOpen)toggleBook(false);if(photo)togglePhoto(false);checkTele();drawBigMap();}$('#bigmap').classList.toggle('show',mapOpen);$('#bMap').classList.toggle('on',mapOpen);}
 function toggleBook(force){bookOpen=force!==undefined?force:!bookOpen;if(bookOpen){renderBook();if(photo)togglePhoto(false);if(mapOpen)toggleMap(false);}$('#book').classList.toggle('show',bookOpen);$('#bBook').classList.toggle('on',bookOpen);}
-function togglePhoto(force){photo=force!==undefined?force:!photo;if(photo&&!caveView&&!DIVE.on){photoYaw=car.h;photoPitch=-.04;photoFov=55;}truck.visible=!photo;if(!photo&&caveView)leaveCave();if(!photo&&DIVE.on)endDive(false);document.body.classList.toggle('photo',photo);$('#finder').classList.toggle('show',photo);$('#bCam').classList.toggle('on',photo);}
+function togglePhoto(force){photo=force!==undefined?force:!photo;{const pe=$('#photoExit');if(pe)pe.textContent=WALK.on?'🚶 Volver a caminar':'🚙 Volver a la camioneta';}if(photo&&!caveView&&!DIVE.on){photoYaw=car.h;photoPitch=-.04;photoFov=55;}truck.visible=!photo;if(!photo&&caveView)leaveCave();if(!photo&&DIVE.on)endDive(false);document.body.classList.toggle('photo',photo);$('#finder').classList.toggle('show',photo);$('#bCam').classList.toggle('on',photo);}
 function toggleLow(){car.low=!car.low;$('#gear').textContent=car.low?'4L':'4H';$('#gear').classList.toggle('low',car.low);$('#bLow').classList.toggle('on',car.low);toast(car.low?'Tracción baja: sube casi todo, pero despacio':'Tracción alta: más velocidad');}
 function obsDepth(x,z,h){const s=Math.sin(h),c=Math.cos(h);let m=0;for(const off of[-1.7,0,1.7]){const px=x-s*off,pz=z-c*off,ci=Math.floor(px/CELL),cj=Math.floor(pz/CELL);for(let a=-1;a<=1;a++)for(let b=-1;b<=1;b++){const L=GRID.get((ci+a)+','+(cj+b));if(!L)continue;for(const o of L){if(NOTREES&&o.t)continue;const d=o.r+1.0-Math.hypot(px-o.x,pz-o.z);if(d>m)m=d;}}}return m;}
 function obsHit(x,z,h){const s=Math.sin(h),c=Math.cos(h);let best={d:0,nx:0,nz:0};for(const off of[-1.7,0,1.7]){const px=x-s*off,pz=z-c*off,ci=Math.floor(px/CELL),cj=Math.floor(pz/CELL);for(let a=-1;a<=1;a++)for(let b=-1;b<=1;b++){const L=GRID.get((ci+a)+','+(cj+b));if(!L)continue;for(const o of L){if(NOTREES&&o.t)continue;const dd=Math.hypot(px-o.x,pz-o.z),d=o.r+1.0-dd;if(d>best.d)best={d,nx:(px-o.x)/(dd||1),nz:(pz-o.z)/(dd||1)};}}}return best;}
@@ -1726,8 +1735,8 @@ addEventListener('keydown',e=>{if(!started)return;keys[e.code]=true;
  if(e.code.startsWith('Arrow'))e.preventDefault();});
 addEventListener('keyup',e=>{keys[e.code]=false;});
 addEventListener('blur',()=>{for(const c in keys)keys[c]=false;});
-$('#bCam').onclick=()=>togglePhoto();$('#bBook').onclick=()=>toggleBook();$('#bLow').onclick=toggleLow;$('#bSnd').onclick=()=>toggleMute();$('#bClose').onclick=()=>toggleBook(false);$('#shoot').addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();shoot();});$('#diveBtn').onclick=()=>{if(DIVE.near&&SAVE.mask)startDive(DIVE.near);};$('#microBtn').onclick=()=>{if(SCOPE.near)openScope(SCOPE.near);};$('#scopeClose').onclick=closeScope;
-{const FB_MAIL='';const info=()=>{const v=(document.querySelector('[data-ver]')||{}).textContent||'';return `\n\n— Safari Gaucho ${v} · ${navigator.userAgent} · ${innerWidth}×${innerHeight}`;};
+$('#bCam').onclick=()=>togglePhoto();$('#bBook').onclick=()=>toggleBook();$('#bLow').onclick=toggleLow;$('#bSnd').onclick=()=>toggleMute();$('#bClose').onclick=()=>toggleBook(false);$('#shoot').addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();shoot();});$('#diveBtn').onclick=()=>{if(DIVE.near&&SAVE.mask)startDive(DIVE.near);};$('#microBtn').onclick=()=>{if(SCOPE.near)openScope(SCOPE.near);};$('#scopeClose').onclick=closeScope;$('#photoExit').onclick=()=>togglePhoto(false);$('#gear').onclick=()=>{if(!WALK.on)toggleLow();};$('#resetBtn').onclick=()=>{if(!WALK.on)resetCar();};
+{const FB_MAIL='insightrealitycontact@gmail.com';const info=()=>{const v=(document.querySelector('[data-ver]')||{}).textContent||'';return `\n\n— Safari Gaucho ${v} · ${navigator.userAgent} · ${innerWidth}×${innerHeight}`;};
  const txt=()=>($('#fbText').value||'').trim();
  $('#fbGit').onclick=()=>{const t=txt();if(!t){toast('Escribí algo primero 🙂');return;}const title=t.split('\n')[0].slice(0,70);window.open('https://github.com/pavlko/4x4natural/issues/new?title='+encodeURIComponent(title)+'&body='+encodeURIComponent(t+info()),'_blank');};
  $('#fbMail').onclick=()=>{const t=txt();if(!t){toast('Escribí algo primero 🙂');return;}location.href='mailto:'+FB_MAIL+'?subject='+encodeURIComponent('Safari Gaucho: '+t.split('\n')[0].slice(0,60))+'&body='+encodeURIComponent(t+info());};
@@ -1779,7 +1788,7 @@ const CALLS={
  mulita(d,t){for(let i=0;i<4;i++)nz(d,t+i*.18+Math.random()*.05,.07,2200,3,.8);},
  lechuza(d,t){nz(d,t,.9,3600,4,1.1,2600);nz(d,t,.9,5200,6,.5,4000);},
  yacare(d,t){tn(d,t,.9,62,50,1,'sawtooth',9);nz(d,t,.8,180,1.5,.5);},
- gato(d,t){tn(d,t,.22,520,800,.45,'triangle',7);tn(d,t+.2,.35,800,430,.45,'triangle',7);},
+ gato(d,t){for(let i=0;i<14;i++)tn(d,t+i*.07,.06,48+(i%2)*10,44,.5,'sawtooth');nz(d,t,1,220,1,.18);},
  lobito(d,t){for(let i=0;i<3;i++)tn(d,t+i*.22,.12,1800,2500,.35);},
  venado(d,t){nz(d,t,.25,700,1,.7);tn(d,t+.3,.3,1300,1050,.3);},
  espatula(d,t){tn(d,t,.12,520,420,.3,'square');tn(d,t+.2,.12,500,400,.25,'square');},
@@ -1793,11 +1802,11 @@ const CALLS={
  chaja(d,t){tn(d,t,.35,620,880,.55,'sawtooth');tn(d,t+.42,.5,900,560,.55,'sawtooth');},
  martin(d,t){for(let i=0;i<10;i++)tn(d,t+i*.05,.04,1800,1500,.2,'square');},
  lechucita(d,t){tn(d,t,.12,1400,1700,.2);tn(d,t+.18,.12,1400,1700,.2);},
- picaflor(d,t){tn(d,t,.05,6000,6500,.06);},
+ picaflor(d,t){for(let i=0;i<10;i++)tn(d,t+i*.05,.05,170+(i%2)*25,160,.22,'sawtooth');},
  bigua(d,t){tn(d,t,.25,140,110,.6,'sawtooth');tn(d,t+.35,.2,130,100,.5,'sawtooth');},
  aguila(d,t){tn(d,t,.35,1800,2300,.35,'sawtooth');tn(d,t+.45,.5,2200,1600,.35,'sawtooth');}
 };
-const CALL_R={martin:50,lechucita:30,picaflor:12,hornero:40,chaja:110,cardenal:45,federal:50,dragon:60,viudita:35,bigua:45,espatula:55,sirir:70,cuervo:55,aguila:170,nandu:95,lechuza:85,yacare:75,mulita:32,tero:80,carpincho:60,garza:60,zorro:75,gato:60,lobito:65,venado:80};
+const CALL_R={martin:50,lechucita:30,picaflor:18,hornero:40,chaja:110,cardenal:45,federal:50,dragon:60,viudita:35,bigua:45,espatula:55,sirir:70,cuervo:55,aguila:170,nandu:95,lechuza:85,yacare:75,mulita:32,tero:80,carpincho:60,garza:60,zorro:75,gato:60,lobito:65,venado:80};
 function playCall(a,dist){
  const t=AC.currentTime+.02,vol=Math.pow(1-dist/CALL_R[a.sp.id],1.4)*.55;if(vol<=.003)return;
  const g=AC.createGain();g.gain.value=vol;let out=g;
@@ -2636,6 +2645,7 @@ function devRestore(){let b=null;try{b=JSON.parse(localStorage.getItem(curKey()+
 function devToggle(){if(SAVE.dev)devRestore();else unlockAll();}
 function multiTap(el,N,fn){if(!el)return;let n=0,t=0;el.addEventListener('pointerdown',()=>{const now=performance.now();n=now-t<450?n+1:1;t=now;if(n>=N){n=0;fn();}});}
 multiTap($('#start sup'),7,devToggle);multiTap($('#tally'),7,devToggle);
+{let tmo=null,cnt=0;$('#tally').addEventListener('pointerdown',()=>{cnt++;clearTimeout(tmo);tmo=setTimeout(()=>{if(cnt===1&&started&&!bookOpen)toggleBook(true);cnt=0;},480);});$('#tally').style.cursor='pointer';}
 requestAnimationFrame(loop);
 
 
