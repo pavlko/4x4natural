@@ -88,6 +88,7 @@ Un juego de Insight Reality
 - v85  Nutria (antes coipo); el contador suma peces y microorganismos al encontrar la máscara y el microscopio; sapitos de vuelta en la orilla de la laguna del arroyo (en la versión sin costa no aparecían) y un poco más grandes
 - v86  Bandurria mora, chiricote, Juan chiviro y rana llorona, cada uno con su canto; el mapa grande se desbloquea al fotografiar 3 bichos ("el mapa del naturalista")
 - v87  Sin minimapa al arrancar (aparece junto con el mapa del naturalista); rana llorona arreglada (la bolsa de la garganta se volvía gigante)
+- v88  Rana llorona: bolsa de la garganta más chica y adelante, sin hundirse en el piso, canto largo "ueeeeee"; botón de salir de la foto más chico y sin tapar los controles
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v87).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v88).
 La versión vigente es index.html (lista como app instalable).
