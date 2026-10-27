@@ -61,7 +61,7 @@ body.walking #bLow,body.walking #bReset{opacity:.35;pointer-events:none}body.wal
 #drawPal{display:flex;gap:6px;align-items:center;margin:8px 0;flex-wrap:wrap}#drawPal button{width:32px;height:32px;border-radius:16px;border:3px solid rgba(255,255,255,.3);font-size:16px}#drawPal button.on{border-color:#F28C28}#drawPal input{flex:1;min-width:100px}
 .drawact{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}.drawact button{background:rgba(216,198,160,.14);border:0;border-radius:4px;padding:7px 14px;font-size:16px;font-weight:600}.drawact .okb{background:#D9B65E;color:#1f160e}
 #fbText{width:100%;box-sizing:border-box;border-radius:6px;border:2px solid #D9B65E;background:#f6efe0;color:#1f160e;padding:8px;font:16px/1.35 Newsreader,serif}.fbact{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.fbact button{background:#D9B65E;color:#1f160e;border:0;border-radius:4px;padding:7px 14px;font-weight:700;font-size:15px}.fbnote{font-size:13px;opacity:.75}
-#bLow,#bReset{display:none!important}
+#bLow,#bReset,#bMap{display:none!important}
 #photoExit{position:fixed;left:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);z-index:6;display:none;background:rgba(35,64,47,.92);color:#F3EBDD;border:2px solid #D9B65E;border-radius:22px;padding:9px 18px;font-size:18px;font-weight:700}
 body.photo:not(.diving):not(.cave) #photoExit{display:block}
 #fade{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none;transition:opacity .25s;z-index:40}#fade.show{opacity:1}
@@ -294,7 +294,7 @@ body.menu #touch{display:none!important}
     <button class="tool" id="bMenu" title="Menú">☰<small>menú</small></button>
     <button class="tool" id="bCam" title="Cámara (F)">📷<small>F</small></button>
     <button class="tool" id="bBook" title="Cuaderno (N)">📓<small>N</small></button>
-    <button class="tool" id="bMap" title="Mapa (M)">🗺️<small>M</small></button>
+    <button class="tool" id="bMap" title="Mapa (M)" hidden>🗺️<small>M</small></button>
     <button class="tool" id="bLow" title="Tracción baja (Q)" hidden>4L<small>Q</small></button>
     <button class="tool" id="bReset" title="Destrabar (R)" hidden>↺<small>R</small></button>
     <button class="tool" id="bSnd" title="Sonido">🔊<small>son.</small></button>
@@ -347,8 +347,8 @@ body.menu #touch{display:none!important}
 <h4>¿Encontraste un error o tenés una idea?</h4>
 <p>Contanos qué pasó o qué te gustaría que tenga el juego.</p>
 <textarea id="fbText" rows="4" placeholder="Por ejemplo: No puedo encontrar la tortuga en la laguna del arroyo / El ceibo tiene las ramas desconectadas / La cola del águila mora debe ser más triangular / Me gustaría ver un…"></textarea>
-<div class="fbact"><button id="fbGit" type="button">Enviar por GitHub</button><button id="fbMail" type="button">Enviar por mail</button><button id="fbCopy" type="button">Copiar el texto</button></div>
-<p class="fbnote">Se agrega solo la versión del juego y el tipo de aparato, para entender mejor el problema.</p>
+<div class="fbact"><button id="fbShare" type="button">📤 Enviar</button><button id="fbGit" type="button">Enviar por GitHub</button></div>
+<p class="fbnote">En el celular se abre para elegir por dónde mandarlo (mail, WhatsApp…). Va a <b>insightrealitycontact@gmail.com</b>, con la versión del juego y el tipo de aparato.</p>
 <h4 id="howWeMade">Cómo lo hicimos</h4><p>Idea, diseño y dirección: Insight Reality. El juego se programó conversando con Claude, una inteligencia artificial de Anthropic, pidiendo cambios y probándolos una y otra vez. Todo se dibuja en el navegador con Three.js: el paisaje, los animales, las plantas y los sonidos se generan con código, sin fotos ni grabaciones.</p>
 </div></div></div>
 <div id="bigmap" role="dialog" aria-label="Mapa"><div class="mapbox"><header><h2>Mapa</h2><button class="close" id="bMapClose">Cerrar</button></header><canvas id="bigc" width="800" height="800"></canvas><p class="mapnote" id="mapnote">Lo más oscuro todavía no lo recorriste. Los rombos dorados marcan dónde fotografiaste cada bicho.</p></div></div>
@@ -735,6 +735,7 @@ function jitter(geo,amt){const p=geo.attributes.position;const m=new Map();for(l
 function nearPlace(x,z,id,r){const p=PLACES.find(q=>q.id===id);return Math.hypot(x-p.x,z-p.z)<r;}
 const lagoonR=(x,z)=>Math.hypot(x-190,z+110);
 // árboles autóctonos: coronilla, tala, arrayán, ceibo (+ ombúes sueltos)
+function rod(a,b,r0,r1,seg){const A=new THREE.Vector3(...a),B=new THREE.Vector3(...b),d=B.clone().sub(A),L=d.length(),g=new THREE.CylinderGeometry(r1,r0,L,seg||6);g.translate(0,L/2,0);g.applyMatrix4(new THREE.Matrix4().makeRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0,1,0),d.normalize())));g.translate(A.x,A.y,A.z);return g;}
 function mergeGeos(list){let n=0;const parts=list.map(g=>g.index?g.toNonIndexed():g);for(const g of parts)n+=g.attributes.position.count;
  const P=new Float32Array(n*3),Nn=new Float32Array(n*3);let o=0;for(const g of parts){P.set(g.attributes.position.array,o);Nn.set(g.attributes.normal.array,o);o+=g.attributes.position.count*3;}
  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(P,3));g.setAttribute('normal',new THREE.BufferAttribute(Nn,3));return g;}
@@ -750,8 +751,8 @@ const TREES={
  arrayan:{wood:mergeGeos([tf(new THREE.CylinderGeometry(.12,.2,3.4,7),0,1.7,0),tf(new THREE.CylinderGeometry(.06,.08,1.4,5),.35,2.9,0,1,1,1,0,-.5)]),
   leaf:mergeGeos([tf(blob(1.2,.3),0,4.2,0,1,1.45,1),tf(blob(.8,.25),.5,3.4,.4,1,1.1,1),tf(blob(.7,.25),-.45,5.3,-.2,1,1,1)]),
   woodC:0x9a5a36,col:()=>[.19+rnd()*.05,.34+rnd()*.06,.14+rnd()*.03],r:.35},
- ceibo:{wood:mergeGeos([tf(new THREE.CylinderGeometry(.16,.3,1.6,7),0,.8,0,1,1,1,0,.35),tf(new THREE.CylinderGeometry(.11,.16,1.6,6),-.55,2.1,0,1,1,1,0,-.5),tf(new THREE.CylinderGeometry(.07,.1,1.3,5),-.1,2.3,.4,1,1,1,-.6,.4)]),
-  leaf:mergeGeos([tf(blob(.85,.5),.1,3.0,.1,1.2,.55,1.1),tf(blob(.7,.45),-1.1,2.8,-.2,1,.55,1),tf(blob(.6,.4),-.4,3.0,.9,1,.55,1)]),
+ ceibo:{wood:mergeGeos([rod([0,-.1,0],[-.27,1.6,0],.3,.17,7),rod([-.27,1.55,0],[.25,2.7,-.05],.15,.08,6),rod([-.27,1.55,0],[-1.05,2.55,-.2],.14,.07,6),rod([-.27,1.55,0],[-.3,2.6,.75],.12,.06,5)]),
+  leaf:mergeGeos([tf(blob(.85,.5),.2,3.0,0,1.2,.55,1.1),tf(blob(.7,.45),-1.1,2.85,-.2,1,.55,1),tf(blob(.6,.4),-.35,2.9,.85,1,.55,1)]),
   extra:mergeGeos([[.5,3.35,.3],[-.2,3.4,-.3],[-1.2,3.15,.1],[-.9,3.1,-.6],[.3,3.2,.8],[-.5,3.35,.9],[.9,3.0,-.2],[-1.5,2.9,-.3],[0,3.45,.5]].map(p=>tf(new THREE.SphereGeometry(.09,6,4),p[0],p[1],p[2],1,1.7,1))),
   extraC:0xc4241b,woodC:0x5f574e,col:()=>[.32+rnd()*.06,.46+rnd()*.06,.2+rnd()*.04],r:.45}
 };
@@ -1595,6 +1596,7 @@ function updateAnimals(dt,time){
  for(const a of animals){
   const sp=a.sp,dc=Math.hypot(car.x-a.x,car.z-a.z);
   if(dc>260){continue;}
+  if(sp.id==='zorrillo'){a.spr=(a.spr||0)-dt;if(dc<7&&a.spr<=0&&a.g.visible){a.spr=25;for(let i=0;i<40;i++)emit(a.x+(Math.random()-.5)*1.2,a.y+.3+Math.random()*.4,a.z+(Math.random()-.5)*1.2,(Math.random()-.5)*1.6,.3+Math.random()*.8,(Math.random()-.5)*1.6,[.72,.78,.42],2.4+Math.random()*1.5,1.6);toast('🤢 ¡Uf! El zorrillo largó su olor. Mejor mirarlo de lejos.');}}
   if(a.g.userData.anim&&dc<70&&a.g.visible)a.g.userData.anim(time,a.state==='walk'||a.state==='flee');
   if(sp.id==='puma'){pumaUpdate(a,dt,time,dc);continue;}
   if(sp.id==='tortuga'){tortUpdate(a,dt,dc);continue;}
@@ -1631,7 +1633,9 @@ function updateAnimals(dt,time){
   }
   let speed=0;
   if(a.state==='flee'){a.t-=dt;a.tx=a.x+(a.x-car.x)/Math.max(dc,.1)*10;a.tz=a.z+(a.z-car.z)/Math.max(dc,.1)*10;
-   if(Math.hypot(a.tx-a.home[0],a.tz-a.home[1])>sp.wander*3){a.tx=a.home[0];a.tz=a.home[1];}speed=sp.run;if(a.t<=0){a.state='idle';a.t=2;}}
+   if(sp.id==='venado'&&!a.fleeDir){const ba=Math.atan2(a.z-car.z,a.x-car.x);let best=null,bh=1e9;for(let k=-3;k<=3;k++){const an=ba+k*.3,x=a.x+Math.cos(an)*30,z=a.z+Math.sin(an)*30,h=H(x,z);if(h>.4&&h<bh&&Math.abs(x)<HALF-30&&Math.abs(z)<HALF-30){bh=h;best=[x,z];}}a.fleeDir=best;}
+   if(sp.id==='venado'&&a.fleeDir){a.tx=a.fleeDir[0];a.tz=a.fleeDir[1];a.t=Math.max(a.t,.5);if(Math.hypot(a.x-a.fleeDir[0],a.z-a.fleeDir[1])<2){a.home=[a.x,a.z];a.fleeDir=null;a.state='idle';a.t=3;}}
+   else if(Math.hypot(a.tx-a.home[0],a.tz-a.home[1])>sp.wander*3){a.tx=a.home[0];a.tz=a.home[1];}speed=sp.run;if(a.t<=0){a.state='idle';a.t=2;}}
   else if(a.state==='walk'){speed=sp.walk;if(Math.hypot(a.tx-a.x,a.tz-a.z)<.4){a.state='idle';a.t=sp.rest?sp.rest+rnd()*14:2+rnd()*5;}}
   else{a.t-=dt;if(a.t<=0){let bh=-1e9;for(let q=0;q<(sp.high?8:1);q++){const ang=rnd()*6.28,r=sp.high?8+rnd()*28:rnd()*sp.wander,cx=sp.high?a.x:a.home[0],cz=sp.high?a.z:a.home[1],tx=cx+Math.cos(ang)*r,tz=cz+Math.sin(ang)*r,hh=sp.high?((validFor(sp,tx,tz)&&Math.hypot(tx-a.home[0],tz-a.home[1])<sp.wander)?H(tx,tz)+rnd()*7:-99):0;if(hh>bh){bh=hh;a.tx=tx;a.tz=tz;}}a.state='walk';}}
   if(speed>0){
@@ -1663,7 +1667,7 @@ function specialHTML(sp,f){const x=f.flyImg?{img:f.flyImg,label:'En vuelo'}:(f.x
 function renderPortada(){const nf=GOAL.filter(s=>SAVE.found[s.id]).length,np=SAVE.places.length,fish=SAVE.fish||{},nfi=FISH.filter(x=>fish[x.id]).length,
  lg=[!!SAVE.raceWins,!!SAVE.nest,!!SAVE.found.puma].filter(Boolean).length,ns=SPECIES.filter(sp=>{const f=SAVE.found[sp.id];return f&&(f.flyImg||(f.x2&&f.x2.img)||(sp.id==='tero'&&SAVE.nest));}).length;
  const row=(l,a,b,go)=>`<div class="prow" data-go="${go}" role="button" tabindex="0"><span>${l}</span><div class="bar"><i style="width:${b?Math.round(a/b*100):0}%"></i></div><b>${a} / ${b}</b></div>`,gc=k=>GOAL.filter(s=>s.grp===k),gf=k=>gc(k).filter(s=>SAVE.found[s.id]).length;
- $('#portada').innerHTML=`<div class="pstat">${row(ICON('lugares')+' Lugares',np,PLACES.length,'lugares')}${Object.keys(GRPN).map(k=>row(ICON(k)+' '+GRPN[k][1],gf(k),gc(k).length,k)).join('')}${SAVE.mask?row(ICON('peces')+' Peces',nfi,FISH.length,'agua'):''}${SAVE.micro?row(ICON('micro')+' Microscopio',Object.keys(SAVE.microFound||{}).length,MICRO.length,'micro'):''}${row(ICON('fotos')+' Fotos especiales',ns,Object.keys(SPECIALS).length,'aves')}${row(ICON('logros')+' Logros',lg,3,'logros')}</div>
+ $('#portada').innerHTML=`<div class="pstat">${row(ICON('lugares')+' Lugares',np,PLACES.length,'lugares')}${Object.keys(GRPN).map(k=>row(ICON(k)+' '+GRPN[k][1],gf(k),gc(k).length,k)).join('')}${SAVE.mask?row(ICON('peces')+' Peces',nfi,FISH.length,'agua'):''}${row(ICON('hallazgos')+' Hallazgos',[SAVE.mask,SAVE.micro,SAVE.alero,SAVE.hall].filter(Boolean).length,4,'hallazgos')}${SAVE.micro?row(ICON('micro')+' Microscopio',Object.keys(SAVE.microFound||{}).length,MICRO.length,'micro'):''}${row(ICON('fotos')+' Fotos especiales',ns,Object.keys(SPECIALS).length,'aves')}${row(ICON('logros')+' Logros',lg,3,'logros')}</div>
  `;document.querySelectorAll('#portada [data-go]').forEach(el=>el.onclick=()=>goTab(el.dataset.go));}
 function renderMicro(){const el=$('#microPage');if(!el)return;if(!SAVE.micro){el.innerHTML='';return;}const f=SAVE.microFound||{},sm=SAVE.samples||{};
  let h='<p class="ptip">🔬 Con el microscopio del naturalista podés tomar muestras donde veas un frasquito en una estaca, y en el piso de la cueva. Tocá cada bichito para identificarlo.</p>';
@@ -1750,8 +1754,9 @@ $('#bCam').onclick=()=>togglePhoto();$('#bBook').onclick=()=>toggleBook();$('#bL
 {const FB_MAIL='insightrealitycontact@gmail.com';const info=()=>{const v=(document.querySelector('[data-ver]')||{}).textContent||'';return `\n\n— Safari Gaucho ${v} · ${navigator.userAgent} · ${innerWidth}×${innerHeight}`;};
  const txt=()=>($('#fbText').value||'').trim();
  $('#fbGit').onclick=()=>{const t=txt();if(!t){toast('Escribí algo primero 🙂');return;}const title=t.split('\n')[0].slice(0,70);window.open('https://github.com/pavlko/4x4natural/issues/new?title='+encodeURIComponent(title)+'&body='+encodeURIComponent(t+info()),'_blank');};
- $('#fbMail').onclick=()=>{const t=txt();if(!t){toast('Escribí algo primero 🙂');return;}location.href='mailto:'+FB_MAIL+'?subject='+encodeURIComponent('Safari Gaucho: '+t.split('\n')[0].slice(0,60))+'&body='+encodeURIComponent(t+info());};
- $('#fbCopy').onclick=()=>{const t=txt();if(!t){toast('Escribí algo primero 🙂');return;}navigator.clipboard&&navigator.clipboard.writeText(t+info()).then(()=>toast('Copiado ✓')).catch(()=>toast('No se pudo copiar'));};
+ const sendShare=()=>{const t=txt();if(!t){toast('Escribí algo primero 🙂');return;}const body=t+info()+'\n\nPara: '+FB_MAIL;if(navigator.share){navigator.share({title:'Safari Gaucho: sugerencia',text:body}).catch(()=>{});}else{location.href='mailto:'+FB_MAIL+'?subject='+encodeURIComponent('Safari Gaucho: '+t.split('\n')[0].slice(0,60))+'&body='+encodeURIComponent(t+info());}};$('#fbShare').onclick=sendShare;
+ const _m=()=>{const t=txt();if(!t){toast('Escribí algo primero 🙂');return;}location.href='mailto:'+FB_MAIL+'?subject='+encodeURIComponent('Safari Gaucho: '+t.split('\n')[0].slice(0,60))+'&body='+encodeURIComponent(t+info());};
+ const _c=()=>{const t=txt();if(!t){toast('Escribí algo primero 🙂');return;}navigator.clipboard&&navigator.clipboard.writeText(t+info()).then(()=>toast('Copiado ✓')).catch(()=>toast('No se pudo copiar'));};
  $('#fbText').addEventListener('keydown',e=>e.stopPropagation());}$('#climbBtn').onclick=climbAlero;$('#walkBtn').onclick=startWalk;$('#carBtn').onclick=endWalk;$('#slowBtn').onclick=()=>{WALK.run=!WALK.run;};$('#announce').addEventListener('pointerdown',e=>{if(ANN_GO){e.stopPropagation();openGoto(ANN_GO);}});$('#scopeCv').addEventListener('pointerdown',scopeTap);$('#backCar').onclick=()=>{if(DIVE.on)togglePhoto(false);};$('#shareBtn').onclick=()=>doShare();$('#smCopy').onclick=shareCopy;$('#smMail').onclick=shareMail;$('#smWA').onclick=shareWA;$('#smX').onclick=()=>$('#shareMenu').classList.remove('show');$('#bMap').onclick=()=>toggleMap();$('#mapwrap').onclick=()=>toggleMap();$('#bMapClose').onclick=()=>toggleMap(false);$('#bReset').onclick=()=>resetCar();$('#bigmap').addEventListener('click',e=>{if(e.target.id==='bigmap')toggleMap(false);});
 // arrastrar para mirar
 let lastP=null;const cv=$('#c');const PTR=new Map();let pinch=null;
@@ -2206,12 +2211,13 @@ function swim(dt){const mv=((k('KeyW')||k('ArrowUp')||T.up)?1:0)-((k('KeyS')||k(
  if(mv){const sp=2.4*dt*mv,cp=Math.cos(photoPitch),nx=DIVE.pos.x-Math.sin(photoYaw)*cp*sp,nz=DIVE.pos.z-Math.cos(photoYaw)*cp*sp;
   const plant=(x,z)=>{for(const q of DIVES)if(q.navR){const r=Math.hypot(x-q.cx,z-q.cz);if(r>q.navR&&r<q.navR+12&&!inCorr(q,x,z))return true;}return false;},canGo=(x,z)=>H(x,z)<DIVE.wl-.75&&!plant(x,z)&&!(DIVE.d.pool&&Math.hypot(x-DIVE.d.cx,z-DIVE.d.cz)>DIVE.d.pool);
   if(canGo(nx,nz)){DIVE.pos.x=nx;DIVE.pos.z=nz;}else if(canGo(nx,DIVE.pos.z))DIVE.pos.x=nx;else if(canGo(DIVE.pos.x,nz))DIVE.pos.z=nz;else if(plant(nx,nz))toastOnce('espesura','Las plantas acuáticas están muy cerradas: por acá no se pasa.',20);DIVE.pos.y+=Math.sin(photoPitch)*sp;}
+ if(DIVE.rescue){DIVE.pos.y+=dt*2.2;if(DIVE.pos.y>DIVE.wl-.4){DIVE.rescue=false;DIVE.air=Math.max(DIVE.air,1);}}
  const fl=H(DIVE.pos.x,DIVE.pos.z)+.4;DIVE.pos.y=Math.min(DIVE.wl-.22,Math.max(fl,DIVE.pos.y));
  const out=DIVE.pos.y>DIVE.wl-.45;if(out!==DIVE.out){DIVE.out=out;setUnderEnv(!out);document.body.classList.toggle('headout',out);if(out)toastOnce('aire','Sacaste la cabeza: respirás y podés mirar afuera. Para salir del agua, tocá el botón.',90);}
  if(out)DIVE.air=Math.min(40,DIVE.air+dt*14);else DIVE.air-=dt;
  const el=$('#airFill');if(el){el.style.width=Math.max(0,DIVE.air/40*100)+'%';el.style.background=DIVE.air<10?'#d9534f':'#7fd0e0';}
  UW.fx.position.set(DIVE.pos.x,DIVE.wl,DIVE.pos.z);
- if(!DIVE.out&&scene.fog&&scene.fog.isFogExp2){let nd=null,bd=1e9;for(const q of DIVES){const dd=Math.hypot(DIVE.pos.x-q.cx,DIVE.pos.z-q.cz);if(dd<bd){bd=dd;nd=q;}}const tc=new THREE.Color(nd.fog),k=Math.min(1,dt*.8);scene.fog.color.lerp(tc,k);scene.background.copy(scene.fog.color);scene.fog.density+=(1.52/nd.vis-scene.fog.density)*k;}if(DIVE.air<=0){togglePhoto(false);endDive(true);}}
+ if(!DIVE.out&&scene.fog&&scene.fog.isFogExp2){let nd=null,bd=1e9;for(const q of DIVES){const dd=Math.hypot(DIVE.pos.x-q.cx,DIVE.pos.z-q.cz);if(dd<bd){bd=dd;nd=q;}}const tc=new THREE.Color(nd.fog),k=Math.min(1,dt*.8);scene.fog.color.lerp(tc,k);scene.background.copy(scene.fog.color);scene.fog.density+=(1.52/nd.vis-scene.fog.density)*k;}if(DIVE.air<=0&&!DIVE.out){DIVE.rescue=true;toastOnce('sinaire','¡Te quedaste sin aire! Subiendo a respirar…',8);}}
 function shootDive(){camera.updateMatrixWorld();if(aleroInShot()){aleroFound();return;}const tanH=Math.tan(THREE.MathUtils.degToRad(camera.fov/2)),wp=new THREE.Vector3();let best=null,far=false;
  for(const e of UW.ents){if(e.hidden&&e.hidden())continue;e.obj.getWorldPosition(wp);const dist=camera.position.distanceTo(wp);if(dist>16)continue;const v=wp.clone().project(camera);if(v.z>1||Math.abs(v.x)>.45||Math.abs(v.y)>.45)continue;const fr=e.size/(2*dist*tanH);if(fr<.05){far=true;continue;}if(!best||fr>best.fr)best={e,fr};}
  if(!best){toast(far?'Está muy lejos. Acercate nadando o hacé zoom.':'No hay ningún pez en el cuadro.');return;}
