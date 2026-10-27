@@ -35,7 +35,7 @@ button:focus-visible{outline:2px solid var(--senal);outline-offset:2px}
 .hud > *{pointer-events:auto}
 #tally{position:absolute;left:12px;top:calc(env(safe-area-inset-top,0px) + 12px);background:var(--panel);padding:8px 14px 9px;border-radius:3px;border-left:4px solid var(--pasto);line-height:1.15}
 #tally b{font-size:26px;font-weight:700;letter-spacing:.01em}
-#tally span{display:block;font-size:15px;color:var(--sub)}
+#tally span{display:block;font-size:15px;color:var(--sub)}#tally span[hidden]{display:none}
 #tools{position:absolute;right:12px;top:calc(env(safe-area-inset-top,0px) + 12px);display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;max-width:calc(100vw - 170px)}
 .tool{background:var(--panel);border:0;border-radius:3px;padding:8px 12px;font-size:17px;font-weight:600;min-width:52px;display:flex;flex-direction:column;align-items:center;gap:1px}
 .tool small{font-size:12px;font-weight:500;color:var(--sub)}
@@ -288,8 +288,8 @@ body.menu #touch{display:none!important}
  <g stroke="#fff" stroke-opacity=".2" stroke-width=".25" fill="none"><path d="M44 34l8 5M118 24l-6 8M100 74l11-4M52 76l4-6M128 52q3 3 2 7"/></g>
 </svg>
 <div class="hud" id="hud">
-  <div id="verHud" data-ver>v84</div>
-  <div id="tally"><b id="tBichos">0 / 11 bichos</b><span id="tLugares">0 / 7 lugares</span></div>
+  <div id="verHud" data-ver>v85</div>
+  <div id="tally"><b id="tBichos">0 / 11 bichos</b><span id="tLugares">0 / 7 lugares</span><span id="tPeces" hidden></span><span id="tMicro" hidden></span></div>
   <div id="tools">
     <button class="tool" id="bMenu" title="Menú">☰<small>menú</small></button>
     <button class="tool" id="bCam" title="Cámara (F)">📷<small>F</small></button>
@@ -367,7 +367,7 @@ body.menu #touch{display:none!important}
 <section class="tp" data-t="lugares"><h4><span class="ich" data-ic="lugares"></span> <span id="plH">Lugares</span></h4><div class="grid" id="plList"></div></section>
 <section class="tp" data-t="logros"><h4><span class="ich" data-ic="logros"></span> <span id="logH">Logros especiales</span></h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
 <section class="tp" data-t="hallazgos"><h4><span class="ich" data-ic="hallazgos"></span> Hallazgos</h4><div id="hzList"></div></section>
-<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v84</span></p></div>
+<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v85</span></p></div>
   </div>
 </div>
 <div id="start">
@@ -378,7 +378,7 @@ body.menu #touch{display:none!important}
     <p id="iosHint" class="ioshint" hidden>Para instalarla en iPhone o iPad: tocá <b>Compartir</b> y después <b>Agregar a inicio</b>.</p>
     <div class="players"><div id="profList"></div><button id="profNew" type="button">👤 Nuevo jugador</button><span id="profNewBox" hidden><input id="profName" maxlength="16" placeholder="Nombre del jugador"> <button id="profOk" type="button">Listo</button> <button id="profCancel" type="button" aria-label="Cancelar">✕</button></span></div>
     <label class="opt"><input type="checkbox" id="optTrees"> Pasar a través de los árboles (para los más chicos)</label>
-    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v84</span></p>
+    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v85</span></p>
   </div>
 </div>
 <div id="loading">Armando el paisaje…</div>
@@ -593,11 +593,11 @@ const SPECIES=[
  {id:'comadreja',name:'Comadreja overa',sci:'Didelphis albiventris',more:'Es un marsupial, como el canguro: las crías crecen en una bolsa en la panza de la madre.',size:.5,hab:'land',spots:[],wander:10,walk:.4,run:.8,shy:null,
   hint:'En el monte cerca de la tapera.',
   note:'Animal gris con cara blanca, orejas negras y una cola larga y pelada que usa para agarrarse de las ramas. Cuando se asusta mucho, a veces se hace la muerta hasta que pasa el peligro.'},
- {id:'coipo',name:'Coipo',sci:'Myocastor coypus',more:'También le dicen nutria. Tiene los dientes de adelante color naranja.',size:.55,hab:'perch',spots:[],
+ {id:'coipo',name:'Nutria',sci:'Myocastor coypus',more:'También le dicen nutria. Tiene los dientes de adelante color naranja.',size:.55,hab:'perch',spots:[],
   hint:'Nadando con la cabeza afuera en el arroyo y las lagunas.',
   note:'Roedor grande de pelo marrón que vive en el agua. Nada con solo la cabeza afuera y, si se asusta, se sumerge y aparece más lejos. Come plantas de la orilla.'},
  {id:'sapito',name:'Sapito de Darwin',sci:'Melanophryniscus montevidensis',more:'Está en peligro: vive solo en una franja de la costa sur y este de Uruguay.',size:.25,hab:'land',spots:[],wander:3,walk:.12,run:.2,shy:null,
-  hint:'Entre el pasto húmedo de los arenales de la laguna del arroyo. Es diminuto.',
+  hint:'En el pasto húmedo de la orilla de la laguna del arroyo, sobre todo del lado de la casita del pescador. Es diminuto.',
   note:'Sapito negro con puntitos amarillos, de apenas 2 cm. Cuando se siente amenazado se da vuelta y muestra la panza roja: ese color avisa que es venenoso.'},
  {id:'cangrejo',name:'Cangrejo de arroyo',sci:'Aegla sp.',more:'Solo vive en agua limpia y bien oxigenada: si está, el arroyo está sano.',size:.4,hab:'perch',spots:[],
   hint:'Bajo el agua, junto a piedras chatas del fondo, justo debajo de las entradas de buceo de la cascada y del arroyo.',
@@ -642,7 +642,7 @@ if(PROFS.list.length===1&&PROFS.list[0].name==='Jugador 1')PROFS.list[0].name=''
 const curKey=()=>SAVE_KEY+'_'+PROFS.current;
 function readSave(){let o=null;try{o=JSON.parse(localStorage.getItem(curKey())||'null');}catch(e){}return(o&&o.found)?o:{found:{},places:[]};}
 let SAVE=readSave();
-function save(){try{localStorage.setItem(curKey(),JSON.stringify(SAVE));}catch(e){}checkTele();}
+function save(){try{refreshTally();}catch(e){}try{localStorage.setItem(curKey(),JSON.stringify(SAVE));}catch(e){}checkTele();}
 function teleUnlocked(){const pics=SAVE.placePics||{};return GOAL.every(s=>SAVE.found[s.id])&&PLACES.every(p=>p.id in pics);}
 function teleProgress(){const pics=SAVE.placePics||{};return GOAL.filter(s=>SAVE.found[s.id]).length+PLACES.filter(p=>p.id in pics).length;}
 function checkTele(){if(!SAVE.teleOk&&teleUnlocked()){SAVE.teleOk=true;try{localStorage.setItem(curKey(),JSON.stringify(SAVE));}catch(e){}setTimeout(()=>{chime();toast('¡Desbloqueaste el teletransporte! Abrí el mapa y tocá un lugar.','place');},1800);}}
@@ -1539,7 +1539,7 @@ BUILD.comadreja=(g,L)=>{const gr=M(0x9a9a92,.9),w=M(0xf0ece2,.9),k=M(0x1a1a1a,.9
  for(const[x,z] of[[.07,-.12],[-.07,-.12],[.07,.12],[-.07,.12]])L.push(legP(bd,k,x,.09,z,.09,.02));};
 BUILD.coipo=(g)=>{const b=M(0x6a4a30,.85);part(SPH,b,0,.02,0,.16,.1,.3,g);part(SPH,b,0,.06,-.3,.09,.08,.11,g);part(SPH,M(0xe0882a,.6),0,.03,-.4,.03,.02,.012,g);part(SPH,M(0x111111),.05,.1,-.33,.012,.012,.012,g);part(SPH,M(0x111111),-.05,.1,-.33,.012,.012,.012,g);
  for(const s of[-1,1]){const wh=part(BOX,M(0xeeeeee),s*.07,.04,-.38,.08,.003,.003,g);wh.rotation.y=s*.3;}};
-BUILD.sapito=(g)=>{const b=new THREE.Group();g.add(b);const k=M(0x151515,.6),y=M(0xe8c22a,.6),r=M(0xd8352a,.6);part(SPH,k,0,.035,0,.045,.03,.055,b);
+BUILD.sapito=(g)=>{g.scale.setScalar(1.6);const b=new THREE.Group();g.add(b);const k=M(0x151515,.6),y=M(0xe8c22a,.6),r=M(0xd8352a,.6);part(SPH,k,0,.035,0,.045,.03,.055,b);
  for(let i=0;i<7;i++)part(SPH,y,(Math.random()-.5)*.06,.06,(Math.random()-.5)*.08,.008,.005,.008,b);part(SPH,r,0,.012,0,.04,.012,.05,b);for(const[x,z] of[[.04,-.03],[-.04,-.03],[.045,.04],[-.045,.04]])part(SPH,r,x,.01,z,.015,.008,.02,b);g.userData.body=b;};
 BUILD.cangrejo=(g)=>{};
 // ramas sobre el agua para el martín pescador
@@ -1564,7 +1564,9 @@ const TACU=[];{const geo=jitter(new THREE.SphereGeometry(1,8,6),.18);geo.scale(.
 {const sp=SPECIES.find(s=>s.id==='zorrillo');spreadPts(2,60,(x,z)=>z>-80&&z<200&&H(x,z)>1.5&&slopeAt(x,z)<.35&&!clearing(x,z)&&!hitObs(x,z,1.5)).forEach(p=>spawn(sp,p[0],p[1]));}
 {const sp=SPECIES.find(s=>s.id==='comadreja'),P=PLACES.find(q=>q.id==='tapera');for(let t=0,n=0;t<200&&n<2;t++){const a=rnd()*6.28,r=20+rnd()*30,x=P.x+Math.cos(a)*r,z=P.z+Math.sin(a)*r;if(H(x,z)<.5||slopeAt(x,z)>.4||hitObs(x,z,1.5))continue;spawn(sp,x,z);n++;}}
 {const sp=SPECIES.find(s=>s.id==='coipo');for(const[cx,cz,R] of[[LAG2.x,LAG2.z,9],[riverX(30),30,0]]){const a=spawn(sp,cx,cz);a.home=[cx,cz];a.R=R;a.ang=rnd()*6.28;a.mode='swim';}}
-{const sp=SPECIES.find(s=>s.id==='sapito');spreadPts(3,30,(x,z)=>z>200&&sandAt(x,z)>.25&&H(x,z)>.4&&H(x,z)<4&&slopeAt(x,z)<.35).forEach(p=>spawn(sp,p[0],p[1]));}
+{const sp=SPECIES.find(s=>s.id==='sapito'),pts=[];for(let r=22;r<52&&!pts.length;r+=1)for(const a of[.15,0,.3,-.15,.45]){const x=LAG2.x+Math.cos(a)*r,z=LAG2.z+Math.sin(a)*r,h=H(x,z);if(h>.3&&h<2&&slopeAt(x,z)<.4){pts.push([x,z]);break;}}
+ for(let t=0;t<800&&pts.length<3;t++){const a=rnd()*6.28,r=26+rnd()*26,x=LAG2.x+Math.cos(a)*r,z=LAG2.z+Math.sin(a)*r,h=H(x,z);if(h<.3||h>2||slopeAt(x,z)>.35||pts.some(q=>Math.hypot(q[0]-x,q[1]-z)<14))continue;pts.push([x,z]);}
+ pts.forEach(p=>spawn(sp,p[0],p[1]));}
 SPUPD.dormilon=(a,dt,time,dc)=>{if(a.fl){const F=a.fl;F.t+=dt;const u=Math.min(1,F.t/F.dur);a.x=mix(F.fx,F.tx,u);a.z=mix(F.fz,F.tz,u);a.y=H(a.x,a.z)+Math.sin(u*Math.PI)*1.6;a.h=Math.atan2(-(F.tx-F.fx),-(F.tz-F.fz));
   a.g.position.set(a.x,a.y,a.z);a.g.rotation.y=a.h;flapW(a,time,true);if(u>=1){a.fl=null;flapW(a,time,false);}return;}
  a.y=H(a.x,a.z);a.g.position.set(a.x,a.y,a.z);a.g.rotation.y=a.h;if(dc<9){const ang=Math.atan2(a.z-car.z,a.x-car.x)+(Math.random()-.5)*1.2,d=10+Math.random()*8;let tx=a.x+Math.cos(ang)*d,tz=a.z+Math.sin(ang)*d;if(H(tx,tz)<.5){tx=a.x-Math.cos(ang)*d;tz=a.z-Math.sin(ang)*d;}a.fl={fx:a.x,fz:a.z,tx,tz,t:0,dur:1.3};}};
@@ -1647,7 +1649,7 @@ function k(c){return !!keys[c];}
 const toastsEl=$('#toasts');
 function toast(msg,cls=''){const d=document.createElement('div');d.className='toast '+cls;d.textContent=msg;toastsEl.appendChild(d);while(toastsEl.children.length>3)toastsEl.firstChild.remove();setTimeout(()=>d.remove(),3400);}
 let lastMsg={};function toastOnce(key,msg,gap=4){const t=performance.now()/1000;if(!lastMsg[key]||t-lastMsg[key]>gap){lastMsg[key]=t;toast(msg);}}
-function refreshTally(){const nf=GOAL.filter(s=>SAVE.found[s.id]).length,ns=SPECIES.filter(s=>s.secret&&SAVE.found[s.id]).length;$('#tBichos').textContent=nf+' / '+GOAL.length+' bichos'+(ns?' ★':'');$('#tLugares').textContent=SAVE.places.length+' / '+PLACES.length+' lugares';}
+function refreshTally(){const nf=GOAL.filter(s=>SAVE.found[s.id]).length,ns=SPECIES.filter(s=>s.secret&&SAVE.found[s.id]).length;$('#tBichos').textContent=nf+' / '+GOAL.length+' bichos'+(ns?' ★':'');$('#tLugares').textContent=SAVE.places.length+' / '+PLACES.length+' lugares';const tp=$('#tPeces'),tm=$('#tMicro');if(tp){tp.hidden=!SAVE.mask;tp.textContent=Object.keys(SAVE.fish||{}).length+' / '+FISH.length+' peces';}if(tm){tm.hidden=!SAVE.micro;tm.textContent=Object.keys(SAVE.microFound||{}).length+' / '+MICRO.length+' microorganismos';}}
 function links(sp){const sc=sp.sci.replace(/\s+sp\.?$/,'').replace(/\s*\(.*\)$/,''),q=encodeURIComponent(sc),qn=encodeURIComponent(sp.name+' '+sc);
  return `<a href="https://www.inaturalist.org/observations?taxon_name=${q}&photos=true" target="_blank" rel="noopener">Fotos reales</a><a href="https://es.wikipedia.org/w/index.php?search=${q}" target="_blank" rel="noopener">Leer más</a><a href="https://www.youtube.com/results?search_query=${qn}" target="_blank" rel="noopener">Videos</a>`;}
 const SPECIALS={hornero:'Falta una foto especial',bigua:'Falta una foto especial',garza:'Falta una foto en vuelo',espatula:'Falta una foto en vuelo',nandu:'Falta una foto especial',mulita:'Falta una foto especial',tero:'Falta una foto especial',lobito:'Falta una foto especial',carpincho:'Falta una foto especial',yacare:'Falta una foto especial',sirir:'Falta una foto especial'};
@@ -2555,7 +2557,7 @@ function updateWalk(dt,time){let tin=0,st=0;if(!photo&&!bookOpen&&!mapOpen){tin=
  U.body.position.y=Math.abs(Math.sin(ph))*.07*mv+(1-mv)*Math.sin(tt*2)*.008;U.torso.rotation.z=Math.sin(ph)*.09*mv;U.torso.rotation.x=sp>2?.12:.04*mv;U.body.rotation.y=Math.sin(ph)*.08*mv;
  U.head.rotation.z=-Math.sin(ph-.6)*.07*mv;U.head.rotation.y=(1-mv)*Math.sin(tt*.5)*.5;U.hat.rotation.z=Math.sin(ph*2-1)*.06*mv;U.hat.rotation.x=Math.sin(ph*2)*.04*mv;
  $('#spd').textContent=Math.round(sp*3.6);}
-let walkUiT=0;function updateWalkUI(dt){$('#walkBtn').classList.toggle('show',canWalk());const w=WALK.on&&!DIVE.on&&!caveView;$('#carBtn').classList.toggle('show',w);$('#slowBtn').classList.toggle('show',w&&!photo);$('#slowBtn').classList.toggle('on',!WALK.run);}
+let walkUiT=0;function updateWalkUI(dt){$('#walkBtn').classList.toggle('show',canWalk());const w=WALK.on&&!DIVE.on&&!caveView;$('#carBtn').classList.toggle('show',w&&!photo);$('#slowBtn').classList.toggle('show',w&&!photo);$('#slowBtn').classList.toggle('on',!WALK.run);}
 
 // ===== BUCLE =====
 const clock=new THREE.Clock();let fogT=0,trailT=0;
