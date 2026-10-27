@@ -86,6 +86,7 @@ Un juego de Insight Reality
 - v83  Reportes a insightrealitycontact@gmail.com con ejemplos; pistas con "laguna del arroyo" y sapito en los arenales; botón para salir de la foto; tocar el contador abre el cuaderno; 4L en el indicador de velocidad y destrabar junto a los controles; cara del gato montés y su ronroneo; zumbido del picaflor; frutos del caraguatá más naranjas
 - v84  Mapa solo tocando el minimapa; ceibo con ramas unidas; hallazgos en la portada; sugerencias con un botón Enviar (compartir en el celular); el venado escapa hacia los pastizales bajos; el zorrillo larga una nube de olor; sin aire buceando se sube a respirar en vez de salir del agua
 - v85  Nutria (antes coipo); el contador suma peces y microorganismos al encontrar la máscara y el microscopio; sapitos de vuelta en la orilla de la laguna del arroyo (en la versión sin costa no aparecían) y un poco más grandes
+- v86  Bandurria mora, chiricote, Juan chiviro y rana llorona, cada uno con su canto; el mapa grande se desbloquea al fotografiar 3 bichos ("el mapa del naturalista")
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v85).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v86).
 La versión vigente es index.html (lista como app instalable).

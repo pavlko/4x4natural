@@ -54,7 +54,7 @@ Patagonia (Cueva de las Manos), África (Serengeti y Laetoli), sur de China (Gua
 
 - Más adelante: trepar piedras caminando (visualmente complejo).
 
-## Más bichos con sonidos característicos (para planificar)
+## Más bichos con sonidos característicos (HECHO en v86)
 - Bandurria mora: en bañados y pastizales húmedos, en grupo; grito metálico y fuerte que se oye de lejos, sobre todo al volar.
 - Chiricote: en el monte junto al arroyo; coro estridente al atardecer ("chiricote, chiricote").
 - Juan chiviro: escondido en la copa de los árboles del monte; canto repetido muy reconocible ("¿cómo te va, Juan Chiviro?").
@@ -66,4 +66,4 @@ Patagonia (Cueva de las Manos), África (Serengeti y Laetoli), sur de China (Gua
 - Opción: grabaciones reales de xeno-canto con licencia Creative Commons (con créditos), en lugar de sonidos sintetizados.
 
 ## Recorrido del jugador
-- Al arrancar, mapa bloqueado; se desbloquea después de algunos bichos ("el mapa del naturalista").
+- HECHO (v86): al arrancar, mapa bloqueado; se desbloquea después de algunos bichos ("el mapa del naturalista").
