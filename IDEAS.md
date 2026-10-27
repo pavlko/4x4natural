@@ -53,3 +53,17 @@ Patagonia (Cueva de las Manos), África (Serengeti y Laetoli), sur de China (Gua
 - Avatar: unas pocas opciones (sombrero, colores, mochila) y alguna graciosa (un mate en la mano, bigotes, una gallina en la cabeza).
 
 - Más adelante: trepar piedras caminando (visualmente complejo).
+
+## Más bichos con sonidos característicos (para planificar)
+- Bandurria mora: en bañados y pastizales húmedos, en grupo; grito metálico y fuerte que se oye de lejos, sobre todo al volar.
+- Chiricote: en el monte junto al arroyo; coro estridente al atardecer ("chiricote, chiricote").
+- Juan chiviro: escondido en la copa de los árboles del monte; canto repetido muy reconocible ("¿cómo te va, Juan Chiviro?").
+- Rana llorona: en los charcos del barrial; canto como un llanto o maullido, más al anochecer o después de llover.
+
+## Revisión de sonidos
+- Sin sonido hoy: yarará, araña pollito, lagarto, tortuga, apereá, dormilón, zorrillo, comadreja, nutria, sapito de Darwin, cangrejo, puma.
+- Algunos son silenciosos de verdad (araña, cangrejo, tortuga, lagarto); otros tienen voz característica: dormilón (canto nocturno), nutria (gritos que parecen llanto), apereá (chillidos), puma (silbidos y gruñidos), sapito de Darwin (trino), zorrillo y comadreja (bufidos al asustarse), yarará (silbido si se la molesta).
+- Opción: grabaciones reales de xeno-canto con licencia Creative Commons (con créditos), en lugar de sonidos sintetizados.
+
+## Recorrido del jugador
+- Al arrancar, mapa bloqueado; se desbloquea después de algunos bichos ("el mapa del naturalista").
