@@ -60,6 +60,7 @@ body.walking #bLow,body.walking #bReset{opacity:.35;pointer-events:none}body.wal
 #drawBox{margin-top:12px}#drawBox p{margin:0 0 6px;font-size:15px;color:#CDBFA6}#drawCv{width:100%;aspect-ratio:512/96;background:repeating-conic-gradient(#3a3028 0% 25%,#2e261f 0% 50%) 50%/16px 16px;border-radius:6px;touch-action:none;cursor:crosshair}
 #drawPal{display:flex;gap:6px;align-items:center;margin:8px 0;flex-wrap:wrap}#drawPal button{width:32px;height:32px;border-radius:16px;border:3px solid rgba(255,255,255,.3);font-size:16px}#drawPal button.on{border-color:#F28C28}#drawPal input{flex:1;min-width:100px}
 .drawact{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}.drawact button{background:rgba(216,198,160,.14);border:0;border-radius:4px;padding:7px 14px;font-size:16px;font-weight:600}.drawact .okb{background:#D9B65E;color:#1f160e}
+#fbText{width:100%;box-sizing:border-box;border-radius:6px;border:2px solid #D9B65E;background:#f6efe0;color:#1f160e;padding:8px;font:16px/1.35 Newsreader,serif}.fbact{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.fbact button{background:#D9B65E;color:#1f160e;border:0;border-radius:4px;padding:7px 14px;font-weight:700;font-size:15px}.fbnote{font-size:13px;opacity:.75}
 #fade{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none;transition:opacity .25s;z-index:40}#fade.show{opacity:1}
 body.cave #microBtn,body.diving #microBtn{bottom:calc(env(safe-area-inset-bottom,0px) + 150px)}
 #scope{position:fixed;inset:0;z-index:25;display:none;align-items:center;justify-content:center;background:rgba(10,8,5,.9)}#scope.show{display:flex}
@@ -281,7 +282,7 @@ body.menu #touch{display:none!important}
  <g stroke="#fff" stroke-opacity=".2" stroke-width=".25" fill="none"><path d="M44 34l8 5M118 24l-6 8M100 74l11-4M52 76l4-6M128 52q3 3 2 7"/></g>
 </svg>
 <div class="hud" id="hud">
-  <div id="verHud" data-ver>v81</div>
+  <div id="verHud" data-ver>v82</div>
   <div id="tally"><b id="tBichos">0 / 11 bichos</b><span id="tLugares">0 / 7 lugares</span></div>
   <div id="tools">
     <button class="tool" id="bMenu" title="Menú">☰<small>menú</small></button>
@@ -335,6 +336,11 @@ body.menu #touch{display:none!important}
 <h4>Bajo el agua</h4><p>Primero hay que encontrar la máscara del viejo naturalista. Con ella, en ciertos lugares de agua honda aparece el botón 🤿 Zambullirse. Abajo nadás con ▲▼ o W/S (hacia donde mirás) y girás con ◀▶ o arrastrando. Subí a la superficie a respirar antes de que se termine el aire.</p>
 <h4>Logros especiales</h4><p>🏁 Ganarle una carrera al ñandú (pasá rápido a su lado y te desafía). 🥚 Encontrar el nido del tero. ★ Fotografiar un bicho secreto que no figura en el cuaderno.</p>
 <h4>Jugadores</h4><p>Cada jugador guarda sus fotos, logros y el lugar donde dejó la camioneta. Se elige o se crea en el menú de inicio.</p>
+<h4>¿Encontraste un error o tenés una idea?</h4>
+<p>Contanos qué pasó o qué te gustaría que tenga el juego.</p>
+<textarea id="fbText" rows="4" placeholder="Por ejemplo: la tortuga no aparece en el tronco… / me gustaría que haya…"></textarea>
+<div class="fbact"><button id="fbGit" type="button">Enviar por GitHub</button><button id="fbMail" type="button">Enviar por mail</button><button id="fbCopy" type="button">Copiar el texto</button></div>
+<p class="fbnote">Se agrega solo la versión del juego y el tipo de aparato, para entender mejor el problema.</p>
 <h4 id="howWeMade">Cómo lo hicimos</h4><p>Idea, diseño y dirección: Insight Reality. El juego se programó conversando con Claude, una inteligencia artificial de Anthropic, pidiendo cambios y probándolos una y otra vez. Todo se dibuja en el navegador con Three.js: el paisaje, los animales, las plantas y los sonidos se generan con código, sin fotos ni grabaciones.</p>
 </div></div></div>
 <div id="bigmap" role="dialog" aria-label="Mapa"><div class="mapbox"><header><h2>Mapa</h2><button class="close" id="bMapClose">Cerrar</button></header><canvas id="bigc" width="800" height="800"></canvas><p class="mapnote" id="mapnote">Lo más oscuro todavía no lo recorriste. Los rombos dorados marcan dónde fotografiaste cada bicho.</p></div></div>
@@ -353,7 +359,7 @@ body.menu #touch{display:none!important}
 <section class="tp" data-t="lugares"><h4><span class="ich" data-ic="lugares"></span> <span id="plH">Lugares</span></h4><div class="grid" id="plList"></div></section>
 <section class="tp" data-t="logros"><h4><span class="ich" data-ic="logros"></span> <span id="logH">Logros especiales</span></h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
 <section class="tp" data-t="hallazgos"><h4><span class="ich" data-ic="hallazgos"></span> Hallazgos</h4><div id="hzList"></div></section>
-<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v81</span></p></div>
+<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v82</span></p></div>
   </div>
 </div>
 <div id="start">
@@ -364,7 +370,7 @@ body.menu #touch{display:none!important}
     <p id="iosHint" class="ioshint" hidden>Para instalarla en iPhone o iPad: tocá <b>Compartir</b> y después <b>Agregar a inicio</b>.</p>
     <div class="players"><div id="profList"></div><button id="profNew" type="button">👤 Nuevo jugador</button><span id="profNewBox" hidden><input id="profName" maxlength="16" placeholder="Nombre del jugador"> <button id="profOk" type="button">Listo</button> <button id="profCancel" type="button" aria-label="Cancelar">✕</button></span></div>
     <label class="opt"><input type="checkbox" id="optTrees"> Pasar a través de los árboles (para los más chicos)</label>
-    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v81</span></p>
+    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v82</span></p>
   </div>
 </div>
 <div id="loading">Armando el paisaje…</div>
@@ -1720,7 +1726,13 @@ addEventListener('keydown',e=>{if(!started)return;keys[e.code]=true;
  if(e.code.startsWith('Arrow'))e.preventDefault();});
 addEventListener('keyup',e=>{keys[e.code]=false;});
 addEventListener('blur',()=>{for(const c in keys)keys[c]=false;});
-$('#bCam').onclick=()=>togglePhoto();$('#bBook').onclick=()=>toggleBook();$('#bLow').onclick=toggleLow;$('#bSnd').onclick=()=>toggleMute();$('#bClose').onclick=()=>toggleBook(false);$('#shoot').addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();shoot();});$('#diveBtn').onclick=()=>{if(DIVE.near&&SAVE.mask)startDive(DIVE.near);};$('#microBtn').onclick=()=>{if(SCOPE.near)openScope(SCOPE.near);};$('#scopeClose').onclick=closeScope;$('#climbBtn').onclick=climbAlero;$('#walkBtn').onclick=startWalk;$('#carBtn').onclick=endWalk;$('#slowBtn').onclick=()=>{WALK.run=!WALK.run;};$('#announce').addEventListener('pointerdown',e=>{if(ANN_GO){e.stopPropagation();openGoto(ANN_GO);}});$('#scopeCv').addEventListener('pointerdown',scopeTap);$('#backCar').onclick=()=>{if(DIVE.on)togglePhoto(false);};$('#shareBtn').onclick=()=>doShare();$('#smCopy').onclick=shareCopy;$('#smMail').onclick=shareMail;$('#smWA').onclick=shareWA;$('#smX').onclick=()=>$('#shareMenu').classList.remove('show');$('#bMap').onclick=()=>toggleMap();$('#mapwrap').onclick=()=>toggleMap();$('#bMapClose').onclick=()=>toggleMap(false);$('#bReset').onclick=()=>resetCar();$('#bigmap').addEventListener('click',e=>{if(e.target.id==='bigmap')toggleMap(false);});
+$('#bCam').onclick=()=>togglePhoto();$('#bBook').onclick=()=>toggleBook();$('#bLow').onclick=toggleLow;$('#bSnd').onclick=()=>toggleMute();$('#bClose').onclick=()=>toggleBook(false);$('#shoot').addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();shoot();});$('#diveBtn').onclick=()=>{if(DIVE.near&&SAVE.mask)startDive(DIVE.near);};$('#microBtn').onclick=()=>{if(SCOPE.near)openScope(SCOPE.near);};$('#scopeClose').onclick=closeScope;
+{const FB_MAIL='';const info=()=>{const v=(document.querySelector('[data-ver]')||{}).textContent||'';return `\n\n— Safari Gaucho ${v} · ${navigator.userAgent} · ${innerWidth}×${innerHeight}`;};
+ const txt=()=>($('#fbText').value||'').trim();
+ $('#fbGit').onclick=()=>{const t=txt();if(!t){toast('Escribí algo primero 🙂');return;}const title=t.split('\n')[0].slice(0,70);window.open('https://github.com/pavlko/4x4natural/issues/new?title='+encodeURIComponent(title)+'&body='+encodeURIComponent(t+info()),'_blank');};
+ $('#fbMail').onclick=()=>{const t=txt();if(!t){toast('Escribí algo primero 🙂');return;}location.href='mailto:'+FB_MAIL+'?subject='+encodeURIComponent('Safari Gaucho: '+t.split('\n')[0].slice(0,60))+'&body='+encodeURIComponent(t+info());};
+ $('#fbCopy').onclick=()=>{const t=txt();if(!t){toast('Escribí algo primero 🙂');return;}navigator.clipboard&&navigator.clipboard.writeText(t+info()).then(()=>toast('Copiado ✓')).catch(()=>toast('No se pudo copiar'));};
+ $('#fbText').addEventListener('keydown',e=>e.stopPropagation());}$('#climbBtn').onclick=climbAlero;$('#walkBtn').onclick=startWalk;$('#carBtn').onclick=endWalk;$('#slowBtn').onclick=()=>{WALK.run=!WALK.run;};$('#announce').addEventListener('pointerdown',e=>{if(ANN_GO){e.stopPropagation();openGoto(ANN_GO);}});$('#scopeCv').addEventListener('pointerdown',scopeTap);$('#backCar').onclick=()=>{if(DIVE.on)togglePhoto(false);};$('#shareBtn').onclick=()=>doShare();$('#smCopy').onclick=shareCopy;$('#smMail').onclick=shareMail;$('#smWA').onclick=shareWA;$('#smX').onclick=()=>$('#shareMenu').classList.remove('show');$('#bMap').onclick=()=>toggleMap();$('#mapwrap').onclick=()=>toggleMap();$('#bMapClose').onclick=()=>toggleMap(false);$('#bReset').onclick=()=>resetCar();$('#bigmap').addEventListener('click',e=>{if(e.target.id==='bigmap')toggleMap(false);});
 // arrastrar para mirar
 let lastP=null;const cv=$('#c');const PTR=new Map();let pinch=null;
 function pinchDist(){const p=[...PTR.values()];return Math.hypot(p[0][0]-p[1][0],p[0][1]-p[1][1]);}
@@ -2618,10 +2630,12 @@ $('#bMenu').onclick=openMenu;
 
 function resetAll(){SAVE={found:{},places:[],placePics:{},settings:SAVE.settings,fish:{},dives:{}};CHEST.t=0;CHEST.lid.rotation.x=0;save();refreshTally();const go=$('#go');if(go)go.textContent='Arrancar';toast('🧹','place');const sup=$('#start sup');if(sup){sup.style.transition='color .3s';sup.style.color='#c0392b';setTimeout(()=>sup.style.color='',900);}}
 function longPress(el,ms,fn){if(!el)return;let tm=null;const stop=()=>{clearTimeout(tm);tm=null;};el.addEventListener('pointerdown',()=>{stop();tm=setTimeout(()=>{tm=null;fn();},ms);});el.addEventListener('pointerup',stop);el.addEventListener('pointerleave',stop);el.addEventListener('pointercancel',stop);el.addEventListener('contextmenu',e=>e.preventDefault());}
-longPress($('#start sup'),3000,resetAll);longPress($('#tally'),3000,resetAll);
-function unlockAll(){SAVE.dev=true;SAVE.alero=true;SAVE.mask=true;SAVE.micro=true;SAVE.zoomOk=true;SAVE.dives=SAVE.dives||{};for(const d of DIVES)SAVE.dives[d.id]=true;SAVE.fish=SAVE.fish||{};for(const fi of FISH)if(!SAVE.fish[fi.id])SAVE.fish[fi.id]={img:'',where:'Desbloqueado'};SAVE.samples=SAVE.samples||{};SAVE.microFound=SAVE.microFound||{};for(const st of MSITES)SAVE.samples[st.id]=1;for(const m of MICRO)if(!SAVE.microFound[m.id])SAVE.microFound[m.id]={where:'Desbloqueado'};SAVE.cel=Object.assign(SAVE.cel||{},{bichos:1,lugares:1,peces:1,buceo:1,micro:1,migr:1});CHEST.t=1;CHEST.lid.rotation.x=-1.9;SAVE.placePics=SAVE.placePics||{};for(const sp of GOAL)if(!SAVE.found[sp.id])SAVE.found[sp.id]={img:'',where:'Desbloqueado'};for(const p of PLACES){if(!SAVE.places.includes(p.id))SAVE.places.push(p.id);if(!(p.id in SAVE.placePics))SAVE.placePics[p.id]='';}if(!SAVE.hall)SAVE.hall={img:''};SAVE.teleOk=true;save();refreshTally();const go=$('#go');if(go)go.textContent='Seguir explorando';toast('✨','place');checkComplete();const sup=$('#start sup');if(sup){sup.style.transition='color .3s';sup.style.color='#F28C28';setTimeout(()=>sup.style.color='',900);}}
-function tripleTap(el,fn){if(!el)return;let n=0,t=0;el.addEventListener('pointerdown',()=>{const now=performance.now();n=now-t<450?n+1:1;t=now;if(n>=3){n=0;fn();}});}
-tripleTap($('#start sup'),unlockAll);tripleTap($('#tally'),unlockAll);
+
+function unlockAll(){try{localStorage.setItem(curKey()+'_bak',JSON.stringify(SAVE));}catch(e){}SAVE.dev=true;SAVE.alero=true;SAVE.mask=true;SAVE.micro=true;SAVE.zoomOk=true;SAVE.dives=SAVE.dives||{};for(const d of DIVES)SAVE.dives[d.id]=true;SAVE.fish=SAVE.fish||{};for(const fi of FISH)if(!SAVE.fish[fi.id])SAVE.fish[fi.id]={img:'',where:'Desbloqueado'};SAVE.samples=SAVE.samples||{};SAVE.microFound=SAVE.microFound||{};for(const st of MSITES)SAVE.samples[st.id]=1;for(const m of MICRO)if(!SAVE.microFound[m.id])SAVE.microFound[m.id]={where:'Desbloqueado'};SAVE.cel=Object.assign(SAVE.cel||{},{bichos:1,lugares:1,peces:1,buceo:1,micro:1,migr:1});CHEST.t=1;CHEST.lid.rotation.x=-1.9;SAVE.placePics=SAVE.placePics||{};for(const sp of GOAL)if(!SAVE.found[sp.id])SAVE.found[sp.id]={img:'',where:'Desbloqueado'};for(const p of PLACES){if(!SAVE.places.includes(p.id))SAVE.places.push(p.id);if(!(p.id in SAVE.placePics))SAVE.placePics[p.id]='';}if(!SAVE.hall)SAVE.hall={img:''};SAVE.teleOk=true;save();refreshTally();const go=$('#go');if(go)go.textContent='Seguir explorando';toast('✨','place');checkComplete();const sup=$('#start sup');if(sup){sup.style.transition='color .3s';sup.style.color='#F28C28';setTimeout(()=>sup.style.color='',900);}}
+function devRestore(){let b=null;try{b=JSON.parse(localStorage.getItem(curKey()+'_bak')||'null');}catch(e){}if(b){SAVE=b;delete SAVE.dev;}else{delete SAVE.dev;}save();try{localStorage.removeItem(curKey()+'_bak');}catch(e){}if(!SAVE.mask){CHEST.t=0;CHEST.lid.rotation.x=0;}refreshTally();if(typeof applyCustom==='function')applyCustom();toast('↩️ Volviste a tu juego de antes','place');const sup=$('#start sup');if(sup){sup.style.transition='color .3s';sup.style.color='#9fe0ec';setTimeout(()=>sup.style.color='',900);}}
+function devToggle(){if(SAVE.dev)devRestore();else unlockAll();}
+function multiTap(el,N,fn){if(!el)return;let n=0,t=0;el.addEventListener('pointerdown',()=>{const now=performance.now();n=now-t<450?n+1:1;t=now;if(n>=N){n=0;fn();}});}
+multiTap($('#start sup'),7,devToggle);multiTap($('#tally'),7,devToggle);
 requestAnimationFrame(loop);
 
 
