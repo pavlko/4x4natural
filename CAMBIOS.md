@@ -83,6 +83,7 @@ Un juego de Insight Reality
 - v80  Alero con piso plano (nada enterrado) y fondo de roca continuo; se entra con "Salir del agua" frente al alero y se camina en primera persona como en la cueva del fogón; caminando hacia el borde se vuelve al agua; luz suave adentro
 - v81  Ícono de la app nuevo: la camioneta con el sombrero vaquero en el techo y el ñandú en la puerta
 - v82  Modo desarrollo con 7 toques (otros 7 vuelven al juego de antes, sin perder nada); se quitó el borrado con pulsación larga; en la ayuda, cuadro para reportar errores o sugerir mejoras (GitHub, mail o copiar)
+- v83  Reportes a insightrealitycontact@gmail.com con ejemplos; pistas con "laguna del arroyo" y sapito en los arenales; botón para salir de la foto; tocar el contador abre el cuaderno; 4L en el indicador de velocidad y destrabar junto a los controles; cara del gato montés y su ronroneo; zumbido del picaflor; frutos del caraguatá más naranjas
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v82).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v83).
 La versión vigente es index.html (lista como app instalable).
