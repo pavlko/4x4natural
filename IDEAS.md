@@ -67,3 +67,6 @@ Patagonia (Cueva de las Manos), África (Serengeti y Laetoli), sur de China (Gua
 
 ## Recorrido del jugador
 - HECHO (v86): al arrancar, mapa bloqueado; se desbloquea después de algunos bichos ("el mapa del naturalista").
+
+## Más bichos para evaluar después
+- Carpintero de campo (Colaptes campestris) y algún carpintero de nuca roja: golpeteo en troncos y postes, y gritos fuertes. Ojo: ya hay muchas aves; filtrar luego por los que quedan mejor.
