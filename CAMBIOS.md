@@ -95,6 +95,7 @@ Un juego de Insight Reality
 - v92  Los dragones andan junto a la viudita blanca, alrededor de sus postes en el pastizal
 - v93  La viudita pasa a ser la viudita blanca grande (Heteroxolmis dominicana), blanca con alas negras, la que anda con los dragones
 - v94  La viudita blanca grande te detecta primero, da la alarma y vuela; los dragones la siguen enseguida
+- v95  Foto especial de la viudita con los dragones; canto de la rana llorona de unos 6 segundos; yarará más grande y con más contraste
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v94).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v95).
 La versión vigente es index.html (lista como app instalable).

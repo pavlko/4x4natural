@@ -289,7 +289,7 @@ body.menu #touch{display:none!important}
  <g stroke="#fff" stroke-opacity=".2" stroke-width=".25" fill="none"><path d="M44 34l8 5M118 24l-6 8M100 74l11-4M52 76l4-6M128 52q3 3 2 7"/></g>
 </svg>
 <div class="hud" id="hud">
-  <div id="verHud" data-ver>v94</div>
+  <div id="verHud" data-ver>v95</div>
   <div id="tally"><b id="tBichos">0 / 11 bichos</b><span id="tLugares">0 / 7 lugares</span><span id="tPeces" hidden></span><span id="tMicro" hidden></span></div>
   <div id="tools">
     <button class="tool" id="bMenu" title="Menú">☰<small>menú</small></button>
@@ -368,7 +368,7 @@ body.menu #touch{display:none!important}
 <section class="tp" data-t="lugares"><h4><span class="ich" data-ic="lugares"></span> <span id="plH">Lugares</span></h4><div class="grid" id="plList"></div></section>
 <section class="tp" data-t="logros"><h4><span class="ich" data-ic="logros"></span> <span id="logH">Logros especiales</span></h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
 <section class="tp" data-t="hallazgos"><h4><span class="ich" data-ic="hallazgos"></span> Hallazgos</h4><div id="hzList"></div></section>
-<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v94</span></p></div>
+<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v95</span></p></div>
   </div>
 </div>
 <div id="start">
@@ -379,7 +379,7 @@ body.menu #touch{display:none!important}
     <p id="iosHint" class="ioshint" hidden>Para instalarla en iPhone o iPad: tocá <b>Compartir</b> y después <b>Agregar a inicio</b>.</p>
     <div class="players"><div id="profList"></div><button id="profNew" type="button">👤 Nuevo jugador</button><span id="profNewBox" hidden><input id="profName" maxlength="16" placeholder="Nombre del jugador"> <button id="profOk" type="button">Listo</button> <button id="profCancel" type="button" aria-label="Cancelar">✕</button></span></div>
     <label class="opt"><input type="checkbox" id="optTrees"> Pasar a través de los árboles (para los más chicos)</label>
-    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v94</span></p>
+    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v95</span></p>
   </div>
 </div>
 <div id="loading">Armando el paisaje…</div>
@@ -1408,7 +1408,7 @@ BUILD.cardenal=(g)=>birdGroup(g,[{body:0xd9b81f,head:0xe6c41f,crest:0x111111,thr
 BUILD.federal=(g)=>birdGroup(g,[{body:0x151515,head:0xe2552a,throat:0xe2552a,longBeak:1,len:.22},{body:0x151515,head:0xd94e24,throat:0xd94e24,longBeak:1,len:.21}],[[-.15,0,0,.2],[.16,-.05,.08,-.3]]);
 BUILD.dragon=(g)=>birdGroup(g,Array.from({length:5},()=>({body:0x1e1a12,head:0xf7c800,throat:0xf7c800,belly:0xf7c800,wing:0x1e1a12,shoulder:0xf7c800,tail:0x161410,len:.21})),[[0,0,0,0],[.5,0,.3,.5],[-.45,0,.2,-.4],[.2,0,-.45,1],[-.3,0,-.4,2]]);
 BUILD.viudita=(g)=>birdGroup(g,[{body:0xf6f6f2,head:0xf8f8f4,wing:0x141414,tip:0x0e0e0e,tail:0x121212,len:.23}],[[0,0,0,0]]);
-BUILD.yarara=(g)=>{const b=M(0x8a6a44,.7),dk=M(0x2e2216,.8),N=22,pts=Array.from({length:N},()=>new THREE.Vector3());let tube=new THREE.Mesh(new THREE.BufferGeometry(),b);tube.castShadow=true;tube.frustumCulled=false;g.add(tube);
+BUILD.yarara=(g)=>{g.scale.setScalar(1.45);const b=M(0xa8885a,.65),dk=M(0x2a1c10,.8),N=22,pts=Array.from({length:N},()=>new THREE.Vector3());let tube=new THREE.Mesh(new THREE.BufferGeometry(),b);tube.castShadow=true;tube.frustumCulled=false;g.add(tube);
  const head=part(SPH,b,0,.05,0,.055,.035,.075,g),spots=[];for(let i=0;i<8;i++)spots.push(part(SPH,dk,0,0,0,.032,.012,.03,g));g.userData.head=head;
  const shape=(t,mv)=>{const amp=mv?.13:.07,k=mv?5.2:1.2;for(let i=0;i<N;i++){const u=i/(N-1),z=-.62+u*1.3;pts[i].set(Math.sin(u*9-t*k)*amp*(.35+u*.65),.045,z);}};
  g.userData.anim=(t,mv)=>{shape(t,mv);const old=tube.geometry;tube.geometry=new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),44,.042,6,false);old.dispose();head.position.set(pts[0].x,.055,pts[0].z-.04);spots.forEach((sp,i)=>{const p=pts[2+i*2];sp.position.set(p.x,.08,p.z);});};
@@ -1694,7 +1694,7 @@ let lastMsg={};function toastOnce(key,msg,gap=4){const t=performance.now()/1000;
 function refreshTally(){const nf=GOAL.filter(s=>SAVE.found[s.id]).length;document.body.classList.toggle('nomap',!SAVE.mapOk);if(!SAVE.mapOk&&nf>=3){SAVE.mapOk=true;const quiet=nf>6;document.body.classList.remove('nomap');setTimeout(()=>{save();if(!quiet){chime();announce('El mapa del naturalista','🗺️ Encontraste su mapa: ahora tenés el minimapa abajo, y tocándolo se abre el mapa grande.');}},1400);}const ns0=0,ns=SPECIES.filter(s=>s.secret&&SAVE.found[s.id]).length;$('#tBichos').textContent=nf+' / '+GOAL.length+' bichos'+(ns?' ★':'');$('#tLugares').textContent=SAVE.places.length+' / '+PLACES.length+' lugares';const tp=$('#tPeces'),tm=$('#tMicro');if(tp){tp.hidden=!SAVE.mask;tp.textContent=Object.keys(SAVE.fish||{}).length+' / '+FISH.length+' peces';}if(tm){tm.hidden=!SAVE.micro;tm.textContent=Object.keys(SAVE.microFound||{}).length+' / '+MICRO.length+' microorganismos';}}
 function links(sp){const sc=sp.sci.replace(/\s+sp\.?$/,'').replace(/\s*\(.*\)$/,''),q=encodeURIComponent(sc),qn=encodeURIComponent(sp.name+' '+sc);
  return `<a href="https://www.inaturalist.org/observations?taxon_name=${q}&photos=true" target="_blank" rel="noopener">Fotos reales</a><a href="https://es.wikipedia.org/w/index.php?search=${q}" target="_blank" rel="noopener">Leer más</a><a href="https://www.youtube.com/results?search_query=${qn}" target="_blank" rel="noopener">Videos</a>`;}
-const SPECIALS={hornero:'Falta una foto especial',bigua:'Falta una foto especial',garza:'Falta una foto en vuelo',espatula:'Falta una foto en vuelo',nandu:'Falta una foto especial',mulita:'Falta una foto especial',tero:'Falta una foto especial',lobito:'Falta una foto especial',carpincho:'Falta una foto especial',yacare:'Falta una foto especial',sirir:'Falta una foto especial'};
+const SPECIALS={viudita:'Falta una foto con los dragones',dragon:'Falta una foto con la viudita',hornero:'Falta una foto especial',bigua:'Falta una foto especial',garza:'Falta una foto en vuelo',espatula:'Falta una foto en vuelo',nandu:'Falta una foto especial',mulita:'Falta una foto especial',tero:'Falta una foto especial',lobito:'Falta una foto especial',carpincho:'Falta una foto especial',yacare:'Falta una foto especial',sirir:'Falta una foto especial'};
 function specialHTML(sp,f){const x=f.flyImg?{img:f.flyImg,label:'En vuelo'}:(f.x2&&f.x2.img?f.x2:(sp.id==='tero'&&SAVE.nest&&SAVE.nest.img?{img:SAVE.nest.img,label:'Su nido'}:null));
  if(x)return `<div class="fly"><img alt="${sp.name}: ${x.label}" src="${x.img}"><span>✦ ${x.label}</span></div>`;return SPECIALS[sp.id]?`<div class="fly empty">✦ ${SPECIALS[sp.id]}</div>`:'';}
 function renderPortada(){const nf=GOAL.filter(s=>SAVE.found[s.id]).length,np=SAVE.places.length,fish=SAVE.fish||{},nfi=FISH.filter(x=>fish[x.id]).length,
@@ -1856,7 +1856,7 @@ const CALLS={
  bandurria(d,t){for(let i=0;i<4;i++){tn(d,t+i*.22,.13,1150,1050,.5,'square');tn(d,t+i*.22,.13,1720,1600,.18,'sawtooth');}},
  chiricote(d,t){const s=[[900,1500],[1500,800],[1200,1600],[1600,900]];for(let r=0;r<2;r++)s.forEach((f,i)=>tn(d,t+r*.75+i*.17,.15,f[0],f[1],.5,'sawtooth'));tn(d,t+.08,.9,700,500,.12,'square');},
  juanchiviro(d,t){const ph=[[1700,.12],[2300,.12],[2000,.16],[2500,.12],[1900,.28]];let k=t;for(const[f,du] of ph){tn(d,k,du,f,f*1.06,.35,'sine');k+=du+.05;}},
- rana(d,t){tn(d,t,.3,650,1250,.4,'sawtooth',6);tn(d,t+.25,1.6,1250,1100,.42,'sawtooth',7);},
+ rana(d,t){tn(d,t,.35,650,1250,.4,'sawtooth',6);tn(d,t+.3,5.7,1250,1080,.4,'sawtooth',7);},
  bigua(d,t){tn(d,t,.25,140,110,.6,'sawtooth');tn(d,t+.35,.2,130,100,.5,'sawtooth');},
  aguila(d,t){tn(d,t,.35,1800,2300,.35,'sawtooth');tn(d,t+.45,.5,2200,1600,.35,'sawtooth');}
 };
@@ -1865,7 +1865,7 @@ function playCall(a,dist){
  const t=AC.currentTime+.02,vol=Math.pow(1-dist/CALL_R[a.sp.id],1.4)*.55;if(vol<=.003)return;
  const g=AC.createGain();g.gain.value=vol;let out=g;
  if(AC.createStereoPanner){const p=AC.createStereoPanner();const ref=photo?photoYaw:car.h+camOrbit;const d=Math.atan2(-(a.x-car.x),-(a.z-car.z))-ref;p.pan.value=-Math.sin(d)*.85;g.connect(p);out=p;}
- out.connect(AC.destination);try{CALLS[a.sp.id](g,t);}catch(e){}setTimeout(()=>{try{out.disconnect();g.disconnect();}catch(e){}},3000);
+ out.connect(AC.destination);try{CALLS[a.sp.id](g,t);}catch(e){}setTimeout(()=>{try{out.disconnect();g.disconnect();}catch(e){}},a.sp.id==='rana'?7000:3000);
 }
 function playAlarm(a,dist){if(!AC||muted)return;const t=AC.currentTime+.02,vol=Math.max(.05,Math.pow(Math.max(0,1-dist/90),1.2)*.6);const g=AC.createGain();g.gain.value=vol;g.connect(AC.destination);try{for(let i=0;i<5;i++)tn(g,t+i*.11,.07,2600,3400,.6,'square');}catch(e){}setTimeout(()=>{try{g.disconnect();}catch(e){}},1500);toastOnce('viualarma','La viudita te vio primero: dio la alarma y voló… y los dragones la siguieron.',40);}
 function updateCalls(dt){if(!AC||muted||mapOpen||bookOpen)return;if(AC.state==='suspended')AC.resume();
@@ -1913,6 +1913,8 @@ function shootCore(){if(photo&&nestInShot()){shotLabel='Nido del tero';SAVE.nest
   const sp=best.a.sp,first=!SAVE.found[sp.id];shotLabel=sp.name+(best.a.chick?' (charabones)':'')+(best.a.state==='fly'&&sp.flier?' en vuelo':'');
   const img=grabThumb(),prev=SAVE.found[sp.id]||{},inFlight=best.a.state==='fly'&&!!sp.flier,isChick=!!best.a.chick;
   {SAVE.found[sp.id]={img,where:placeNameAt(best.a.x,best.a.z),q:best.frac,x:Math.round(best.a.x),z:Math.round(best.a.z),flyImg:inFlight?img:prev.flyImg,x2:isChick?{img,label:'Charabones'}:prev.x2};save();}
+  if(sp.id==='viudita'||sp.id==='dragon'){const other=sp.id==='viudita'?'dragon':'viudita',oa=animals.find(o=>o.sp.id===other);if(oa&&oa.g.visible){tmpV.set(oa.x,oa.y+.2,oa.z);const v2=tmpV.clone().project(camera);if(v2.z<1&&Math.abs(v2.x)<.5&&Math.abs(v2.y)<.5&&camera.position.distanceTo(tmpV)<90&&!occluded(camera.position,tmpV)){const had=SAVE.found.viudita&&SAVE.found.viudita.x2&&SAVE.found.viudita.x2.img;
+   for(const[id,lab] of[['viudita','Con los dragones'],['dragon','Con la viudita']]){const o=SAVE.found[id]||{img,where:placeNameAt(best.a.x,best.a.z)};o.x2={img,label:lab};SAVE.found[id]=o;}save();refreshTally();if(!had)setTimeout(()=>{chime();toast('✦ ¡Foto especial: la viudita blanca grande con los dragones!','place');},900);}}}
   if(isChick&&!(prev.x2&&prev.x2.img))setTimeout(()=>{chime();toast('✦ ¡Foto especial: charabones! El papá ñandú los cuida solo.','place');},900);
   checkComplete();
   if(inFlight&&!prev.flyImg)setTimeout(()=>{chime();toast('✦ ¡Foto especial: '+sp.name.toLowerCase()+' en vuelo!','place');},900);
