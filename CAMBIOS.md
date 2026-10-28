@@ -94,6 +94,7 @@ Un juego de Insight Reality
 - v91  El dragón es Xanthopsar flavus (amenazado), como se lo llama en Uruguay
 - v92  Los dragones andan junto a la viudita blanca, alrededor de sus postes en el pastizal
 - v93  La viudita pasa a ser la viudita blanca grande (Heteroxolmis dominicana), blanca con alas negras, la que anda con los dragones
+- v94  La viudita blanca grande te detecta primero, da la alarma y vuela; los dragones la siguen enseguida
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v93).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v94).
 La versión vigente es index.html (lista como app instalable).
