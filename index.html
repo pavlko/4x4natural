@@ -289,7 +289,7 @@ body.menu #touch{display:none!important}
  <g stroke="#fff" stroke-opacity=".2" stroke-width=".25" fill="none"><path d="M44 34l8 5M118 24l-6 8M100 74l11-4M52 76l4-6M128 52q3 3 2 7"/></g>
 </svg>
 <div class="hud" id="hud">
-  <div id="verHud" data-ver>v93</div>
+  <div id="verHud" data-ver>v94</div>
   <div id="tally"><b id="tBichos">0 / 11 bichos</b><span id="tLugares">0 / 7 lugares</span><span id="tPeces" hidden></span><span id="tMicro" hidden></span></div>
   <div id="tools">
     <button class="tool" id="bMenu" title="Menú">☰<small>menú</small></button>
@@ -368,7 +368,7 @@ body.menu #touch{display:none!important}
 <section class="tp" data-t="lugares"><h4><span class="ich" data-ic="lugares"></span> <span id="plH">Lugares</span></h4><div class="grid" id="plList"></div></section>
 <section class="tp" data-t="logros"><h4><span class="ich" data-ic="logros"></span> <span id="logH">Logros especiales</span></h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
 <section class="tp" data-t="hallazgos"><h4><span class="ich" data-ic="hallazgos"></span> Hallazgos</h4><div id="hzList"></div></section>
-<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v93</span></p></div>
+<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v94</span></p></div>
   </div>
 </div>
 <div id="start">
@@ -379,7 +379,7 @@ body.menu #touch{display:none!important}
     <p id="iosHint" class="ioshint" hidden>Para instalarla en iPhone o iPad: tocá <b>Compartir</b> y después <b>Agregar a inicio</b>.</p>
     <div class="players"><div id="profList"></div><button id="profNew" type="button">👤 Nuevo jugador</button><span id="profNewBox" hidden><input id="profName" maxlength="16" placeholder="Nombre del jugador"> <button id="profOk" type="button">Listo</button> <button id="profCancel" type="button" aria-label="Cancelar">✕</button></span></div>
     <label class="opt"><input type="checkbox" id="optTrees"> Pasar a través de los árboles (para los más chicos)</label>
-    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v93</span></p>
+    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v94</span></p>
   </div>
 </div>
 <div id="loading">Armando el paisaje…</div>
@@ -555,11 +555,11 @@ const SPECIES=[
  {id:'federal',name:'Federal',sci:'Amblyramphus holosericeus',more:'Su pico largo y fino le sirve para abrir tallos y sacar insectos escondidos.',size:.5,hab:'perch',hop:{fleeD:16},spots:[],
   hint:'En las varas del caraguatá falso, en la orilla del arroyo.',
   note:'Pájaro negro con la cabeza y el pecho rojo anaranjado. Vive en bañados y pajonales, posado en lo alto de plantas como el caraguatá, desde donde canta y vigila.'},
- {id:'dragon',name:'Dragón',sci:'Xanthopsar flavus',more:'Está amenazado: quedan pocos, porque se perdieron muchos de los pastizales húmedos donde vive.',size:1.0,hab:'perch',hop:{fleeD:22},spots:[],
+ {id:'dragon',name:'Dragón',sci:'Xanthopsar flavus',more:'Está amenazado: quedan pocos, porque se perdieron muchos de los pastizales húmedos donde vive.',size:1.0,hab:'perch',hop:{fleeD:10},spots:[],
   hint:'En grupo, caminando por el pastizal cerca de los postes donde se posa la viudita blanca. Vuelan juntos si te acercás.',
   note:'Pájaro de cabeza, pecho y hombros amarillo intenso, con la espalda y las alas negras. Anda en grupitos por pastizales y bañados buscando insectos en el suelo, muchas veces acompañando a la viudita blanca grande.'},
- {id:'viudita',name:'Viudita blanca grande',sci:'Heteroxolmis dominicana',more:'Es una especie amenazada: depende de los pastizales húmedos y bañados que quedan en el este.',size:.5,hab:'perch',hop:{fleeD:18,sally:true},spots:[],
-  hint:'Blanca con las alas negras, posada en lo alto de un poste del pastizal, con los dragones cerca.',
+ {id:'viudita',name:'Viudita blanca grande',sci:'Heteroxolmis dominicana',more:'Es una especie amenazada: depende de los pastizales húmedos y bañados que quedan en el este.',size:.5,hab:'perch',hop:{fleeD:30,sally:true,alarm:true},spots:[],
+  hint:'Blanca con las alas negras, posada en lo alto de un poste del pastizal, con los dragones cerca. Te ve desde lejos: acercate despacio.',
   note:'Pájaro blanco con las alas y la cola negras. Vigila desde un poste o una planta alta y baja a cazar insectos. Los dragones suelen andar con ella: se cree que la siguen porque avisa de los peligros y los ayuda a encontrar comida.'},
  {id:'hornero',name:'Hornero',sci:'Furnarius rufus',more:'Es el ave nacional de Argentina y uno de los pájaros más queridos de Uruguay. Su nido de barro puede pesar varios kilos.',size:.4,hab:'land',spots:[],wander:9,walk:.6,run:1.4,shy:{d:7,v:-1},
   hint:'Cerca de la tapera, caminando junto a su nido de barro.',
@@ -1421,10 +1421,12 @@ BUILD.arana=(g,L)=>{const b=M(0x1c1612,.95),h=M(0x2a211a,.95),lg=M(0x18120e,.95)
  part(SPH,M(0x111111),.02,.14,-.11,.01,.01,.01,g);part(SPH,M(0x111111),-.02,.14,-.11,.01,.01,.01,g);};
 function flapW(a,time,on){(a.g.userData.wingsAll||[]).forEach((w,i)=>{const s=Math.sign(w.position.x)||1;if(on){w.scale.x=1;w.rotation.z=s*Math.sin(time*18+i)*.85;}else{w.scale.x=.35;w.rotation.z=s*1.25;}});}
 function hopUpdate(a,dt,time,dc){const hp=a.sp.hop;if(!a.perch)return;
+ if(a.followT!==undefined&&a.state!=='fly'){a.followT-=dt;if(a.followT<=0){const nx=a.followTo;delete a.followT;a.fl={from:a.perch,to:nx,t:0,dur:Math.max(1.2,Math.hypot(nx[0]-a.perch[0],nx[2]-a.perch[2])/7)};a.state='fly';}}
  if(a.state!=='fly'){if(a.sallyT){a.sallyT-=dt;const u=1-a.sallyT/1.6;a.g.position.y=hp.dive?a.perch[1]-Math.sin(u*Math.PI)*(a.perch[1]+.05):a.perch[1]+Math.sin(u*Math.PI)*1.6;flapW(a,time,true);if(a.sallyT<=0){a.sallyT=0;a.t=3+Math.random()*5;flapW(a,time,false);a.g.position.y=a.perch[1];}return;}
   a.t-=dt;const flee=dc<hp.fleeD;if(hp.sally&&!flee&&a.t<=0&&Math.random()<.5){a.sallyT=1.6;return;}
   if(flee||a.t<=0){let cand=a.perches.filter(p=>p!==a.perch&&Math.hypot(p[0]-a.perch[0],p[2]-a.perch[2])<50);if(flee){const far=cand.filter(p=>Math.hypot(p[0]-car.x,p[2]-car.z)>hp.fleeD+6);if(far.length)cand=far;}if(!cand.length)cand=a.perches.filter(p=>p!==a.perch);
-   if(!cand.length){a.t=5;return;}const nx=cand[Math.floor(Math.random()*cand.length)];a.fl={from:a.perch,to:nx,t:0,dur:Math.max(1.2,Math.hypot(nx[0]-a.perch[0],nx[2]-a.perch[2])/7)};a.state='fly';}
+   if(!cand.length){a.t=5;return;}const nx=cand[Math.floor(Math.random()*cand.length)];a.fl={from:a.perch,to:nx,t:0,dur:Math.max(1.2,Math.hypot(nx[0]-a.perch[0],nx[2]-a.perch[2])/7)};a.state='fly';
+   if(hp.alarm&&flee){playAlarm(a,dc);const dr=animals.find(o=>o.sp.id==='dragon');if(dr&&dr.perches&&dr.state!=='fly'){const opts=dr.perches.filter(p=>p!==dr.perch).sort((p,q)=>Math.hypot(p[0]-nx[0],p[2]-nx[2])-Math.hypot(q[0]-nx[0],q[2]-nx[2]));if(opts.length){dr.followT=.6+Math.random()*.4;dr.followTo=opts[0];}}}}
   else if(hp.hover){flapW(a,time*3,true);a.g.position.y=a.perch[1]+Math.sin(time*6+a.phase)*.01;}else flapW(a,time,false);return;}
  const F=a.fl;F.t+=dt;const u=Math.min(1,F.t/F.dur),e=u*u*(3-2*u);a.x=mix(F.from[0],F.to[0],e);a.z=mix(F.from[2],F.to[2],e);a.y=mix(F.from[1],F.to[1],e)+Math.sin(u*Math.PI)*2.5;
  a.h=Math.atan2(-(F.to[0]-F.from[0]),-(F.to[2]-F.from[2]));a.g.position.set(a.x,a.y,a.z);a.g.rotation.y=a.h;flapW(a,time,true);
@@ -1437,7 +1439,7 @@ function spreadPts(n,minD,test){const out=[];for(let t=0;t<6000&&out.length<n;t+
 {const sp=SPECIES.find(s=>s.id==='federal');const c=CFALSO.find(p=>p[2]>5&&p[2]<130)||CFALSO[0];if(c){const list=CFALSO.filter(p=>Math.hypot(p[0]-c[0],p[2]-c[2])<45);const a=spawn(sp,c[0],c[2]);setPerch(a,list,c);}}
 {const wd=M(0x6b5440,.95),posts=[];for(let t=0;t<3000&&posts.length<7;t++){const x=40+rnd()*160,z=-30+rnd()*170,h=H(x,z);if(h<1.5||slopeAt(x,z)>.3||roadD(x,z)<4||hitObs(x,z,3)||posts.some(p=>Math.hypot(p[0]-x,p[2]-z)<16))continue;const ht=1.9+rnd()*.8,g=new THREE.Group();g.position.set(x,h,z);scene.add(g);part(CYL,wd,0,ht/2,0,.045,ht,.05,g);part(CYL,wd,0,ht+.02,0,.06,.04,.06,g);addObs(x,z,.2);posts.push([x,h+ht+.04,z]);}
  const sv=SPECIES.find(s=>s.id==='viudita');if(posts.length>2){const a=spawn(sv,posts[0][0],posts[0][2]);setPerch(a,posts,posts[0]);}
- const sd=SPECIES.find(s=>s.id==='dragon'),grd=[];const near=posts.filter(p=>posts.length&&Math.hypot(p[0]-posts[0][0],p[2]-posts[0][2])<45);for(let t=0;t<4000&&grd.length<9&&near.length;t++){const po=grd.length===0?near[0]:near[Math.floor(rnd()*near.length)],an=rnd()*6.28,r=3+rnd()*12,x=po[0]+Math.cos(an)*r,z=po[2]+Math.sin(an)*r,h=H(x,z);if(h<.4||h>4||slopeAt(x,z)>.3||hitObs(x,z,2)||grd.some(p=>Math.hypot(p[0]-x,p[2]-z)<12))continue;grd.push([x,h+.02,z]);}
+ const sd=SPECIES.find(s=>s.id==='dragon'),grd=[];const near=posts;for(let t=0;t<6000&&grd.length<16&&near.length;t++){const po=grd.length===0?near[0]:near[grd.length%near.length],an=rnd()*6.28,r=3+rnd()*12,x=po[0]+Math.cos(an)*r,z=po[2]+Math.sin(an)*r,h=H(x,z);if(h<.4||h>4||slopeAt(x,z)>.3||hitObs(x,z,2)||grd.some(p=>Math.hypot(p[0]-x,p[2]-z)<12))continue;grd.push([x,h+.02,z]);}
  if(grd.length>2){const a=spawn(sd,grd[0][0],grd[0][2]);setPerch(a,grd,grd[0]);}}
 // puma: echado en lo alto del noroeste; si te acercás se va caminando hacia el borde
 const PUMA_SPOTS=spreadPts(4,22,(x,z)=>x<-150&&x>-250&&z<-190&&z>-250&&H(x,z)>24&&slopeAt(x,z)<.5);
@@ -1865,6 +1867,7 @@ function playCall(a,dist){
  if(AC.createStereoPanner){const p=AC.createStereoPanner();const ref=photo?photoYaw:car.h+camOrbit;const d=Math.atan2(-(a.x-car.x),-(a.z-car.z))-ref;p.pan.value=-Math.sin(d)*.85;g.connect(p);out=p;}
  out.connect(AC.destination);try{CALLS[a.sp.id](g,t);}catch(e){}setTimeout(()=>{try{out.disconnect();g.disconnect();}catch(e){}},3000);
 }
+function playAlarm(a,dist){if(!AC||muted)return;const t=AC.currentTime+.02,vol=Math.max(.05,Math.pow(Math.max(0,1-dist/90),1.2)*.6);const g=AC.createGain();g.gain.value=vol;g.connect(AC.destination);try{for(let i=0;i<5;i++)tn(g,t+i*.11,.07,2600,3400,.6,'square');}catch(e){}setTimeout(()=>{try{g.disconnect();}catch(e){}},1500);toastOnce('viualarma','La viudita te vio primero: dio la alarma y voló… y los dragones la siguieron.',40);}
 function updateCalls(dt){if(!AC||muted||mapOpen||bookOpen)return;if(AC.state==='suspended')AC.resume();
  for(const a of animals){if(!a.g.visible||a.sp.hab==='air'||!CALL_R[a.sp.id])continue;const dist=Math.hypot(car.x-a.x,car.z-a.z),R=CALL_R[a.sp.id];
   if(dist>R){a.callT=Math.min(a.callT===undefined?2:a.callT,1.5+Math.random()*2);continue;}
