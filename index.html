@@ -289,7 +289,7 @@ body.menu #touch{display:none!important}
  <g stroke="#fff" stroke-opacity=".2" stroke-width=".25" fill="none"><path d="M44 34l8 5M118 24l-6 8M100 74l11-4M52 76l4-6M128 52q3 3 2 7"/></g>
 </svg>
 <div class="hud" id="hud">
-  <div id="verHud" data-ver>v89</div>
+  <div id="verHud" data-ver>v90</div>
   <div id="tally"><b id="tBichos">0 / 11 bichos</b><span id="tLugares">0 / 7 lugares</span><span id="tPeces" hidden></span><span id="tMicro" hidden></span></div>
   <div id="tools">
     <button class="tool" id="bMenu" title="Menú">☰<small>menú</small></button>
@@ -368,7 +368,7 @@ body.menu #touch{display:none!important}
 <section class="tp" data-t="lugares"><h4><span class="ich" data-ic="lugares"></span> <span id="plH">Lugares</span></h4><div class="grid" id="plList"></div></section>
 <section class="tp" data-t="logros"><h4><span class="ich" data-ic="logros"></span> <span id="logH">Logros especiales</span></h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
 <section class="tp" data-t="hallazgos"><h4><span class="ich" data-ic="hallazgos"></span> Hallazgos</h4><div id="hzList"></div></section>
-<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v89</span></p></div>
+<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v90</span></p></div>
   </div>
 </div>
 <div id="start">
@@ -379,7 +379,7 @@ body.menu #touch{display:none!important}
     <p id="iosHint" class="ioshint" hidden>Para instalarla en iPhone o iPad: tocá <b>Compartir</b> y después <b>Agregar a inicio</b>.</p>
     <div class="players"><div id="profList"></div><button id="profNew" type="button">👤 Nuevo jugador</button><span id="profNewBox" hidden><input id="profName" maxlength="16" placeholder="Nombre del jugador"> <button id="profOk" type="button">Listo</button> <button id="profCancel" type="button" aria-label="Cancelar">✕</button></span></div>
     <label class="opt"><input type="checkbox" id="optTrees"> Pasar a través de los árboles (para los más chicos)</label>
-    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v89</span></p>
+    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v90</span></p>
   </div>
 </div>
 <div id="loading">Armando el paisaje…</div>
@@ -557,7 +557,7 @@ const SPECIES=[
   note:'Pájaro negro con la cabeza y el pecho rojo anaranjado. Vive en bañados y pajonales, posado en lo alto de plantas como el caraguatá, desde donde canta y vigila.'},
  {id:'dragon',name:'Dragón',sci:'Pseudoleistes virescens',more:'Andan en grupos ruidosos y se avisan entre todos cuando ven un peligro.',size:1.0,hab:'perch',hop:{fleeD:22},spots:[],
   hint:'En grupo, caminando por el pastizal húmedo cerca del arroyo. Vuelan juntos si te acercás.',
-  note:'Pájaro negro pardusco con los hombros y la panza de un amarillo intenso. Vive en grupos en bañados, pastizales húmedos y palmares, y busca insectos caminando por el suelo.'},
+  note:'Pájaro de cabeza, pecho, panza y hombros amarillo intenso, con la espalda y las alas oscuras. Vive en grupos en bañados, pastizales húmedos y palmares, y busca insectos caminando por el suelo.'},
  {id:'viudita',name:'Viudita blanca',sci:'Xolmis irupero',more:'En el campo se la reconoce de lejos por su blanco brillante.',size:.4,hab:'perch',hop:{fleeD:18,sally:true},spots:[],
   hint:'Blanca, posada en lo alto de una vara o un poste del pastizal.',
   note:'Pajarito blanco con la punta de las alas y de la cola negras. Se posa en lo alto, sale volando a cazar insectos en el aire y vuelve a su percha.'},
@@ -1406,7 +1406,7 @@ function birdMesh(o){const g=new THREE.Group(),L=o.len||.2,b=M(o.body,.7),h=M(o.
 function birdGroup(g,specs,offs){const all=[];specs.forEach((o,i)=>{const b=birdMesh(o);b.position.set(offs[i][0],offs[i][1]||0,offs[i][2]);b.rotation.y=offs[i][3]||0;g.add(b);all.push(...b.userData.wingsAll);});g.userData.wingsAll=all;}
 BUILD.cardenal=(g)=>birdGroup(g,[{body:0xd9b81f,head:0xe6c41f,crest:0x111111,throat:0x111111,wing:0x7c7a32,tail:0x3a3a26,len:.2},{body:0xb9ab5a,head:0xb9ab5a,crest:0x2a2a2a,throat:0x3a3a3a,wing:0x6f6c40,tail:0x3a3a2a,len:.19}],[[-.15,0,0,.3],[.17,0,.06,-.4]]);
 BUILD.federal=(g)=>birdGroup(g,[{body:0x151515,head:0xe2552a,throat:0xe2552a,longBeak:1,len:.22},{body:0x151515,head:0xd94e24,throat:0xd94e24,longBeak:1,len:.21}],[[-.15,0,0,.2],[.16,-.05,.08,-.3]]);
-BUILD.dragon=(g)=>birdGroup(g,Array.from({length:5},()=>({body:0x2a2418,head:0x221d14,belly:0xf5c414,wing:0x2e281c,shoulder:0xf5c414,tail:0x1e1a12,len:.21})),[[0,0,0,0],[.5,0,.3,.5],[-.45,0,.2,-.4],[.2,0,-.45,1],[-.3,0,-.4,2]]);
+BUILD.dragon=(g)=>birdGroup(g,Array.from({length:5},()=>({body:0x1e1a12,head:0xf7c800,throat:0xf7c800,belly:0xf7c800,wing:0x1e1a12,shoulder:0xf7c800,tail:0x161410,len:.21})),[[0,0,0,0],[.5,0,.3,.5],[-.45,0,.2,-.4],[.2,0,-.45,1],[-.3,0,-.4,2]]);
 BUILD.viudita=(g)=>birdGroup(g,[{body:0xf4f4ef,head:0xf7f7f3,tip:0x111111,tail:0x161616,len:.19}],[[0,0,0,0]]);
 BUILD.yarara=(g)=>{const b=M(0x8a6a44,.7),dk=M(0x2e2216,.8),N=22,pts=Array.from({length:N},()=>new THREE.Vector3());let tube=new THREE.Mesh(new THREE.BufferGeometry(),b);tube.castShadow=true;tube.frustumCulled=false;g.add(tube);
  const head=part(SPH,b,0,.05,0,.055,.035,.075,g),spots=[];for(let i=0;i<8;i++)spots.push(part(SPH,dk,0,0,0,.032,.012,.03,g));g.userData.head=head;
@@ -2455,8 +2455,8 @@ function updateCar(dt,time){
  car.safeT+=dt;if(car.safeT>2&&!car.air&&target>0.2&&Math.abs(car.v)>1.5&&Math.abs(car.v)<15&&obsDepth(car.x,car.z,car.h)<=0&&!hitObs(car.x,car.z,3)){car.safeT=0;car.safe=[car.x,car.z,car.h];}
  // sonido del motor según las vueltas
  if(AC&&eng){const live=!muted&&!DIVE.on&&!WALK.on,sp=Math.min(1,av/17),f=150+av*(car.low?42:30)+(spin?60:0);eng.frequency.setTargetAtTime(f,AC.currentTime,.12);eng.e2.frequency.setTargetAtTime(f*1.5,AC.currentTime,.12);
-  engG.gain.setTargetAtTime(live?.004+sp*.01+Math.abs(thr)*.006:0,AC.currentTime,.15);
-  const mudN=typeof mudAt==='function'?mudAt(car.x,car.z):0,sandN=typeof sandAt==='function'?sandAt(car.x,car.z):0,grip=car.air?0:1;rollF.frequency.setTargetAtTime(240+av*28+sandN*300,AC.currentTime,.2);rollG.gain.setTargetAtTime(live?Math.pow(sp,1.4)*.07*(1+mudN*.9+sandN*.6+(spin?.6:0))*grip:0,AC.currentTime,.15);}
+  engG.gain.setTargetAtTime(live?(.004+sp*.01+Math.abs(thr)*.006)/3:0,AC.currentTime,.15);
+  const mudN=typeof mudAt==='function'?mudAt(car.x,car.z):0,sandN=typeof sandAt==='function'?sandAt(car.x,car.z):0,grip=car.air?0:1;rollF.frequency.setTargetAtTime(240+av*28+sandN*300,AC.currentTime,.2);rollG.gain.setTargetAtTime(live?Math.pow(sp,1.4)*.07/3*(1+mudN*.9+sandN*.6+(spin?.6:0))*grip:0,AC.currentTime,.15);}
  $('#spd').textContent=Math.round(av*3.6);
  return thr;
 }
