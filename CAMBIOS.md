@@ -90,6 +90,7 @@ Un juego de Insight Reality
 - v87  Sin minimapa al arrancar (aparece junto con el mapa del naturalista); rana llorona arreglada (la bolsa de la garganta se volvía gigante)
 - v88  Rana llorona: bolsa de la garganta más chica y adelante, sin hundirse en el piso, canto largo "ueeeeee"; botón de salir de la foto más chico y sin tapar los controles
 - v89  Camioneta eléctrica: zumbido suave del motor y ruido de las ruedas en el suelo (más fuerte en barro y arena); sin toma de aire
+- v90  Camioneta a un tercio de volumen; dragones con cabeza, pecho y panza amarillo intenso
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v89).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v90).
 La versión vigente es index.html (lista como app instalable).
