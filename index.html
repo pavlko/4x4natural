@@ -289,7 +289,7 @@ body.menu #touch{display:none!important}
  <g stroke="#fff" stroke-opacity=".2" stroke-width=".25" fill="none"><path d="M44 34l8 5M118 24l-6 8M100 74l11-4M52 76l4-6M128 52q3 3 2 7"/></g>
 </svg>
 <div class="hud" id="hud">
-  <div id="verHud" data-ver>v92</div>
+  <div id="verHud" data-ver>v93</div>
   <div id="tally"><b id="tBichos">0 / 11 bichos</b><span id="tLugares">0 / 7 lugares</span><span id="tPeces" hidden></span><span id="tMicro" hidden></span></div>
   <div id="tools">
     <button class="tool" id="bMenu" title="Menú">☰<small>menú</small></button>
@@ -368,7 +368,7 @@ body.menu #touch{display:none!important}
 <section class="tp" data-t="lugares"><h4><span class="ich" data-ic="lugares"></span> <span id="plH">Lugares</span></h4><div class="grid" id="plList"></div></section>
 <section class="tp" data-t="logros"><h4><span class="ich" data-ic="logros"></span> <span id="logH">Logros especiales</span></h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
 <section class="tp" data-t="hallazgos"><h4><span class="ich" data-ic="hallazgos"></span> Hallazgos</h4><div id="hzList"></div></section>
-<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v92</span></p></div>
+<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v93</span></p></div>
   </div>
 </div>
 <div id="start">
@@ -379,7 +379,7 @@ body.menu #touch{display:none!important}
     <p id="iosHint" class="ioshint" hidden>Para instalarla en iPhone o iPad: tocá <b>Compartir</b> y después <b>Agregar a inicio</b>.</p>
     <div class="players"><div id="profList"></div><button id="profNew" type="button">👤 Nuevo jugador</button><span id="profNewBox" hidden><input id="profName" maxlength="16" placeholder="Nombre del jugador"> <button id="profOk" type="button">Listo</button> <button id="profCancel" type="button" aria-label="Cancelar">✕</button></span></div>
     <label class="opt"><input type="checkbox" id="optTrees"> Pasar a través de los árboles (para los más chicos)</label>
-    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v92</span></p>
+    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v93</span></p>
   </div>
 </div>
 <div id="loading">Armando el paisaje…</div>
@@ -557,10 +557,10 @@ const SPECIES=[
   note:'Pájaro negro con la cabeza y el pecho rojo anaranjado. Vive en bañados y pajonales, posado en lo alto de plantas como el caraguatá, desde donde canta y vigila.'},
  {id:'dragon',name:'Dragón',sci:'Xanthopsar flavus',more:'Está amenazado: quedan pocos, porque se perdieron muchos de los pastizales húmedos donde vive.',size:1.0,hab:'perch',hop:{fleeD:22},spots:[],
   hint:'En grupo, caminando por el pastizal cerca de los postes donde se posa la viudita blanca. Vuelan juntos si te acercás.',
-  note:'Pájaro de cabeza, pecho y hombros amarillo intenso, con la espalda y las alas negras. Anda en grupitos por pastizales y bañados buscando insectos en el suelo, muchas veces acompañando a las viuditas.'},
- {id:'viudita',name:'Viudita blanca',sci:'Xolmis irupero',more:'En el campo se la reconoce de lejos por su blanco brillante.',size:.4,hab:'perch',hop:{fleeD:18,sally:true},spots:[],
-  hint:'Blanca, posada en lo alto de una vara o un poste del pastizal.',
-  note:'Pajarito blanco con la punta de las alas y de la cola negras. Se posa en lo alto, sale volando a cazar insectos en el aire y vuelve a su percha.'},
+  note:'Pájaro de cabeza, pecho y hombros amarillo intenso, con la espalda y las alas negras. Anda en grupitos por pastizales y bañados buscando insectos en el suelo, muchas veces acompañando a la viudita blanca grande.'},
+ {id:'viudita',name:'Viudita blanca grande',sci:'Heteroxolmis dominicana',more:'Es una especie amenazada: depende de los pastizales húmedos y bañados que quedan en el este.',size:.5,hab:'perch',hop:{fleeD:18,sally:true},spots:[],
+  hint:'Blanca con las alas negras, posada en lo alto de un poste del pastizal, con los dragones cerca.',
+  note:'Pájaro blanco con las alas y la cola negras. Vigila desde un poste o una planta alta y baja a cazar insectos. Los dragones suelen andar con ella: se cree que la siguen porque avisa de los peligros y los ayuda a encontrar comida.'},
  {id:'hornero',name:'Hornero',sci:'Furnarius rufus',more:'Es el ave nacional de Argentina y uno de los pájaros más queridos de Uruguay. Su nido de barro puede pesar varios kilos.',size:.4,hab:'land',spots:[],wander:9,walk:.6,run:1.4,shy:{d:7,v:-1},
   hint:'Cerca de la tapera, caminando junto a su nido de barro.',
   note:'Pájaro color canela que camina dando pasitos. Construye con barro y pasto un nido con forma de horno, con la entrada de costado y una pared por dentro que protege a los pichones. La pareja canta a dúo.'},
@@ -1407,7 +1407,7 @@ function birdGroup(g,specs,offs){const all=[];specs.forEach((o,i)=>{const b=bird
 BUILD.cardenal=(g)=>birdGroup(g,[{body:0xd9b81f,head:0xe6c41f,crest:0x111111,throat:0x111111,wing:0x7c7a32,tail:0x3a3a26,len:.2},{body:0xb9ab5a,head:0xb9ab5a,crest:0x2a2a2a,throat:0x3a3a3a,wing:0x6f6c40,tail:0x3a3a2a,len:.19}],[[-.15,0,0,.3],[.17,0,.06,-.4]]);
 BUILD.federal=(g)=>birdGroup(g,[{body:0x151515,head:0xe2552a,throat:0xe2552a,longBeak:1,len:.22},{body:0x151515,head:0xd94e24,throat:0xd94e24,longBeak:1,len:.21}],[[-.15,0,0,.2],[.16,-.05,.08,-.3]]);
 BUILD.dragon=(g)=>birdGroup(g,Array.from({length:5},()=>({body:0x1e1a12,head:0xf7c800,throat:0xf7c800,belly:0xf7c800,wing:0x1e1a12,shoulder:0xf7c800,tail:0x161410,len:.21})),[[0,0,0,0],[.5,0,.3,.5],[-.45,0,.2,-.4],[.2,0,-.45,1],[-.3,0,-.4,2]]);
-BUILD.viudita=(g)=>birdGroup(g,[{body:0xf4f4ef,head:0xf7f7f3,tip:0x111111,tail:0x161616,len:.19}],[[0,0,0,0]]);
+BUILD.viudita=(g)=>birdGroup(g,[{body:0xf6f6f2,head:0xf8f8f4,wing:0x141414,tip:0x0e0e0e,tail:0x121212,len:.23}],[[0,0,0,0]]);
 BUILD.yarara=(g)=>{const b=M(0x8a6a44,.7),dk=M(0x2e2216,.8),N=22,pts=Array.from({length:N},()=>new THREE.Vector3());let tube=new THREE.Mesh(new THREE.BufferGeometry(),b);tube.castShadow=true;tube.frustumCulled=false;g.add(tube);
  const head=part(SPH,b,0,.05,0,.055,.035,.075,g),spots=[];for(let i=0;i<8;i++)spots.push(part(SPH,dk,0,0,0,.032,.012,.03,g));g.userData.head=head;
  const shape=(t,mv)=>{const amp=mv?.13:.07,k=mv?5.2:1.2;for(let i=0;i<N;i++){const u=i/(N-1),z=-.62+u*1.3;pts[i].set(Math.sin(u*9-t*k)*amp*(.35+u*.65),.045,z);}};
