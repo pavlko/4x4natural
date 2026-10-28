@@ -278,7 +278,7 @@ body.menu #touch{display:none!important}
  <g stroke="#fff" stroke-opacity=".2" stroke-width=".25" fill="none"><path d="M44 34l8 5M118 24l-6 8M100 74l11-4M52 76l4-6M128 52q3 3 2 7"/></g>
 </svg>
 <div class="hud" id="hud">
-  <div id="verHud" data-ver>v90 playa</div>
+  <div id="verHud" data-ver>v91 playa</div>
   <div id="tally"><b id="tBichos">0 / 11 bichos</b><span id="tLugares">0 / 7 lugares</span><span id="tPeces" hidden></span><span id="tMicro" hidden></span></div>
   <div id="tools">
     <button class="tool" id="bMenu" title="Menú">☰<small>menú</small></button>
@@ -357,7 +357,7 @@ body.menu #touch{display:none!important}
 <section class="tp" data-t="lugares"><h4><span class="ich" data-ic="lugares"></span> <span id="plH">Lugares</span></h4><div class="grid" id="plList"></div></section>
 <section class="tp" data-t="logros"><h4><span class="ich" data-ic="logros"></span> <span id="logH">Logros especiales</span></h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
 <section class="tp" data-t="hallazgos"><h4><span class="ich" data-ic="hallazgos"></span> Hallazgos</h4><div id="hzList"></div></section>
-<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v90 playa</span></p></div>
+<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v91 playa</span></p></div>
   </div>
 </div>
 <div id="start">
@@ -367,7 +367,7 @@ body.menu #touch{display:none!important}
     <div class="startbtns"><button id="go">Arrancar</button><button id="goBook">📓 Cuaderno de campo</button><button id="goCustom">🎨 Personalizar</button></div>
     <div class="players"><div id="profList"></div><button id="profNew" type="button">👤 Nuevo jugador</button><span id="profNewBox" hidden><input id="profName" maxlength="16" placeholder="Nombre del jugador"> <button id="profOk" type="button">Listo</button> <button id="profCancel" type="button" aria-label="Cancelar">✕</button></span></div>
     <label class="opt"><input type="checkbox" id="optTrees"> Pasar a través de los árboles (para los más chicos)</label>
-    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v90 playa</span></p>
+    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v91 playa</span></p>
   </div>
 </div>
 <div id="loading">Armando el paisaje…</div>
@@ -548,9 +548,9 @@ const SPECIES=[
  {id:'federal',name:'Federal',sci:'Amblyramphus holosericeus',more:'Su pico largo y fino le sirve para abrir tallos y sacar insectos escondidos.',size:.5,hab:'perch',hop:{fleeD:16},spots:[],
   hint:'En las varas del caraguatá falso, en la orilla del arroyo.',
   note:'Pájaro negro con la cabeza y el pecho rojo anaranjado. Vive en bañados y pajonales, posado en lo alto de plantas como el caraguatá, desde donde canta y vigila.'},
- {id:'dragon',name:'Dragón',sci:'Pseudoleistes virescens',more:'Andan en grupos ruidosos y se avisan entre todos cuando ven un peligro.',size:1.0,hab:'perch',hop:{fleeD:22},spots:[],
+ {id:'dragon',name:'Dragón',sci:'Xanthopsar flavus',more:'Está amenazado: quedan pocos, porque se perdieron muchos de los pastizales húmedos donde vive.',size:1.0,hab:'perch',hop:{fleeD:22},spots:[],
   hint:'En grupo, caminando por el pastizal húmedo cerca del arroyo. Vuelan juntos si te acercás.',
-  note:'Pájaro de cabeza, pecho, panza y hombros amarillo intenso, con la espalda y las alas oscuras. Vive en grupos en bañados, pastizales húmedos y palmares, y busca insectos caminando por el suelo.'},
+  note:'Pájaro de cabeza, pecho y hombros amarillo intenso, con la espalda y las alas negras. Anda en grupitos por pastizales húmedos y bañados buscando insectos en el suelo, a veces junto a los pechos amarillos.'},
  {id:'viudita',name:'Viudita blanca',sci:'Xolmis irupero',more:'En el campo se la reconoce de lejos por su blanco brillante.',size:.4,hab:'perch',hop:{fleeD:18,sally:true},spots:[],
   hint:'Blanca, posada en lo alto de una vara o un poste del pastizal.',
   note:'Pajarito blanco con la punta de las alas y de la cola negras. Se posa en lo alto, sale volando a cazar insectos en el aire y vuelve a su percha.'},
