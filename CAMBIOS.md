@@ -91,6 +91,7 @@ Un juego de Insight Reality
 - v88  Rana llorona: bolsa de la garganta más chica y adelante, sin hundirse en el piso, canto largo "ueeeeee"; botón de salir de la foto más chico y sin tapar los controles
 - v89  Camioneta eléctrica: zumbido suave del motor y ruido de las ruedas en el suelo (más fuerte en barro y arena); sin toma de aire
 - v90  Camioneta a un tercio de volumen; dragones con cabeza, pecho y panza amarillo intenso
+- v91  El dragón es Xanthopsar flavus (amenazado), como se lo llama en Uruguay
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v90).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v91).
 La versión vigente es index.html (lista como app instalable).

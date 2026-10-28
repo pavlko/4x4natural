@@ -70,3 +70,5 @@ Patagonia (Cueva de las Manos), África (Serengeti y Laetoli), sur de China (Gua
 
 ## Más bichos para evaluar después
 - Carpintero de campo (Colaptes campestris) y algún carpintero de nuca roja: golpeteo en troncos y postes, y gritos fuertes. Ojo: ya hay muchas aves; filtrar luego por los que quedan mejor.
+
+- Posible: pecho amarillo (Pseudoleistes virescens), pardo con hombros y panza amarillos, en grupos ruidosos junto a los dragones.
