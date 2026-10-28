@@ -92,6 +92,7 @@ Un juego de Insight Reality
 - v89  Camioneta eléctrica: zumbido suave del motor y ruido de las ruedas en el suelo (más fuerte en barro y arena); sin toma de aire
 - v90  Camioneta a un tercio de volumen; dragones con cabeza, pecho y panza amarillo intenso
 - v91  El dragón es Xanthopsar flavus (amenazado), como se lo llama en Uruguay
+- v92  Los dragones andan junto a la viudita blanca, alrededor de sus postes en el pastizal
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v91).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v92).
 La versión vigente es index.html (lista como app instalable).

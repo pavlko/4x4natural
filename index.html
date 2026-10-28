@@ -561,8 +561,8 @@ const SPECIES=[
   hint:'En las varas del caraguatá falso, en la orilla del arroyo.',
   note:'Pájaro negro con la cabeza y el pecho rojo anaranjado. Vive en bañados y pajonales, posado en lo alto de plantas como el caraguatá, desde donde canta y vigila.'},
  {id:'dragon',name:'Dragón',sci:'Xanthopsar flavus',more:'Está amenazado: quedan pocos, porque se perdieron muchos de los pastizales húmedos donde vive.',size:1.0,hab:'perch',hop:{fleeD:22},spots:[],
-  hint:'En grupo, caminando por el pastizal húmedo cerca del arroyo. Vuelan juntos si te acercás.',
-  note:'Pájaro de cabeza, pecho y hombros amarillo intenso, con la espalda y las alas negras. Anda en grupitos por pastizales húmedos y bañados buscando insectos en el suelo, a veces junto a los pechos amarillos.'},
+  hint:'En grupo, caminando por el pastizal cerca de los postes donde se posa la viudita blanca. Vuelan juntos si te acercás.',
+  note:'Pájaro de cabeza, pecho y hombros amarillo intenso, con la espalda y las alas negras. Anda en grupitos por pastizales y bañados buscando insectos en el suelo, muchas veces acompañando a las viuditas.'},
  {id:'viudita',name:'Viudita blanca',sci:'Xolmis irupero',more:'En el campo se la reconoce de lejos por su blanco brillante.',size:.4,hab:'perch',hop:{fleeD:18,sally:true},spots:[],
   hint:'Blanca, posada en lo alto de una vara o un poste del pastizal.',
   note:'Pajarito blanco con la punta de las alas y de la cola negras. Se posa en lo alto, sale volando a cazar insectos en el aire y vuelve a su percha.'},
@@ -1448,7 +1448,7 @@ function spreadPts(n,minD,test){const out=[];for(let t=0;t<6000&&out.length<n;t+
 {const sp=SPECIES.find(s=>s.id==='federal');const c=CFALSO.find(p=>p[2]>5&&p[2]<130)||CFALSO[0];if(c){const list=CFALSO.filter(p=>Math.hypot(p[0]-c[0],p[2]-c[2])<45);const a=spawn(sp,c[0],c[2]);setPerch(a,list,c);}}
 {const wd=M(0x6b5440,.95),posts=[];for(let t=0;t<3000&&posts.length<7;t++){const x=40+rnd()*160,z=-30+rnd()*170,h=H(x,z);if(h<1.5||slopeAt(x,z)>.3||roadD(x,z)<4||hitObs(x,z,3)||posts.some(p=>Math.hypot(p[0]-x,p[2]-z)<16))continue;const ht=1.9+rnd()*.8,g=new THREE.Group();g.position.set(x,h,z);scene.add(g);part(CYL,wd,0,ht/2,0,.045,ht,.05,g);part(CYL,wd,0,ht+.02,0,.06,.04,.06,g);addObs(x,z,.2);posts.push([x,h+ht+.04,z]);}
  const sv=SPECIES.find(s=>s.id==='viudita');if(posts.length>2){const a=spawn(sv,posts[0][0],posts[0][2]);setPerch(a,posts,posts[0]);}
- const sd=SPECIES.find(s=>s.id==='dragon'),grd=[];for(let t=0;t<4000&&grd.length<9;t++){const z=40+rnd()*170,x=riverX(z)+(rnd()<.5?-1:1)*(riverW(z)*.5+12+rnd()*45),h=H(x,z);if(h<.4||h>4||slopeAt(x,z)>.3||hitObs(x,z,2)||grd.some(p=>Math.hypot(p[0]-x,p[2]-z)<12))continue;grd.push([x,h+.02,z]);}
+ const sd=SPECIES.find(s=>s.id==='dragon'),grd=[];const near=posts.filter(p=>posts.length&&Math.hypot(p[0]-posts[0][0],p[2]-posts[0][2])<45);for(let t=0;t<4000&&grd.length<9&&near.length;t++){const po=grd.length===0?near[0]:near[Math.floor(rnd()*near.length)],an=rnd()*6.28,r=3+rnd()*12,x=po[0]+Math.cos(an)*r,z=po[2]+Math.sin(an)*r,h=H(x,z);if(h<.4||h>4||slopeAt(x,z)>.3||hitObs(x,z,2)||grd.some(p=>Math.hypot(p[0]-x,p[2]-z)<12))continue;grd.push([x,h+.02,z]);}
  if(grd.length>2){const a=spawn(sd,grd[0][0],grd[0][2]);setPerch(a,grd,grd[0]);}}
 // puma: echado en lo alto del noroeste; si te acercás se va caminando hacia el borde
 const PUMA_SPOTS=spreadPts(4,22,(x,z)=>x<-150&&x>-250&&z<-190&&z>-250&&H(x,z)>24&&slopeAt(x,z)<.5);
