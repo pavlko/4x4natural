@@ -279,7 +279,7 @@ body.menu #touch{display:none!important}
  <g stroke="#fff" stroke-opacity=".2" stroke-width=".25" fill="none"><path d="M44 34l8 5M118 24l-6 8M100 74l11-4M52 76l4-6M128 52q3 3 2 7"/></g>
 </svg>
 <div class="hud" id="hud">
-  <div id="verHud" data-ver>v98 playa</div>
+  <div id="verHud" data-ver>v99 playa</div>
   <div id="tally"><b id="tBichos">0 / 11 bichos</b><span id="tLugares">0 / 7 lugares</span><span id="tPeces" hidden></span><span id="tMicro" hidden></span></div>
   <div id="tools">
     <button class="tool" id="bMenu" title="Menú">☰<small>menú</small></button>
@@ -359,7 +359,7 @@ body.menu #touch{display:none!important}
 <section class="tp" data-t="lugares"><h4><span class="ich" data-ic="lugares"></span> <span id="plH">Lugares</span></h4><div class="grid" id="plList"></div></section>
 <section class="tp" data-t="logros"><h4><span class="ich" data-ic="logros"></span> <span id="logH">Logros especiales</span></h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
 <section class="tp" data-t="hallazgos"><h4><span class="ich" data-ic="hallazgos"></span> Hallazgos</h4><div id="hzList"></div></section>
-<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v98 playa</span></p></div>
+<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v99 playa</span></p></div>
   </div>
 </div>
 <div id="start">
@@ -369,7 +369,7 @@ body.menu #touch{display:none!important}
     <div class="startbtns"><button id="go">Arrancar</button><button id="goBook">📓 Cuaderno de campo</button><button id="goCustom">🎨 Personalizar</button></div>
     <div class="players"><div id="profList"></div><button id="profNew" type="button">👤 Nuevo jugador</button><span id="profNewBox" hidden><input id="profName" maxlength="16" placeholder="Nombre del jugador"> <button id="profOk" type="button">Listo</button> <button id="profCancel" type="button" aria-label="Cancelar">✕</button></span></div>
     <label class="opt"><input type="checkbox" id="optTrees"> Pasar a través de los árboles (para los más chicos)</label>
-    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v98 playa</span></p>
+    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v99 playa</span></p>
   </div>
 </div>
 <div id="loading">Armando el paisaje…</div>
@@ -1902,7 +1902,8 @@ function addShareBtns(){document.querySelectorAll('#book .card .ph img').forEach
 let H2C=null;function loadH2C(){if(window.html2canvas)return Promise.resolve();if(H2C)return H2C;H2C=new Promise((res,rej)=>{const sc=document.createElement('script');sc.src='https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';sc.onload=res;sc.onerror=rej;document.head.appendChild(sc);});return H2C;}
 async function screenShot(){const btn=$('#bShot');btn.disabled=true;toast('📸 Capturando la pantalla…');const cv=renderer.domElement;let ok=false;
  try{await loadH2C();renderer.render(scene,camera);const data=cv.toDataURL('image/jpeg',.92);const im=document.createElement('img');im.src=data;await new Promise(r=>{im.onload=r;});const r=cv.getBoundingClientRect();im.style.cssText=`position:fixed;left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px;z-index:0`;im.id='shotImg';document.body.insertBefore(im,cv);cv.style.visibility='hidden';
-  const sc=Math.min(2,window.devicePixelRatio||1);const shot=await window.html2canvas(document.body,{backgroundColor:'#000',scale:sc,useCORS:true,logging:false,ignoreElements:el=>el.id==='bShot'||el.id==='toasts'||el.id==='shareMenu'||el.id==='shareBtn'});
+  const sc=Math.min(2,window.devicePixelRatio||1),mw=$('#mapwrap'),mvis=mw&&getComputedStyle(mw).display!=='none',mr=mvis?mw.getBoundingClientRect():null,mcs=mvis?getComputedStyle(mw):null;const shot=await window.html2canvas(document.body,{backgroundColor:'#000',scale:sc,useCORS:true,logging:false,ignoreElements:el=>el.id==='bShot'||el.id==='toasts'||el.id==='shareMenu'||el.id==='shareBtn'||el.id==='mapwrap'});
+  if(mr){const g=shot.getContext('2d'),cx=(mr.left+mr.width/2)*sc,cy=(mr.top+mr.height/2)*sc,rr=Math.min(mr.width,mr.height)/2*sc,bw=(parseFloat(mcs.borderTopWidth)||0)*sc;g.save();g.beginPath();g.arc(cx,cy,rr,0,7);g.closePath();g.fillStyle=mcs.backgroundColor||'#1f160e';g.fill();g.clip();const mc=$('#minimap');g.drawImage(mc,cx-rr+bw,cy-rr+bw,(rr-bw)*2,(rr-bw)*2);g.restore();if(bw){g.lineWidth=bw;g.strokeStyle=mcs.borderTopColor;g.beginPath();g.arc(cx,cy,rr-bw/2,0,7);g.stroke();}}
   im.remove();cv.style.visibility='';const c=bandCanvas(shot,shot.width,shot.height,'');lastShare={label:'',blob:null,canvas:c};ok=true;doShare();}
  catch(e){const s2=$('#shotImg');if(s2)s2.remove();cv.style.visibility='';}
  if(!ok){renderer.render(scene,camera);const c=bandCanvas(cv,cv.width,cv.height,'');lastShare={label:'',blob:null,canvas:c};doShare();}btn.disabled=false;}
