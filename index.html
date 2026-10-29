@@ -290,7 +290,7 @@ body.menu #touch{display:none!important}
  <g stroke="#fff" stroke-opacity=".2" stroke-width=".25" fill="none"><path d="M44 34l8 5M118 24l-6 8M100 74l11-4M52 76l4-6M128 52q3 3 2 7"/></g>
 </svg>
 <div class="hud" id="hud">
-  <div id="verHud" data-ver>v101</div>
+  <div id="verHud" data-ver>v102</div>
   <div id="tally"><b id="tBichos">0 / 11 bichos</b><span id="tLugares">0 / 7 lugares</span><span id="tPeces" hidden></span><span id="tMicro" hidden></span></div>
   <div id="tools">
     <button class="tool" id="bMenu" title="Menú">☰<small>menú</small></button>
@@ -370,7 +370,7 @@ body.menu #touch{display:none!important}
 <section class="tp" data-t="lugares"><h4><span class="ich" data-ic="lugares"></span> <span id="plH">Lugares</span></h4><div class="grid" id="plList"></div></section>
 <section class="tp" data-t="logros"><h4><span class="ich" data-ic="logros"></span> <span id="logH">Logros especiales</span></h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
 <section class="tp" data-t="hallazgos"><h4><span class="ich" data-ic="hallazgos"></span> Hallazgos</h4><div id="hzList"></div></section>
-<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v101</span></p></div>
+<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v102</span></p></div>
   </div>
 </div>
 <div id="start">
@@ -381,7 +381,7 @@ body.menu #touch{display:none!important}
     <p id="iosHint" class="ioshint" hidden>Para instalarla en iPhone o iPad: tocá <b>Compartir</b> y después <b>Agregar a inicio</b>.</p>
     <div class="players"><div id="profList"></div><button id="profNew" type="button">👤 Nuevo jugador</button><span id="profNewBox" hidden><input id="profName" maxlength="16" placeholder="Nombre del jugador"> <button id="profOk" type="button">Listo</button> <button id="profCancel" type="button" aria-label="Cancelar">✕</button></span></div>
     <label class="opt"><input type="checkbox" id="optTrees"> Pasar a través de los árboles (para los más chicos)</label>
-    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v101</span></p>
+    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v102</span></p>
   </div>
 </div>
 <div id="loading">Armando el paisaje…</div>
@@ -1515,7 +1515,7 @@ const ALERO={};{const ax=FALLS.x+2.2,az=FALLS.alz!==undefined?FALLS.alz:FALLS.z+
   const an2=an.clone();an2.position.set(-1.45,.04,.1);an2.rotation.set(0,-.5,.05);g.add(an2);}
  g.traverse(o=>{if(o.isMesh)o.receiveShadow=true;});}
 const onAlero=(x,z)=>Math.abs(x-ALERO.x)<1.9&&z-ALERO.z>-.8&&z-ALERO.z<1.15;
-function aleroInShot(){if(SAVE.alero)return false;const p=new THREE.Vector3(ALERO.x,ALERO.y,ALERO.z),dist=camera.position.distanceTo(p);if(dist>9)return false;const v=p.clone().project(camera);return v.z<1&&Math.abs(v.x)<.45&&Math.abs(v.y)<.45;}
+function aleroInShot(){if(SAVE.alero)return false;const p=new THREE.Vector3(ALERO.x,ALERO.y,ALERO.z),dist=camera.position.distanceTo(p);if(dist>14)return false;const v=p.clone().project(camera);const aim=v.z<1&&Math.abs(v.x)<.5&&Math.abs(v.y)<.5;if(!aim)return false;if(caveView&&caveView.alc)return true;toastOnce('aleroHint','Parece que hay algo escondido detrás del agua… habría que entrar a ver.',20);return false;}
 function aleroFound(){SAVE.alero=true;save();chime();announce('Detrás de la cascada','🏺 Un alero escondido con vasijas, campanas de cerámica y zoolitos de piedra. Nuevo hallazgo.',{tab:'hallazgos',id:'hz-alero'});}
 // hornero con su nido de barro sobre un poste, cerca de la tapera
 const HORNO={};{const P=PLACES.find(q=>q.id==='tapera');let px=P.x+12,pz=P.z+8;for(let t=0;t<60;t++){const a=t*.7,r=10+t*.3,x=P.x+Math.cos(a)*r,z=P.z+Math.sin(a)*r;if(H(x,z)>.5&&slopeAt(x,z)<.3&&!hitObs(x,z,2)){px=x;pz=z;break;}}
