@@ -103,6 +103,7 @@ Un juego de Insight Reality
 - v100  El alero detrás de la cascada queda entero delante del paredón (las pinturas ya no se cortan) y la cortina de agua cae más adelante; si la camioneta quedó estacionada pegada al alero, se corre a la orilla
 - v101  La cortina de la cascada es más densa: desde afuera el alero casi no se ve; la luz de adentro solo se prende al entrar
 - v102  El hallazgo del alero solo cuenta con una foto sacada desde adentro; desde afuera aparece una pista
+- v103  La foto del alero también vale desde el agua si la cascada no tapa la vista (detrás de la cortina o desde un costado)
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v102).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v103).
 La versión vigente es index.html (lista como app instalable).
