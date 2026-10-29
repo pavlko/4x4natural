@@ -290,7 +290,7 @@ body.menu #touch{display:none!important}
  <g stroke="#fff" stroke-opacity=".2" stroke-width=".25" fill="none"><path d="M44 34l8 5M118 24l-6 8M100 74l11-4M52 76l4-6M128 52q3 3 2 7"/></g>
 </svg>
 <div class="hud" id="hud">
-  <div id="verHud" data-ver>v99</div>
+  <div id="verHud" data-ver>v100</div>
   <div id="tally"><b id="tBichos">0 / 11 bichos</b><span id="tLugares">0 / 7 lugares</span><span id="tPeces" hidden></span><span id="tMicro" hidden></span></div>
   <div id="tools">
     <button class="tool" id="bMenu" title="Menú">☰<small>menú</small></button>
@@ -370,7 +370,7 @@ body.menu #touch{display:none!important}
 <section class="tp" data-t="lugares"><h4><span class="ich" data-ic="lugares"></span> <span id="plH">Lugares</span></h4><div class="grid" id="plList"></div></section>
 <section class="tp" data-t="logros"><h4><span class="ich" data-ic="logros"></span> <span id="logH">Logros especiales</span></h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
 <section class="tp" data-t="hallazgos"><h4><span class="ich" data-ic="hallazgos"></span> Hallazgos</h4><div id="hzList"></div></section>
-<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v99</span></p></div>
+<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v100</span></p></div>
   </div>
 </div>
 <div id="start">
@@ -381,7 +381,7 @@ body.menu #touch{display:none!important}
     <p id="iosHint" class="ioshint" hidden>Para instalarla en iPhone o iPad: tocá <b>Compartir</b> y después <b>Agregar a inicio</b>.</p>
     <div class="players"><div id="profList"></div><button id="profNew" type="button">👤 Nuevo jugador</button><span id="profNewBox" hidden><input id="profName" maxlength="16" placeholder="Nombre del jugador"> <button id="profOk" type="button">Listo</button> <button id="profCancel" type="button" aria-label="Cancelar">✕</button></span></div>
     <label class="opt"><input type="checkbox" id="optTrees"> Pasar a través de los árboles (para los más chicos)</label>
-    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v99</span></p>
+    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v100</span></p>
   </div>
 </div>
 <div id="loading">Armando el paisaje…</div>
@@ -958,7 +958,7 @@ function updateClouds(dt){const L=WORLD*.68;for(const c of CLOUDS){c.m.position.
 // ===== LA VISTA DEL MICROSCOPIO =====
 const SCOPE={on:false,site:null,orgs:[],t:0};
 let microT=0;
-function enterAlcove(){car.x=ALERO.x;car.z=ALERO.z+.6;car.y=ALERO.fl;car.v=0;caveView=new THREE.Vector3(ALERO.x,ALERO.fl+1.5,ALERO.z+.75);caveView.alc=true;togglePhoto(true);document.body.classList.add('cave');photoYaw=0;photoPitch=-.18;photoFov=70;toastOnce('alero2','Caminá con ▲▼ y girá con ◀▶ o arrastrando. Para volver al agua, caminá hacia el borde o tocá 📷.',30);}
+function enterAlcove(){if(typeof PARK!=='undefined'&&PARK&&Math.hypot(PARK.x-ALERO.x,PARK.z-ALERO.z)<14){const an=DIVES[0].anchors[0],sp=shorePoint(an[0],an[1]);PARK.x=sp[0];PARK.z=sp[1];PARK.y=H(sp[0],sp[1]);truck.position.set(sp[0],PARK.y,sp[1]);}car.x=ALERO.x;car.z=ALERO.z+.6;car.y=ALERO.fl;car.v=0;caveView=new THREE.Vector3(ALERO.x,ALERO.fl+1.5,ALERO.z+.75);caveView.alc=true;togglePhoto(true);document.body.classList.add('cave');photoYaw=0;photoPitch=-.18;photoFov=70;toastOnce('alero2','Caminá con ▲▼ y girá con ◀▶ o arrastrando. Para volver al agua, caminá hacia el borde o tocá 📷.',30);}
 function climbAlero(){if(!DIVE.on)return;endDive(false);car.x=ALERO.x;car.z=ALERO.z+.5;car.y=ALERO.fl;car.v=0;car.h=car.mh=0;camPos.set(car.x,car.y+2.5,car.z+4.5);toastOnce('alero','Estás en el alero detrás de la cascada. Mirá las cerámicas y sacales una foto.',60);}
 function updateMicro(dt){if(!SAVE.micro){if(!DIVE.on&&!photo&&Math.hypot(car.x-CASITA.mx,car.z-CASITA.mz)<5.5&&Math.abs(car.v)<3)microFound();return;}
  JARFLAGS.forEach((f,i)=>f.rotation.y=Math.sin(performance.now()*.003+i)*.5);microT+=dt;if(microT<.15)return;microT=0;let near=null;
@@ -1156,7 +1156,7 @@ const fallTex=(()=>{const c=document.createElement('canvas');c.width=64;c.height
 const fallTex2=fallTex.clone();fallTex2.needsUpdate=true;fallTex2.repeat.set(1.4,.8);
 {const topY=25.6,w=6.8,hgt=topY+.4;
  for(const [tex,dz,op] of [[fallTex,0,.88],[fallTex2,.4,.55]]){const m=new THREE.Mesh(new THREE.PlaneGeometry(w,hgt),new THREE.MeshStandardMaterial({map:tex,transparent:true,opacity:op,roughness:.25,side:THREE.DoubleSide,depthWrite:false,emissive:0x8a9aa2,emissiveIntensity:.3}));
-  let zb=FALLS.z+1;for(let z=FALLS.z;z<FALLS.z+9;z+=.2){if(H(FALLS.x,z)<-.4&&H(FALLS.x-2,z)<0&&H(FALLS.x+2,z)<.3){zb=z;break;}}zb=Math.max(zb,FALLS.z+2.3)+2.3;const z0=FALLS.z-.4,ang=Math.atan2(zb-z0,hgt);
+  let zb=FALLS.z+1;for(let z=FALLS.z;z<FALLS.z+9;z+=.2){if(H(FALLS.x,z)<-.4&&H(FALLS.x-2,z)<0&&H(FALLS.x+2,z)<.3){zb=z;break;}}zb=Math.max(zb,FALLS.z+2.3)+2.3;if(FALLS.alz===undefined){const ax=FALLS.x+2.2;let az=FALLS.z+3;for(let z=FALLS.z;z<FALLS.z+7;z+=.1){let mx=-9;for(const dx of[-2.1,-1,0,1,2.1])for(const dz of[-1.05,-.5,0])mx=Math.max(mx,H(ax+dx,z+dz));if(mx<.05){az=z;break;}}FALLS.alz=az;}zb=Math.max(zb,FALLS.alz+2.2);const z0=FALLS.z-.4,ang=Math.atan2(zb-z0,hgt);
   m.position.set(FALLS.x,topY-hgt/2,(z0+zb)/2+dz);m.rotation.x=-ang;m.scale.y=1/Math.cos(ang);scene.add(m);FALLS.zb=zb;}
  const up=new THREE.Mesh(new THREE.PlaneGeometry(40,40),water.material);up.rotation.x=-Math.PI/2;up.position.set(riverX(-282),topY,-284);scene.add(up);}
 // selva de quebrada junto a la cascada: helechos, chachíes, laureles, piedras con musgo y enredaderas
@@ -1481,7 +1481,7 @@ BUILD.aperea=(g,L)=>{const b=M(0x7a6248,.9),d=M(0x4a3a2a,.9);part(SPH,b,0,.1,0,.
    for(let k=0;k<26;k++){const a=rnd()*6.28,e=rnd()*1.1-.35,ce=Math.cos(e);part(SPH,orange,Math.cos(a)*1.16*ce,1.9+Math.sin(e)*1.06,Math.sin(a)*1.16*ce,.085,.085,.085,g);}}
   else{for(const[dx,rz] of[[0,0],[.25,-.4],[-.25,.45]]){const tr=part(CYL,M(0x8e8a80,.9),dx,.7,0,.07,1.4,.07,g);tr.rotation.z=rz;}const c=part(SPH,fig,0,1.85,0,1.5,.9,1.4,g);c.castShadow=true;part(SPH,fig,.8,1.6,.4,.8,.55,.8,g);part(SPH,fig,-.7,1.65,-.3,.8,.55,.8,g);}});}
 // detrás de la cascada: un alero con cerámicas y pinturas
-const ALERO={};{const ax=FALLS.x+2.2;let az=FALLS.z+1.5;for(let z=FALLS.z-1;z<FALLS.z+6;z+=.1){if(H(ax,z)<.6&&H(ax-1.4,z)<.9&&H(ax+1.4,z)<.9){az=z+.15;break;}}const y0=Math.max(.22,H(ax,az)+.05),g=new THREE.Group();g.position.set(ax,y0,az);scene.add(g);ALERO.x=ax;ALERO.y=y0+.5;ALERO.z=az;
+const ALERO={};{const ax=FALLS.x+2.2,az=FALLS.alz!==undefined?FALLS.alz:FALLS.z+3,y0=.22,g=new THREE.Group();g.position.set(ax,y0,az);scene.add(g);ALERO.x=ax;ALERO.y=y0+.5;ALERO.z=az;
  const rk=M(0x55524a,.95,{flatShading:true}),rg=jitter(new THREE.DodecahedronGeometry(1,1),.3);
  const ledge=new THREE.Mesh(rg,rk);ledge.scale.set(2.35,.3,1.3);ledge.position.set(0,-.32,.1);g.add(ledge);part(BOX,M(0x5c5850,.95),0,-.06,.05,4.3,.12,2.0,g);ALERO.fl=y0;const roof=new THREE.Mesh(rg,rk);roof.scale.set(2.3,.45,1.25);roof.position.set(0,2.35,-.1);g.add(roof);for(const sd of[-1,1]){const wl=new THREE.Mesh(rg,rk);wl.scale.set(.4,1.3,.9);wl.position.set(sd*2.05,1.05,-.3);g.add(wl);}
  {const dk=M(0x2a251f,1,{side:THREE.DoubleSide});const bw=new THREE.Mesh(new THREE.PlaneGeometry(4.6,2.8),dk);bw.position.set(0,1.2,-.98);g.add(bw);for(const sd of[-1,1]){const sw=new THREE.Mesh(new THREE.PlaneGeometry(2.2,2.8),dk);sw.rotation.y=Math.PI/2;sw.position.set(sd*2.25,1.2,.1);g.add(sw);}const cl=new THREE.Mesh(new THREE.PlaneGeometry(4.6,2.2),dk);cl.rotation.x=Math.PI/2;cl.position.set(0,2.45,.1);g.add(cl);}

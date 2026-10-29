@@ -100,6 +100,7 @@ Un juego de Insight Reality
 - v97  Teletransporte a bichos: va a donde está el bicho en ese momento, a una distancia que no lo espante, mirándolo de frente
 - v98  Compartir cualquier foto del cuaderno (botón ↗ en cada foto); botón 📸 para capturar la pantalla entera del juego y compartirla con el link
 - v99  En la captura de pantalla el minimapa sale redondo y en su lugar
+- v100  El alero detrás de la cascada queda entero delante del paredón (las pinturas ya no se cortan) y la cortina de agua cae más adelante; si la camioneta quedó estacionada pegada al alero, se corre a la orilla
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v99).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v100).
 La versión vigente es index.html (lista como app instalable).
