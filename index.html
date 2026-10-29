@@ -1526,7 +1526,7 @@ const ALERO={};{const ax=FALLS.x+2.2,az=FALLS.alz!==undefined?FALLS.alz:FALLS.z+
   const an2=an.clone();an2.position.set(-1.45,.04,.1);an2.rotation.set(0,-.5,.05);g.add(an2);}
  g.traverse(o=>{if(o.isMesh)o.receiveShadow=true;});}
 const onAlero=(x,z)=>Math.abs(x-ALERO.x)<1.9&&z-ALERO.z>-.8&&z-ALERO.z<1.15;
-function aleroInShot(){if(SAVE.alero)return false;const p=new THREE.Vector3(ALERO.x,ALERO.y,ALERO.z),dist=camera.position.distanceTo(p);if(dist>9)return false;const v=p.clone().project(camera);return v.z<1&&Math.abs(v.x)<.45&&Math.abs(v.y)<.45;}
+function aleroInShot(){if(SAVE.alero)return false;const p=new THREE.Vector3(ALERO.x,ALERO.y,ALERO.z),dist=camera.position.distanceTo(p);if(dist>14)return false;const v=p.clone().project(camera);const aim=v.z<1&&Math.abs(v.x)<.5&&Math.abs(v.y)<.5;if(!aim)return false;if(caveView&&caveView.alc)return true;toastOnce('aleroHint','Parece que hay algo escondido detrás del agua… habría que entrar a ver.',20);return false;}
 function aleroFound(){SAVE.alero=true;save();chime();announce('Detrás de la cascada','🏺 Un alero escondido con vasijas, campanas de cerámica y zoolitos de piedra. Nuevo hallazgo.',{tab:'hallazgos',id:'hz-alero'});}
 // hornero con su nido de barro sobre un poste, cerca de la tapera
 const HORNO={};{const P=PLACES.find(q=>q.id==='tapera');let px=P.x+12,pz=P.z+8;for(let t=0;t<60;t++){const a=t*.7,r=10+t*.3,x=P.x+Math.cos(a)*r,z=P.z+Math.sin(a)*r;if(H(x,z)>.5&&slopeAt(x,z)<.3&&!hitObs(x,z,2)){px=x;pz=z;break;}}
