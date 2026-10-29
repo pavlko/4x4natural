@@ -65,6 +65,7 @@ body.walking #bLow,body.walking #bReset{opacity:.35;pointer-events:none}body.wal
 body.nomap #mapwrap{display:none!important}
 #photoExit{position:fixed;left:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 110px);font-size:15px!important;padding:7px 14px!important;z-index:6;display:none;background:rgba(35,64,47,.92);color:#F3EBDD;border:2px solid #D9B65E;border-radius:22px;padding:9px 18px;font-size:18px;font-weight:700}
 body.photo:not(.diving):not(.cave) #photoExit{display:block}
+.card .ph{position:relative}.shr{position:absolute;right:6px;bottom:6px;width:34px;height:34px;border-radius:50%;border:2px solid #F3EBDD;background:rgba(35,64,47,.85);color:#F3EBDD;font-size:18px;font-weight:700;line-height:1;cursor:pointer}
 #fade{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none;transition:opacity .25s;z-index:40}#fade.show{opacity:1}
 body.cave #microBtn,body.diving #microBtn{bottom:calc(env(safe-area-inset-bottom,0px) + 150px)}
 #scope{position:fixed;inset:0;z-index:25;display:none;align-items:center;justify-content:center;background:rgba(10,8,5,.9)}#scope.show{display:flex}
@@ -289,7 +290,7 @@ body.menu #touch{display:none!important}
  <g stroke="#fff" stroke-opacity=".2" stroke-width=".25" fill="none"><path d="M44 34l8 5M118 24l-6 8M100 74l11-4M52 76l4-6M128 52q3 3 2 7"/></g>
 </svg>
 <div class="hud" id="hud">
-  <div id="verHud" data-ver>v97</div>
+  <div id="verHud" data-ver>v98</div>
   <div id="tally"><b id="tBichos">0 / 11 bichos</b><span id="tLugares">0 / 7 lugares</span><span id="tPeces" hidden></span><span id="tMicro" hidden></span></div>
   <div id="tools">
     <button class="tool" id="bMenu" title="Menú">☰<small>menú</small></button>
@@ -298,6 +299,7 @@ body.menu #touch{display:none!important}
     <button class="tool" id="bMap" title="Mapa (M)" hidden>🗺️<small>M</small></button>
     <button class="tool" id="bLow" title="Tracción baja (Q)" hidden>4L<small>Q</small></button>
     <button class="tool" id="bReset" title="Destrabar (R)" hidden>↺<small>R</small></button>
+    <button class="tool" id="bShot" title="Capturar la pantalla y compartir">📸<small>capt.</small></button>
     <button class="tool" id="bSnd" title="Sonido">🔊<small>son.</small></button>
   </div>
   <div id="toasts"></div>
@@ -368,7 +370,7 @@ body.menu #touch{display:none!important}
 <section class="tp" data-t="lugares"><h4><span class="ich" data-ic="lugares"></span> <span id="plH">Lugares</span></h4><div class="grid" id="plList"></div></section>
 <section class="tp" data-t="logros"><h4><span class="ich" data-ic="logros"></span> <span id="logH">Logros especiales</span></h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
 <section class="tp" data-t="hallazgos"><h4><span class="ich" data-ic="hallazgos"></span> Hallazgos</h4><div id="hzList"></div></section>
-<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v97</span></p></div>
+<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v98</span></p></div>
   </div>
 </div>
 <div id="start">
@@ -379,7 +381,7 @@ body.menu #touch{display:none!important}
     <p id="iosHint" class="ioshint" hidden>Para instalarla en iPhone o iPad: tocá <b>Compartir</b> y después <b>Agregar a inicio</b>.</p>
     <div class="players"><div id="profList"></div><button id="profNew" type="button">👤 Nuevo jugador</button><span id="profNewBox" hidden><input id="profName" maxlength="16" placeholder="Nombre del jugador"> <button id="profOk" type="button">Listo</button> <button id="profCancel" type="button" aria-label="Cancelar">✕</button></span></div>
     <label class="opt"><input type="checkbox" id="optTrees"> Pasar a través de los árboles (para los más chicos)</label>
-    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v97</span></p>
+    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v98</span></p>
   </div>
 </div>
 <div id="loading">Armando el paisaje…</div>
@@ -1710,7 +1712,7 @@ function renderMicro(){const el=$('#microPage');if(!el)return;if(!SAVE.micro){el
 function renderAgua(){const el=$('#agua'),fish=SAVE.fish||{};if(!SAVE.mask){el.innerHTML='<p class="ptip">Para mirar bajo el agua hace falta una máscara. ¿Habrá usado una alguien por acá?</p>';return;}
  let h='<p class="ptip">🤿 Tenés la máscara del viejo naturalista. En el mapa (M) están marcados los lugares donde se puede bucear.</p><h4>El mapa del naturalista</h4><div class="dives">'+DIVES.map(d=>`<div class="dive${SAVE.dives&&SAVE.dives[d.id]?' on':''}"><h5>${SAVE.dives&&SAVE.dives[d.id]?'🤿 '+d.name:'¿?'}</h5><p>“${d.note}”</p></div>`).join('')+'</div><h4>Peces</h4><div class="grid">';
  h+=FISH.map(fi=>{const f=fish[fi.id];return f?`<div class="card" data-id="${fi.id}"><div class="ph"><img alt="Foto de ${fi.name}" src="${f.img}"></div><h3>${fi.name}</h3><div class="sci">${fi.sci}</div><p>${fi.note}</p><div class="where">Encontrado: ${f.where}</div></div>`:`<div class="card locked"><div class="ph">?</div><h3>Sin descubrir</h3><p>${fi.hint}</p></div>`;}).join('')+'</div>';el.innerHTML=h;}
-function renderBook(){{const tb=document.querySelector('#bookTabs [data-t=agua]');if(tb){tb.style.display=SAVE.mask?'':'none';if(!SAVE.mask&&tb.classList.contains('on'))goTab('portada');}const tm=document.querySelector('#bookTabs [data-t=micro]');if(tm){tm.style.display=SAVE.micro?'':'none';if(!SAVE.micro&&tm.classList.contains('on'))goTab('portada');}}renderMicro();renderPortada();renderAgua();
+function renderBook(){setTimeout(addShareBtns,0);{const tb=document.querySelector('#bookTabs [data-t=agua]');if(tb){tb.style.display=SAVE.mask?'':'none';if(!SAVE.mask&&tb.classList.contains('on'))goTab('portada');}const tm=document.querySelector('#bookTabs [data-t=micro]');if(tm){tm.style.display=SAVE.micro?'':'none';if(!SAVE.micro&&tm.classList.contains('on'))goTab('portada');}}renderMicro();renderPortada();renderAgua();
  for(const gk in GRPN)$('#cards_'+gk).innerHTML='';
  for(const sp of SPECIES){const f=SAVE.found[sp.id];if(sp.secret&&!f)continue;const d=document.createElement('div');d.className='card'+(f?'':' locked')+(sp.secret?' secret':'');d.dataset.id=sp.id;
   d.innerHTML=f?`<div class="ph">${f.img?`<img alt="Foto de ${sp.name}" src="${f.img}">`:'📷'}</div><h3>${sp.name}</h3><div class="sci">${sp.sci}</div><p>${sp.note}</p><p class="more">${sp.more}</p>${specialHTML(sp,f)}<div class="where">Encontrado: ${f.where}</div><div class="links">${links(sp)}</div>`
@@ -1790,7 +1792,7 @@ $('#bCam').onclick=()=>togglePhoto();$('#bBook').onclick=()=>toggleBook();$('#bL
  const sendShare=()=>{const t=txt();if(!t){toast('Escribí algo primero 🙂');return;}const body=t+info()+'\n\nPara: '+FB_MAIL;if(navigator.share){navigator.share({title:'Safari Gaucho: sugerencia',text:body}).catch(()=>{});}else{location.href='mailto:'+FB_MAIL+'?subject='+encodeURIComponent('Safari Gaucho: '+t.split('\n')[0].slice(0,60))+'&body='+encodeURIComponent(t+info());}};$('#fbShare').onclick=sendShare;
  const _m=()=>{const t=txt();if(!t){toast('Escribí algo primero 🙂');return;}location.href='mailto:'+FB_MAIL+'?subject='+encodeURIComponent('Safari Gaucho: '+t.split('\n')[0].slice(0,60))+'&body='+encodeURIComponent(t+info());};
  const _c=()=>{const t=txt();if(!t){toast('Escribí algo primero 🙂');return;}navigator.clipboard&&navigator.clipboard.writeText(t+info()).then(()=>toast('Copiado ✓')).catch(()=>toast('No se pudo copiar'));};
- $('#fbText').addEventListener('keydown',e=>e.stopPropagation());}$('#climbBtn').onclick=climbAlero;$('#walkBtn').onclick=startWalk;$('#carBtn').onclick=endWalk;$('#slowBtn').onclick=()=>{WALK.run=!WALK.run;};$('#announce').addEventListener('pointerdown',e=>{if(ANN_GO){e.stopPropagation();openGoto(ANN_GO);}});$('#scopeCv').addEventListener('pointerdown',scopeTap);$('#backCar').onclick=()=>{if(DIVE.on)togglePhoto(false);};$('#shareBtn').onclick=()=>doShare();$('#smCopy').onclick=shareCopy;$('#smMail').onclick=shareMail;$('#smWA').onclick=shareWA;$('#smX').onclick=()=>$('#shareMenu').classList.remove('show');$('#bMap').onclick=()=>toggleMap();$('#mapwrap').onclick=()=>toggleMap();$('#bMapClose').onclick=()=>toggleMap(false);$('#bReset').onclick=()=>resetCar();$('#bigmap').addEventListener('click',e=>{if(e.target.id==='bigmap')toggleMap(false);});
+ $('#fbText').addEventListener('keydown',e=>e.stopPropagation());}$('#climbBtn').onclick=climbAlero;$('#walkBtn').onclick=startWalk;$('#carBtn').onclick=endWalk;$('#slowBtn').onclick=()=>{WALK.run=!WALK.run;};$('#announce').addEventListener('pointerdown',e=>{if(ANN_GO){e.stopPropagation();openGoto(ANN_GO);}});$('#scopeCv').addEventListener('pointerdown',scopeTap);$('#backCar').onclick=()=>{if(DIVE.on)togglePhoto(false);};$('#shareBtn').onclick=()=>doShare();$('#bShot').onclick=screenShot;$('#smCopy').onclick=shareCopy;$('#smMail').onclick=shareMail;$('#smWA').onclick=shareWA;$('#smX').onclick=()=>$('#shareMenu').classList.remove('show');$('#bMap').onclick=()=>toggleMap();$('#mapwrap').onclick=()=>toggleMap();$('#bMapClose').onclick=()=>toggleMap(false);$('#bReset').onclick=()=>resetCar();$('#bigmap').addEventListener('click',e=>{if(e.target.id==='bigmap')toggleMap(false);});
 // arrastrar para mirar
 let lastP=null;const cv=$('#c');const PTR=new Map();let pinch=null;
 function pinchDist(){const p=[...PTR.values()];return Math.hypot(p[0][0]-p[1][0],p[0][1]-p[1][1]);}
@@ -1893,6 +1895,18 @@ function makeShare(label){const src=renderer.domElement,cw=src.width*.8,ch=cw/1.
  g.font='500 '+Math.round(band*.3)+'px "Barlow Condensed",sans-serif';g.fillStyle='#D9B65E';g.textAlign='right';g.fillText('Insight Reality · pavlko.github.io/4x4natural',W-band*.4,Hh+band/2);
  lastShare={label,blob:null,canvas:c};const ls=lastShare;try{c.toBlob(b=>{ls.blob=b;},'image/jpeg',.88);}catch(e){}
  const btn=$('#shareBtn');btn.classList.add('show');clearTimeout(shareTimer);shareTimer=setTimeout(()=>btn.classList.remove('show'),7000);}
+function bandCanvas(src,sw,sh,label){const W=Math.max(720,Math.min(1600,Math.round(sw))),Hh=Math.round(W*sh/sw),band=Math.round(Math.max(54,W*.065));const c=document.createElement('canvas');c.width=W;c.height=Hh+band;const g=c.getContext('2d');g.imageSmoothingQuality='high';g.drawImage(src,0,0,sw,sh,0,0,W,Hh);
+ g.fillStyle='#23402F';g.fillRect(0,Hh,W,band);g.fillStyle='#F3EBDD';g.textBaseline='middle';g.font='700 '+Math.round(band*.42)+'px "Barlow Condensed",sans-serif';g.fillText((label?label+' · ':'')+'Safari Gaucho',band*.4,Hh+band/2);
+ g.font='500 '+Math.round(band*.3)+'px "Barlow Condensed",sans-serif';g.fillStyle='#D9B65E';g.textAlign='right';g.fillText('Insight Reality · pavlko.github.io/4x4natural',W-band*.4,Hh+band/2);return c;}
+function shareImg(srcURL,label){const im=new Image();im.onload=()=>{const c=bandCanvas(im,im.naturalWidth,im.naturalHeight,label);lastShare={label,blob:null,canvas:c};doShare();};im.src=srcURL;}
+function addShareBtns(){document.querySelectorAll('#book .card .ph img').forEach(img=>{if(img.parentNode.querySelector('.shr'))return;const b=document.createElement('button');b.type='button';b.className='shr';b.textContent='↗';b.title='Compartir esta foto';b.onclick=e=>{e.stopPropagation();const card=img.closest('.card'),h=card&&card.querySelector('h3');shareImg(img.src,h?h.textContent:'');};img.parentNode.appendChild(b);});}
+let H2C=null;function loadH2C(){if(window.html2canvas)return Promise.resolve();if(H2C)return H2C;H2C=new Promise((res,rej)=>{const sc=document.createElement('script');sc.src='https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';sc.onload=res;sc.onerror=rej;document.head.appendChild(sc);});return H2C;}
+async function screenShot(){const btn=$('#bShot');btn.disabled=true;toast('📸 Capturando la pantalla…');const cv=renderer.domElement;let ok=false;
+ try{await loadH2C();renderer.render(scene,camera);const data=cv.toDataURL('image/jpeg',.92);const im=document.createElement('img');im.src=data;await new Promise(r=>{im.onload=r;});const r=cv.getBoundingClientRect();im.style.cssText=`position:fixed;left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px;z-index:0`;im.id='shotImg';document.body.insertBefore(im,cv);cv.style.visibility='hidden';
+  const sc=Math.min(2,window.devicePixelRatio||1);const shot=await window.html2canvas(document.body,{backgroundColor:'#000',scale:sc,useCORS:true,logging:false,ignoreElements:el=>el.id==='bShot'||el.id==='toasts'||el.id==='shareMenu'||el.id==='shareBtn'});
+  im.remove();cv.style.visibility='';const c=bandCanvas(shot,shot.width,shot.height,'');lastShare={label:'',blob:null,canvas:c};ok=true;doShare();}
+ catch(e){const s2=$('#shotImg');if(s2)s2.remove();cv.style.visibility='';}
+ if(!ok){renderer.render(scene,camera);const c=bandCanvas(cv,cv.width,cv.height,'');lastShare={label:'',blob:null,canvas:c};doShare();}btn.disabled=false;}
 async function doShare(){if(!lastShare)return;const text=(lastShare.label?lastShare.label+': ':'')+'lo fotografié en Safari Gaucho, un juego de Insight Reality. ¿Te animás? '+GAME_URL;
  try{if(!lastShare.blob&&lastShare.canvas)lastShare.blob=await new Promise(r=>lastShare.canvas.toBlob(r,'image/jpeg',.88));if(lastShare.blob){const file=new File([lastShare.blob],'safari-gaucho.jpg',{type:'image/jpeg'});if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],text});return;}}}catch(e){if(e&&e.name==='AbortError')return;}
  $('#shareMenu').classList.add('show');}
