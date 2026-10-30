@@ -114,6 +114,7 @@ Un juego de Insight Reality
 - v111  Volante en vez de botones izquierda/derecha; menú junto al contador (con ícono de cuaderno), compartir arriba a la derecha, foto y sonido abajo al medio; pistas arriba y con fondo oscuro en vertical; inicio y manejo acomodados en horizontal; ícono de hallazgos como mano abierta; el puma aparece como "El fantasma de la sierra"; fotos especiales bajo el agua recién con la máscara
 - v112  Inicio: Explorar con el logo abajo a la derecha, cuaderno a la izquierda, 🎨 junto al lápiz del jugador; barro que patina más; charcos marrones; volante sin saltos; caminando sin volante y con cámara fija el arrastre orbita; buceo con joystick y botones de subir/bajar; foto caminando con controles; acelerador gradual; contador con fondo de cuaderno; sonido a la izquierda de foto; pistas siempre arriba; salir del agua donde estaba el botón de entrar
 - v113  Insectos: hormigas cortadoras con su camino y hormiguero (foto especial con el hormiguero), araña tejedora con una telaraña grande junto a la tapera, colmena en un tronco cerca del camino con nubes de abejas
+- v114  Buceo con dos joysticks: el izquierdo mira (como arrastrar la pantalla), el derecho avanza, retrocede y se corre a los costados
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v113).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v114).
 La versión vigente es index.html (lista como app instalable).
