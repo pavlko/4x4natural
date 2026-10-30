@@ -44,10 +44,12 @@ button:focus-visible{outline:2px solid var(--senal);outline-offset:2px}
 #diveBtn.show{display:block}
 #microBtn{position:absolute;left:calc(50% + 46px);transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 70px);width:66px;height:66px;padding:0!important;border-radius:50%!important;font-size:32px!important;display:none;background:#5a3f1c;color:#f7ecd2;border:2px solid #d9b65e;border-radius:26px;padding:10px 22px;font-size:22px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.4)}#microBtn.show{display:block}
 #climbBtn{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 150px);display:none;background:#5a3f1c;color:#f7ecd2;border:2px solid #d9b65e;border-radius:26px;padding:10px 22px;font-size:22px;font-weight:700;z-index:5}#climbBtn.show{display:block}
-#walkBtn,#carBtn,#slowBtn{position:absolute;left:12px;top:calc(env(safe-area-inset-top,0px) + 96px);display:none;background:rgba(35,64,47,.9);color:#F3EBDD;border:2px solid #D9B65E;border-radius:22px;padding:9px 18px;font-size:19px;font-weight:700;box-shadow:0 3px 10px rgba(0,0,0,.35);z-index:4}
+#walkBtn,#carBtn,#slowBtn{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 146px);top:auto;font-size:16px!important;padding:7px 14px!important;display:none;background:rgba(35,64,47,.9);color:#F3EBDD;border:2px solid #D9B65E;border-radius:22px;padding:9px 18px;font-size:19px;font-weight:700;box-shadow:0 3px 10px rgba(0,0,0,.35);z-index:4}
 #walkBtn small,#carBtn small{font-size:11px;opacity:.7;margin-left:4px}#walkBtn.show,#carBtn.show,#slowBtn.show{display:block}
-#slowBtn{top:calc(env(safe-area-inset-top,0px) + 142px);border-color:#8a7a5a;font-size:15px}#slowBtn.on{background:#D9B65E;color:#1f160e}
+#carBtn{transform:translateX(calc(-100% - 6px))}#slowBtn{transform:translateX(6px);border-color:#8a7a5a}
+@media (orientation:portrait) and (max-width:700px){#walkBtn,#carBtn,#slowBtn{bottom:calc(env(safe-area-inset-bottom,0px) + 226px)}}#slowBtn.on{background:#D9B65E;color:#1f160e}
 body.walking #bLow,body.walking #bReset{opacity:.35;pointer-events:none}body.walking #gear{display:none}
+#goShare{background:rgba(35,64,47,.85);color:#F3EBDD;border:2px solid #D9B65E;border-radius:4px;padding:10px 18px;font-size:20px;font-weight:700}
 #goCustom{background:rgba(35,64,47,.85);color:#F3EBDD;border:2px solid #D9B65E;border-radius:4px;padding:10px 18px;font-size:20px;font-weight:700}
 #custom{position:fixed;left:0;right:0;bottom:0;z-index:20;display:none;justify-content:center;pointer-events:none}#custom.show{display:flex}
 .cpanel{pointer-events:auto;width:min(620px,100vw);max-height:56vh;overflow:auto;background:rgba(27,23,18,.94);border-top:4px solid #D9B65E;border-radius:10px 10px 0 0;padding:12px 16px calc(env(safe-area-inset-bottom,0px) + 14px);color:#F3EBDD}
@@ -224,6 +226,7 @@ body.photo #raceArrow{display:none!important}
 #confetti{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .partybox{position:relative;background:var(--monte);color:var(--kraft);border-radius:6px;padding:24px 28px;max-width:min(520px,92vw);text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.5)}
 .partyemoji{font-size:40px}.partybox h2{margin:6px 0;font-size:40px;line-height:1}.partybox p{margin:6px 0;font-size:20px}.partynote{font-family:Newsreader,serif;font-style:italic;color:#c9d6c4}
+#partyBook{margin:12px 0 0 8px;background:none;color:var(--kraft);border:2px solid var(--kraft);border-radius:3px;padding:8px 18px;font-size:19px;font-weight:700}
 #partyOk{margin-top:12px;background:var(--senal);color:#1f160e;border:0;border-radius:3px;padding:10px 24px;font-size:22px;font-weight:700}
 #help{position:fixed;inset:0;z-index:20;background:rgba(15,12,9,.6);display:none;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top,0px) + 16px) 16px calc(env(safe-area-inset-bottom,0px) + 16px)}#help.show{display:flex}
 .helpbody h4{margin:14px 0 6px;font-size:22px}.helpbody h4:first-child{margin-top:0}.helpbody dl{display:grid;grid-template-columns:minmax(120px,max-content) 1fr;gap:4px 14px;margin:0}.helpbody dt{font-weight:700}.helpbody dd{margin:0;font-family:Newsreader,serif;font-size:16px}.helpbody p{font-family:Newsreader,serif;font-size:16px;margin:0;line-height:1.4}
@@ -294,7 +297,7 @@ body.menu #touch{display:none!important}
  <g stroke="#fff" stroke-opacity=".2" stroke-width=".25" fill="none"><path d="M44 34l8 5M118 24l-6 8M100 74l11-4M52 76l4-6M128 52q3 3 2 7"/></g>
 </svg>
 <div class="hud" id="hud">
-  <div id="verHud" data-ver>v107</div>
+  <div id="verHud" data-ver>v108</div>
   <div id="tally"><b id="tBichos">0 / 11 bichos</b><span id="tLugares">0 / 7 lugares</span><span id="tPeces" hidden></span><span id="tMicro" hidden></span></div>
   <div id="tools">
     <button class="tool" id="bMenu" title="Menú">☰<small>menú</small></button>
@@ -341,7 +344,7 @@ body.menu #touch{display:none!important}
 <div id="announce" aria-live="polite"></div>
 <button id="backCar" type="button">🚶 Salir del agua</button>
 <div id="air" aria-label="Aire"><span>Aire</span><div><i id="airFill"></i></div></div>
-<div id="party" role="dialog" aria-label="Cuaderno completo"><canvas id="confetti"></canvas><div class="partybox"><div class="partyemoji">🦩🦫🦉🐊</div><h2>¡Completaste el cuaderno!</h2><p id="partySub"></p><p class="partynote">Encontraste a todos los bichos de la sierra y el humedal, y conociste todos sus lugares. ¿Te animás a buscar los logros escondidos?</p><button id="partyOk">¡Seguir explorando!</button></div></div>
+<div id="party" role="dialog" aria-label="Cuaderno completo"><canvas id="confetti"></canvas><div class="partybox"><div class="partyemoji">🦩🦫🦉🐊</div><h2>¡Completaste el cuaderno!</h2><p id="partySub"></p><p class="partynote">Encontraste a todos los bichos de la sierra y el humedal, y conociste todos sus lugares. ¿Te animás a buscar los logros escondidos?</p><button id="partyOk">¡Seguir explorando!</button><button id="partyBook" type="button">📓 Ver en el cuaderno</button></div></div>
 <div id="help" role="dialog" aria-label="Ayuda"><div class="cover"><header><h2>Ayuda<em>Cómo se juega</em></h2><button class="close" id="helpClose">Cerrar</button></header><div class="pages helpbody">
 <h4>Manejar</h4><dl><dt>W A S D o flechas</dt><dd>Acelerar, frenar o ir marcha atrás, y doblar. El acelerador sube de a poco: con toques cortos vas despacio.</dd><dt>Q</dt><dd>Tracción baja (4L): más fuerza para subir laderas, pero menos velocidad.</dd><dt>R o ↺</dt><dd>Destrabar: corre la camioneta a un lugar libre cercano.</dd><dt>Teléfono o tablet</dt><dd>Flechas en pantalla.</dd></dl>
 <h4>Mirar alrededor de la camioneta</h4><dl><dt>Arrastrar con el mouse o el dedo</dt><dd>Hacia los costados gira la cámara; hacia arriba y abajo la sube y la baja.</dd><dt>Rueda del mouse o pellizcar</dt><dd>Acercar. La vista lejana se desbloquea después de descubrir algunos lugares y recorrer una buena parte del mapa.</dd><dt>Doble click o doble toque</dt><dd>Deja la cámara fija donde la pusiste. Otro doble toque la libera y vuelve sola atrás de la camioneta.</dd></dl>
@@ -374,18 +377,18 @@ body.menu #touch{display:none!important}
 <section class="tp" data-t="lugares"><h4><span class="ich" data-ic="lugares"></span> <span id="plH">Lugares</span></h4><div class="grid" id="plList"></div></section>
 <section class="tp" data-t="logros"><h4><span class="ich" data-ic="logros"></span> <span id="logH">Logros especiales</span></h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
 <section class="tp" data-t="hallazgos"><h4><span class="ich" data-ic="hallazgos"></span> Hallazgos</h4><div id="hzList"></div></section>
-<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v107</span></p></div>
+<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v108</span></p></div>
   </div>
 </div>
 <div id="start">
   <div class="in">
     <h1>Safari<br>Gaucho<sup>beta</sup></h1>
     <p class="lead">Manejá por la sierra y el humedal y fotografiá los bichos donde viven. Algunos están a la vista; otros, en lugares que hay que encontrar.</p>
-    <div class="startbtns"><button id="go">Arrancar</button><button id="goBook">📓 Cuaderno de campo</button><button id="goCustom">🎨 Personalizar</button><button id="installBtn" hidden>⬇ Instalar app</button></div>
+    <div class="startbtns"><button id="go">Arrancar</button><button id="goBook">📓 Cuaderno de campo</button><button id="goCustom">🎨 Personalizar</button><button id="goShare" type="button">📤 Compartir el juego</button><button id="installBtn" hidden>⬇ Instalar app</button></div>
     <p id="iosHint" class="ioshint" hidden>Para instalarla en iPhone o iPad: tocá <b>Compartir</b> y después <b>Agregar a inicio</b>.</p>
     <div class="players"><div id="profList"></div><button id="profNew" type="button">👤 Nuevo jugador</button><span id="profNewBox" hidden><input id="profName" maxlength="16" placeholder="Nombre del jugador"> <button id="profOk" type="button">Listo</button> <button id="profCancel" type="button" aria-label="Cancelar">✕</button></span></div>
     <label class="opt"><input type="checkbox" id="optTrees"> Pasar a través de los árboles (para los más chicos)</label>
-    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v107</span></p>
+    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v108</span></p>
   </div>
 </div>
 <div id="loading">Armando el paisaje…</div>
@@ -623,7 +626,7 @@ const SPECIES=[
   hint:'En la orilla de los charcos del barrial. Su canto parece un llanto.',
   note:'Ranita parda con manchas oscuras que vive en charcos que se llenan con la lluvia. Su canto, un “uaaa” que sube y baja, parece el llanto de un bebé o un maullido.'},
  {id:'puma',name:'Puma',sci:'Puma concolor',secret:true,high:true,more:'Puede medir más de 2 m con la cola. Caza de noche y al amanecer, y recorre territorios enormes: decenas de kilómetros.',size:1.2,hab:'land',minH:22,rest:8,spots:[[-160,-225]],wander:75,walk:1.3,run:8,shy:{d:85,v:-1},
-  hint:'',
+  hint:'Es tan tímido que casi nadie lo ve: buscalo en lo más alto y solitario de la sierra, y acercate muy despacio.',
   note:'El gran felino de América. Anda por las partes más altas y solitarias de la sierra, donde puede vigilar sin ser visto. Es tan tímido que casi nadie lo ve: en Uruguay se lo creía desaparecido, y solo muy de vez en cuando aparecen rastros o avistamientos en sierras lejanas.'}
 ];
 const GRPN={aves:['','Aves'],mamiferos:['','Mamíferos'],reptiles:['','Reptiles'],anfibios:['','Anfibios'],invertebrados:['','Invertebrados']};
@@ -1730,7 +1733,7 @@ function renderBook(){setTimeout(addShareBtns,0);{const tb=document.querySelecto
  {const av=PLACES_AV(),nok=av.filter(p=>SAVE.places.includes(p.id)).length;$('#plH').textContent='Lugares ('+nok+' de '+av.length+')';let st=$('#plStamps');if(!st){st=document.createElement('div');st.id='plStamps';$('#plList').parentNode.insertBefore(st,$('#plList'));}st.innerHTML=stampGrid();}
  const ul=$('#plList');ul.innerHTML='';const pics=SAVE.placePics||{};for(const p of PLACES_AV()){const ok=SAVE.places.includes(p.id),d=document.createElement('div');d.className='card'+(ok?'':' locked');d.dataset.id=p.id;
   d.innerHTML=ok?`<div class="ph">${pics[p.id]?`<img alt="Foto de ${p.name}" src="${pics[p.id]}">`:'📷'}</div><h3>${p.name}</h3><p>${pics[p.id]?'':'Sin foto todavía: volvé y sacale una con la cámara.'}</p>`:`<div class="ph">?</div><h3>Sin descubrir</h3>`;ul.appendChild(d);}
- const lg=$('#logros');if(lg){const L=[[!!SAVE.raceWins,'🏁','Más rápido que un ñandú','Le ganaste una carrera.',SAVE.raceWins?'Carreras ganadas: '+SAVE.raceWins:''],[!!SAVE.nest,'🥚','El nido del tero','Lo encontraste lejos de los gritos.',''],[!!SAVE.found.puma,'★','El fantasma de la sierra','Fotografiaste al puma.','']];
+ const lg=$('#logros');if(lg){const L=[[!!SAVE.raceWins,'🏁','El rápido de la pradera','Le ganaste una carrera.',SAVE.raceWins?'Carreras ganadas: '+SAVE.raceWins:''],[!!SAVE.nest,'🥚','Los huevos del tero','Lo encontraste lejos de los gritos.',''],[!!SAVE.found.puma,'★','El fantasma de la sierra','Fotografiaste al puma.','']];
   lg.innerHTML=L.map(l=>l[0]?`<div class="logro on"><b>${l[1]}</b><div><h5>${l[2]}</h5><p>${l[3]} ${l[4]}</p></div></div>`:`<div class="logro"><b>?</b><div><h5>Logro escondido</h5></div></div>`).join('');$('#logH').textContent='Logros especiales ('+L.filter(l=>l[0]).length+' de 3)';}
  const hz=$('#hzList');const H0=SAVE.hall;const q=t=>encodeURIComponent(t);
  const lk=(href,t)=>`<a href="${href}" target="_blank" rel="noopener">${t}</a>`;
@@ -1795,7 +1798,7 @@ addEventListener('keydown',e=>{if(!started)return;keys[e.code]=true;
  if(e.code.startsWith('Arrow'))e.preventDefault();});
 addEventListener('keyup',e=>{keys[e.code]=false;});
 addEventListener('blur',()=>{for(const c in keys)keys[c]=false;});
-$('#bCam').onclick=()=>togglePhoto();$('#bBook').onclick=()=>toggleBook();$('#bLow').onclick=toggleLow;$('#bSnd').onclick=()=>toggleMute();$('#bClose').onclick=()=>toggleBook(false);$('#shoot').addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();shoot();});$('#diveBtn').onclick=()=>{if(DIVE.near&&SAVE.mask)startDive(DIVE.near);};$('#microBtn').onclick=()=>{if(SCOPE.near)openScope(SCOPE.near);};$('#scopeClose').onclick=closeScope;$('#photoExit').onclick=()=>togglePhoto(false);$('#gear').onclick=()=>{if(!WALK.on)toggleLow();};$('#resetBtn').onclick=()=>{if(!WALK.on)resetCar();};
+$('#bCam').onclick=()=>togglePhoto();$('#bBook').onclick=()=>toggleBook();$('#bLow').onclick=toggleLow;$('#bSnd').onclick=()=>toggleMute();$('#bClose').onclick=()=>toggleBook(false);$('#shoot').addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();shoot();});$('#diveBtn').onclick=()=>{if(DIVE.near&&SAVE.mask)startDive(DIVE.near);};$('#microBtn').onclick=()=>{if(SCOPE.near)openScope(SCOPE.near);};$('#scopeClose').onclick=closeScope;$('#partyBook').onclick=()=>{const k=$('#party').dataset.kind,T={bichos:'portada',lugares:'lugares',peces:'agua',buceo:'agua',micro:'micro',medal:'portada',hallazgos:'hallazgos'};$('#party').classList.remove('show');if(photo)togglePhoto(false);toggleBook(true);goTab(T[k]||'portada');};$('#photoExit').onclick=()=>togglePhoto(false);$('#gear').onclick=()=>{if(!WALK.on)toggleLow();};$('#resetBtn').onclick=()=>{if(!WALK.on)resetCar();};
 {const FB_MAIL='insightrealitycontact@gmail.com';const info=()=>{const v=(document.querySelector('[data-ver]')||{}).textContent||'';return `\n\n— Safari Gaucho ${v} · ${navigator.userAgent} · ${innerWidth}×${innerHeight}`;};
  const txt=()=>($('#fbText').value||'').trim();
  $('#fbGit').onclick=()=>{const t=txt();if(!t){toast('Escribí algo primero 🙂');return;}const title=t.split('\n')[0].slice(0,70);window.open('https://github.com/pavlko/4x4natural/issues/new?title='+encodeURIComponent(title)+'&body='+encodeURIComponent(t+info()),'_blank');};
@@ -2321,7 +2324,7 @@ function openGoto(g){if(!g)return;if(typeof SCOPE!=='undefined'&&SCOPE.on)closeS
 // ===== FESTEJO =====
 const SP_ICON={viudita:'🤝',dragon:'🤝',hornero:'🏠',bigua:'🐟',garza:'🕊️',espatula:'🕊️',nandu:'🐣',mulita:'🕳️',tero:'🥚',lobito:'🌊',carpincho:'🌊',yacare:'🌊',sirir:'🌊'};
 const SP_LABEL={viudita:'Viudita con los dragones',hornero:'Nido de barro del hornero',bigua:'Biguá pescando bajo el agua',garza:'Garza en vuelo',espatula:'Espátula en vuelo',nandu:'Ñandú con charabones',mulita:'Cueva de la mulita',tero:'Nido del tero',lobito:'Lobito bajo el agua',carpincho:'Carpincho nadando',yacare:'Yacaré bajo el agua',sirir:'Patos vistos desde abajo del agua'};
-function MEDALS(){const L=[{id:'race',icon:'🏁',name:'Carrera del ñandú',hint:'Ganale una carrera al ñandú',got:!!SAVE.raceWins,go:'portada',k:'l'},{id:'nest',icon:'🥚',name:'Nido del tero',hint:'Encontrá el nido de los teros',got:!!SAVE.nest,go:'portada',k:'l'},{id:'puma',icon:'🐾',name:'Puma escondido',hint:'Encontrá al puma escondido en la sierra',got:!!SAVE.found.puma,go:'portada',k:'l'}];
+function MEDALS(){const L=[{id:'race',icon:'🏁',name:'El rápido de la pradera',hint:'Ganale una carrera al ñandú',got:!!SAVE.raceWins,go:'portada',k:'l'},{id:'nest',icon:'🥚',name:'Los huevos del tero',hint:'Encontrá el nido de los teros',got:!!SAVE.nest,go:'portada',k:'l'},{id:'puma',icon:'🐾',name:'El fantasma de la sierra',hint:'Es tan tímido que casi nadie lo ve: buscalo en lo más alto y solitario de la sierra, y acercate muy despacio.',got:!!SAVE.found.puma,go:'portada',k:'l'}];
  for(const id of Object.keys(SPECIALS)){const sp=SPECIES.find(q=>q.id===id);if(!sp)continue;const f=SAVE.found[id];L.push({id:'sp-'+id,icon:SP_ICON[id]||'✦',name:SP_LABEL[id]||sp.name,got:!!(f&&(f.flyImg||(f.x2&&f.x2.img)||(id==='tero'&&SAVE.nest))),go:sp.grp||'aves',k:'s'});}return L;}
 function medalSVG(m){const id='mg'+m.id.replace(/[^a-z0-9]/gi,'');return `<svg viewBox="0 0 100 120" width="100%" height="100%"><defs><radialGradient id="${id}" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="${m.got?'#fbe7a1':'#9a958c'}"/><stop offset=".6" stop-color="${m.got?'#d9a83a':'#6e6a62'}"/><stop offset="1" stop-color="${m.got?'#8a5f14':'#4a4740'}"/></radialGradient></defs>${m.got?`<path d="M30 70 L20 118 L36 108 L44 118 L50 74 Z" fill="${m.k==='l'?'#c8302a':'#2f6f9a'}"/><path d="M70 70 L80 118 L64 108 L56 118 L50 74 Z" fill="${m.k==='l'?'#a82420':'#245a80'}"/>`:''}<circle cx="50" cy="48" r="40" fill="url(#${id})" stroke="${m.got?'#7a5410':'#3a3833'}" stroke-width="3"/><circle cx="50" cy="48" r="31" fill="none" stroke="${m.got?'#fff3c4':'#8a857c'}" stroke-width="1.5" stroke-dasharray="3 3"/><text x="50" y="60" text-anchor="middle" font-size="34">${m.got?m.icon:'?'}</text></svg>`;}
 const PL_ICON={vado:'🌊',tapera:'🌳',palmar:'🌴',quebrada:'🌿',gruta:'🔥',laguna:'🪷',valle:'⛰️',laguna2:'🦩',cascada:'💧',pozo:'🤿',manantial:'🫧',casita:'🛖',barrial:'🐸',monte:'🌲'};
@@ -2343,7 +2346,7 @@ function checkComplete(){SAVE.cel=SAVE.cel||{};if(SAVE.celebrated&&!SAVE.cel.mig
  if(!SAVE.cel.buceo&&diveAllOk()){SAVE.cel.buceo=1;q.push('buceo');}
  if(!SAVE.cel.micro&&MICRO.every(m=>(SAVE.microFound||{})[m.id])){SAVE.cel.micro=1;q.push('micro');}
  if(q.length){save();q.forEach((k,i)=>setTimeout(()=>celebrate(k),1300+i*7000));}}
-function celebrate(kind){const P0=PARTY[kind||'bichos'],el=$('#party');el.querySelector('.partyemoji').textContent=P0[0];el.querySelector('h2').textContent=P0[1];$('#partySub').textContent=P0[2]();el.querySelector('.partynote').textContent=P0[3];el.classList.add('show');
+function celebrate(kind){const P0=PARTY[kind||'bichos'],el=$('#party');el.dataset.kind=kind||'bichos';el.querySelector('.partyemoji').textContent=P0[0];el.querySelector('h2').textContent=P0[1];$('#partySub').textContent=P0[2]();el.querySelector('.partynote').textContent=P0[3];el.classList.add('show');
  [0,350,700].forEach(t=>setTimeout(chime,t));const cv=$('#confetti'),g=cv.getContext('2d');cv.width=innerWidth;cv.height=innerHeight;const cols=['#F28C28','#D9B65E','#23402F','#e58aa6','#f3c614','#5d8fbd','#f3ebdd'];
  const P=Array.from({length:180},()=>({x:Math.random()*cv.width,y:-Math.random()*cv.height,vy:2+Math.random()*3,vx:(Math.random()-.5)*2,r:Math.random()*6,vr:(Math.random()-.5)*.3,s:6+Math.random()*8,c:cols[Math.random()*cols.length|0]}));
  const step=()=>{if(!el.classList.contains('show'))return;g.clearRect(0,0,cv.width,cv.height);for(const p of P){p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;if(p.y>cv.height+20){p.y=-20;p.x=Math.random()*cv.width;}g.save();g.translate(p.x,p.y);g.rotate(p.r);g.fillStyle=p.c;g.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);g.restore();}requestAnimationFrame(step);};step();}
@@ -2620,7 +2623,7 @@ function closeDraw(){const b=$('#drawBox');if(b)b.hidden=true;}
  document.querySelectorAll('#drawPal button').forEach(b=>b.onclick=()=>{PEN.col=b.dataset.c;document.querySelectorAll('#drawPal button').forEach(o=>o.classList.toggle('on',o===b));});
  $('#drawSize').oninput=e=>{PEN.size=+e.target.value;};$('#penPick').oninput=e=>{PEN.col=e.target.value;document.querySelectorAll('#drawPal button').forEach(o=>o.classList.remove('on'));};$('#drawClear').onclick=()=>x.clearRect(0,0,cv.width,cv.height);
  $('#drawOk').onclick=()=>{SAVE.custom=Object.assign(custom(),{draw:cv.toDataURL('image/png'),deco:'dibujo'});save();applyCustom();renderCustom();closeDraw();};$('#drawCancel').onclick=closeDraw;}
-setTimeout(()=>{try{checkMedals();}catch(e){}},0);$('#goCustom').onclick=openCustom;$('#custClose').onclick=closeCustom;document.querySelectorAll('#custTabs button').forEach(b=>b.onclick=()=>{CUST.tab=b.dataset.t;renderCustom();});
+setTimeout(()=>{try{checkMedals();}catch(e){}},0);$('#goCustom').onclick=openCustom;$('#goShare').onclick=()=>{const url='https://pavlko.github.io/4x4natural/',text='Safari Gaucho: un safari fotográfico por las sierras y humedales del este de Uruguay. ¡Probalo!';if(navigator.share)navigator.share({title:'Safari Gaucho',text,url}).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(text+' '+url).then(()=>toast('Link copiado ✓')).catch(()=>toast(url));else toast(url);};$('#custClose').onclick=closeCustom;document.querySelectorAll('#custTabs button').forEach(b=>b.onclick=()=>{CUST.tab=b.dataset.t;renderCustom();});
 applyCustom();
 
 {// lugares nuevos que aparecen con la máscara y con el microscopio
