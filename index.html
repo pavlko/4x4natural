@@ -183,7 +183,9 @@ body.photo #raceArrow{display:none!important}
 .prow .ic{color:#7a3b1e}.tp h4 .ic{color:#7a3b1e}
 .tabs button.on{background:var(--kraft);color:var(--tinta)}
 .tp{display:none}.tp.on{display:block}
-.pstat{display:flex;flex-direction:column;gap:6px;font-size:19px;margin:6px 0 14px}.medh{margin:16px 0 6px;font-size:22px}.medh small{font-size:15px;opacity:.7;font-weight:600}.medals{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:8px}.medal{text-align:center;cursor:pointer;opacity:.55}.medal.got{opacity:1}.medal .mimg{width:64px;height:77px;margin:0 auto}.medal.got .mimg{filter:drop-shadow(0 3px 4px rgba(0,0,0,.35))}.medal span{display:block;font-size:13px;line-height:1.1;margin-top:2px}
+.pstat{display:flex;flex-direction:column;gap:6px;font-size:19px;margin:6px 0 14px}.stamps{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:6px}.stamp{text-align:center;cursor:pointer;opacity:.6}.stamp.got{opacity:1}.stamp .simg{width:66px;height:66px;margin:0 auto}.stamp span{display:block;font-size:13px;line-height:1.1;margin-top:2px}
+.hzrow{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}.hzc{display:flex;align-items:center;gap:8px;padding:8px;border-radius:6px;border:2px dashed rgba(90,70,40,.4);background:rgba(90,70,40,.06);cursor:pointer;opacity:.65}.hzc.got{border:2px solid #b08a3a;background:linear-gradient(135deg,#f3e2b0,#e2c47a);opacity:1;box-shadow:0 2px 6px rgba(0,0,0,.2)}.hzi{font-size:30px;width:40px;text-align:center}.hzc span{font-size:15px;font-weight:600;line-height:1.1}
+.medh{margin:16px 0 6px;font-size:22px}.medh small{font-size:15px;opacity:.7;font-weight:600}.medals{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:8px}.medal{text-align:center;cursor:pointer;opacity:.55}.medal.got{opacity:1}.medal .mimg{width:64px;height:77px;margin:0 auto}.medal.got .mimg{filter:drop-shadow(0 3px 4px rgba(0,0,0,.35))}.medal span{display:block;font-size:13px;line-height:1.1;margin-top:2px}
 .prow{display:grid;grid-template-columns:minmax(150px,auto) 1fr auto;gap:12px;align-items:center;padding:4px 6px;border-radius:4px;cursor:pointer}.prow:hover,.prow:focus-visible{background:#e6d8b6}
 .pstat .bar{height:12px;border-radius:6px;background:#cbb88f;overflow:hidden}.pstat .bar i{display:block;height:100%;background:#23402F}
 .ptip{font-family:Newsreader,serif;font-size:16.5px;line-height:1.4;margin:8px 0}
@@ -291,7 +293,7 @@ body.menu #touch{display:none!important}
  <g stroke="#fff" stroke-opacity=".2" stroke-width=".25" fill="none"><path d="M44 34l8 5M118 24l-6 8M100 74l11-4M52 76l4-6M128 52q3 3 2 7"/></g>
 </svg>
 <div class="hud" id="hud">
-  <div id="verHud" data-ver>v105</div>
+  <div id="verHud" data-ver>v106</div>
   <div id="tally"><b id="tBichos">0 / 11 bichos</b><span id="tLugares">0 / 7 lugares</span><span id="tPeces" hidden></span><span id="tMicro" hidden></span></div>
   <div id="tools">
     <button class="tool" id="bMenu" title="Menú">☰<small>menú</small></button>
@@ -371,7 +373,7 @@ body.menu #touch{display:none!important}
 <section class="tp" data-t="lugares"><h4><span class="ich" data-ic="lugares"></span> <span id="plH">Lugares</span></h4><div class="grid" id="plList"></div></section>
 <section class="tp" data-t="logros"><h4><span class="ich" data-ic="logros"></span> <span id="logH">Logros especiales</span></h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
 <section class="tp" data-t="hallazgos"><h4><span class="ich" data-ic="hallazgos"></span> Hallazgos</h4><div id="hzList"></div></section>
-<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v105</span></p></div>
+<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v106</span></p></div>
   </div>
 </div>
 <div id="start">
@@ -382,7 +384,7 @@ body.menu #touch{display:none!important}
     <p id="iosHint" class="ioshint" hidden>Para instalarla en iPhone o iPad: tocá <b>Compartir</b> y después <b>Agregar a inicio</b>.</p>
     <div class="players"><div id="profList"></div><button id="profNew" type="button">👤 Nuevo jugador</button><span id="profNewBox" hidden><input id="profName" maxlength="16" placeholder="Nombre del jugador"> <button id="profOk" type="button">Listo</button> <button id="profCancel" type="button" aria-label="Cancelar">✕</button></span></div>
     <label class="opt"><input type="checkbox" id="optTrees"> Pasar a través de los árboles (para los más chicos)</label>
-    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v105</span></p>
+    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v106</span></p>
   </div>
 </div>
 <div id="loading">Armando el paisaje…</div>
@@ -1704,8 +1706,10 @@ function specialHTML(sp,f){const x=f.flyImg?{img:f.flyImg,label:'En vuelo'}:(f.x
 function renderPortada(){const nf=GOAL.filter(s=>SAVE.found[s.id]).length,np=SAVE.places.length,fish=SAVE.fish||{},nfi=FISH.filter(x=>fish[x.id]).length,
  lg=[!!SAVE.raceWins,!!SAVE.nest,!!SAVE.found.puma].filter(Boolean).length,ns=SPECIES.filter(sp=>{const f=SAVE.found[sp.id];return f&&(f.flyImg||(f.x2&&f.x2.img)||(sp.id==='tero'&&SAVE.nest));}).length;
  const row=(l,a,b,go)=>`<div class="prow" data-go="${go}" role="button" tabindex="0"><span>${l}</span><div class="bar"><i style="width:${b?Math.round(a/b*100):0}%"></i></div><b>${a} / ${b}</b></div>`,gc=k=>GOAL.filter(s=>s.grp===k),gf=k=>gc(k).filter(s=>SAVE.found[s.id]).length;
- $('#portada').innerHTML=`<div class="pstat">${row(ICON('lugares')+' Lugares',np,PLACES.length,'lugares')}${Object.keys(GRPN).map(k=>row(ICON(k)+' '+GRPN[k][1],gf(k),gc(k).length,k)).join('')}${SAVE.mask?row(ICON('peces')+' Peces',nfi,FISH.length,'agua'):''}${SAVE.micro?row(ICON('micro')+' Microscopio',Object.keys(SAVE.microFound||{}).length,MICRO.length,'micro'):''}${row(ICON('hallazgos')+' Hallazgos',[SAVE.mask,SAVE.micro,SAVE.alero,SAVE.hall].filter(Boolean).length,4,'hallazgos')}</div>
+ $('#portada').innerHTML=`<div class="pstat">${Object.keys(GRPN).map(k=>row(ICON(k)+' '+GRPN[k][1],gf(k),gc(k).length,k)).join('')}${SAVE.mask?row(ICON('peces')+' Peces',nfi,FISH.length,'agua'):''}${SAVE.micro?row(ICON('micro')+' Microscopio',Object.keys(SAVE.microFound||{}).length,MICRO.length,'micro'):''}</div>
+ <h3 class="medh">📍 Lugares <small>${np} / ${PLACES.length}</small></h3>${stampGrid()}
  <h3 class="medh">🏅 Logros <small>${lg} / 3</small></h3>${medalGrid(MEDALS().filter(m=>m.k==='l'))}<h3 class="medh">✦ Fotos especiales <small>${ns} / ${Object.keys(SPECIALS).length}</small></h3>${medalGrid(MEDALS().filter(m=>m.k==='s'))}
+ <h3 class="medh">🏺 Hallazgos <small>${[SAVE.mask,SAVE.micro,SAVE.alero,SAVE.hall].filter(Boolean).length} / 4</small></h3>${hzCardsHTML()}
  `;document.querySelectorAll('#portada [data-go]').forEach(el=>el.onclick=()=>goTab(el.dataset.go));}
 function renderMicro(){const el=$('#microPage');if(!el)return;if(!SAVE.micro){el.innerHTML='';return;}const f=SAVE.microFound||{},sm=SAVE.samples||{};
  let h='<p class="ptip">🔬 Con el microscopio del naturalista podés tomar muestras donde veas un frasquito en una estaca, y en el piso de la cueva. Tocá cada bichito para identificarlo.</p>';
@@ -2317,6 +2321,11 @@ const SP_LABEL={viudita:'Viudita con los dragones',dragon:'Dragones con la viudi
 function MEDALS(){const L=[{id:'race',icon:'🏁',name:'Carrera del ñandú',got:!!SAVE.raceWins,go:'logros',k:'l'},{id:'nest',icon:'🥚',name:'Nido del tero',got:!!SAVE.nest,go:'logros',k:'l'},{id:'puma',icon:'🐾',name:'Puma escondido',got:!!SAVE.found.puma,go:'logros',k:'l'}];
  for(const id of Object.keys(SPECIALS)){const sp=SPECIES.find(q=>q.id===id);if(!sp)continue;const f=SAVE.found[id];L.push({id:'sp-'+id,icon:SP_ICON[id]||'✦',name:SP_LABEL[id]||sp.name,got:!!(f&&(f.flyImg||(f.x2&&f.x2.img)||(id==='tero'&&SAVE.nest))),go:sp.grp||'aves',k:'s'});}return L;}
 function medalSVG(m){const id='mg'+m.id.replace(/[^a-z0-9]/gi,'');return `<svg viewBox="0 0 100 120" width="100%" height="100%"><defs><radialGradient id="${id}" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="${m.got?'#fbe7a1':'#9a958c'}"/><stop offset=".6" stop-color="${m.got?'#d9a83a':'#6e6a62'}"/><stop offset="1" stop-color="${m.got?'#8a5f14':'#4a4740'}"/></radialGradient></defs>${m.got?`<path d="M30 70 L20 118 L36 108 L44 118 L50 74 Z" fill="${m.k==='l'?'#c8302a':'#2f6f9a'}"/><path d="M70 70 L80 118 L64 108 L56 118 L50 74 Z" fill="${m.k==='l'?'#a82420':'#245a80'}"/>`:''}<circle cx="50" cy="48" r="40" fill="url(#${id})" stroke="${m.got?'#7a5410':'#3a3833'}" stroke-width="3"/><circle cx="50" cy="48" r="31" fill="none" stroke="${m.got?'#fff3c4':'#8a857c'}" stroke-width="1.5" stroke-dasharray="3 3"/><text x="50" y="60" text-anchor="middle" font-size="34">${m.got?m.icon:'?'}</text></svg>`;}
+const PL_ICON={vado:'🌊',tapera:'🌳',palmar:'🌴',quebrada:'🌿',gruta:'🔥',laguna:'🪷',valle:'⛰️',laguna2:'🦩',cascada:'💧'};
+function stampSVG(p,got,i){const rot=((i*37)%13-6),col=got?['#2f6f5a','#8a3a2a','#2f4f8a','#6a4a1a'][i%4]:'#8a857c';return `<svg viewBox="0 0 100 100" width="100%" height="100%" style="transform:rotate(${rot}deg)"><circle cx="50" cy="50" r="44" fill="${got?'#f6efdc':'#d8d2c4'}" stroke="${col}" stroke-width="4" stroke-dasharray="${got?'0':'5 4'}"/><circle cx="50" cy="50" r="36" fill="none" stroke="${col}" stroke-width="1.5"/><text x="50" y="${got?55:62}" text-anchor="middle" font-size="${got?30:34}" fill="${col}">${got?PL_ICON[p.id]||'📍':'?'}</text>${got?`<text x="50" y="80" text-anchor="middle" font-size="9" font-weight="700" fill="${col}" font-family="Barlow Condensed,sans-serif" letter-spacing="1">SAFARI GAUCHO</text>`:''}</svg>`;}
+function stampGrid(){return '<div class="stamps">'+PLACES.map((p,i)=>{const got=SAVE.places.includes(p.id);return `<div class="stamp${got?' got':''}" data-go="lugares" role="button" tabindex="0"><div class="simg">${stampSVG(p,got,i)}</div><span>${got?p.name:'¿?'}</span></div>`;}).join('')+'</div>';}
+function hzCardsHTML(){const H=[{got:!!SAVE.mask,ic:'🧰',n:'El baúl del naturalista'},{got:!!SAVE.micro,ic:'🔬',n:'El microscopio'},{got:!!SAVE.alero,ic:'🏺',n:'Detrás de la cascada'},{got:!!SAVE.hall,ic:'🔥',n:'Los primeros habitantes'}];
+ return '<div class="hzrow">'+H.map(h=>`<div class="hzc${h.got?' got':''}" data-go="hallazgos" role="button" tabindex="0"><div class="hzi">${h.got?h.ic:'?'}</div><span>${h.got?h.n:'Sin descubrir'}</span></div>`).join('')+'</div>';}
 function medalGrid(list){return '<div class="medals">'+list.map(m=>`<div class="medal${m.got?' got':''}" data-go="${m.go}" role="button" tabindex="0"><div class="mimg">${medalSVG(m)}</div><span>${m.got||m.k==='s'?m.name:'¿?'}</span></div>`).join('')+'</div>';}
 let medalT=null;function checkMedals(){const got=MEDALS().filter(m=>m.got);if(!SAVE.medalSeen){SAVE.medalSeen=got.map(m=>m.id);try{localStorage.setItem(curKey(),JSON.stringify(SAVE));}catch(e){}return;}const nw=got.filter(m=>!SAVE.medalSeen.includes(m.id));if(!nw.length)return;SAVE.medalSeen.push(...nw.map(m=>m.id));try{localStorage.setItem(curKey(),JSON.stringify(SAVE));}catch(e){}window._medal=nw[0];setTimeout(()=>celebrate('medal'),1600);}
 const PARTY={medal:['🏅','¡Medalla nueva!',()=>(window._medal?(window._medal.k==='l'?'Logro: ':'Foto especial: ')+window._medal.name:''),'Mirala en la portada del cuaderno.'],bichos:['🦩🦫🦉🐊','¡Encontraste todos los bichos!',()=>GOAL.length+' de '+GOAL.length+' bichos','Fotografiaste a todos los bichos de la sierra y el humedal. ¿Te animás a buscar los logros escondidos?'],

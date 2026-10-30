@@ -106,6 +106,7 @@ Un juego de Insight Reality
 - v103  La foto del alero también vale desde el agua si la cascada no tapa la vista (detrás de la cortina o desde un costado)
 - v104  Portada con hallazgos al final; logros y fotos especiales como medallas dibujadas, con festejo cada vez que se gana una
 - v105  Las medallas de fotos especiales dicen qué foto es (ej. "Nido de barro del hornero"), también las que faltan
+- v106  Portada: lugares como sellos de pasaporte y hallazgos como tarjetas doradas
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v105).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v106).
 La versión vigente es index.html (lista como app instalable).
