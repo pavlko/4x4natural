@@ -40,8 +40,8 @@ button:focus-visible{outline:2px solid var(--senal);outline-offset:2px}
 #carBtn{transform:translateX(calc(-100% - 6px))}#slowBtn{transform:translateX(6px);border-color:#8a7a5a}
 @media (orientation:portrait) and (max-width:700px){#walkBtn,#carBtn,#slowBtn{bottom:calc(env(safe-area-inset-bottom,0px) + 226px)}}#slowBtn.on{background:#D9B65E;color:#1f160e}
 body.walking #bLow,body.walking #bReset{opacity:.35;pointer-events:none}body.walking #gear{display:none}
-#goShare{background:rgba(35,64,47,.85);color:#F3EBDD;border:2px solid #D9B65E;border-radius:4px;padding:10px 18px;font-size:20px;font-weight:700}
-#goCustom{background:rgba(35,64,47,.85);color:#F3EBDD;border:2px solid #D9B65E;border-radius:4px;padding:10px 18px;font-size:20px;font-weight:700}
+#goShare{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);right:14px;width:52px;height:52px;border-radius:50%;background:rgba(35,64,47,.85);color:#F3EBDD;border:2px solid #D9B65E;display:flex;align-items:center;justify-content:center;padding:0;pointer-events:auto}
+#goCustom{background:rgba(20,16,12,.6);color:var(--txt);border:1.5px solid var(--sub);border-radius:3px;font-size:17px;padding:5px 10px}
 #custom{position:fixed;left:0;right:0;bottom:0;z-index:20;display:none;justify-content:center;pointer-events:none}#custom.show{display:flex}
 .cpanel{pointer-events:auto;width:min(620px,100vw);max-height:56vh;overflow:auto;background:rgba(27,23,18,.94);border-top:4px solid #D9B65E;border-radius:10px 10px 0 0;padding:12px 16px calc(env(safe-area-inset-bottom,0px) + 14px);color:#F3EBDD}
 .chead{display:flex;align-items:center;justify-content:space-between}.chead h3{margin:0;font-size:26px}#custClose{background:#D9B65E;color:#1f160e;border:0;border-radius:4px;padding:7px 18px;font-size:18px;font-weight:700}
@@ -60,6 +60,10 @@ body.nomap #mapwrap{display:none!important}
 body.photo:not(.diving):not(.cave) #photoExit{display:block}
 .card .ph{position:relative}.shr{position:absolute;right:6px;bottom:6px;width:34px;height:34px;border-radius:50%;border:2px solid #F3EBDD;background:rgba(35,64,47,.85);color:#F3EBDD;font-size:18px;font-weight:700;line-height:1;cursor:pointer}
 nav button[data-t="logros"]{display:none!important}.secbar{margin:4px 0 10px}
+#walkBtn,#carBtn,#slowBtn,#diveBtn,#microBtn,#photoExit{position:absolute!important;left:12px!important;right:auto!important;top:auto!important;transform:none!important;bottom:calc(env(safe-area-inset-bottom,0px) + 150px)!important;width:56px!important;height:56px!important;padding:0!important;border-radius:50%!important;font-size:27px!important;line-height:1!important;text-align:center}
+#carBtn,#walkBtn,#photoExit{left:12px!important}#slowBtn{left:76px!important}#diveBtn{left:140px!important}#microBtn{left:204px!important}
+body.walking #diveBtn{left:140px!important}body:not(.walking) #diveBtn{left:76px!important}body:not(.walking) #microBtn{left:140px!important}
+@media (orientation:portrait) and (max-width:700px){#walkBtn,#carBtn,#slowBtn,#diveBtn,#microBtn,#photoExit{bottom:calc(env(safe-area-inset-bottom,0px) + 196px)!important}}
 #fade{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none;transition:opacity .25s;z-index:40}#fade.show{opacity:1}
 body.cave #microBtn,body.diving #microBtn{bottom:calc(env(safe-area-inset-bottom,0px) + 150px)}
 #scope{position:fixed;inset:0;z-index:25;display:none;align-items:center;justify-content:center;background:rgba(10,8,5,.9)}#scope.show{display:flex}
@@ -210,7 +214,7 @@ body.photo #raceArrow{display:none!important}
 .places li.no{border-style:dashed;color:#9d8961}
 /* inicio */
 #start{position:fixed;inset:0;display:flex;align-items:flex-end;justify-content:flex-start;padding:calc(env(safe-area-inset-top,0px) + 24px) 6vw calc(env(safe-area-inset-bottom,0px) + 7vh);background:linear-gradient(to top,rgba(20,16,12,.92) 0%,rgba(20,16,12,.55) 45%,rgba(20,16,12,0) 80%)}
-#start .in{max-width:620px;pointer-events:auto}
+#start .in{max-width:620px;pointer-events:none}#start .in button,#start .in input,#start .in label,#start .in a,#start .in .pchip{pointer-events:auto}
 #party{position:fixed;inset:0;z-index:30;display:none;align-items:center;justify-content:center;background:rgba(15,12,9,.55)}#party.show{display:flex}
 #confetti{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .partybox{position:relative;background:var(--monte);color:var(--kraft);border-radius:6px;padding:24px 28px;max-width:min(520px,92vw);text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.5)}
@@ -247,9 +251,9 @@ body.photo #raceArrow{display:none!important}
 #start .keys b{color:var(--txt);font-weight:600}
 body.menu #touch{display:none!important}
 .startbtns{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-#goBook{background:var(--monte);color:var(--kraft);border:2px solid var(--kraft);border-radius:3px;padding:10px 22px;font-size:22px;font-weight:700}
+#goBook{background:none;border:0;padding:0}.nbk{position:relative;display:inline-block;width:118px;height:84px;background:linear-gradient(135deg,#7a4a26,#5a3418);border-radius:4px 10px 10px 4px;box-shadow:inset 6px 0 0 #3e2410,0 4px 10px rgba(0,0,0,.45);color:#f3e2b0;text-align:center}.nbk b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:17px;line-height:1.05;font-weight:700;padding-left:8px;text-shadow:0 1px 0 rgba(0,0,0,.4)}.nbk i{position:absolute;top:0;bottom:0;right:16px;width:6px;background:#2a1a0c;border-radius:2px}
 .opt{display:flex;gap:8px;align-items:center;margin-top:14px;font-size:17px;color:var(--sub);cursor:pointer}.opt input{width:20px;height:20px;accent-color:#F28C28}
-#go{background:var(--senal);color:#1f160e;border:0;border-radius:3px;padding:12px 30px;font-size:24px;font-weight:700}
+#go{background:var(--senal);color:#1f160e;border:0;border-radius:8px;padding:8px 22px 8px 14px;font-size:24px;font-weight:700;display:inline-flex;align-items:center;gap:8px;height:84px}
 #reset,#unlock{background:none;border:0;color:var(--sub);text-decoration:underline;font-size:16px;margin-left:16px}
 #loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#1b1712;font-size:22px;color:var(--sub);z-index:5}
 @media (max-width:640px){
@@ -286,7 +290,7 @@ body.menu #touch{display:none!important}
  <g stroke="#fff" stroke-opacity=".2" stroke-width=".25" fill="none"><path d="M44 34l8 5M118 24l-6 8M100 74l11-4M52 76l4-6M128 52q3 3 2 7"/></g>
 </svg>
 <div class="hud" id="hud">
-  <div id="verHud" data-ver>v109 playa</div>
+  <div id="verHud" data-ver>v110 playa</div>
   <div id="tally"><b id="tBichos">0 / 11 bichos</b><span id="tLugares">0 / 7 lugares</span><span id="tPeces" hidden></span><span id="tMicro" hidden></span></div>
   <div id="tools">
     <button class="tool" id="bMenu" title="Menú">☰<small>menú</small></button>
@@ -303,9 +307,9 @@ body.menu #touch{display:none!important}
   <button id="diveBtn" type="button" title="Zambullirse">🤿</button>
   <button id="microBtn" type="button" title="Tomar muestra">🔬</button>
   <button id="climbBtn" type="button" title="Subir al alero">🧗 Subir</button>
-  <button id="walkBtn" type="button" title="Bajarse a caminar (B)">🚶 Bajarse <small>B</small></button>
-  <button id="carBtn" type="button" title="Volver a la camioneta (B)">🚙 Volver a la camioneta <small>B</small></button>
-  <button id="slowBtn" type="button" title="Ir despacio (Shift)">🐢 Despacio</button>
+  <button id="walkBtn" type="button" title="Bajarse a caminar (B)" aria-label="Bajarse a caminar">🚶</button>
+  <button id="carBtn" type="button" title="Volver a la camioneta (B)" aria-label="Volver a la camioneta">🚙</button>
+  <button id="slowBtn" type="button" title="Ir despacio (Shift)" aria-label="Ir despacio">🐢</button>
   <div id="race"></div>
   <div id="raceArrow" aria-hidden="true">➤</div>
   <div id="gauge"><div><div id="spd">0</div><div class="u">km/h</div></div><button id="gear" type="button" title="Tracción baja (Q)">4H</button></div>
@@ -366,17 +370,17 @@ body.menu #touch{display:none!important}
 <section class="tp" data-t="lugares"><h4><span class="ich" data-ic="lugares"></span> <span id="plH">Lugares</span></h4><div class="grid" id="plList"></div></section>
 <section class="tp" data-t="logros"><h4><span class="ich" data-ic="logros"></span> <span id="logH">Logros especiales</span></h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
 <section class="tp" data-t="hallazgos"><h4><span class="ich" data-ic="hallazgos"></span> Hallazgos</h4><div id="hzList"></div></section>
-<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v109 playa</span></p></div>
+<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v110 playa</span></p></div>
   </div>
 </div>
 <div id="start">
   <div class="in">
     <h1>Safari<br>Gaucho<sup>beta</sup></h1>
     <p class="lead">Manejá por la sierra y el humedal y fotografiá los bichos donde viven. Algunos están a la vista; otros, en lugares que hay que encontrar.</p>
-    <div class="startbtns"><button id="go">Arrancar</button><button id="goBook">📓 Cuaderno de campo</button><button id="goCustom">🎨 Personalizar</button><button id="goShare" type="button">📤 Compartir el juego</button></div>
-    <div class="players"><div id="profList"></div><button id="profNew" type="button">👤 Nuevo jugador</button><span id="profNewBox" hidden><input id="profName" maxlength="16" placeholder="Nombre del jugador"> <button id="profOk" type="button">Listo</button> <button id="profCancel" type="button" aria-label="Cancelar">✕</button></span></div>
+    <div class="startbtns"><button id="go" aria-label="Explorar"><svg viewBox="0 0 64 36" width="56" height="32" aria-hidden="true"><rect x="10" y="6" width="26" height="12" rx="3" fill="#1f160e"/><rect x="14" y="9" width="8" height="6" rx="1" fill="#9fc0d0"/><rect x="24" y="9" width="8" height="6" rx="1" fill="#9fc0d0"/><rect x="4" y="16" width="56" height="12" rx="4" fill="#1f160e"/><circle cx="16" cy="29" r="6" fill="#1f160e" stroke="#F28C28" stroke-width="2"/><circle cx="48" cy="29" r="6" fill="#1f160e" stroke="#F28C28" stroke-width="2"/></svg><span>Explorar</span></button><button id="goBook" aria-label="Cuaderno de campo"><span class="nbk"><i></i><b>Cuaderno<br>de campo</b></span></button><button id="goShare" type="button" aria-label="Compartir el juego" title="Compartir el juego"><svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><path d="M6 25 C 7 14, 14 9, 23 9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M18 4 L 25 9 L 19 15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+    <div class="players"><div id="profList"></div><button id="goCustom" type="button" title="Personalizar la camioneta y el explorador">🎨 Mi explorador</button><button id="profNew" type="button">👤 Nuevo jugador</button><span id="profNewBox" hidden><input id="profName" maxlength="16" placeholder="Nombre del jugador"> <button id="profOk" type="button">Listo</button> <button id="profCancel" type="button" aria-label="Cancelar">✕</button></span></div>
     <label class="opt"><input type="checkbox" id="optTrees"> Pasar a través de los árboles (para los más chicos)</label>
-    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v109 playa</span></p>
+    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v110 playa</span></p>
   </div>
 </div>
 <div id="loading">Armando el paisaje…</div>
@@ -415,6 +419,11 @@ function baseH(x,z){
   const tgt=mix(-2.6,1.4,ss(22,40,lr));
   h=mix(h,tgt,1-ss(38,50,lr));
   if(gap>0&&lr<100){const ramp=mix(1.4,h0,ss(40,95,lr));h=mix(h,ramp,gap*ss(34,44,lr)*(1-ss(90,100,lr)));}
+  {// lomerío alrededor de la laguna escondida: lomas como las del anillo, para que no se distinga
+   const msk=ss(66,82,lr)*(1-ss(150,175,lr)),gx=Math.cos(-Math.PI/4),gz=Math.sin(-Math.PI/4),al=lx*gx+lz*gz,pl=Math.abs(-lx*gz+lz*gx),corr=al>40?(1-ss(7,13,pl)):0;
+   const bump=Math.max(0,fbm(x*.03+40,z*.03+12,3)-.42)*26+Math.max(0,fbm(x*.07+3,z*.07+30,2)-.5)*8;h+=msk*bump*(1-corr);
+   // loma que tapa la boca del paso, corrida hacia un costado
+   const cx=190+gx*84+gz*-19,cz=-110+gz*84-gx*-19;h+=9*Math.exp(-(((x-cx)**2)/(2*8*8)+((z-cz)**2)/(2*12*12)));}
   const hPre0=0;
   // cresta que une el anillo de la laguna escondida con el borde alto del sureste
   {const ax=190+Math.cos(.8)*60,az=-110+Math.sin(.8)*60,bx=HALF-8,bz=-38,dx=bx-ax,dz=bz-az,l=dx*dx+dz*dz;let t=((x-ax)*dx+(z-az)*dz)/l;t=Math.max(0,Math.min(1,t));
@@ -452,7 +461,7 @@ function baseH(x,z){
    const pd=Math.hypot(x-riverX(FZ+6),z-(FZ+6));if(pd<11.5){const dep=mix(-6.2,-2.5,ss(2.5,9.5,pd))+(fbm(x*.3,z*.3,2)-.5)*.8;h=mix(h,Math.min(h,dep),(1-ss(8.5,11.5,pd))*ss(FZ+.5,FZ+3.5,z));}}
   // bordes del mundo
   const e=Math.max(Math.abs(x)*(1-ss(250,285,z)),-z);
-  h+=ss(HALF-45,HALF-5,e)*22;
+  {const reg=ss(240,275,x)*(1-ss(-20,20,z))*ss(-250,-210,z),eh=mix(22,12+fbm(x*.05+9,z*.05+27,3)*9,reg);h+=ss(HALF-45,HALF-5,e)*eh;}
   return h;
 }
 const BARRO={x:150,z:140,r:18};BARRO.h0=Math.max(1.2,baseH(150,140));
@@ -1781,7 +1790,7 @@ function maskCard(){if(!SAVE.mask)return `<div class="card locked hz"><div class
 let mapOpen=false;
 function toggleMap(force){const want=force!==undefined?force:!mapOpen;if(want&&!SAVE.mapOk){toastOnce('mapa','Todavía no tenés mapa. Fotografiá algunos bichos y vas a encontrar el del naturalista.',6);return;}mapOpen=want;if(mapOpen){if(bookOpen)toggleBook(false);if(photo)togglePhoto(false);checkTele();drawBigMap();}$('#bigmap').classList.toggle('show',mapOpen);$('#bMap').classList.toggle('on',mapOpen);}
 function toggleBook(force){bookOpen=force!==undefined?force:!bookOpen;if(bookOpen){renderBook();if(photo)togglePhoto(false);if(mapOpen)toggleMap(false);}$('#book').classList.toggle('show',bookOpen);$('#bBook').classList.toggle('on',bookOpen);}
-function togglePhoto(force){photo=force!==undefined?force:!photo;{const pe=$('#photoExit');if(pe)pe.textContent=WALK.on?'🚶 Volver a caminar':'🚙 Volver a la camioneta';}if(photo&&!caveView&&!DIVE.on){photoYaw=car.h;photoPitch=-.04;photoFov=55;}truck.visible=!photo;if(!photo&&caveView)leaveCave();if(!photo&&DIVE.on)endDive(false);document.body.classList.toggle('photo',photo);$('#finder').classList.toggle('show',photo);$('#bCam').classList.toggle('on',photo);}
+function togglePhoto(force){photo=force!==undefined?force:!photo;{const pe=$('#photoExit');if(pe){pe.textContent=WALK.on?'🚶':'🚙';pe.title=WALK.on?'Volver a caminar':'Volver a la camioneta';}}if(photo&&!caveView&&!DIVE.on){photoYaw=car.h;photoPitch=-.04;photoFov=55;}truck.visible=!photo;if(!photo&&caveView)leaveCave();if(!photo&&DIVE.on)endDive(false);document.body.classList.toggle('photo',photo);$('#finder').classList.toggle('show',photo);$('#bCam').classList.toggle('on',photo);}
 function toggleLow(){car.low=!car.low;$('#gear').textContent=car.low?'4L':'4H';$('#gear').classList.toggle('low',car.low);$('#bLow').classList.toggle('on',car.low);toast(car.low?'Tracción baja: sube casi todo, pero despacio':'Tracción alta: más velocidad');}
 function obsDepth(x,z,h){const s=Math.sin(h),c=Math.cos(h);let m=0;for(const off of[-1.7,0,1.7]){const px=x-s*off,pz=z-c*off,ci=Math.floor(px/CELL),cj=Math.floor(pz/CELL);for(let a=-1;a<=1;a++)for(let b=-1;b<=1;b++){const L=GRID.get((ci+a)+','+(cj+b));if(!L)continue;for(const o of L){if(NOTREES&&o.t)continue;const d=o.r+1.0-Math.hypot(px-o.x,pz-o.z);if(d>m)m=d;}}}return m;}
 function obsHit(x,z,h){const s=Math.sin(h),c=Math.cos(h);let best={d:0,nx:0,nz:0};for(const off of[-1.7,0,1.7]){const px=x-s*off,pz=z-c*off,ci=Math.floor(px/CELL),cj=Math.floor(pz/CELL);for(let a=-1;a<=1;a++)for(let b=-1;b<=1;b++){const L=GRID.get((ci+a)+','+(cj+b));if(!L)continue;for(const o of L){if(NOTREES&&o.t)continue;const dd=Math.hypot(px-o.x,pz-o.z),d=o.r+1.0-dd;if(d>best.d)best={d,nx:(px-o.x)/(dd||1),nz:(pz-o.z)/(dd||1)};}}}return best;}
