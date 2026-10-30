@@ -111,6 +111,7 @@ Un juego de Insight Reality
 - v108  Festejos con botón "Ver en el cuaderno"; botones de bajarse, volver a la camioneta y despacio junto a los controles; logros "El rápido de la pradera", "Los huevos del tero" y "El fantasma de la sierra" (con la pista del puma); botón para compartir el juego en la entrada
 - v109  El Juan chiviro se posa sobre la copa real de los árboles y cada tanto vuela a otro árbol cercano
 - v110  Botones de acción solo con ícono, en fila a la izquierda; inicio nuevo: Explorar con la camioneta, cuaderno de cuero, compartir arriba a la derecha, Mi explorador junto al jugador, y arrastrar/zoom en el fondo; laguna escondida rodeada de lomas parecidas y con la entrada más tapada
+- v111  Volante en vez de botones izquierda/derecha; menú junto al contador (con ícono de cuaderno), compartir arriba a la derecha, foto y sonido abajo al medio; pistas arriba y con fondo oscuro en vertical; inicio y manejo acomodados en horizontal; ícono de hallazgos como mano abierta; el puma aparece como "El fantasma de la sierra"; fotos especiales bajo el agua recién con la máscara
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v110).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v111).
 La versión vigente es index.html (lista como app instalable).
