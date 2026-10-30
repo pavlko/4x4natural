@@ -63,16 +63,24 @@ body.walking #bLow,body.walking #bReset{opacity:.35;pointer-events:none}body.wal
 #drawPal{display:flex;gap:6px;align-items:center;margin:8px 0;flex-wrap:wrap}#drawPal button{width:32px;height:32px;border-radius:16px;border:3px solid rgba(255,255,255,.3);font-size:16px}#drawPal button.on{border-color:#F28C28}#drawPal input{flex:1;min-width:100px}
 .drawact{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}.drawact button{background:rgba(216,198,160,.14);border:0;border-radius:4px;padding:7px 14px;font-size:16px;font-weight:600}.drawact .okb{background:#D9B65E;color:#1f160e}
 #fbText{width:100%;box-sizing:border-box;border-radius:6px;border:2px solid #D9B65E;background:#f6efe0;color:#1f160e;padding:8px;font:16px/1.35 Newsreader,serif}.fbact{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.fbact button{background:#D9B65E;color:#1f160e;border:0;border-radius:4px;padding:7px 14px;font-weight:700;font-size:15px}.fbnote{font-size:13px;opacity:.75}
-#bLow,#bReset,#bMap{display:none!important}
+#bLow,#bReset,#bMap,#bBook{display:none!important}
+#bMenu{position:fixed!important;left:12px;top:calc(env(safe-area-inset-top,0px) + 12px)}#tally{left:74px!important;cursor:pointer}#tally .tbook{position:absolute;right:8px;top:8px;opacity:.95}#tally b{padding-right:26px}
+#bShot{width:52px;height:52px;border-radius:50%!important;padding:0!important;align-items:center;justify-content:center;border:2px solid #D9B65E!important;background:rgba(35,64,47,.85)!important;color:#F3EBDD}
+#bCam,#bSnd{position:fixed!important;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);width:54px;height:54px;border-radius:50%!important;padding:0!important;justify-content:center;font-size:24px!important}#bCam small,#bSnd small,#bMenu small{display:none}#bCam{left:calc(50% - 60px)}#bSnd{left:calc(50% + 6px)}
+body.photo #bCam,body.photo #bSnd{display:none!important}
+@media (orientation:portrait) and (max-width:700px){#bCam,#bSnd{bottom:calc(env(safe-area-inset-bottom,0px) + 150px)}#bCam{left:calc(50% - 38px)}#bSnd{left:calc(50% + 24px)}#wheel{width:130px;height:130px}}
+body.onstart #touch,body.onstart #wheel{display:none!important}
 body.nomap #mapwrap{display:none!important}
 #photoExit{position:fixed;left:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 110px);font-size:15px!important;padding:7px 14px!important;z-index:6;display:none;background:rgba(35,64,47,.92);color:#F3EBDD;border:2px solid #D9B65E;border-radius:22px;padding:9px 18px;font-size:18px;font-weight:700}
 body.photo:not(.diving):not(.cave) #photoExit{display:block}
 .card .ph{position:relative}.shr{position:absolute;right:6px;bottom:6px;width:34px;height:34px;border-radius:50%;border:2px solid #F3EBDD;background:rgba(35,64,47,.85);color:#F3EBDD;font-size:18px;font-weight:700;line-height:1;cursor:pointer}
 nav button[data-t="logros"]{display:none!important}.secbar{margin:4px 0 10px}
-#walkBtn,#carBtn,#slowBtn,#diveBtn,#microBtn,#photoExit{position:absolute!important;left:12px!important;right:auto!important;top:auto!important;transform:none!important;bottom:calc(env(safe-area-inset-bottom,0px) + 150px)!important;width:56px!important;height:56px!important;padding:0!important;border-radius:50%!important;font-size:27px!important;line-height:1!important;text-align:center}
+#walkBtn,#carBtn,#slowBtn,#diveBtn,#microBtn,#photoExit{position:absolute!important;left:12px!important;right:auto!important;top:auto!important;transform:none!important;bottom:calc(env(safe-area-inset-bottom,0px) + 264px)!important;width:56px!important;height:56px!important;padding:0!important;border-radius:50%!important;font-size:27px!important;line-height:1!important;text-align:center}
 #carBtn,#walkBtn,#photoExit{left:12px!important}#slowBtn{left:76px!important}#diveBtn{left:140px!important}#microBtn{left:204px!important}
 body.walking #diveBtn{left:140px!important}body:not(.walking) #diveBtn{left:76px!important}body:not(.walking) #microBtn{left:140px!important}
-@media (orientation:portrait) and (max-width:700px){#walkBtn,#carBtn,#slowBtn,#diveBtn,#microBtn,#photoExit{bottom:calc(env(safe-area-inset-bottom,0px) + 196px)!important}}
+@media (orientation:landscape) and (max-height:520px){#walkBtn,#carBtn,#slowBtn,#diveBtn,#microBtn{bottom:calc(env(safe-area-inset-bottom,0px) + 78px)!important}#photoExit{left:12px!important;bottom:calc(env(safe-area-inset-bottom,0px) + 140px)!important}#carBtn,#walkBtn{left:calc(50% - 150px)!important}#slowBtn{left:calc(50% - 88px)!important}body.walking #diveBtn{left:calc(50% + 74px)!important}body:not(.walking) #diveBtn,#microBtn{left:calc(50% + 74px)!important}body:not(.walking) #microBtn,body.walking #microBtn{left:calc(50% + 136px)!important}#wheel{width:124px;height:124px;bottom:calc(env(safe-area-inset-bottom,0px) + 96px)}#resetBtn{left:190px!important;bottom:calc(env(safe-area-inset-bottom,0px) + 22px)!important}#start .lead{display:none}#start h1{font-size:40px!important}}
+@media (orientation:portrait) and (max-width:700px){#trail{bottom:auto;top:calc(env(safe-area-inset-top,0px) + 112px)}#toasts{top:calc(env(safe-area-inset-top,0px) + 150px)}.toast{background:rgba(20,16,12,.85)}}
+@media (orientation:landscape) and (max-height:520px){#start{padding:calc(env(safe-area-inset-top,0px) + 10px) 5vw calc(env(safe-area-inset-bottom,0px) + 10px)}#start h1{font-size:46px}#start .lead{font-size:15px;margin:6px 0 8px}#go{height:58px;font-size:20px}.nbk{width:96px;height:58px}.nbk b{font-size:14px}.opt{margin-top:6px;font-size:14px}#start .credit{margin:4px 0 0}}
 #fade{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none;transition:opacity .25s;z-index:40}#fade.show{opacity:1}
 body.cave #microBtn,body.diving #microBtn{bottom:calc(env(safe-area-inset-bottom,0px) + 150px)}
 #scope{position:fixed;inset:0;z-index:25;display:none;align-items:center;justify-content:center;background:rgba(10,8,5,.9)}#scope.show{display:flex}
@@ -107,7 +115,7 @@ body.walking #resetBtn,body.walking #gear{display:none}
 .toast{background:var(--panel);padding:7px 16px;border-radius:3px;font-size:19px;font-weight:500;text-align:center;animation:tin .25s ease-out}
 .toast.place{border-bottom:3px solid var(--pasto)}
 @keyframes tin{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
-#trail{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);transform:translateX(-50%);font-family:Newsreader,serif;font-style:italic;font-size:19px;color:var(--niebla);text-shadow:0 1px 4px rgba(0,0,0,.8);pointer-events:none;opacity:0;transition:opacity .6s}
+#trail{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);transform:translateX(-50%);font-family:Newsreader,serif;font-style:italic;font-size:19px;color:var(--niebla);background:rgba(20,16,12,.72);padding:5px 14px;border-radius:16px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .6s}
 #trail.show{opacity:1}
 /* visor */
 #finder{position:fixed;inset:0;pointer-events:none;display:none}
@@ -154,6 +162,7 @@ body.diving.headout #maskOv .mkfog{display:none}
 #touch.show{display:block}
 .tb{position:fixed;width:74px;height:74px;border-radius:50%;background:rgba(34,27,20,.55);border:2px solid rgba(243,235,221,.35);font-size:30px;display:flex;align-items:center;justify-content:center;touch-action:none}
 .tb.on{background:rgba(242,140,40,.7)}
+#tL,#tR{display:none!important}#wheel{position:fixed;left:14px;bottom:calc(env(safe-area-inset-bottom,0px) + 104px);width:150px;height:150px;border-radius:50%;background:rgba(34,27,20,.4);touch-action:none;display:none}#touch.show #wheel{display:block}#wheel svg{transition:transform .08s linear}
 #tL{left:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 110px)}
 #tR{left:102px;bottom:calc(env(safe-area-inset-bottom,0px) + 110px)}
 #tU{right:200px;bottom:calc(env(safe-area-inset-bottom,0px) + 110px)}
@@ -283,7 +292,7 @@ body.menu #touch{display:none!important}
 @media (prefers-reduced-motion:reduce){.toast{animation:none}#flash{transition:none}}
 </style>
 </head>
-<body>
+<body class="onstart">
 <canvas id="c"></canvas>
 <svg id="maskOv" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
  <defs><radialGradient id="mkFog" cx="50%" cy="46%" r="50%"><stop offset="72%" stop-color="#d8eadf" stop-opacity="0"/><stop offset="100%" stop-color="#d8eadf" stop-opacity=".3"/></radialGradient>
@@ -310,7 +319,7 @@ body.menu #touch{display:none!important}
     <button class="tool" id="bMap" title="Mapa (M)" hidden>🗺️<small>M</small></button>
     <button class="tool" id="bLow" title="Tracción baja (Q)" hidden>4L<small>Q</small></button>
     <button class="tool" id="bReset" title="Destrabar (R)" hidden>↺<small>R</small></button>
-    <button class="tool" id="bShot" title="Capturar la pantalla y compartir">📸<small>capt.</small></button>
+    <button class="tool" id="bShot" title="Capturar la pantalla y compartir" aria-label="Compartir"><svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><path d="M6 25 C 7 14, 14 9, 23 9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M18 4 L 25 9 L 19 15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <button class="tool" id="bSnd" title="Sonido">🔊<small>son.</small></button>
   </div>
   <div id="toasts"></div>
@@ -334,6 +343,7 @@ body.menu #touch{display:none!important}
 <div id="photoCtl"><button class="zb" id="zOut" aria-label="Alejar">−</button><button id="shoot" aria-label="Sacar foto">FOTO</button><button class="zb" id="zIn" aria-label="Acercar">+</button></div>
 <div id="touch">
   <div class="tb" id="tL">◀</div><div class="tb" id="tR">▶</div>
+  <div id="wheel" aria-label="Volante"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><circle cx="50" cy="50" r="44" fill="none" stroke="rgba(243,235,221,.85)" stroke-width="9"/><circle cx="50" cy="50" r="44" fill="none" stroke="rgba(30,24,18,.6)" stroke-width="2"/><g id="wheelSp" fill="rgba(243,235,221,.85)"><circle cx="50" cy="50" r="11"/><rect x="8" y="46" width="84" height="8" rx="4"/><rect x="46" y="50" width="8" height="42" rx="4"/><rect x="45" y="4" width="10" height="9" rx="3" fill="#F28C28"/></g></svg></div>
   <div class="tb" id="tU">▲</div><div class="tb" id="tD">▼</div>
 </div>
 <div id="flash"></div>
@@ -654,7 +664,7 @@ const ICP={portada:'<circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v
  agua:'<path d="M3.5 12c4-5 9-5 13 0-4 5-9 5-13 0Zm13 0 4-3.5v7Z"/><circle cx="7.5" cy="11.3" r=".8"/>',
  lugares:'<path d="M2 19.5 8 9.5l4 6 3-4.5 7 8.5"/><circle cx="17" cy="5.5" r="2"/>',
  logros:'<path d="M12 2.5v19M2.5 12h19M5.5 5.5l13 13M18.5 5.5l-13 13"/><circle cx="12" cy="12" r="2.5"/>',
- hallazgos:'<path d="M8.5 21c-1.6-2-3.6-4.3-5-7l1.7-.7 3.2 3M8.5 16.3 6 6.5M10.6 15.5 10.2 3.5M12.8 15.6 15 4.5M14.6 16.6l4.6-7.6M8.5 21h7c2-1.8 2.8-3.6 3.2-6.2l-2.8-.6"/>',
+ hallazgos:'<path d="M8 21c-2.2-1.8-4.2-4.3-5-7.4l1.8-.6 2.4 2.6V6.2a1.3 1.3 0 0 1 2.6 0V12V3.9a1.3 1.3 0 0 1 2.6 0V12V5a1.3 1.3 0 0 1 2.6 0v7.2V8a1.3 1.3 0 0 1 2.6 0v7c0 3-1.4 4.8-3 6Z"/>',
  peces:'<path d="M3.5 12c4-5 9-5 13 0-4 5-9 5-13 0Zm13 0 4-3.5v7Z"/><circle cx="7.5" cy="11.3" r=".8"/>',
  micro:'<circle cx="10.5" cy="10.5" r="6.5"/><circle cx="10.5" cy="10.5" r="2.2"/><path d="M15.5 15.5 21 21"/>',
  fotos:'<path d="M12 3l2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4Z"/>'};
@@ -1739,7 +1749,7 @@ function renderPortada(){const nf=GOAL.filter(s=>SAVE.found[s.id]).length,np=SAV
  $('#portada').innerHTML=`<div class="pstat">${Object.keys(GRPN).map(k=>row(ICON(k)+' '+GRPN[k][1],gf(k),gc(k).length,k)).join('')}${SAVE.mask?row(ICON('peces')+' Peces',nfi,FISH.length,'agua'):''}${SAVE.micro?row(ICON('micro')+' Microscopio',Object.keys(SAVE.microFound||{}).length,MICRO.length,'micro'):''}</div>
  <h3 class="medh">📍 Lugares <small>${PLACES_AV().filter(p=>SAVE.places.includes(p.id)).length} / ${PLACES_AV().length}</small></h3>${stampGrid()}
  <h3 class="medh">🏺 Hallazgos <small>${[SAVE.mask,SAVE.micro,SAVE.alero,SAVE.hall].filter(Boolean).length} / 4</small></h3>${hzCardsHTML()}
- <h3 class="medh">🏅 Logros <small>${lg} / 3</small></h3>${medalGrid(MEDALS().filter(m=>m.k==='l'))}<h3 class="medh">✦ Fotos especiales <small>${ns} / ${Object.keys(SPECIALS).length}</small></h3>${medalGrid(MEDALS().filter(m=>m.k==='s'))}
+ <h3 class="medh">🏅 Logros <small>${lg} / 3</small></h3>${medalGrid(MEDALS().filter(m=>m.k==='l'))}<h3 class="medh">✦ Fotos especiales <small>${MEDALS().filter(m=>m.k==='s'&&m.got).length} / ${MEDALS().filter(m=>m.k==='s').length}</small></h3>${medalGrid(MEDALS().filter(m=>m.k==='s'))}
  `;document.querySelectorAll('#portada [data-go]').forEach(el=>el.onclick=()=>goTab(el.dataset.go));}
 function renderMicro(){const el=$('#microPage');if(!el)return;if(!SAVE.micro){el.innerHTML='';return;}const f=SAVE.microFound||{},sm=SAVE.samples||{};
  let h='<p class="ptip">🔬 Con el microscopio del naturalista podés tomar muestras donde veas un frasquito en una estaca, y en el piso de la cueva. Tocá cada bichito para identificarlo.</p>';
@@ -1823,7 +1833,12 @@ addEventListener('keydown',e=>{if(!started)return;keys[e.code]=true;
  if(e.code.startsWith('Arrow'))e.preventDefault();});
 addEventListener('keyup',e=>{keys[e.code]=false;});
 addEventListener('blur',()=>{for(const c in keys)keys[c]=false;});
-$('#bCam').onclick=()=>togglePhoto();$('#bBook').onclick=()=>toggleBook();$('#bLow').onclick=toggleLow;$('#bSnd').onclick=()=>toggleMute();$('#bClose').onclick=()=>toggleBook(false);$('#shoot').addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();shoot();});$('#diveBtn').onclick=()=>{if(DIVE.near&&SAVE.mask)startDive(DIVE.near);};$('#microBtn').onclick=()=>{if(SCOPE.near)openScope(SCOPE.near);};$('#scopeClose').onclick=closeScope;$('#partyBook').onclick=()=>{const k=$('#party').dataset.kind,T={bichos:'portada',lugares:'lugares',peces:'agua',buceo:'agua',micro:'micro',medal:'portada',hallazgos:'hallazgos'};$('#party').classList.remove('show');if(photo)togglePhoto(false);toggleBook(true);goTab(T[k]||'portada');};$('#photoExit').onclick=()=>togglePhoto(false);$('#gear').onclick=()=>{if(!WALK.on)toggleLow();};$('#resetBtn').onclick=()=>{if(!WALK.on)resetCar();};
+$('#bCam').onclick=()=>togglePhoto();$('#bBook').onclick=()=>toggleBook();$('#bLow').onclick=toggleLow;$('#bSnd').onclick=()=>toggleMute();$('#bClose').onclick=()=>toggleBook(false);$('#shoot').addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();shoot();});$('#diveBtn').onclick=()=>{if(DIVE.near&&SAVE.mask)startDive(DIVE.near);};$('#microBtn').onclick=()=>{if(SCOPE.near)openScope(SCOPE.near);};$('#scopeClose').onclick=closeScope;
+{const wh=$('#wheel'),sv=wh.querySelector('svg');let pid=null,a0=0;const ang=e=>{const r=wh.getBoundingClientRect();return Math.atan2(e.clientX-(r.left+r.width/2),-(e.clientY-(r.top+r.height/2)));};
+ const set=a=>{const d=Math.max(-1.6,Math.min(1.6,a));T.steerA=-d/1.2;T.steerA=Math.max(-1,Math.min(1,T.steerA));sv.style.transform='rotate('+(d*57.3)+'deg)';};
+ wh.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();pid=e.pointerId;wh.setPointerCapture(pid);a0=ang(e);set(0);});
+ wh.addEventListener('pointermove',e=>{if(e.pointerId!==pid)return;e.stopPropagation();let d=ang(e)-a0;d=Math.atan2(Math.sin(d),Math.cos(d));set(d);});
+ const up=e=>{if(e.pointerId!==pid)return;pid=null;T.steerA=0;sv.style.transform='rotate(0deg)';};wh.addEventListener('pointerup',up);wh.addEventListener('pointercancel',up);}$('#partyBook').onclick=()=>{const k=$('#party').dataset.kind,T={bichos:'portada',lugares:'lugares',peces:'agua',buceo:'agua',micro:'micro',medal:'portada',hallazgos:'hallazgos'};$('#party').classList.remove('show');if(photo)togglePhoto(false);toggleBook(true);goTab(T[k]||'portada');};$('#photoExit').onclick=()=>togglePhoto(false);$('#gear').onclick=()=>{if(!WALK.on)toggleLow();};$('#resetBtn').onclick=()=>{if(!WALK.on)resetCar();};
 {const FB_MAIL='insightrealitycontact@gmail.com';const info=()=>{const v=(document.querySelector('[data-ver]')||{}).textContent||'';return `\n\n— Safari Gaucho ${v} · ${navigator.userAgent} · ${innerWidth}×${innerHeight}`;};
  const txt=()=>($('#fbText').value||'').trim();
  $('#fbGit').onclick=()=>{const t=txt();if(!t){toast('Escribí algo primero 🙂');return;}const title=t.split('\n')[0].slice(0,70);window.open('https://github.com/pavlko/4x4natural/issues/new?title='+encodeURIComponent(title)+'&body='+encodeURIComponent(t+info()),'_blank');};
@@ -2349,8 +2364,8 @@ function openGoto(g){if(!g)return;if(typeof SCOPE!=='undefined'&&SCOPE.on)closeS
 // ===== FESTEJO =====
 const SP_ICON={viudita:'🤝',dragon:'🤝',hornero:'🏠',bigua:'🐟',garza:'🕊️',espatula:'🕊️',nandu:'🐣',mulita:'🕳️',tero:'🥚',lobito:'🌊',carpincho:'🌊',yacare:'🌊',sirir:'🌊'};
 const SP_LABEL={viudita:'Viudita con los dragones',hornero:'Nido de barro del hornero',bigua:'Biguá pescando bajo el agua',garza:'Garza en vuelo',espatula:'Espátula en vuelo',nandu:'Ñandú con charabones',mulita:'Cueva de la mulita',tero:'Nido del tero',lobito:'Lobito bajo el agua',carpincho:'Carpincho nadando',yacare:'Yacaré bajo el agua',sirir:'Patos vistos desde abajo del agua'};
-function MEDALS(){const L=[{id:'race',icon:'🏁',name:'El rápido de la pradera',hint:'Ganale una carrera al ñandú',got:!!SAVE.raceWins,go:'portada',k:'l'},{id:'nest',icon:'🥚',name:'Los huevos del tero',hint:'Encontrá el nido de los teros',got:!!SAVE.nest,go:'portada',k:'l'},{id:'puma',icon:'🐾',name:'El fantasma de la sierra',hint:'Es tan tímido que casi nadie lo ve: buscalo en lo más alto y solitario de la sierra, y acercate muy despacio.',got:!!SAVE.found.puma,go:'portada',k:'l'}];
- for(const id of Object.keys(SPECIALS)){const sp=SPECIES.find(q=>q.id===id);if(!sp)continue;const f=SAVE.found[id];L.push({id:'sp-'+id,icon:SP_ICON[id]||'✦',name:SP_LABEL[id]||sp.name,got:!!(f&&(f.flyImg||(f.x2&&f.x2.img)||(id==='tero'&&SAVE.nest))),go:sp.grp||'aves',k:'s'});}return L;}
+function MEDALS(){const L=[{id:'race',icon:'🏁',name:'El rápido de la pradera',hint:'Ganale una carrera al ñandú',got:!!SAVE.raceWins,go:'portada',k:'l'},{id:'nest',icon:'🥚',name:'Los huevos del tero',hint:'Encontrá el nido de los teros',got:!!SAVE.nest,go:'portada',k:'l'},{id:'puma',icon:'🐾',name:'El fantasma de la sierra',hint:'El fantasma de la sierra',got:!!SAVE.found.puma,go:'portada',k:'l'}];
+ for(const id of Object.keys(SPECIALS)){const sp=SPECIES.find(q=>q.id===id);if(!sp)continue;if(!SAVE.mask&&['bigua','lobito','yacare','sirir','carpincho'].includes(id))continue;const f=SAVE.found[id];L.push({id:'sp-'+id,icon:SP_ICON[id]||'✦',name:SP_LABEL[id]||sp.name,got:!!(f&&(f.flyImg||(f.x2&&f.x2.img)||(id==='tero'&&SAVE.nest))),go:sp.grp||'aves',k:'s'});}return L;}
 function medalSVG(m){const id='mg'+m.id.replace(/[^a-z0-9]/gi,'');return `<svg viewBox="0 0 100 120" width="100%" height="100%"><defs><radialGradient id="${id}" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="${m.got?'#fbe7a1':'#9a958c'}"/><stop offset=".6" stop-color="${m.got?'#d9a83a':'#6e6a62'}"/><stop offset="1" stop-color="${m.got?'#8a5f14':'#4a4740'}"/></radialGradient></defs>${m.got?`<path d="M30 70 L20 118 L36 108 L44 118 L50 74 Z" fill="${m.k==='l'?'#c8302a':'#2f6f9a'}"/><path d="M70 70 L80 118 L64 108 L56 118 L50 74 Z" fill="${m.k==='l'?'#a82420':'#245a80'}"/>`:''}<circle cx="50" cy="48" r="40" fill="url(#${id})" stroke="${m.got?'#7a5410':'#3a3833'}" stroke-width="3"/><circle cx="50" cy="48" r="31" fill="none" stroke="${m.got?'#fff3c4':'#8a857c'}" stroke-width="1.5" stroke-dasharray="3 3"/><text x="50" y="60" text-anchor="middle" font-size="34">${m.got?m.icon:'?'}</text></svg>`;}
 const PL_ICON={vado:'🌊',tapera:'🌳',palmar:'🌴',quebrada:'🌿',gruta:'🔥',laguna:'🪷',valle:'⛰️',laguna2:'🦩',cascada:'💧',pozo:'🤿',manantial:'🫧',casita:'🛖',barrial:'🐸',monte:'🌲'};
 function stampSVG(p,got,i){const rot=((i*37)%13-6),col=got?['#2f6f5a','#8a3a2a','#2f4f8a','#6a4a1a'][i%4]:'#8a857c';return `<svg viewBox="0 0 100 100" width="100%" height="100%" style="transform:rotate(${rot}deg)"><circle cx="50" cy="50" r="44" fill="${got?'#f6efdc':'#d8d2c4'}" stroke="${col}" stroke-width="4" stroke-dasharray="${got?'0':'5 4'}"/><circle cx="50" cy="50" r="36" fill="none" stroke="${col}" stroke-width="1.5"/><text x="50" y="${got?55:62}" text-anchor="middle" font-size="${got?30:34}" fill="${col}">${got?PL_ICON[p.id]||'📍':'?'}</text>${got?`<text x="50" y="80" text-anchor="middle" font-size="9" font-weight="700" fill="${col}" font-family="Barlow Condensed,sans-serif" letter-spacing="1">SAFARI GAUCHO</text>`:''}</svg>`;}
@@ -2429,7 +2444,7 @@ function updateRace(dt,time){if(!RACE.on){RACE.cool-=dt;if(RACE.back){const b=RA
 // ===== FÍSICA DE LA CAMIONETA =====
 function updateCar(dt,time){
  let tin=0,st=0;
- if(!photo&&!bookOpen&&!mapOpen){tin=((k('KeyW')||k('ArrowUp')||T.up)?1:0)-((k('KeyS')||k('ArrowDown')||T.down)?1:0);st=((k('KeyA')||k('ArrowLeft')||T.left)?1:0)-((k('KeyD')||k('ArrowRight')||T.right)?1:0);}
+ if(!photo&&!bookOpen&&!mapOpen){tin=((k('KeyW')||k('ArrowUp')||T.up)?1:0)-((k('KeyS')||k('ArrowDown')||T.down)?1:0);st=Math.max(-1,Math.min(1,((k('KeyA')||k('ArrowLeft')||T.left)?1:0)-((k('KeyD')||k('ArrowRight')||T.right)?1:0)+(T.steerA||0)));}
  // acelerador progresivo: apretar sube de a poco, soltar corta rápido
  const growing=tin!==0&&(car.thr===0||Math.sign(tin)===Math.sign(car.thr))&&Math.abs(tin)>Math.abs(car.thr);
  const rate=growing?1.7:7;car.thr+=Math.max(-rate*dt,Math.min(rate*dt,tin-car.thr));const thr=car.thr;
@@ -2536,7 +2551,7 @@ let shake=0;
 const camPos=new THREE.Vector3(car.x,car.y+5,car.z+12);
 function updateCamera(dt){
  if(photo){
-  const rot=((k('ArrowLeft')||k('KeyA')||T.left)?1:0)-((k('ArrowRight')||k('KeyD')||T.right)?1:0),tilt=(caveView||DIVE.on)?0:((k('ArrowUp')||T.up)?1:0)-((k('ArrowDown')||T.down)?1:0);
+  const rot=Math.max(-1,Math.min(1,((k('ArrowLeft')||k('KeyA')||T.left)?1:0)-((k('ArrowRight')||k('KeyD')||T.right)?1:0)+(T.steerA||0))),tilt=(caveView||DIVE.on)?0:((k('ArrowUp')||T.up)?1:0)-((k('ArrowDown')||T.down)?1:0);
   const f=photoFov/55;photoYaw+=rot*dt*1.3*f;photoPitch=Math.max(-1.35,Math.min(1.4,photoPitch+tilt*dt*.9*f));
   if((!caveView&&!DIVE.on&&k('KeyW'))||k('Equal')||k('NumpadAdd')||Z.in)photoFov=Math.max(3.4,photoFov*(1-dt*1.4));if((!caveView&&!DIVE.on&&k('KeyS'))||k('Minus')||k('NumpadSubtract')||Z.out)photoFov=Math.min(130,photoFov*(1+dt*1.4));
   if(DIVE.on){swim(dt);camera.position.copy(DIVE.pos);if(DIVE.out)camera.position.y=DIVE.wl+.32;}else if(caveView){caveWalk(dt);if(caveView)camera.position.copy(caveView);}else camera.position.set(car.x,car.y+(WALK.on?1.62:2.75),car.z);
@@ -2665,7 +2680,7 @@ function startWalk(){if(!canWalk())return;Object.assign(PARK,{x:car.x,y:car.y,z:
  camPos.set(car.x+Math.sin(car.h)*5,car.y+3,car.z+Math.cos(car.h)*5);toastOnce('caminar','Caminás con ▲▼ y girás con ◀▶. Mantené Shift (o 🐢) para ir despacio y espantar menos a los bichos. 🚙 para volver a la camioneta.',90);}
 function endWalk(){if(!WALK.on)return;const fd=$('#fade');fd.classList.add('show');setTimeout(()=>{if(photo)togglePhoto(false);car.x=PARK.x;car.y=PARK.y;car.z=PARK.z;car.h=PARK.h;car.mh=PARK.mh;car.v=0;car.vy=0;car.thr=0;WALK.on=false;AV.visible=false;document.body.classList.remove('walking');
  camPos.set(car.x+Math.sin(car.h)*11,car.y+5,car.z+Math.cos(car.h)*11);setTimeout(()=>fd.classList.remove('show'),60);},260);}
-function updateWalk(dt,time){let tin=0,st=0;if(!photo&&!bookOpen&&!mapOpen){tin=((k('KeyW')||k('ArrowUp')||T.up)?1:0)-((k('KeyS')||k('ArrowDown')||T.down)?1:0);st=((k('KeyA')||k('ArrowLeft')||T.left)?1:0)-((k('KeyD')||k('ArrowRight')||T.right)?1:0);}
+function updateWalk(dt,time){let tin=0,st=0;if(!photo&&!bookOpen&&!mapOpen){tin=((k('KeyW')||k('ArrowUp')||T.up)?1:0)-((k('KeyS')||k('ArrowDown')||T.down)?1:0);st=Math.max(-1,Math.min(1,((k('KeyA')||k('ArrowLeft')||T.left)?1:0)-((k('KeyD')||k('ArrowRight')||T.right)?1:0)+(T.steerA||0)));}
  const slow=k('ShiftLeft')||k('ShiftRight')||!WALK.run,want=tin>0?(slow?1.4:3.4):(tin<0?-1:0);car.v+=(want-car.v)*Math.min(1,dt*6);car.h+=st*dt*2.3;car.mh=car.h;
  const fx=-Math.sin(car.h),fz=-Math.cos(car.h),nx=car.x+fx*car.v*dt,nz=car.z+fz*car.v*dt,H0=H(car.x,car.z),H1=H(nx,nz),step=Math.hypot(nx-car.x,nz-car.z)||1e-6;let ok=true;
  if(Math.abs(nx)>HALF-14||Math.abs(nz)>HALF-14)ok=false;
@@ -2761,7 +2776,7 @@ refreshTally();
 $('#loading').remove();
 if(Object.keys(SAVE.found).length||SAVE.places.length)$('#go').textContent='Seguir explorando';
 let firstGo=true;
-$('#go').onclick=()=>{started=true;camOrbit=0;camTilt=0;camZoom=1;camLock=false;checkTele();$('#start').style.display='none';document.body.classList.remove('menu');$('#hud').style.display='block';if(!AC)initAudio();revealFog();if(firstGo)toast('Fotografiá los bichos en su lugar. N abre el cuaderno con pistas.');firstGo=false;};
+$('#go').onclick=()=>{started=true;document.body.classList.remove('onstart');camOrbit=0;camTilt=0;camZoom=1;camLock=false;checkTele();$('#start').style.display='none';document.body.classList.remove('menu');$('#hud').style.display='block';if(!AC)initAudio();revealFog();if(firstGo)toast('Fotografiá los bichos en su lugar. N abre el cuaderno con pistas.');firstGo=false;};
 $('#goBook').onclick=()=>toggleBook(true);
 paintIcons();
 function goTab(t){document.querySelectorAll('#bookTabs button').forEach(x=>x.classList.toggle('on',x.dataset.t===t));document.querySelectorAll('.pages .tp').forEach(p=>p.classList.toggle('on',p.dataset.t===t));$('#book .pages').scrollTop=0;}
@@ -2776,7 +2791,7 @@ const makeProfile=()=>{const name=($('#profName').value||'').trim()||('Jugador '
 $('#profOk').onclick=makeProfile;$('#profName').addEventListener('keydown',e=>{if(e.key==='Enter')makeProfile();e.stopPropagation();});
 {const ot=$('#optTrees');ot.checked=NOTREES;ot.onchange=()=>{NOTREES=ot.checked;SAVE.settings=Object.assign(SAVE.settings||{},{noTrees:NOTREES});save();};}
 function openMenu(){if(photo)togglePhoto(false);if(bookOpen)toggleBook(false);if(mapOpen)toggleMap(false);for(const c in keys)keys[c]=false;for(const t in T)T[t]=0;car.v=0;car.thr=0;started=false;
- $('#hud').style.display='none';document.body.classList.add('menu');$('#start').style.display='flex';$('#go').textContent='Seguir explorando';}
+ $('#hud').style.display='none';document.body.classList.add('menu');document.body.classList.add('onstart');$('#start').style.display='flex';$('#go').textContent='Seguir explorando';}
 $('#bMenu').onclick=openMenu;
 
 function resetAll(){SAVE={found:{},places:[],placePics:{},settings:SAVE.settings,fish:{},dives:{}};CHEST.t=0;CHEST.lid.rotation.x=0;save();refreshTally();const go=$('#go');if(go)go.textContent='Arrancar';toast('🧹','place');const sup=$('#start sup');if(sup){sup.style.transition='color .3s';sup.style.color='#c0392b';setTimeout(()=>sup.style.color='',900);}}
