@@ -72,3 +72,9 @@ Patagonia (Cueva de las Manos), África (Serengeti y Laetoli), sur de China (Gua
 - Carpintero de campo (Colaptes campestris) y algún carpintero de nuca roja: golpeteo en troncos y postes, y gritos fuertes. Ojo: ya hay muchas aves; filtrar luego por los que quedan mejor.
 
 - Posible: pecho amarillo (Pseudoleistes virescens), pardo con hombros y panza amarillos, en grupos ruidosos junto a los dragones.
+
+## Próximo: integrar la playa al juego principal
+- Pasar la costa de la rama `playa` a `main`.
+- Pensar los bichos de la costa y los puntos de buceo de la punta de piedra y de la laguna costera.
+- La barra del arroyo hacia un costado de la laguna costera.
+- Antes de mezclar: revisar que no se pierda el progreso guardado de los jugadores.
