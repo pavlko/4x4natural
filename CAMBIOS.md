@@ -112,6 +112,8 @@ Un juego de Insight Reality
 - v109  El Juan chiviro se posa sobre la copa real de los árboles y cada tanto vuela a otro árbol cercano
 - v110  Botones de acción solo con ícono, en fila a la izquierda; inicio nuevo: Explorar con la camioneta, cuaderno de cuero, compartir arriba a la derecha, Mi explorador junto al jugador, y arrastrar/zoom en el fondo; laguna escondida rodeada de lomas parecidas y con la entrada más tapada
 - v111  Volante en vez de botones izquierda/derecha; menú junto al contador (con ícono de cuaderno), compartir arriba a la derecha, foto y sonido abajo al medio; pistas arriba y con fondo oscuro en vertical; inicio y manejo acomodados en horizontal; ícono de hallazgos como mano abierta; el puma aparece como "El fantasma de la sierra"; fotos especiales bajo el agua recién con la máscara
+- v112  Inicio: Explorar con el logo abajo a la derecha, cuaderno a la izquierda, 🎨 junto al lápiz del jugador; barro que patina más; charcos marrones; volante sin saltos; caminando sin volante y con cámara fija el arrastre orbita; buceo con joystick y botones de subir/bajar; foto caminando con controles; acelerador gradual; contador con fondo de cuaderno; sonido a la izquierda de foto; pistas siempre arriba; salir del agua donde estaba el botón de entrar
+- v113  Insectos: hormigas cortadoras con su camino y hormiguero (foto especial con el hormiguero), araña tejedora con una telaraña grande junto a la tapera, colmena en un tronco cerca del camino con nubes de abejas
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v111).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v113).
 La versión vigente es index.html (lista como app instalable).
