@@ -624,7 +624,7 @@ const SPECIES=[
  {id:'chiricote',name:'Chiricote',sci:'Aramides ypecaha',more:'Al atardecer los chiricotes cantan en coro y el monte entero se llena de sus gritos.',size:.6,hab:'land',spots:[],wander:6,walk:.5,run:3,shy:{d:14,v:-1},
   hint:'Caminando escondido en el monte de la orilla del arroyo. Se lo oye mucho antes de verlo.',
   note:'Ave grande de monte, parecida a una gallina de patas largas y rojas, con el cuello rojizo, el pico amarillo y los ojos rojos. Su canto ruidoso repite algo parecido a su nombre.'},
- {id:'juanchiviro',name:'Juan chiviro',sci:'Cyclarhis gujanensis',more:'Dicen que su canto pregunta “¿cómo te va, Juan Chiviro?”.',size:.5,hab:'perch',spots:[],
+ {id:'juanchiviro',name:'Juan chiviro',sci:'Cyclarhis gujanensis',more:'Dicen que su canto pregunta “¿cómo te va, Juan Chiviro?”.',size:.5,hab:'perch',hop:{fleeD:9,roam:true},spots:[],
   hint:'Escondido en la copa de un árbol del monte, cerca del arroyo. Seguí su canto y mirá para arriba.',
   note:'Pajarito verde oliva con la cabeza gris, una ceja colorada y el pecho amarillento. Se queda quieto entre las hojas y canta una frase repetida que se reconoce enseguida.'},
  {id:'rana',name:'Rana llorona',sci:'Physalaemus biligonigerus',more:'Los machos inflan una bolsa en la garganta para cantar; la hembra pone los huevos en una espuma que flota en el charco.',size:.3,hab:'land',spots:[],wander:.6,walk:.2,run:1,shy:{d:4.5,v:-1},hides:true,hideMsg:'¡Plaf! La rana saltó al charco.',
@@ -1443,6 +1443,7 @@ BUILD.arana=(g,L)=>{const b=M(0x1c1612,.95),h=M(0x2a211a,.95),lg=M(0x18120e,.95)
  part(SPH,M(0x111111),.02,.14,-.11,.01,.01,.01,g);part(SPH,M(0x111111),-.02,.14,-.11,.01,.01,.01,g);};
 function flapW(a,time,on){(a.g.userData.wingsAll||[]).forEach((w,i)=>{const s=Math.sign(w.position.x)||1;if(on){w.scale.x=1;w.rotation.z=s*Math.sin(time*18+i)*.85;}else{w.scale.x=.35;w.rotation.z=s*1.25;}});}
 function hopUpdate(a,dt,time,dc){const hp=a.sp.hop;if(!a.perch)return;
+ if(hp.roam&&a.state!=='fly'&&a.perches&&a.perches.length>1){a.rt=(a.rt===undefined?6+Math.random()*8:a.rt)-dt;if(a.rt<=0){a.rt=9+Math.random()*12;const opts=a.perches.filter(p=>p!==a.perch),nx=opts[Math.floor(Math.random()*opts.length)];a.fl={from:a.perch,to:nx,t:0,dur:Math.max(1,Math.hypot(nx[0]-a.perch[0],nx[2]-a.perch[2])/6)};a.state='fly';}}
  if(a.followT!==undefined&&a.state!=='fly'){a.followT-=dt;if(a.followT<=0){const nx=a.followTo;delete a.followT;a.fl={from:a.perch,to:nx,t:0,dur:Math.max(1.2,Math.hypot(nx[0]-a.perch[0],nx[2]-a.perch[2])/7)};a.state='fly';}}
  if(a.state!=='fly'){if(a.sallyT){a.sallyT-=dt;const u=1-a.sallyT/1.6;a.g.position.y=hp.dive?a.perch[1]-Math.sin(u*Math.PI)*(a.perch[1]+.05):a.perch[1]+Math.sin(u*Math.PI)*1.6;flapW(a,time,true);if(a.sallyT<=0){a.sallyT=0;a.t=3+Math.random()*5;flapW(a,time,false);a.g.position.y=a.perch[1];}return;}
   a.t-=dt;const flee=dc<hp.fleeD;if(hp.sally&&!flee&&a.t<=0&&Math.random()<.5){a.sallyT=1.6;return;}
@@ -1639,7 +1640,11 @@ BUILD.rana=(g)=>{const b=M(0x7a6a48,.7),d=M(0x3a3424,.8),c=M(0xe8e0c0,.6);g.scal
 {// juan chiviro escondido en la copa de árboles del monte
  const sp=SPECIES.find(s=>s.id==='juanchiviro'),cand=[];for(const[k,arr] of GRID)for(const o of arr){if(o.t&&o.z>-60&&o.z<160&&Math.abs(o.x-riverX(o.z))<riverW(o.z)*.5+30)cand.push(o);}
  const pick=[];for(let t=0;t<200&&pick.length<2&&cand.length;t++){const o=cand[Math.floor(rnd()*cand.length)];if(pick.some(p=>Math.hypot(p.x-o.x,p.z-o.z)<60))continue;pick.push(o);}
- pick.forEach(o=>{const a=spawn(sp,o.x+.3,o.z+.2);a.y=H(o.x,o.z)+3.6;a.g.position.y=a.y;a.h=rnd()*6.28;});}
+ scene.updateMatrixWorld(true);const leafM=[];scene.traverse(o=>{if(o.isInstancedMesh&&o.count>0&&o.material&&o.material.vertexColors===false&&o.instanceColor)leafM.push(o);});
+ const rc=new THREE.Raycaster(),down=new THREE.Vector3(0,-1,0);
+ const canopy=(o)=>{for(let k=0;k<6;k++){const a=k*1.05+rnd(),r=.7+rnd()*.5,x=o.x+Math.cos(a)*r,z=o.z+Math.sin(a)*r,g=H(x,z);rc.set(new THREE.Vector3(x,g+20,z),down);rc.far=19.5;const hit=rc.intersectObjects(leafM,false)[0];if(hit&&hit.point.y>g+1.6)return[x,hit.point.y-.05,z];}return null;};
+ pick.forEach(o0=>{const trees=cand.filter(o=>Math.hypot(o.x-o0.x,o.z-o0.z)<32).slice(0,10),per=[];for(const o of trees){const c=canopy(o);if(c)per.push(c);if(per.length>=6)break;}
+  if(per.length){const a=spawn(sp,per[0][0],per[0][2]);setPerch(a,per,per[0]);a.h=rnd()*6.28;}});}
 {// ranas lloronas en los charcos
  const sp=SPECIES.find(s=>s.id==='rana');const ps=PUDDLES.slice().sort((a,b)=>b.r-a.r).slice(0,4);ps.forEach(p=>{const an=rnd()*6.28,x=p.x+Math.cos(an)*(p.r+.2),z=p.z+Math.sin(an)*(p.r+.2);const a=spawn(sp,x,z);a.home=[x,z];});}
 
