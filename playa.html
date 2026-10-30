@@ -280,7 +280,7 @@ body.menu #touch{display:none!important}
  <g stroke="#fff" stroke-opacity=".2" stroke-width=".25" fill="none"><path d="M44 34l8 5M118 24l-6 8M100 74l11-4M52 76l4-6M128 52q3 3 2 7"/></g>
 </svg>
 <div class="hud" id="hud">
-  <div id="verHud" data-ver>v104 playa</div>
+  <div id="verHud" data-ver>v105 playa</div>
   <div id="tally"><b id="tBichos">0 / 11 bichos</b><span id="tLugares">0 / 7 lugares</span><span id="tPeces" hidden></span><span id="tMicro" hidden></span></div>
   <div id="tools">
     <button class="tool" id="bMenu" title="Menú">☰<small>menú</small></button>
@@ -360,7 +360,7 @@ body.menu #touch{display:none!important}
 <section class="tp" data-t="lugares"><h4><span class="ich" data-ic="lugares"></span> <span id="plH">Lugares</span></h4><div class="grid" id="plList"></div></section>
 <section class="tp" data-t="logros"><h4><span class="ich" data-ic="logros"></span> <span id="logH">Logros especiales</span></h4><div id="logros" class="logros"></div><p class="bookcredit" id="raceInfo"></p></section>
 <section class="tp" data-t="hallazgos"><h4><span class="ich" data-ic="hallazgos"></span> Hallazgos</h4><div id="hzList"></div></section>
-<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v104 playa</span></p></div>
+<p class="bookcredit">Safari Gaucho · un juego de Insight Reality · <span data-ver>v105 playa</span></p></div>
   </div>
 </div>
 <div id="start">
@@ -370,7 +370,7 @@ body.menu #touch{display:none!important}
     <div class="startbtns"><button id="go">Arrancar</button><button id="goBook">📓 Cuaderno de campo</button><button id="goCustom">🎨 Personalizar</button></div>
     <div class="players"><div id="profList"></div><button id="profNew" type="button">👤 Nuevo jugador</button><span id="profNewBox" hidden><input id="profName" maxlength="16" placeholder="Nombre del jugador"> <button id="profOk" type="button">Listo</button> <button id="profCancel" type="button" aria-label="Cancelar">✕</button></span></div>
     <label class="opt"><input type="checkbox" id="optTrees"> Pasar a través de los árboles (para los más chicos)</label>
-    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v104 playa</span></p>
+    <p class="credit">Un juego de <b>Insight Reality</b> <button id="creditInfo" type="button" aria-label="Ayuda y cómo lo hicimos" title="Ayuda">i</button> <span class="ver" data-ver>v105 playa</span></p>
   </div>
 </div>
 <div id="loading">Armando el paisaje…</div>
@@ -2311,11 +2311,12 @@ function openGoto(g){if(!g)return;if(typeof SCOPE!=='undefined'&&SCOPE.on)closeS
  if(g.id){setTimeout(()=>{const el=document.querySelector('.pages .tp[data-t="'+g.tab+'"] [data-id="'+g.id+'"]');if(el){el.scrollIntoView({block:'center',behavior:'smooth'});el.classList.add('hl');setTimeout(()=>el.classList.remove('hl'),2200);}},60);}
  const an=$('#announce');an.classList.remove('show','go');ANN_GO=null;}
 // ===== FESTEJO =====
-const SP_ICON={viudita:'🤝',dragon:'🤝',hornero:'🏠',bigua:'🐟',garza:'🕊️',espatula:'🕊️',nandu:'🐣',mulita:'🐣',tero:'🥚',lobito:'🐟',carpincho:'🐣',yacare:'🐣',sirir:'🐣'};
+const SP_ICON={viudita:'🤝',dragon:'🤝',hornero:'🏠',bigua:'🐟',garza:'🕊️',espatula:'🕊️',nandu:'🐣',mulita:'🕳️',tero:'🥚',lobito:'🌊',carpincho:'🌊',yacare:'🌊',sirir:'🌊'};
+const SP_LABEL={viudita:'Viudita con los dragones',dragon:'Dragones con la viudita',hornero:'Nido de barro del hornero',bigua:'Biguá pescando bajo el agua',garza:'Garza en vuelo',espatula:'Espátula en vuelo',nandu:'Ñandú con charabones',mulita:'Cueva de la mulita',tero:'Nido del tero',lobito:'Lobito bajo el agua',carpincho:'Carpincho nadando',yacare:'Yacaré bajo el agua',sirir:'Patos vistos desde abajo del agua'};
 function MEDALS(){const L=[{id:'race',icon:'🏁',name:'Carrera del ñandú',got:!!SAVE.raceWins,go:'logros',k:'l'},{id:'nest',icon:'🥚',name:'Nido del tero',got:!!SAVE.nest,go:'logros',k:'l'},{id:'puma',icon:'🐾',name:'Puma escondido',got:!!SAVE.found.puma,go:'logros',k:'l'}];
- for(const id of Object.keys(SPECIALS)){const sp=SPECIES.find(q=>q.id===id);if(!sp)continue;const f=SAVE.found[id];L.push({id:'sp-'+id,icon:SP_ICON[id]||'✦',name:sp.name,got:!!(f&&(f.flyImg||(f.x2&&f.x2.img)||(id==='tero'&&SAVE.nest))),go:sp.grp||'aves',k:'s'});}return L;}
+ for(const id of Object.keys(SPECIALS)){const sp=SPECIES.find(q=>q.id===id);if(!sp)continue;const f=SAVE.found[id];L.push({id:'sp-'+id,icon:SP_ICON[id]||'✦',name:SP_LABEL[id]||sp.name,got:!!(f&&(f.flyImg||(f.x2&&f.x2.img)||(id==='tero'&&SAVE.nest))),go:sp.grp||'aves',k:'s'});}return L;}
 function medalSVG(m){const id='mg'+m.id.replace(/[^a-z0-9]/gi,'');return `<svg viewBox="0 0 100 120" width="100%" height="100%"><defs><radialGradient id="${id}" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="${m.got?'#fbe7a1':'#9a958c'}"/><stop offset=".6" stop-color="${m.got?'#d9a83a':'#6e6a62'}"/><stop offset="1" stop-color="${m.got?'#8a5f14':'#4a4740'}"/></radialGradient></defs>${m.got?`<path d="M30 70 L20 118 L36 108 L44 118 L50 74 Z" fill="${m.k==='l'?'#c8302a':'#2f6f9a'}"/><path d="M70 70 L80 118 L64 108 L56 118 L50 74 Z" fill="${m.k==='l'?'#a82420':'#245a80'}"/>`:''}<circle cx="50" cy="48" r="40" fill="url(#${id})" stroke="${m.got?'#7a5410':'#3a3833'}" stroke-width="3"/><circle cx="50" cy="48" r="31" fill="none" stroke="${m.got?'#fff3c4':'#8a857c'}" stroke-width="1.5" stroke-dasharray="3 3"/><text x="50" y="60" text-anchor="middle" font-size="34">${m.got?m.icon:'?'}</text></svg>`;}
-function medalGrid(list){return '<div class="medals">'+list.map(m=>`<div class="medal${m.got?' got':''}" data-go="${m.go}" role="button" tabindex="0"><div class="mimg">${medalSVG(m)}</div><span>${m.got?m.name:'¿?'}</span></div>`).join('')+'</div>';}
+function medalGrid(list){return '<div class="medals">'+list.map(m=>`<div class="medal${m.got?' got':''}" data-go="${m.go}" role="button" tabindex="0"><div class="mimg">${medalSVG(m)}</div><span>${m.got||m.k==='s'?m.name:'¿?'}</span></div>`).join('')+'</div>';}
 let medalT=null;function checkMedals(){const got=MEDALS().filter(m=>m.got);if(!SAVE.medalSeen){SAVE.medalSeen=got.map(m=>m.id);try{localStorage.setItem(curKey(),JSON.stringify(SAVE));}catch(e){}return;}const nw=got.filter(m=>!SAVE.medalSeen.includes(m.id));if(!nw.length)return;SAVE.medalSeen.push(...nw.map(m=>m.id));try{localStorage.setItem(curKey(),JSON.stringify(SAVE));}catch(e){}window._medal=nw[0];setTimeout(()=>celebrate('medal'),1600);}
 const PARTY={medal:['🏅','¡Medalla nueva!',()=>(window._medal?(window._medal.k==='l'?'Logro: ':'Foto especial: ')+window._medal.name:''),'Mirala en la portada del cuaderno.'],bichos:['🦩🦫🦉🐊','¡Encontraste todos los bichos!',()=>GOAL.length+' de '+GOAL.length+' bichos','Fotografiaste a todos los bichos de la sierra y el humedal. ¿Te animás a buscar los logros escondidos?'],
  lugares:['🏞️⛰️🌊','¡Conociste todos los lugares!',()=>PLACES.length+' de '+PLACES.length+' lugares','Recorriste la sierra, la quebrada, las lagunas y la cueva. Sos un verdadero explorador.'],
