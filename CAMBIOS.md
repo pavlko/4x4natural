@@ -116,6 +116,7 @@ Un juego de Insight Reality
 - v113  Insectos: hormigas cortadoras con su camino y hormiguero (foto especial con el hormiguero), araña tejedora con una telaraña grande junto a la tapera, colmena en un tronco cerca del camino con nubes de abejas
 - v114  Buceo con dos joysticks: el izquierdo mira (como arrastrar la pantalla), el derecho avanza, retrocede y se corre a los costados
 - v115  Inicio: cuaderno y Seguir explorando en una fila arriba de "Un juego de…", el botón conserva el logo; firma al final de la ayuda
+- v116  Color a elección para lo que va en el techo de la camioneta (y las cajas); firma con la tipografía del resto
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v115).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v116).
 La versión vigente es index.html (lista como app instalable).
