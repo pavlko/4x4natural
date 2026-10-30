@@ -109,6 +109,7 @@ Un juego de Insight Reality
 - v106  Portada: lugares como sellos de pasaporte y hallazgos como tarjetas doradas
 - v107  Sellos también en la pestaña de lugares; barras parejas y una barra en cada sección; 5 lugares nuevos que aparecen con la máscara (pozo del arroyo, manantial) y el microscopio (casita del pescador, barrial, monte); logros con su pista y sin pestaña propia; hallazgos después de lugares; la viudita con los dragones es una sola foto especial
 - v108  Festejos con botón "Ver en el cuaderno"; botones de bajarse, volver a la camioneta y despacio junto a los controles; logros "El rápido de la pradera", "Los huevos del tero" y "El fantasma de la sierra" (con la pista del puma); botón para compartir el juego en la entrada
+- v109  El Juan chiviro se posa sobre la copa real de los árboles y cada tanto vuela a otro árbol cercano
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v108).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v109).
 La versión vigente es index.html (lista como app instalable).
