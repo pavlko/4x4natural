@@ -1713,23 +1713,22 @@ BUILD.abeja=(g)=>{};
  const sp=SPECIES.find(s=>s.id==='hormiga');if(sp){const p=ANTS.curve.getPointAt(.35);const a=spawn(sp,p.x,p.z);ANTS.a=a;}
  window.ANTS=ANTS;}
 {// telaraña grande de la araña tejedora, junto a la tapera
- const P=PLACES.find(q=>q.id==='tapera');let wx=P.x+13,wz=P.z-9;for(let k=0;k<40;k++){const a=k*.7,r=14+k*.3,x=P.x+Math.cos(a)*r,z=P.z+Math.sin(a)*r;if(!hitObs(x,z,4)&&slopeAt(x,z)<.25&&H(x,z)>.5){wx=x;wz=z;break;}}const gy=H(wx,wz),g=new THREE.Group();g.position.set(wx,gy,wz);g.rotation.y=.5;scene.add(g);
- const st=M(0x6a5236,.9);for(const sd of[-1,1]){const p=part(CYL,st,sd*1.75,2.1,0,.06,4.2,.06,g);p.rotation.z=sd*.06;}
- const cy=2.4,R=1.35,lines=[],sil=new THREE.LineBasicMaterial({color:0xf4f4f0,transparent:true,opacity:.75});
+ const P=PLACES.find(q=>q.id==='tapera');const wx=P.x+13,wz=P.z-9;const gy=H(wx,wz),g=new THREE.Group();g.position.set(wx,gy,wz);g.rotation.y=.5;scene.add(g);
+  const cy=4.3,R=1.1,lines=[],sil=new THREE.LineBasicMaterial({color:0xf4f4f0,transparent:true,opacity:.75});
  for(let i=0;i<16;i++){const a=i/16*6.28;lines.push(0,cy,0,Math.cos(a)*R*(1+.08*Math.sin(i*3)),cy+Math.sin(a)*R,0);}
  for(let r=.18;r<R;r+=.075){for(let i=0;i<64;i++){const a1=i/64*6.28,a2=(i+1)/64*6.28;lines.push(Math.cos(a1)*r,cy+Math.sin(a1)*r,0,Math.cos(a2)*r,cy+Math.sin(a2)*r,0);}}
- for(const sd of[-1,1]){lines.push(sd*1.7,3.8,0,sd*R*.85,cy+R*.55,0,sd*1.7,1.0,0,sd*R*.8,cy-R*.6,0);}
- const lg=new THREE.BufferGeometry();lg.setAttribute('position',new THREE.Float32BufferAttribute(lines,3));g.add(new THREE.LineSegments(lg,sil));const l2=new THREE.LineSegments(lg,sil);l2.position.set(.012,.012,.01);g.add(l2);sil.opacity=.95;
+ for(const sd of[-1,1]){lines.push(sd*1.5,cy+1.6,0,sd*R*.85,cy+R*.55,0,sd*.6,cy-1.9,-.3,sd*R*.8,cy-R*.6,0);}
+ const lg=new THREE.BufferGeometry();lg.setAttribute('position',new THREE.Float32BufferAttribute(lines,3));g.add(new THREE.LineSegments(lg,sil));sil.opacity=.7;
  const zz=M(0xffffff,.3,{emissive:0x666666});for(const[a,b] of[[.75,-2.35],[2.35,-.75]]){for(let k=0;k<5;k++){const t=.15+k*.15,x=Math.cos(a)*t,y=cy+Math.sin(a)*t,x2=Math.cos(b)*t,y2=cy+Math.sin(b)*t;const z1=part(BOX,zz,x,y,0,.06,.012,.004,g);z1.rotation.z=a+(k%2?.6:-.6);const z2=part(BOX,zz,x2,y2,0,.06,.012,.004,g);z2.rotation.z=b+(k%2?.6:-.6);}}
  const sp=SPECIES.find(s=>s.id==='tejedora');if(sp){const wp=new THREE.Vector3(0,cy,.01).applyMatrix4(g.matrixWorld.compose(g.position,g.quaternion,g.scale));const a=spawn(sp,wx,wz);a.y=gy+cy;a.g.position.set(wx,a.y,wz);a.g.rotation.y=.5;}}
 {// colmena silvestre en un tronco hueco, cerca del camino; cada tanto sale una nube de abejas
- const hx=30,hz=86,hy=H(hx,hz),g=new THREE.Group();g.position.set(hx,hy,hz);scene.add(g);const wd=M(0x5a4632,.9,{flatShading:true});
+ const hx=19,hz=96,hy=H(hx,hz),g=new THREE.Group();g.position.set(hx,hy,hz);scene.add(g);const wd=M(0x5a4632,.9,{flatShading:true});
  part(CYL,wd,0,1.3,0,.45,2.6,.45,g);part(CYL,wd,0,2.7,0,.38,.3,.38,g);const br=part(CYL,wd,.4,2.2,0,.12,1.2,.12,g);br.rotation.z=-.9;
  {const np=M(0x9a9282,.95,{flatShading:true}),nest=new THREE.Group();nest.position.set(.95,1.75,0);g.add(nest);part(CYL,M(0x5a4632,.9),0,.55,0,.03,.4,.03,nest);part(SPH,np,0,0,0,.5,.6,.5,nest);for(let k=0;k<26;k++){const a=k*2.4,yy=-.45+(k%9)*.11,rr=.5*Math.sqrt(Math.max(0,1-(yy/.6)**2));part(SPH,np,Math.cos(a)*rr,yy,Math.sin(a)*rr,.12,.06,.12,nest);}part(SPH,M(0x1a1612,1),0,-.58,0,.08,.03,.08,nest);}
  const NB=90,bees=new THREE.InstancedMesh(new THREE.SphereGeometry(.03,5,4),M(0x111111,.5),NB);bees.frustumCulled=false;bees.userData.dyn=true;scene.add(bees);const B=[];for(let i=0;i<NB;i++)B.push({a:Math.random()*6.28,r:.3+Math.random()*1.4,h:1+Math.random()*1.4,s:1+Math.random()*2,ph:Math.random()*6.28});
  const HV={x:hx,y:hy,z:hz,t:5,burst:0};const dm=new THREE.Object3D();
- window.updateBees=(dt,time)=>{const d=Math.hypot(car.x-hx,car.z-hz);if(d>160){bees.visible=false;return;}bees.visible=true;HV.t-=dt;if(HV.t<=0){HV.t=14+Math.random()*10;HV.burst=4;}HV.burst=Math.max(0,HV.burst-dt);const near=d<6;
-  for(let i=0;i<NB;i++){const b=B[i];const up=HV.burst>0&&i<55?(4-HV.burst)*2.2:0;const r=b.r*(near?1.8:1)+(up?up*.25:0);const ang=b.a+time*b.s*(near?2:1);dm.position.set(hx+.95+Math.cos(ang)*r,hy+b.h+.4+up+Math.sin(time*3+b.ph)*.3,hz+Math.sin(ang)*r);dm.updateMatrix();bees.setMatrixAt(i,dm.matrix);}bees.instanceMatrix.needsUpdate=true;};
+ window.updateBees=(dt,time)=>{const d=Math.hypot(car.x-hx,car.z-hz);if(d>160){bees.visible=false;return;}bees.visible=true;HV.t-=dt;if(HV.t<=0){HV.t=20+Math.random()*14;HV.burst=4;}HV.burst=Math.max(0,HV.burst-dt);const near=d<6;
+  for(let i=0;i<NB;i++){const b=B[i];const up=HV.burst>0&&i<55?Math.sin(Math.PI*(1-HV.burst/4))*5.5:0;const r=b.r*(near?1.8:1)+(up?up*.25:0);const ang=b.a+time*b.s*(near?2:1);dm.position.set(hx+.95+Math.cos(ang)*r,hy+b.h+.4+up+Math.sin(time*3+b.ph)*.3,hz+Math.sin(ang)*r);dm.updateMatrix();bees.setMatrixAt(i,dm.matrix);}bees.instanceMatrix.needsUpdate=true;};
  const sp=SPECIES.find(s=>s.id==='abeja');if(sp){const a=spawn(sp,hx+.95,hz);a.y=hy+1.75;a.g.position.y=a.y;}window.HIVE=HV;}
 
 {const sp=SPECIES.find(s=>s.id==='lechuza');const a=spawn(sp,lechuzaPerch.x,lechuzaPerch.z);a.y=lechuzaPerch.y;a.g.position.y=a.y;a.h=Math.PI*.8;}
@@ -1900,7 +1899,7 @@ addEventListener('keydown',e=>{if(!started)return;keys[e.code]=true;
 addEventListener('keyup',e=>{keys[e.code]=false;});
 addEventListener('blur',()=>{for(const c in keys)keys[c]=false;});
 $('#bCam').onclick=()=>togglePhoto();$('#bBook').onclick=()=>toggleBook();$('#bLow').onclick=toggleLow;$('#bSnd').onclick=()=>toggleMute();$('#bClose').onclick=()=>toggleBook(false);$('#shoot').addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();shoot();});$('#diveBtn').onclick=()=>{if(DIVE.near&&SAVE.mask)startDive(DIVE.near);};$('#microBtn').onclick=()=>{if(SCOPE.near)openScope(SCOPE.near);};$('#scopeClose').onclick=closeScope;
-{const bc=$('#bigc'),tip=$('#mapTip');bc.addEventListener('mousemove',e=>{const P=window._mapPts;if(!P){tip.style.display='none';return;}const r=bc.getBoundingClientRect(),S=bc.width,cx=(e.clientX-r.left)*S/r.width,cy=(e.clientY-r.top)*S/r.height,z=MAPV.z,wx=(cx-(S/2-MAPV.x*S*z))/z,wy=(cy-(S/2-MAPV.y*S*z))/z;let best=null,bd=(16/z)*(S/r.width);for(const q of P){const d=Math.hypot(q.px-wx,q.py-wy);if(d<bd){bd=d;best=q;}}if(best){tip.textContent=best.t;tip.style.left=e.clientX+'px';tip.style.top=e.clientY+'px';tip.style.display='block';bc.style.cursor='pointer';}else{tip.style.display='none';bc.style.cursor='';}});bc.addEventListener('mouseleave',()=>{tip.style.display='none';});}
+{const bc=$('#bigc'),tip=$('#mapTip');bc.addEventListener('mousemove',e=>{const P=window._mapPts;if(!P){tip.style.display='none';return;}const r=bc.getBoundingClientRect(),S=bc.width,wx=(e.clientX-r.left)*S/r.width,wy=(e.clientY-r.top)*S/r.height;let best=null,bd=16*(S/r.width);for(const q of P){const d=Math.hypot(q.px-wx,q.py-wy);if(d<bd){bd=d;best=q;}}if(best){tip.textContent=best.t;tip.style.left=e.clientX+'px';tip.style.top=e.clientY+'px';tip.style.display='block';bc.style.cursor='pointer';}else{tip.style.display='none';bc.style.cursor='';}});bc.addEventListener('mouseleave',()=>{tip.style.display='none';});}
 const mkJoy=(id,fx,fy)=>{const jy=$(id),kn=jy.querySelector('i');let pid=null;const upd=e=>{const r=jy.getBoundingClientRect(),R=r.width/2;let x=(e.clientX-(r.left+R))/R,y=(e.clientY-(r.top+R))/R;const l=Math.hypot(x,y);if(l>1){x/=l;y/=l;}T[fx]=x;T[fy]=-y;kn.style.transform=`translate(${x*R*.55}px,${y*R*.55}px)`;};
  jy.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();pid=e.pointerId;jy.setPointerCapture(pid);upd(e);});jy.addEventListener('pointermove',e=>{if(e.pointerId===pid){e.stopPropagation();upd(e);}});
  const up=e=>{if(e.pointerId!==pid)return;pid=null;T[fx]=0;T[fy]=0;kn.style.transform='';};jy.addEventListener('pointerup',up);jy.addEventListener('pointercancel',up);};
@@ -2093,7 +2092,7 @@ function drawMinimap(){const [px,py]=toMM(car.x,car.z);mctx.save();mctx.clearRec
 
 const MAPV={z:1,x:.5,y:.5};function clampMapV(){const h=.5/MAPV.z;MAPV.x=Math.max(h,Math.min(1-h,MAPV.x));MAPV.y=Math.max(h,Math.min(1-h,MAPV.y));}
 function drawBigMap(){const MP=[];window._mapPts=MP;const c=$('#bigc'),x=c.getContext('2d'),S=c.width,s=S/MM;x.imageSmoothingEnabled=true;x.setTransform(1,0,0,1,0,0);x.clearRect(0,0,S,S);clampMapV();x.setTransform(MAPV.z,0,0,MAPV.z,S/2-MAPV.x*S*MAPV.z,S/2-MAPV.y*S*MAPV.z);x.drawImage(mBase,0,0,S,S);x.globalAlpha=.72;x.drawImage(fogC,0,0,S,S);x.globalAlpha=1;
- const P=(wx,wz)=>[(wx+HALF)/WORLD*S,(wz+HALF)/WORLD*S];
+ const Z=MAPV.z,OX=S/2-MAPV.x*S*Z,OY=S/2-MAPV.y*S*Z;x.setTransform(1,0,0,1,0,0);const P=(wx,wz)=>[(wx+HALF)/WORLD*S*Z+OX,(wz+HALF)/WORLD*S*Z+OY];
  x.font='600 22px "Barlow Condensed", sans-serif';x.textAlign='center';
  for(const p of PLACES){if(!SAVE.places.includes(p.id))continue;const[px,py]=P(p.x,p.z);MP.push({px,py,t:p.name});x.fillStyle='#f3ebdd';x.strokeStyle='#1f160e';x.lineWidth=2;x.beginPath();x.arc(px,py,5,0,7);x.fill();x.stroke();x.lineWidth=4;const ly=p.id==='gruta'?py+24:py-11;x.strokeText(p.name,px,ly);x.fillText(p.name,px,ly);}
  for(const sp of SPECIES){const f=SAVE.found[sp.id];if(!f||f.x===undefined)continue;const[px,py]=P(f.x,f.z);MP.push({px,py,t:sp.name});x.fillStyle='#D9B65E';x.strokeStyle='#1f160e';x.lineWidth=1.5;x.beginPath();x.moveTo(px,py-6);x.lineTo(px+5,py);x.lineTo(px,py+6);x.lineTo(px-5,py);x.closePath();x.fill();x.stroke();}
@@ -2123,7 +2122,7 @@ function teleport(p){if(WALK.on){WALK.on=false;AV.visible=false;document.body.cl
  bc.addEventListener('wheel',e=>{e.preventDefault();const n=toN(e),wxn=MAPV.x+(n[0]-.5)/MAPV.z,wyn=MAPV.y+(n[1]-.5)/MAPV.z;MAPV.z=Math.max(1,Math.min(5,MAPV.z*(e.deltaY>0?.88:1.14)));MAPV.x=wxn-(n[0]-.5)/MAPV.z;MAPV.y=wyn-(n[1]-.5)/MAPV.z;drawBigMap();},{passive:false});
  bc.addEventListener('dblclick',()=>{MAPV.z=1;MAPV.x=MAPV.y=.5;drawBigMap();});
  window._mapMoved=()=>moved;window._mapN=toN;}
-$('#bigc').addEventListener('click',e=>{if(!SAVE.teleOk||window._mapMoved()>.02)return;const n=window._mapN(e),ux=MAPV.x+(n[0]-.5)/MAPV.z,uy=MAPV.y+(n[1]-.5)/MAPV.z;const wx=ux*WORLD-HALF,wz=uy*WORLD-HALF;let best=null,bd=30;if(window._mapLay){const S0=$('#bigc').width,cx=ux*S0,cy=uy*S0;let b2=22/Math.sqrt(MAPV.z);for(const q of window._mapLay){const d=Math.hypot(q.px-cx,q.py-cy);if(d<b2){b2=d;best=q.p;}}}if(!best)for(const p of TELE()){const d=Math.hypot(p.x-wx,p.z-wz);if(d<bd){bd=d;best=p;}}if(best)teleport(best);});
+$('#bigc').addEventListener('click',e=>{if(!SAVE.teleOk||window._mapMoved()>.02)return;const n=window._mapN(e),ux=MAPV.x+(n[0]-.5)/MAPV.z,uy=MAPV.y+(n[1]-.5)/MAPV.z;const wx=ux*WORLD-HALF,wz=uy*WORLD-HALF;let best=null,bd=30;if(window._mapLay){const S0=$('#bigc').width,cx=n[0]*S0,cy=n[1]*S0;let b2=22;for(const q of window._mapLay){const d=Math.hypot(q.px-cx,q.py-cy);if(d<b2){b2=d;best=q.p;}}}if(!best)for(const p of TELE()){const d=Math.hypot(p.x-wx,p.z-wz);if(d<bd){bd=d;best=p;}}if(best)teleport(best);});
 // ===== PARTÍCULAS =====
 const PN=700,pPos=new Float32Array(PN*3),pCol=new Float32Array(PN*3),pVel=new Float32Array(PN*3),pLife=new Float32Array(PN),pGrav=new Float32Array(PN);
 const pGeo=new THREE.BufferGeometry();pGeo.setAttribute('position',new THREE.BufferAttribute(pPos,3));pGeo.setAttribute('color',new THREE.BufferAttribute(pCol,3));
