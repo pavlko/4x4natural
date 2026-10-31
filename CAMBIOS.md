@@ -118,6 +118,7 @@ Un juego de Insight Reality
 - v115  Inicio: cuaderno y Seguir explorando en una fila arriba de "Un juego de…", el botón conserva el logo; firma al final de la ayuda
 - v116  Color a elección para lo que va en el techo de la camioneta (y las cajas); firma con la tipografía del resto
 - v117  Si una foto no tiene nada nuevo, ofrece guardarla como foto de lo conocido que está cerca (lugares, el alero, bichos); el alero muestra su foto en el cuaderno
+- v118  Mano de hallazgos como estarcido rupestre; sellos estampados sobre las fotos de cada lugar; enredaderas de la cascada pegadas al paredón y menos; pastos del manantial sin parpadeo; la yarará ya no aparece dentro del agua del manantial; charcos con mezcla de marrón y celeste; camioneta al doble de volumen; con teclado se mueven el volante y los pedales, y Q/E corren al bucear
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v117).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v118).
 La versión vigente es index.html (lista como app instalable).
