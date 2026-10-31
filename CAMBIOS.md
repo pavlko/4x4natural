@@ -120,6 +120,7 @@ Un juego de Insight Reality
 - v117  Si una foto no tiene nada nuevo, ofrece guardarla como foto de lo conocido que está cerca (lugares, el alero, bichos); el alero muestra su foto en el cuaderno
 - v118  Mano de hallazgos como estarcido rupestre; sellos estampados sobre las fotos de cada lugar; enredaderas de la cascada pegadas al paredón y menos; pastos del manantial sin parpadeo; la yarará ya no aparece dentro del agua del manantial; charcos con mezcla de marrón y celeste; camioneta al doble de volumen; con teclado se mueven el volante y los pedales, y Q/E corren al bucear
 - v119  Nombres al pasar el puntero en el mapa grande; "La gruta" pasa a ser "La cueva", adentro se apagan los sonidos de afuera de a poco y se oye el fuego; cascada más suave; avispas camoatí negras con su nido de papel colgando; telaraña más alta y en un lugar despejado
+- v120  Las marcas del mapa no crecen con el zoom; la telaraña vuelve al ombú, alta cerca de la copa y más discreta; las avispas suben y bajan suave, y el nido queda más escondido
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v119).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v120).
 La versión vigente es index.html (lista como app instalable).
