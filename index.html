@@ -85,6 +85,8 @@ body.diving #resetBtn,body.cave #resetBtn{display:none!important}@media (orienta
 #trail{top:calc(env(safe-area-inset-top,0px) + 112px)!important;bottom:auto!important;height:auto!important;max-width:92vw}
 .firma{margin-top:14px}
 #start .startbtns{display:flex;gap:10px;align-items:center;flex-wrap:nowrap;margin:12px 0 4px}#start .startbtns #go{flex:1 1 auto;min-width:0;justify-content:center}@media (max-width:440px){#go{font-size:19px!important;padding:8px 12px 8px 8px!important;height:70px!important}#go img{width:44px;height:44px}.nbk{width:96px!important;height:70px!important}.nbk b{font-size:14px!important}}
+.card .ph img+svg{display:none}
+#saveAs{position:fixed;left:50%;transform:translateX(-50%);top:calc(env(safe-area-inset-top,0px) + 150px);z-index:12;display:none;max-width:92vw;background:rgba(20,16,12,.92);border:2px solid #D9B65E;border-radius:10px;padding:10px 12px;color:#F3EBDD}#saveAs.show{display:block}#saveAs p{margin:0 0 8px;font-size:16px}.sabtns{display:flex;flex-wrap:wrap;gap:6px}.sabtns button{background:rgba(216,198,160,.16);color:#F3EBDD;border:1.5px solid rgba(216,182,94,.6);border-radius:16px;padding:6px 12px;font-size:15px;font-weight:600}.sabtns .sano{opacity:.7}
 #fade{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none;transition:opacity .25s;z-index:40}#fade.show{opacity:1}
 body.cave #microBtn,body.diving #microBtn{bottom:calc(env(safe-area-inset-bottom,0px) + 150px)}
 #scope{position:fixed;inset:0;z-index:25;display:none;align-items:center;justify-content:center;background:rgba(10,8,5,.9)}#scope.show{display:flex}
@@ -353,6 +355,7 @@ body.menu #touch{display:none!important}
   <div class="tb" id="tU">▲</div><div class="tb" id="tD">▼</div>
 </div>
 <div id="flash"></div>
+<div id="saveAs"></div>
 <div id="custom"><div class="cpanel"><div class="chead"><h3>Personalizar</h3><button id="custClose" type="button">Listo</button></div>
  <div id="custTabs"><button data-t="truck" class="on">🚙 Camioneta</button><button data-t="avatar">🧑 Explorador</button></div><div id="custBody"></div>
  <div id="drawBox" hidden><p>Dibujá lo que va en las puertas de la camioneta</p><canvas id="drawCv" width="512" height="96"></canvas>
@@ -1854,7 +1857,7 @@ function microCard(){if(!SAVE.micro)return `<div class="card locked hz"><div cla
   <div class="links">${lk('https://www.youtube.com/results?search_query='+q('microorganismos agua de charco microscopio'),'Videos: una gota de agua al microscopio')}</div></div></div>`;}
 function aleroCard(){if(!SAVE.alero)return `<div class="card locked hz"><div class="ph">?</div><div><h3>Sin descubrir</h3><p>Dicen que detrás del agua que cae hay algo escondido.</p></div></div>`;
  const q=t=>encodeURIComponent(t),lk=(href,t)=>`<a href="${href}" target="_blank" rel="noopener">${t}</a>`;
- return `<div class="card hz" data-id="hz-alero"><div class="ph" style="background:#2a221a"><svg viewBox="0 0 120 80" width="100%" height="100%"><path d="M30 70c-8-2-10-14-6-22 3-6 2-10 1-14h18c-1 4-2 8 1 14 4 8 2 20-6 22z" fill="#9a5a34"/><path d="M62 70c-6-2-8-11-5-17 2-4 2-7 1-10h14c-1 3-1 6 1 10 3 6 1 15-5 17z" fill="#b0703e"/><path d="M88 70c-9-2-12-16-7-25 3-6 2-10 1-14h20c-1 4-2 8 1 14 5 9 2 23-7 25z" fill="#8a4a2a"/><path d="M24 50l4 4 4-4 4 4 4-4M84 48l4 4 4-4 4 4 4-4" stroke="#2a160c" fill="none" stroke-width="1.5"/><g fill="#b04828" opacity=".8"><ellipse cx="60" cy="16" rx="4" ry="5"/><rect x="57" y="4" width="2" height="7"/><rect x="60" y="3" width="2" height="8"/><rect x="63" y="5" width="2" height="7"/></g></svg></div><div><h3>Detrás de la cascada</h3>
+ return `<div class="card hz" data-id="hz-alero"><div class="ph" style="background:#2a221a">${(SAVE.hzPics&&SAVE.hzPics.alero)?`<img src="${SAVE.hzPics.alero}" alt="" style="width:100%;height:100%;object-fit:cover">`:''}<svg viewBox="0 0 120 80" width="100%" height="100%"><path d="M30 70c-8-2-10-14-6-22 3-6 2-10 1-14h18c-1 4-2 8 1 14 4 8 2 20-6 22z" fill="#9a5a34"/><path d="M62 70c-6-2-8-11-5-17 2-4 2-7 1-10h14c-1 3-1 6 1 10 3 6 1 15-5 17z" fill="#b0703e"/><path d="M88 70c-9-2-12-16-7-25 3-6 2-10 1-14h20c-1 4-2 8 1 14 5 9 2 23-7 25z" fill="#8a4a2a"/><path d="M24 50l4 4 4-4 4 4 4-4M84 48l4 4 4-4 4 4 4-4" stroke="#2a160c" fill="none" stroke-width="1.5"/><g fill="#b04828" opacity=".8"><ellipse cx="60" cy="16" rx="4" ry="5"/><rect x="57" y="4" width="2" height="7"/><rect x="60" y="3" width="2" height="8"/><rect x="63" y="5" width="2" height="7"/></g></svg></div><div><h3>Detrás de la cascada</h3>
   <p>Escondido detrás del agua que cae hay un alero de piedra. Adentro hay vasijas de barro cocido decoradas con zigzags, dos campanas de cerámica, zoolitos de piedra con forma de paloma, pájaro, lobo marino y tiburón, un remo de canoa, huesos de lobo marino, una mandíbula y dientes de tiburón, astas de ciervo y, en la pared, pinturas de manos.</p>
   <p><b>La cerámica de los primeros habitantes.</b> En el este de Uruguay se encontraron muchos restos de vasijas hechas a mano con barro, algunas decoradas con marcas hechas con palitos o con la uña. Servían para cocinar, guardar agua y semillas.</p>
   <p><b>Las cerámicas chaná del oeste.</b> En el litoral del río Uruguay y el delta del Paraná, los pueblos chaná y otros de la cultura llamada Goya-Malabrigo modelaban vasijas con cabezas de aves y otros animales en los bordes, y unas piezas huecas con forma de campana, las “campanas”, cuyo uso todavía se discute.</p>
@@ -2062,8 +2065,17 @@ function shootCore(){if(photo&&nestInShot()){shotLabel='Nido del tero';SAVE.nest
  }else if(burrowInShot()){shotLabel='Cueva de la mulita';const fm=SAVE.found.mulita;if(fm){fm.x2={img:grabThumb(),label:'Su cueva'};save();chime();toast('✦ ¡Foto especial: la cueva de la mulita!','place');}else toast('Una cueva en la tierra blanda… ¿de quién será?');
  }else{const pl=placeInShot();
   if(pl){shotLabel=pl.name;if(!SAVE.places.includes(pl.id)){SAVE.places.push(pl.id);refreshTally();chime();}SAVE.placePics=SAVE.placePics||{};SAVE.placePics[pl.id]=grabThumb();save();checkComplete();toast(far?'No se ve ningún bicho, pero guardaste la foto de '+pl.name:'Foto guardada: '+pl.name,'place');}
-  else if(far)toast('Está muy lejos. Acercate o hacé zoom.');else toast('No hay ningún bicho ni lugar en el cuadro.');}
+  else offerSave(grabThumb(),far?'Está muy lejos. Acercate o hacé zoom.':'No hay ningún bicho ni lugar en el cuadro.');}
 }
+function offerSave(img,msg){const C=camera.position,L=[];
+ for(const p of PLACES_AV()){if(!SAVE.places.includes(p.id))continue;const d=Math.hypot(p.x-C.x,p.z-C.z);if(d<Math.max(60,p.r*2.2))L.push({k:'p',id:p.id,n:p.name,d});}
+ if(SAVE.alero&&typeof ALERO!=='undefined'){const d=Math.hypot(ALERO.x-C.x,ALERO.z-C.z);if(d<25)L.push({k:'h',id:'alero',n:'Detrás de la cascada',d:d-30});}
+ const seen=new Set();for(const a of animals){if(!SAVE.found[a.sp.id]||seen.has(a.sp.id)||!a.g.visible)continue;const d=Math.hypot(a.x-C.x,a.z-C.z);if(d<35){seen.add(a.sp.id);L.push({k:'b',id:a.sp.id,n:a.sp.name,d:d+5});}}
+ L.sort((a,b)=>a.d-b.d);const top=L.slice(0,5);if(!top.length){toast(msg);return;}
+ const box=$('#saveAs');box.innerHTML='<p>'+msg+' ¿Guardarla como foto de…?</p><div class="sabtns">'+top.map((o,i)=>`<button data-i="${i}">${o.k==='p'?'📍':o.k==='h'?'🏺':'📷'} ${o.n}</button>`).join('')+'<button data-i="-1" class="sano">No guardar</button></div>';box.classList.add('show');
+ box.querySelectorAll('button').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;box.classList.remove('show');if(i<0)return;const o=top[i];
+  if(o.k==='p'){SAVE.placePics=SAVE.placePics||{};SAVE.placePics[o.id]=img;}else if(o.k==='h'){SAVE.hzPics=SAVE.hzPics||{};SAVE.hzPics[o.id]=img;}else{SAVE.found[o.id].img=img;}save();toast('Foto guardada: '+o.n,'place');});
+ clearTimeout(box._t);box._t=setTimeout(()=>box.classList.remove('show'),9000);}
 
 // ===== MINIMAPA =====
 const MM=200,mm=$('#minimap'),mctx=mm.getContext('2d');const mBase=document.createElement('canvas');mBase.width=mBase.height=MM;const fogC=document.createElement('canvas');fogC.width=fogC.height=MM;
@@ -2399,7 +2411,7 @@ function swim(dt){const mv=Math.max(-1,Math.min(1,((k('KeyW')||k('ArrowUp')||T.u
  if(!DIVE.out&&scene.fog&&scene.fog.isFogExp2){let nd=null,bd=1e9;for(const q of DIVES){const dd=Math.hypot(DIVE.pos.x-q.cx,DIVE.pos.z-q.cz);if(dd<bd){bd=dd;nd=q;}}const tc=new THREE.Color(nd.fog),k=Math.min(1,dt*.8);scene.fog.color.lerp(tc,k);scene.background.copy(scene.fog.color);scene.fog.density+=(1.52/nd.vis-scene.fog.density)*k;}if(DIVE.air<=0&&!DIVE.out){DIVE.rescue=true;toastOnce('sinaire','¡Te quedaste sin aire! Subiendo a respirar…',8);}}
 function shootDive(){camera.updateMatrixWorld();if(aleroInShot()){aleroFound();return;}const tanH=Math.tan(THREE.MathUtils.degToRad(camera.fov/2)),wp=new THREE.Vector3();let best=null,far=false;
  for(const e of UW.ents){if(e.hidden&&e.hidden())continue;e.obj.getWorldPosition(wp);const dist=camera.position.distanceTo(wp);if(dist>16)continue;const v=wp.clone().project(camera);if(v.z>1||Math.abs(v.x)>.45||Math.abs(v.y)>.45)continue;const fr=e.size/(2*dist*tanH);if(fr<.05){far=true;continue;}if(!best||fr>best.fr)best={e,fr};}
- if(!best){toast(far?'Está muy lejos. Acercate nadando o hacé zoom.':'No hay ningún pez en el cuadro.');return;}
+ if(!best){offerSave(grabThumb(),far?'Está muy lejos. Acercate nadando o hacé zoom.':'No hay ningún pez en el cuadro.');return;}
  const e=best.e,img=grabThumb();let dn=DIVE.d.name;{let bd=1e9;for(const d of DIVES){const q=Math.hypot(camera.position.x-d.cx,camera.position.z-d.cz);if(q<bd){bd=q;dn=q<30?d.name:'El arroyo';}}}
  if(e.fish){const fi=FISH.find(f=>f.id===e.fish),first=!SAVE.fish[e.fish];SAVE.fish[e.fish]={img,where:dn};save();shotLabel=fi.name;
   if(first){chime();announce(fi.name,'🐟 Nuevo pez en el cuaderno · '+fi.sci,{tab:'agua',id:fi.id});checkComplete();}else toast('Foto nueva de '+fi.name.toLowerCase());}

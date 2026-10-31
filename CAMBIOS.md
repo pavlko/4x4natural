@@ -117,6 +117,7 @@ Un juego de Insight Reality
 - v114  Buceo con dos joysticks: el izquierdo mira (como arrastrar la pantalla), el derecho avanza, retrocede y se corre a los costados
 - v115  Inicio: cuaderno y Seguir explorando en una fila arriba de "Un juego de…", el botón conserva el logo; firma al final de la ayuda
 - v116  Color a elección para lo que va en el techo de la camioneta (y las cajas); firma con la tipografía del resto
+- v117  Si una foto no tiene nada nuevo, ofrece guardarla como foto de lo conocido que está cerca (lugares, el alero, bichos); el alero muestra su foto en el cuaderno
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v116).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v117).
 La versión vigente es index.html (lista como app instalable).
