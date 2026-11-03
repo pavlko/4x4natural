@@ -13,7 +13,7 @@ Este juego se hizo conversando con una inteligencia artificial (Claude). Podés 
 - **`BUILD.<id>=`** — cómo se dibuja cada bicho con formas simples.
 - **`spawn(sp,x,z)`** — dónde aparece cada bicho en el mundo (buscá el `id` del bicho).
 - **`const CALLS={`** y **`CALL_R`** — el sonido de cada bicho (sintetizado) y desde qué distancia se oye.
-- **`const GRP=`** — en qué pestaña del cuaderno va (aves, mamíferos, reptiles, anfibios, invertebrados).
+- **`const G={carpincho:`** — en qué pestaña del cuaderno va cada bicho (aves, mamíferos, reptiles, anfibios, invertebrados); los nombres de las pestañas están en **`GRPN`**.
 - **`const PLACES=[`** — los lugares para descubrir.
 - **`const SPECIALS=`**, **`SP_LABEL`** — las fotos especiales (por ejemplo, un bicho con su nido).
 - **`function MEDALS()`** — los logros.
