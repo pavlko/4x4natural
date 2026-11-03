@@ -19,10 +19,6 @@ La idea sirve para cualquier lugar del mundo: tus bichos, tus paisajes, tus hall
 - `versiones/` — cada versión guardada, y `CAMBIOS.md` con lo que trae cada una.
 - `IDEAS.md` — ideas pendientes.
 
-## Ramas
-- `main`: el juego publicado.
-- `playa`: versión con la costa atlántica (dunas, playa, mar y laguna costera), en desarrollo.
-
 ## Cómo se hizo
 Idea, diseño y dirección: Pablo Bounous (Insight Reality). Programado conversando con Claude (Anthropic).
 
