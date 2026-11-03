@@ -123,6 +123,7 @@ Un juego de Insight Reality
 - v120  Las marcas del mapa no crecen con el zoom; la telaraña vuelve al ombú, alta cerca de la copa y más discreta; las avispas suben y bajan suave, y el nido queda más escondido
 - v121  Código abierto (licencia MIT), con README y CONTRIBUIR.md para sumar bichos, lugares y más; link al repositorio en la ayuda
 - v122  La máscara está en el baúl de la casita del pescador y el microscopio del naturalista en la tapera; la casita es un lugar desde el principio; sonidos de los bichos más suaves, más espaciados, con variación de tono, sin pisarse, y control de volumen de los bichos en el inicio
+- v123  Pistas distintas para bichos nuevos (✨, borde dorado) y ya conocidos (🐾, con su nombre y dirección, más discretas)
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v122).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v123).
 La versión vigente es index.html (lista como app instalable).
