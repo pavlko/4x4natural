@@ -1,29 +1,21 @@
-4x4 Natural
-Copyright (c) 2026 Insight Reality. Todos los derechos reservados.
+MIT License
 
-Este repositorio es público para poder consultarlo y para publicar el juego,
-pero NO es software libre ni de código abierto.
+Copyright (c) 2026 Pablo Bounous / Insight Reality
 
-Se permite jugar al juego publicado y ver este repositorio.
-No se permite copiar, modificar, distribuir, publicar, vender ni reutilizar,
-en todo o en parte, el código, los gráficos, los textos, el diseño ni el nombre
-"4x4 Natural", sin autorización previa y por escrito de Insight Reality.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-Componentes de terceros (con sus propias licencias):
-- Three.js (licencia MIT, (c) 2010-2021 three.js authors), cargado desde cdnjs.
-- Tipografías Barlow Condensed y Newsreader (SIL Open Font License 1.1),
-  cargadas desde Google Fonts.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
------------------------------------------------------------------------------
-
-4x4 Natural
-Copyright (c) 2026 Insight Reality. All rights reserved.
-
-This repository is public for reference and to host the game, but it is NOT
-free or open-source software. You may play the published game and view this
-repository. You may not copy, modify, distribute, publish, sell or reuse, in
-whole or in part, the code, graphics, texts, design or the name "4x4 Natural"
-without prior written permission from Insight Reality.
-
-Third-party components keep their own licenses: Three.js (MIT) and the
-Barlow Condensed and Newsreader typefaces (SIL Open Font License 1.1).
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
