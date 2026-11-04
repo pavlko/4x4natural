@@ -125,6 +125,7 @@ Un juego de Insight Reality
 - v122  La máscara está en el baúl de la casita del pescador y el microscopio del naturalista en la tapera; la casita es un lugar desde el principio; sonidos de los bichos más suaves, más espaciados, con variación de tono, sin pisarse, y control de volumen de los bichos en el inicio
 - v123  Pistas distintas para bichos nuevos (✨, borde dorado) y ya conocidos (🐾, con su nombre y dirección, más discretas)
 - v124  Los dragones vuelven a aparecer junto a la viudita (no encontraban lugar desde v94); el nido del tero ya no queda tapado por sus propios pastos, apoya bien sobre el suelo y se distingue un poco más
+- v125  Las bandurrias se mudan del arroyo a las orillas de la laguna escondida: su grito ayuda a encontrarla
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v124).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v125).
 La versión vigente es index.html (lista como app instalable).
