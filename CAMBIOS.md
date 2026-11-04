@@ -129,6 +129,7 @@ Un juego de Insight Reality
 - v126  El martín pescador pesca desde ramas sobre el agua de la laguna escondida; las pistas nombran un lugar solo si ya lo descubriste, si no lo describen en general
 - v127  En el celular los avisos no nombran teclas; volante más suave cerca del centro y más fuerte hacia los extremos
 - v128  Araña tejedora más fiel (patas anilladas juntas de a pares en X, abdomen plateado con bandas); galería de bichos para revisar los modelos y compararlos con fotos reales (modo desarrollo o ?galeria)
+- v129  Galería de bichos: al tocar uno se abre el modelo 3D para girar y acercar, con fotos reales de iNaturalist al lado (y sus créditos); también el cangrejo y el nido de las avispas
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v128).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v129).
 La versión vigente es index.html (lista como app instalable).
