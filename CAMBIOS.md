@@ -131,6 +131,7 @@ Un juego de Insight Reality
 - v128  Araña tejedora más fiel (patas anilladas juntas de a pares en X, abdomen plateado con bandas); galería de bichos para revisar los modelos y compararlos con fotos reales (modo desarrollo o ?galeria)
 - v129  Galería de bichos: al tocar uno se abre el modelo 3D para girar y acercar, con fotos reales de iNaturalist al lado (y sus créditos); también el cangrejo y el nido de las avispas
 - v130  Ojos para los bichos que no tenían (puma, tero, carpincho, ñandú, zorro, mulita, yacaré, lobito, cuervo, venado, zorrillo, espátula y las aves pequeñas); rana llorona con ojos negros y patas delanteras
+- v131  Repaso de modelos: galería de frente; garza, espátula y bandurria con cuello unido; mulita con anillos; puntas de alas en lechuza y tero; yacaré abre la boca; gato montés con cola unida y se echa al quedarse quieto; lobito con patas; astas del venado de campo; ojos en pato, comadreja y nutria; águila más fina; biguá con pies; la yarará pasa a llamarse crucera, con cabeza triangular; picaflor con pico rojo y nombre científico corregido; chajá, lagarto, tortuga, apereá, martín, lechuza de campo (levanta una pata), dormilón, nutria, sapito, Juan chiviro y puma ajustados; chiricote corregido a Aramides cajaneus, con cola que sube y baja y nuevo canto
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v130).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v131).
 La versión vigente es index.html (lista como app instalable).
