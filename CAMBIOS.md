@@ -127,6 +127,7 @@ Un juego de Insight Reality
 - v124  Los dragones vuelven a aparecer junto a la viudita (no encontraban lugar desde v94); el nido del tero ya no queda tapado por sus propios pastos, apoya bien sobre el suelo y se distingue un poco más
 - v125  Las bandurrias se mudan del arroyo a las orillas de la laguna escondida: su grito ayuda a encontrarla
 - v126  El martín pescador pesca desde ramas sobre el agua de la laguna escondida; las pistas nombran un lugar solo si ya lo descubriste, si no lo describen en general
+- v127  En el celular los avisos no nombran teclas; volante más suave cerca del centro y más fuerte hacia los extremos
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v126).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v127).
 La versión vigente es index.html (lista como app instalable).
