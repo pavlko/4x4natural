@@ -126,3 +126,11 @@ Cada hallazgo sube de nivel: trae una herramienta, una forma nueva de mirar el m
 
 ### Orden sugerido
 1. Estante de cuadernos. 2. Botánico (mejora todo el mundo). 3. Arqueólogo o nocturno. 4. Paleontólogo.
+
+### Cuaderno activo (pistas por cercanía)
+- Se elige qué cuaderno llevás abierto (desde el cajón de la camioneta o un botón): las pistas por cercanía muestran solo lo de ese cuaderno, para no mezclar todo.
+- Al bucear se abre solo la bitácora de buceo. Bajo el agua también podría haber plantas acuáticas, el cangrejo, fósiles o restos indígenas: el cuaderno activo decide qué pistas aparecen.
+- De noche se multiplica: flores que solo abren de noche (por ejemplo la tuna, Cereus, o la flor de la oración, Oenothera), además de los bichos nocturnos.
+
+### Plantas por definir ("?" en la galería)
+- Helecho de suelo, musgo, paja del pajonal, flores del pastizal, pastos del manantial y plantas sumergidas: elegir especies locales parecidas.

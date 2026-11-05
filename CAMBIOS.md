@@ -143,6 +143,7 @@ Un juego de Insight Reality
 - v140  Mate con la bombilla a la vista y pintado con ñandúes (también el del techo); se puede elegir exploradora (pelo largo con trenza)
 - v141  La camioneta tiene una caja de carga abierta atrás con un cajón de cuadernos (aparece uno por cada nivel conseguido) y los instrumentos encontrados (máscara, microscopio); la rueda de auxilio pasa al capó
 - v142  Galería: nueva sección de plantas en preparación, con 24 especies del este (árboles, palmeras, arbustos, hierbas, enredadera, epífita y acuáticas) y sus fotos reales
+- v143  Galería de plantas: todo lo que ya está en el mundo (caraguatá banana do mato, caraguatá falso, envira, chachí, laurel, uña de gato, helechos, musgo, paja, flores del pastizal, pastos del manantial, plantas sumergidas), marcado "en el juego" o "propuesta", y "?" cuando la especie está por definir
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v142).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v143).
 La versión vigente es index.html (lista como app instalable).
