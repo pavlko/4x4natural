@@ -135,6 +135,7 @@ Un juego de Insight Reality
 - v132  Águila mora con alas más anchas y digitadas y cola corta; crucera más fina hacia la cabeza y la cola; apereá con hocico simple
 - v133  Mano pelada en el manantial, tanteando el agua con las manos; la galería suma los peces (en 3D) y los microorganismos (como se ven en el microscopio), cada uno con fotos reales
 - v134  Peces: colas bien orientadas, mojarra y bagre con cola en horquilla, bagre con aleta larga hasta la cola, vieja más fina hacia la cola con ojos y aletas pectorales horizontales, tararira con boca que se abre, anguila más oscura y con las puntas cerradas; crucera más oscura; el yacaré abre la boca hacia abajo; la galería busca fotos por género cuando el nombre dice "sp."
+- v135  Colas de los peces pegadas al cuerpo; bagre más alargado con la aleta pegada al lomo; tararira con la boca dentro de la cabeza; las fotos de peces se buscan solo entre peces (la mojarra mostraba mariposas)
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v134).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v135).
 La versión vigente es index.html (lista como app instalable).
