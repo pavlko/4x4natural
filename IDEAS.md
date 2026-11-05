@@ -82,3 +82,47 @@ Patagonia (Cueva de las Manos), África (Serengeti y Laetoli), sur de China (Gua
 ## Día y noche (plan)
 - Entrar a la cueva y salir de noche (o al revés).
 - De noche: luna, estrellas, otros bichos (mano pelada más activo, lechuzas cazando, bichitos de luz, ranas cantando, murciélagos, zorro), y algunos diurnos durmiendo.
+
+## Mapa de niveles del explorador (plan)
+Cada hallazgo sube de nivel: trae una herramienta, una forma nueva de mirar el mismo lugar y su propio cuaderno.
+
+| Nivel | Hallazgo | Herramienta | Registra | Cuaderno |
+|---|---|---|---|---|
+| Explorador | (inicio) | Cámara | Bichos y lugares | Cuaderno de campo (cuero) |
+| Buzo | El baúl del pescador | Máscara | Peces y el fondo | Bitácora de buceo (encerada, manchas de agua) |
+| Microscopista | El microscopio del naturalista | Microscopio | Microorganismos | Libreta del microscopio (cuadrícula, lápiz) |
+| Botánico | El herbario del naturalista | Lupa y prensa | Árboles, arbustos, hierbas, flores | Herbario (hojas y flores prensadas) |
+| Arqueólogo | Los primeros habitantes (cueva + alero) | Pincel / "ojo de arqueólogo" | Pinturas, objetos, cerritos | Libreta de los primeros habitantes |
+| Explorador nocturno | La linterna del naturalista (en la cueva) | Linterna | Bichos nocturnos | Diario nocturno (tapa oscura con estrellas) |
+| Paleontólogo | Las herramientas del paleontólogo (barranca) | Pincel y martillo | Fósiles, árbol de la vida | Libreta de fósiles |
+
+### Estante de cuadernos (base de todo)
+- Tocar el contador abre un estante con los cuadernos conseguidos; los que faltan, como siluetas cerradas.
+- Cada cuaderno con su tapa, estilo y pestañas propias. La portada general resume niveles y medallas.
+- En la portada, los niveles conseguidos ("Explorador · Buzo · Microscopista") y el próximo como incógnita.
+
+### Botánico — El herbario del naturalista
+- Hallazgo: cuaderno con hojas prensadas, lupa y prensa de madera, en un rincón del monte del arroyo.
+- Se acerca la lupa y se fotografía de cerca; ficha con cómo reconocerla, usos tradicionales (pueblos originarios, gauchos) y qué bichos dependen de ella.
+- Fotos especiales: en flor, con fruto, o con un bicho (picaflor en el ceibo, hornero en el tala).
+- Requiere mejorar los árboles (silueta, tronco, hojas, flores) y sumar diversidad local.
+- Candidatos (revisar juntos): ombú, ceibo, coronilla, tala, espinillo, sauce criollo, sarandí, canelón, arrayán, pitanga, guayabo del país, molle, chal chal, butiá, pindó; carqueja, chirca, mío mío; macachín, mburucuyá, caraguatá, clavel del aire, junco, totora, camalote.
+
+### Arqueólogo — Los primeros habitantes
+- La cueva (vida cotidiana: fuego, pinturas, fitolitos de maíz y almidón de zapallo) y el alero detrás de la cascada (objetos y viajes: cerámica, campanas chaná, zoolitos, huesos de la costa, remo) pasan a ser las dos partes de un mismo hallazgo.
+- Al completar las dos: libreta y "ojo de arqueólogo", que hace notar cerritos de indios en los humedales, piedras de boleadora, morteros y puntas de proyectil (alguna "cola de pescado"), y permite registrar cada pintura una por una.
+
+### Explorador nocturno — La linterna del naturalista
+- Hallazgo dentro de la cueva, junto al fogón. Nota: "Lo mejor del campo empieza cuando se pone el sol".
+- Desde la cueva o un fogón se puede esperar la noche: luna, estrellas, Vía Láctea, paisaje azulado.
+- Bichos nocturnos (grupo nuevo): mano pelada pescando, murciélagos, ñacurutú y lechuza de campanario cazando, dormilón cantando, bichitos de luz, coro de ranas, zorro y comadreja más activos; algunos diurnos durmiendo.
+- La linterna ilumina un cono y los ojos de los bichos brillan: es la pista. Foto especial con ojos brillando o con la luna detrás.
+
+### Paleontólogo — Fósiles y evolución
+- Hallazgo: mochila con pincel, martillo y libreta junto a una barranca del arroyo.
+- Restos que asoman en barrancas y cuevas (después de crecidas); se descubren de a poco con el pincel.
+- Megafauna con su "primo actual" al lado: gliptodonte (mulita), megaterio (perezoso), toxodonte. Árbol de la vida simple al completar.
+- Conexión: algunos convivieron con los primeros pobladores de la región.
+
+### Orden sugerido
+1. Estante de cuadernos. 2. Botánico (mejora todo el mundo). 3. Arqueólogo o nocturno. 4. Paleontólogo.
