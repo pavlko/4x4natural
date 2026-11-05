@@ -141,6 +141,7 @@ Un juego de Insight Reality
 - v138  Nuevo mensaje para compartir el juego: "¡Jugá a Safari Gaucho! Encontrá los bichos del este uruguayo."
 - v139  Mensaje propio al compartir la foto de un bicho o un lugar ("¡Encontré un carpincho en el paso del arroyo! Jugá a Safari Gaucho"); en personalizar, el lienzo de dibujo aparece a la vista y se cierra al pasar al explorador
 - v140  Mate con la bombilla a la vista y pintado con ñandúes (también el del techo); se puede elegir exploradora (pelo largo con trenza)
+- v141  La camioneta tiene una caja de carga abierta atrás con un cajón de cuadernos (aparece uno por cada nivel conseguido) y los instrumentos encontrados (máscara, microscopio); la rueda de auxilio pasa al capó
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v140).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v141).
 La versión vigente es index.html (lista como app instalable).
