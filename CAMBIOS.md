@@ -134,6 +134,7 @@ Un juego de Insight Reality
 - v131  Repaso de modelos: galería de frente; garza, espátula y bandurria con cuello unido; mulita con anillos; puntas de alas en lechuza y tero; yacaré abre la boca; gato montés con cola unida y se echa al quedarse quieto; lobito con patas; astas del venado de campo; ojos en pato, comadreja y nutria; águila más fina; biguá con pies; la yarará pasa a llamarse crucera, con cabeza triangular; picaflor con pico rojo y nombre científico corregido; chajá, lagarto, tortuga, apereá, martín, lechuza de campo (levanta una pata), dormilón, nutria, sapito, Juan chiviro y puma ajustados; chiricote corregido a Aramides cajaneus, con cola que sube y baja y nuevo canto
 - v132  Águila mora con alas más anchas y digitadas y cola corta; crucera más fina hacia la cabeza y la cola; apereá con hocico simple
 - v133  Mano pelada en el manantial, tanteando el agua con las manos; la galería suma los peces (en 3D) y los microorganismos (como se ven en el microscopio), cada uno con fotos reales
+- v134  Peces: colas bien orientadas, mojarra y bagre con cola en horquilla, bagre con aleta larga hasta la cola, vieja más fina hacia la cola con ojos y aletas pectorales horizontales, tararira con boca que se abre, anguila más oscura y con las puntas cerradas; crucera más oscura; el yacaré abre la boca hacia abajo; la galería busca fotos por género cuando el nombre dice "sp."
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v133).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v134).
 La versión vigente es index.html (lista como app instalable).
