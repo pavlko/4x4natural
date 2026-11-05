@@ -137,6 +137,7 @@ Un juego de Insight Reality
 - v134  Peces: colas bien orientadas, mojarra y bagre con cola en horquilla, bagre con aleta larga hasta la cola, vieja más fina hacia la cola con ojos y aletas pectorales horizontales, tararira con boca que se abre, anguila más oscura y con las puntas cerradas; crucera más oscura; el yacaré abre la boca hacia abajo; la galería busca fotos por género cuando el nombre dice "sp."
 - v135  Colas de los peces pegadas al cuerpo; bagre más alargado con la aleta pegada al lomo; tararira con la boca dentro de la cabeza; las fotos de peces se buscan solo entre peces (la mojarra mostraba mariposas)
 - v136  La mojarra es Astyanax lacustris (antes "Astyanax sp.", que traía fotos de mariposas)
+- v137  Galería: hidra, copépodo y ameba buscan la especie o grupo correcto; fitolitos de maíz y almidón muestran fotos de microscopio de Wikimedia Commons
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v136).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v137).
 La versión vigente es index.html (lista como app instalable).
