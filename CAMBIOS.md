@@ -138,6 +138,7 @@ Un juego de Insight Reality
 - v135  Colas de los peces pegadas al cuerpo; bagre más alargado con la aleta pegada al lomo; tararira con la boca dentro de la cabeza; las fotos de peces se buscan solo entre peces (la mojarra mostraba mariposas)
 - v136  La mojarra es Astyanax lacustris (antes "Astyanax sp.", que traía fotos de mariposas)
 - v137  Galería: hidra, copépodo y ameba buscan la especie o grupo correcto; fitolitos de maíz y almidón muestran fotos de microscopio de Wikimedia Commons
+- v138  Nuevo mensaje para compartir el juego: "¡Jugá a Safari Gaucho! Encontrá los bichos del este uruguayo."
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v137).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v138).
 La versión vigente es index.html (lista como app instalable).
