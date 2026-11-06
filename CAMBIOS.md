@@ -151,6 +151,7 @@ Un juego de Insight Reality
 - v148  Hallazgos con su dibujo propio; la cámara orbita alrededor de la caja; tocar un libro de la caja abre ese cuaderno, tocar el techo o el sombrero abre personalizar; Cerrarlo cierra todos; al empezar se invita a abrir el cuaderno de campo y al encontrar la máscara o el microscopio, su cuaderno; contadores según el cuaderno abierto (todos si no hay ninguno); símbolos grandes y legibles en las hojas; techo sin los sombreros repetidos, sin "gigante" en los nombres y con todo apoyado; gorra más real; el selector de color arranca en el color actual; los bichos no giran en el lugar cuando se traban; el libro abierto ya no atraviesa la mesa
 - v149  Caja de carga con el piso encima de las ruedas y bordes bajos para ver lo que llevás; termo y mate siempre, primeros en la fila; los mensajes largos quedan en pantalla hasta tocarlos o tocar afuera
 - v150  Caja: cajón de cuadernos contra el borde izquierdo, mesa ancha contra el derecho (igual de alta que el cajón, abierta adelante, con el instrumento del cuaderno abierto debajo), objetos de adelante bien separados y puerta de atrás vidriada
+- v151  Volante más simple: siempre como agarrado de arriba (arrastrar a la derecha gira a la derecha); en la caja, termo y mate entre el cajón y la mesa, el instrumento del cuaderno abierto delante de la mesa, cámara de fotos en vez de binoculares y máscara con snorkel
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v150).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v151).
 La versión vigente es index.html (lista como app instalable).
