@@ -146,6 +146,7 @@ Un juego de Insight Reality
 - v143  Galería de plantas: todo lo que ya está en el mundo (caraguatá banana do mato, caraguatá falso, envira, chachí, laurel, uña de gato, helechos, musgo, paja, flores del pastizal, pastos del manantial, plantas sumergidas), marcado "en el juego" o "propuesta", y "?" cuando la especie está por definir
 - v144  Cuadernos separados: el cuaderno de campo, la bitácora de buceo, la libreta del microscopio y la de los primeros habitantes, cada uno con su color y sus pestañas; se elige cuál llevar abierto (o todos cerrados) y solo ese da pistas por cercanía; en la caja de la camioneta el abierto se ve abierto arriba del cajón; la caja tiene el piso más bajo y cada cuaderno su instrumento delante
 - v145  Compartir hallazgos, logros y fotos especiales con mensaje propio; botón "Llevar abierto" debajo de Cerrar; caja de carga honda (hasta la mitad de las ruedas) sin que los objetos atraviesen la carrocería; el libro de los primeros habitantes queda para más adelante
+- v146  Mensajes propios para los logros; guardabarros dentro de la caja; mesita a la derecha con el cuaderno abierto inclinado hacia la cámara; los lomos de los cuadernos arriba, afuera del panel; botones Cerrarlo y Llevarlo abierto (los dos cierran); tocar la caja de la camioneta abre los cuadernos
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v145).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v146).
 La versión vigente es index.html (lista como app instalable).
