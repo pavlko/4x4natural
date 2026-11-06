@@ -144,6 +144,7 @@ Un juego de Insight Reality
 - v141  La camioneta tiene una caja de carga abierta atrás con un cajón de cuadernos (aparece uno por cada nivel conseguido) y los instrumentos encontrados (máscara, microscopio); la rueda de auxilio pasa al capó
 - v142  Galería: nueva sección de plantas en preparación, con 24 especies del este (árboles, palmeras, arbustos, hierbas, enredadera, epífita y acuáticas) y sus fotos reales
 - v143  Galería de plantas: todo lo que ya está en el mundo (caraguatá banana do mato, caraguatá falso, envira, chachí, laurel, uña de gato, helechos, musgo, paja, flores del pastizal, pastos del manantial, plantas sumergidas), marcado "en el juego" o "propuesta", y "?" cuando la especie está por definir
+- v144  Cuadernos separados: el cuaderno de campo, la bitácora de buceo, la libreta del microscopio y la de los primeros habitantes, cada uno con su color y sus pestañas; se elige cuál llevar abierto (o todos cerrados) y solo ese da pistas por cercanía; en la caja de la camioneta el abierto se ve abierto arriba del cajón; la caja tiene el piso más bajo y cada cuaderno su instrumento delante
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v143).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v144).
 La versión vigente es index.html (lista como app instalable).

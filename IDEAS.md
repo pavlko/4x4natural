@@ -134,3 +134,5 @@ Cada hallazgo sube de nivel: trae una herramienta, una forma nueva de mirar el m
 
 ### Plantas por definir ("?" en la galería)
 - Helecho de suelo, musgo, paja del pajonal, flores del pastizal, pastos del manantial y plantas sumergidas: elegir especies locales parecidas.
+
+- Noche desde la camioneta: luces delanteras, un foco que se maneja en modo cámara para buscar bichos y ojos que brillan.
