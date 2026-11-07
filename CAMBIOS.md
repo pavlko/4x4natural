@@ -152,6 +152,7 @@ Un juego de Insight Reality
 - v149  Caja de carga con el piso encima de las ruedas y bordes bajos para ver lo que llevás; termo y mate siempre, primeros en la fila; los mensajes largos quedan en pantalla hasta tocarlos o tocar afuera
 - v150  Caja: cajón de cuadernos contra el borde izquierdo, mesa ancha contra el derecho (igual de alta que el cajón, abierta adelante, con el instrumento del cuaderno abierto debajo), objetos de adelante bien separados y puerta de atrás vidriada
 - v151  Volante más simple: siempre como agarrado de arriba (arrastrar a la derecha gira a la derecha); en la caja, termo y mate entre el cajón y la mesa, el instrumento del cuaderno abierto delante de la mesa, cámara de fotos en vez de binoculares y máscara con snorkel
+- v152  Íconos en los lomos de los libros de la caja; selectores de color que arrancan en el actual; plantas mejoradas (espinillo de ramas desnudas con pompones, sauce más ancho, canelón de tronco rugoso, pitanga con frutos de colores, guayabo con frutos y flores, palmeras con hojas hacia arriba y racimos —también algunos butiá del palmar—, mburucuyá con frutos y hojas lobuladas, banana do mato con hojas paradas, envira más chica, laurel más alto y claro) y nuevas (calaguala, culantrillo, llantén, maciega, paja brava, bis bis, flores amarillas, azucena de campo); galería de plantas separada por tipo; aviso de modo desarrollo con botón para salir
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v151).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v152).
 La versión vigente es index.html (lista como app instalable).
