@@ -159,6 +159,7 @@ Un juego de Insight Reality
 - v156  Sin el sombrero de lona (queda el vaquero) y sin el bibí blanco
 - v157  Galería con pestañas; nueva sección Primeros habitantes con cada pintura de la cueva (bichos y motivos) y los objetos (vasija, campana, cuatro zoolitos, remo) más propuestas (boleadoras, punta cola de pescado, mortero); en modo desarrollo, el estante de cuadernos muestra el Herbario y los Primeros habitantes como libros en desarrollo
 - v158  La crucera pintada en la cueva se mueve al acercarte; las lechuzas parpadean; el venado y el puma giran la cabeza para mirarte; los pindó se mecen con el viento
+- v159  Pinturas de la cueva que reaccionan al acercarte (la crucera se desliza suave, el búho parpadea, el venado y el puma te miran de frente, el pindó se mece bajo la lluvia); personalizar se cierra tocando arriba, muestra la camioneta y Listo vuelve al juego; galería en el aviso de desarrollo; Herbario y Primeros habitantes como cuadernos en desarrollo con textos y pistas en borrador; tocar el suelo para caminar hasta ahí; sin piedras en la entrada de la cueva
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v158).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v159).
 La versión vigente es index.html (lista como app instalable).
