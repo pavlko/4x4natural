@@ -161,6 +161,7 @@ Un juego de Insight Reality
 - v158  La crucera pintada en la cueva se mueve al acercarte; las lechuzas parpadean; el venado y el puma giran la cabeza para mirarte; los pindó se mecen con el viento
 - v159  Pinturas de la cueva que reaccionan al acercarte (la crucera se desliza suave, el búho parpadea, el venado y el puma te miran de frente, el pindó se mece bajo la lluvia); personalizar se cierra tocando arriba, muestra la camioneta y Listo vuelve al juego; galería en el aviso de desarrollo; Herbario y Primeros habitantes como cuadernos en desarrollo con textos y pistas en borrador; tocar el suelo para caminar hasta ahí; sin piedras en la entrada de la cueva
 - v160  La boca de la cueva despejada (sin piedras ni matas delante); caminando, mantener apretado sigue llevando al explorador hacia donde apuntás, y arrastrar sigue girando
+- v161  En modo foto, W A S D mueven la cámara un poquito (hasta 2–3 m) y Q/E la bajan y suben, para elegir el ángulo; las flechas apuntan y + / − o la rueda hacen zoom
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v160).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v161).
 La versión vigente es index.html (lista como app instalable).
