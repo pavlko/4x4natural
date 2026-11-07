@@ -158,6 +158,7 @@ Un juego de Insight Reality
 - v155  Sombrero de lona de camión gris verdoso con forma de vaquero (ala levantada a los costados); cola de zorro (Cortaderia selloana) con plumas largas; bibí azul (Herbertia lahue) y bibí amarillo (Cypella herbertii)
 - v156  Sin el sombrero de lona (queda el vaquero) y sin el bibí blanco
 - v157  Galería con pestañas; nueva sección Primeros habitantes con cada pintura de la cueva (bichos y motivos) y los objetos (vasija, campana, cuatro zoolitos, remo) más propuestas (boleadoras, punta cola de pescado, mortero); en modo desarrollo, el estante de cuadernos muestra el Herbario y los Primeros habitantes como libros en desarrollo
+- v158  La crucera pintada en la cueva se mueve al acercarte; las lechuzas parpadean; el venado y el puma giran la cabeza para mirarte; los pindó se mecen con el viento
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v157).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v158).
 La versión vigente es index.html (lista como app instalable).

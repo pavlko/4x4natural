@@ -146,3 +146,4 @@ Cada hallazgo sube de nivel: trae una herramienta, una forma nueva de mirar el m
 ### Armar el libro como experiencia (también para adultos)
 - Los libros en desarrollo (herbario, primeros habitantes) se ven en modo desarrollo y se van completando adentro del juego.
 - Más adelante: editar y extender desde el propio juego (sumar especies, fotos, textos) y guardarlo en un servicio compartido. Es otro alcance: cuentas, almacenamiento, moderación.
+- Clima: lluvia de a ratos (el pindó recibiendo la lluvia, charcos que crecen, ranas que cantan más), viento que se nota en pastos y árboles.
