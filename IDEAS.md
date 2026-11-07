@@ -142,3 +142,7 @@ Cada hallazgo sube de nivel: trae una herramienta, una forma nueva de mirar el m
 - Bolas de orugas negras o rojas en troncos para fotografiar.
 - Matecitos (agallas) del molle como foto especial del herbario.
 - Mariposas como nivel o hallazgo a desbloquear, con larvas, plantas hospederas y toda su ecología. Por ahora vuelan de decoración monarcas del sur y mariposas amarillas.
+
+### Armar el libro como experiencia (también para adultos)
+- Los libros en desarrollo (herbario, primeros habitantes) se ven en modo desarrollo y se van completando adentro del juego.
+- Más adelante: editar y extender desde el propio juego (sumar especies, fotos, textos) y guardarlo en un servicio compartido. Es otro alcance: cuentas, almacenamiento, moderación.
