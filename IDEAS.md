@@ -136,3 +136,8 @@ Cada hallazgo sube de nivel: trae una herramienta, una forma nueva de mirar el m
 - Helecho de suelo, musgo, paja del pajonal, flores del pastizal, pastos del manantial y plantas sumergidas: elegir especies locales parecidas.
 
 - Noche desde la camioneta: luces delanteras, un foco que se maneja en modo cámara para buscar bichos y ojos que brillan.
+
+### Árboles y bichos (plan)
+- Relación árbol–mariposa: cada mariposa con su planta hospedera (las orugas comen ciertas hojas). Foto especial: oruga en su planta.
+- Bolas de orugas negras o rojas en troncos para fotografiar.
+- Matecitos (agallas) del molle como foto especial del herbario.
