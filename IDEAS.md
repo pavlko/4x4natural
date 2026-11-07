@@ -141,3 +141,4 @@ Cada hallazgo sube de nivel: trae una herramienta, una forma nueva de mirar el m
 - Relación árbol–mariposa: cada mariposa con su planta hospedera (las orugas comen ciertas hojas). Foto especial: oruga en su planta.
 - Bolas de orugas negras o rojas en troncos para fotografiar.
 - Matecitos (agallas) del molle como foto especial del herbario.
+- Mariposas como nivel o hallazgo a desbloquear, con larvas, plantas hospederas y toda su ecología. Por ahora vuelan de decoración monarcas del sur y mariposas amarillas.
