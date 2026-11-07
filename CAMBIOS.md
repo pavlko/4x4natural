@@ -156,6 +156,7 @@ Un juego de Insight Reality
 - v153  Mariposa bandera argentina en el monte del arroyo (45 bichos); plantas: canelón de rollos, tembetarí nuevo, banana do mato igual que en el mundo, calaguala y helecho de la sierra separados, frutos alrededor en pitanga (también verdes) y guayabo, azucenita roja, molle con matecitos, oreja de palo (hongo); sombrero de lona de camión para el explorador y la camioneta; gorra sin costuras y con visera más larga
 - v154  Gorra con la visera hacia adelante; sombreros de lona de camión en forma country y pescador; mariposas solo de decoración (monarcas del sur y amarillas) hasta su hallazgo; plantas: paja estrelladora, cola de zorro, bibí azul, amarillo y blanco, calaguala y helecho de la sierra con su especie, cabomba y elodea
 - v155  Sombrero de lona de camión gris verdoso con forma de vaquero (ala levantada a los costados); cola de zorro (Cortaderia selloana) con plumas largas; bibí azul (Herbertia lahue) y bibí amarillo (Cypella herbertii)
+- v156  Sin el sombrero de lona (queda el vaquero) y sin el bibí blanco
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v155).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v156).
 La versión vigente es index.html (lista como app instalable).
