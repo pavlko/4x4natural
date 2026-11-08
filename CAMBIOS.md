@@ -165,6 +165,7 @@ Un juego de Insight Reality
 - v162  En el celular, el modo foto tiene un joystick chico para moverse un poquito y elegir el ángulo
 - v163  Con dos dedos (o el botón derecho del mouse) se mueve la cámara para mirar desde otro lado; el doble toque la vuelve a su lugar, atrás de la camioneta
 - v164  Ícono nuevo también en el botón de Explorar; la app ya no usa copias guardadas viejas del manifiesto ni de los íconos
+- v165  Ícono con la camioneta más iluminada
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v164).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v165).
 La versión vigente es index.html (lista como app instalable).
