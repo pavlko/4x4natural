@@ -167,6 +167,7 @@ Un juego de Insight Reality
 - v164  Ícono nuevo también en el botón de Explorar; la app ya no usa copias guardadas viejas del manifiesto ni de los íconos
 - v165  Ícono con la camioneta más iluminada
 - v166  Ícono con bastante más luz en la camioneta y el fondo un poco más apagado
+- v167  En la caja, el mate y el termo van en una matera baja de cuero descarne con el motivo Safari Gaucho y un ñandú
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v166).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v167).
 La versión vigente es index.html (lista como app instalable).
