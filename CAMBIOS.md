@@ -168,6 +168,7 @@ Un juego de Insight Reality
 - v165  Ícono con la camioneta más iluminada
 - v166  Ícono con bastante más luz en la camioneta y el fondo un poco más apagado
 - v167  En la caja, el mate y el termo van en una matera baja de cuero descarne con el motivo Safari Gaucho y un ñandú
+- v168  La cámara se acerca más a la camioneta; matera con una sola asa al medio; marcas de las ruedas en el lienzo para dibujar las puertas; los bichos miran a la camioneta o al explorador (no a la cámara); la libreta del microscopio va antes del herbario
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v167).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v168).
 La versión vigente es index.html (lista como app instalable).

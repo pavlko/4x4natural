@@ -147,3 +147,9 @@ Cada hallazgo sube de nivel: trae una herramienta, una forma nueva de mirar el m
 - Los libros en desarrollo (herbario, primeros habitantes) se ven en modo desarrollo y se van completando adentro del juego.
 - Más adelante: editar y extender desde el propio juego (sumar especies, fotos, textos) y guardarlo en un servicio compartido. Es otro alcance: cuentas, almacenamiento, moderación.
 - Clima: lluvia de a ratos (el pindó recibiendo la lluvia, charcos que crecen, ranas que cantan más), viento que se nota en pastos y árboles.
+
+### Desafíos de manejo 4x4 (plan)
+- Llegar a un hallazgo solo manejando por terreno difícil: una cuesta empinada con piedras sueltas, un bañado con barro hondo, un vado profundo o un camino de cornisa.
+- Motivo para no bajarse: el lugar está lejos y hay que llevar algo pesado (la prensa del herbario, un cajón de muestras), o el bañado es muy hondo para cruzar a pie, o hay un toro bravo en el campo.
+- Herramientas de la 4x4 que importan: la 4L para subir, el bloqueo, elegir la línea entre las piedras, no frenar en el barro.
+- Recompensa: un mirador con fotos especiales, un hallazgo arriba de la sierra o un logro de manejo ("Baqueano").
