@@ -164,3 +164,18 @@ Cada hallazgo sube de nivel: trae una herramienta, una forma nueva de mirar el m
 - Peces anuales (Austrolebias) en los charcos del barrial: viven solo mientras dura el charco y dejan los huevos en el barro. Muy uruguayos y únicos.
 - Zonas de fondo con poca visibilidad (agua turbia, el pozón profundo): hay que acercarse mucho; quizás con una linterna de buceo como nueva herramienta.
 - Mecánica: algunos peces escondidos que solo se asoman si te quedás quieto cerca, o si iluminás.
+
+### Huellas propias (plan)
+- La camioneta deja huellas en el barro que se van secando: pasar por las propias recientes ayuda (suelo más firme), y se borran con el tiempo o con la lluvia.
+
+### Avisar novedades a quien ya juega (plan)
+- Dentro del juego: al actualizar, un cartel "Novedades" con lo nuevo (libros, bichos, peces) y un puntito en el cuaderno donde hay algo nuevo.
+- Notificaciones push: funcionan con la app instalada (Android y iPhone desde iOS 16.4). Necesitan un servicio que las mande (por ejemplo OneSignal, gratis) y que cada jugador acepte recibirlas. Pedir permiso recién después de que juegue un rato, nunca al entrar.
+- Fuera del juego: canal de WhatsApp o lista de correo de Insight Reality.
+
+### Analytics (plan)
+- Herramienta sin cookies ni datos personales (GoatCounter o similar), pensada para un juego de chicos: solo números agregados.
+- Visitas y origen: país y región aproximados, idioma, tipo de pantalla (celular, tablet, compu), si se instaló como app.
+- Avance: primera foto, cada 5 bichos, lugares, hallazgos (baúl, microscopio, alero, cueva), logros, primer buceo, primera muestra al microscopio, cuaderno abierto, personalizar.
+- Uso: compartir (foto, logro, juego), modo caminar, cámara libre, desafíos (carrera del ñandú, barrial: intentos y cruces).
+- Para mejorar: dónde se traban (por ejemplo, cuántos encuentran la laguna escondida o el puma) y cuánto tiempo juegan por sesión (aproximado).
