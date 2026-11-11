@@ -14,7 +14,7 @@
 
 Un juego de **Insight Reality**, hecho por Pablo Bounous con amor para sus hijos, y para todos los hijos.
 
-Manejá una 4x4 eléctrico por la sierra y el humedal del este de Uruguay y fotografiá los bichos donde viven. Algunos están a la vista; otros, en lugares que hay que encontrar: una quebrada con cascada, una cueva con pinturas, una laguna escondida, un alero detrás del agua. Hay buceo, un microscopio, hallazgos de los primeros habitantes, logros y fotos especiales.
+Manejá una 4x4 eléctrica por la sierra y el humedal del este de Uruguay y fotografiá los bichos donde viven. Algunos están a la vista; otros, en lugares que hay que encontrar: una quebrada con cascada, una cueva con pinturas, una laguna escondida, un alero detrás del agua. Hay buceo, un microscopio, hallazgos de los primeros habitantes, logros y fotos especiales.
 
 Pensado para chicos de 7 a 12 años: naturaleza uruguaya, un cuaderno de campo con información real y un toque indígena.
 
@@ -22,7 +22,7 @@ Pensado para chicos de 7 a 12 años: naturaleza uruguaya, un cuaderno de campo c
 
 ## Para colaborar
 - En el juego: ⓘ → **Quiero colaborar** (desbloquea todo para revisar, muestra la galería con modelos y fotos reales, y permite sugerir correcciones desde cada ficha).
-- Para opinar sobre las plantas: https://pavlko.github.io/4x4natural/?plantas
+- Para opinar sobre las plantas (para integrar al juego proximamente): https://pavlko.github.io/4x4natural/?plantas
 - Contacto: insightrealitycontact@gmail.com
 - Textos para compartir: [invitar a jugar](JUGAR-MENSAJE.md) · [invitar a colaborar](COLABORAR-MENSAJE.md)
 
