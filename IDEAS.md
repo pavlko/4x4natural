@@ -153,3 +153,14 @@ Cada hallazgo sube de nivel: trae una herramienta, una forma nueva de mirar el m
 - Motivo para no bajarse: el lugar está lejos y hay que llevar algo pesado (la prensa del herbario, un cajón de muestras), o el bañado es muy hondo para cruzar a pie, o hay un toro bravo en el campo.
 - Herramientas de la 4x4 que importan: la 4L para subir, el bloqueo, elegir la línea entre las piedras, no frenar en el barro.
 - Recompensa: un mirador con fotos especiales, un hallazgo arriba de la sierra o un logro de manejo ("Baqueano").
+
+### Más peces (plan, especies a confirmar)
+- Mojarras distintas, escondidas en la orilla bajo las plantas: una de cola roja o con manchas (Hyphessobrycon, Cheirodon), que solo salen si te quedás quieto.
+- Madrecitas (Cnesterodon, Jenynsia): pececitos chiquitos en la superficie de la orilla, en cardumen.
+- Limpiafondos en el fondo: cascudito o tachuela (Corydoras paleatus), en grupitos, moteados, revolviendo el fondo; vieja látigo (Rineloricaria), camuflada en la arena con la cola larga y fina.
+- Bagrecitos entre las rocas: bagre cantor (Pimelodella), con barbillas larguísimas, que se asoma y se esconde.
+- Cabeza amarga (Crenicichla), con la mancha en forma de ojo en la cola, quieta entre piedras.
+- Dientudo (Oligosarcus): cazador plateado de dientes visibles, a media agua.
+- Peces anuales (Austrolebias) en los charcos del barrial: viven solo mientras dura el charco y dejan los huevos en el barro. Muy uruguayos y únicos.
+- Zonas de fondo con poca visibilidad (agua turbia, el pozón profundo): hay que acercarse mucho; quizás con una linterna de buceo como nueva herramienta.
+- Mecánica: algunos peces escondidos que solo se asoman si te quedás quieto cerca, o si iluminás.

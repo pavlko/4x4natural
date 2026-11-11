@@ -173,6 +173,7 @@ Un juego de Insight Reality
 - v170  Baqueano del barro rehecho: banderas enfrentadas con camino punteado naranja, se arranca y se gana pasando entre las banderas, salirse cancela, en 4H se empantana y en 4L pasa despacio, al empantanarse vuelve a la entrada, más relieve y barro blando; en el celular el sonido y la cámara ya no pisan el volante y el cuentakilómetros tiene su mismo ancho; herramienta herramientas/capturas.py para revisar la interfaz en distintas pantallas
 - v171  Página para opinar sobre las plantas (?plantas): criterios para elegir, ✅ va / ❌ no va / 💬 comentario en cada planta, proponer especies nuevas y mandarle la opinión a Pablo por WhatsApp o mail
 - v172  En modo foto, el recuadro se pone naranja cuando enfocás un bicho que todavía no tenés, y naranja suave con su nombre arriba si ya lo conocés
+- v173  El recuadro de la cámara también avisa bajo el agua: naranja para los peces nuevos y naranja suave con el nombre para los conocidos
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v172).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v173).
 La versión vigente es index.html (lista como app instalable).
