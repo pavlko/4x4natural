@@ -1,0 +1,189 @@
+# Cambios técnicos
+
+Detalle de cada versión para quien trabaja en el juego. La lista para jugadores está en [CAMBIOS.md](CAMBIOS.md).
+
+# 4x4 Natural — historial de versiones
+Un juego de Insight Reality
+
+- v01  Base: sierra, humedal, quebrada escalonada, cascada, árboles nativos, cueva simple
+- v02  Laguna del arroyo, espátulas, patos, buitres, águila mora
+- v03  Cueva recorrible con luces de la camioneta
+- v04  Fuego en la cueva, entrada a pie, hallazgo de los primeros habitantes
+- v05  Cueva escondida en la ladera junto a la cascada, gato sobre la boca
+- v06  Túnel de 10 m y domo con pinturas alrededor del fuego
+- v07  Selva de quebrada, enredaderas, rendimiento para Ceibal, laderas, cámara
+- v08  Puma secreto y carrera con el ñandú
+- v09  Vuelos de garza y espátulas, nido del tero, logros, menú y opción sin árboles
+- v10  Fotos especiales, charabones, festejo, ayuda, carrera por el camino, jugadores
+- v11  Jugadores simplificados, botón i, pista punteada, puma corregido, zoom 16x, compartir
+- v12  Compartir en PC, más pastizal, nido escondido, puma dentro del mapa
+- v13  Buceo: baúl con máscara antigua en la tapera, mapa del naturalista, 4 puntos de zambullida con peces (mojarra, vieja del agua, bagre negro, tararira), fotos especiales bajo el agua (lobito, carpincho, yacaré, patos), cuarto logro y cuaderno con pestañas
+- v14  Puerta de la tapera más ancha, tronco del ombú cerrado, puma sin saltitos, carrera con flecha al paso, pista recta y ritmo parejo con el ñandú
+- v15  El ñandú vuelve trotando a su campo después de la carrera; el papá con charabones no corre carreras
+- v16  Buceo en el mismo paisaje (fondo real del arroyo, se puede nadar por todo el cauce), botón para volver a la camioneta, nueva vieja del agua, colas de peces verticales, mojarras bien orientadas, anuncio grande al descubrir, zoom en el mapa grande
+- v17  Entradas de buceo en las dos orillas (cascada y quebrada, arroyo arriba del paso, laguna de las espátulas, laguna escondida), castañetas en pareja, anguila criolla en la laguna escondida, sacar la cabeza afuera para respirar, diseño vertical en celular
+- v18  Biguá (posado en troncos secos con alas abiertas y pescando bajo el agua), anguila cilíndrica, vieja del agua unida, fotos de afuera desde la superficie, visibilidad del agua según el lugar, marcas de buceo del mapa separadas
+- v19  Espesura de plantas acuáticas en la laguna escondida (zona navegable más chica), marcas de buceo del mapa reubicadas, tronco seco marrón y unido con el biguá bien apoyado
+- v20  Festejos separados al completar bichos, lugares y peces (los peces ya no son logro), teros que atacan en vuelo cerca del nido, pasillos entre las plantas de la laguna escondida hacia las entradas de buceo
+- v21  Cerros irregulares alrededor de la laguna escondida, carpincho y patos nadando hacia adelante, pindós solo en la quebrada, pedregal del lado de la cueva junto a la cascada
+- v22  Laguna escondida con paredes más bajas e irregulares, subida al sur y entrada solo por el noreste; camino sin desvío; vista lejana desbloqueable; el mapa pintado se guarda por jugador
+- v23  Menos pindós y chachíes; caraguatá en la quebrada, caraguatá falso en el arroyo y zonas húmedas, envira en la sierra, claveles del aire en paredones, flores de pastizal; barrial con desniveles rodeado de caraguatá falso
+- v24  Cresta que une el anillo de la laguna escondida con el borde alto del mundo al sureste
+- v25  Caraguatá falso siempre atravesable; caraguatá verdadero del doble de tamaño, sólido y con racimo de frutos amarillos
+- v26  Caraguatá atravesable y agrupado en matas dentro del monte de la quebrada
+- v27  Yarará, araña pollito, espinillos con cardenal amarillo, federal, dragones y viudita blanca; puma echado en el noroeste que se va hacia el borde; pindós más bajos lejos del fondo; cuaderno por grupos con pestañas de emoji
+- v28  Íconos de estilo rupestre en el cuaderno, teros más desesperados cerca del nido, modo ahorro (30 cuadros, menos resolución, sombra y pasto)
+- v29  Sin modo ahorro; ícono de garza para aves, mano abierta para hallazgos; Lugares primero; textos del naturalista
+- v30  Máscara de buceo antigua, redonda y de bronce, detrás de toda la interfaz
+- v31  Máscara de buceo ovalada, con fleje de bronce y tornillo de ajuste
+- v32  La camioneta se ve desde el agua y desde la cueva
+- v33  Anillo de la laguna escondida más irregular, con cresta quebrada y lomas bajas transitables alrededor
+- v34  La cámara de fotos mira mucho más arriba y abajo
+- v35  Sin pico en la unión de la cresta sureste con el anillo de la laguna escondida
+- v36  El juego pasa a llamarse Safari Gaucho
+- v37  Las fotos compartidas usan la dirección de GitHub Pages en vez de tinyurl
+- v38  Hornero con nido de barro, chajá, lagarto overo, tortuga pintada y apereá
+- v39  Primer hallazgo: el baúl del naturalista, con la máscara y su lista de peces; la cueva pasa a ser el segundo
+- v40  La portada ya no muestra la pista del viejo naturalista
+- v41  La pestaña de peces aparece recién al encontrar el baúl; el aviso de buceo va dentro de esa pestaña
+- v42  Costa atlántica al sur (dunas, playa, mar y laguna costera más ancha), charcos inundables con juncos en los barriales, la lechuza gira la cabeza para mirarte; IDEAS.md con planes
+- v43  Nubes que se mueven con el viento; algunas bajas sobre la sierra, por debajo del vuelo del águila
+- v44  La lechuza gira la cabeza de verdad para mirarte; naranjos criollos y una higuera cerca de la tapera
+- v45  Tercera tanda: martín pescador, lechucita de las vizcacheras, dormilón, picaflor verde, zorrillo, comadreja overa, coipo, sapito de Darwin, cangrejo de arroyo; tacurúes; pestaña de anfibios
+- v46  Casita de pescador con el microscopio del naturalista y el tiburón de madera; 8 sitios de muestra con frasquitos; vista de microscopio con 16 microorganismos y restos para identificar; pestaña Microscopio, tercer hallazgo y festejo
+- v47  Techo de la casita bien caído, el microscopio se agarra solo junto a la mesa, frasco de la laguna junto a la entrada de buceo
+- v48  El juego principal vuelve al terreno anterior en el sur (sin costa). Todo lo de la playa sigue en la rama `playa`
+- v49  Frasco de muestra de la laguna en la orilla, bajando desde la casita de pescador; banderines en los frascos; los sitios de muestra aparecen en el mapa
+- v50  La tarjeta del microscopio ya no habla de zoolitos
+- v51  Los sitios de muestra del microscopio se ven en el mapa aunque no tengas la máscara
+- v52  Cada microorganismo cuenta su relación con los bichos y el lugar; cada sitio de muestra con explicación y video (cerritos de indios en la cueva); en la cueva la muestra se toma al volver; los ojos se acostumbran a la oscuridad y afuera se ve deslumbrante
+- v53  El cartel de cada descubrimiento (bicho, pez, microorganismo, lugar, hallazgo) se toca y lleva directo a su ficha en el cuaderno
+- v54  Al tomar una muestra: frasco con el color y la textura de cada lugar, gotero, gota sobre el portaobjetos y zoom al microscopio
+- v55  Frasquito de muestra también en la entrada de la cueva
+- v56  En la cueva el botón de muestra aparece al estar junto al frasco, como en los demás lugares
+- v57  Modo caminar: bajarse de la camioneta (B), avatar con sombrero, mochila y cámara colgada, ir despacio para espantar menos, volver a la camioneta con un toque; foto a la altura de los ojos; buceo, cueva y muestras también caminando
+- v58  Al conocer los 4 lugares de buceo (festejo): nadar y zambullirse en cualquier agua honda, caminando o desde la camioneta, con cardumen de mojarras; buceo tranquilo en el pozo del manantial arriba de la cascada; piedras que cortan el paso al borde de la cascada
+- v59  Manantial menos hondo con plantitas, musgo, corriente visible y pastos delicados; piedras solo bajo el agua; caminando se aprieta 🤿 para ponerse la máscara; al salir del agua siempre quedás caminando en la orilla
+- v60  Avatar más gracioso y suelto (cabezón, poncho, balanceo); en el microscopio los nombres anotados llevan al cuaderno y los bichitos se van por el borde y vuelven; video de zoolitos de sambaquis; los primeros habitantes como último hallazgo; tortugas bien sobre el tronco
+- v61  Número de versión chiquito en la pantalla de inicio, en el juego (abajo a la derecha) y en el pie del cuaderno
+- v62  La app instalada busca actualizaciones al abrirse y al volver a ella, y avisa con un botón "Hay una versión nueva"
+- v63  Links de fotos y lectura arreglados para especies con "sp." (araña pollito, castañeta); araña con las patas abiertas que camina más; cara del avatar con nariz y sonrisa
+- v64  Correa de la cámara del avatar bien orientada
+- v65  Salpicaduras en los charcos; el lagarto corre a su cueva entre piedras; yarará en forma de S que se desliza y escapa; botón de caminar más visible; foto con otro dedo moviendo la cámara (celular); gato montés echado; en modo desbloqueo el mapa muestra bichos, buceo, hallazgos y muestras para teletransportarse
+- v66  Tortugas que aguantan más cerca y vuelven antes; teletransporte a bichos a distancia prudente; marcas del mapa separadas y fáciles de tocar; viudita en postes del pastizal y dragones caminando por el pastizal húmedo
+- v67  Lechuza de campo; araña marrón con las patas unidas al cuerpo; araña y dormilón en la sierra del noreste; picaflor tomando néctar de flores rojas junto a la cascada
+- v68  Araña negra; pozón de la cascada de 6 m de hondo con cuevas de piedra y castañetas en cada una; el ruido de la cascada baja al bucear lejos
+- v69  El desbloqueo de 3 toques abre todo: máscara, buceo en cualquier parte, microscopio, peces, microorganismos y vista lejana
+- v70  Personalizar (desde el inicio): camioneta con color, dibujos en las puertas (o uno propio dibujado a mano) y cosas en el techo; explorador con poncho, sombrero, boina o gorro y cosas graciosas (bigotes, anteojos, mate, gallina)
+- v71  Carpa derecha, letras sin espejar, sombreros vaqueros (marrón, negro, blanco) y gorra con visera, mate con yerba y bombilla más termo bajo el brazo, color de piel (indígena por defecto), dragones negro y amarillo intenso
+- v72  Cajas del techo se ocultan con objetos arriba; gorra normal; rastas, barba de chivo, bigotes largos; nido de hornero en la cabeza; termo y mate con bombilla; selector de cualquier color (camioneta, piel, pelo, poncho, rayas, gorro, pincel); explorador más flaco con nariz aguileña; botones de muestra y buceo a la vez; mojarras hacia adelante; cuevas del pozón siempre bajo el agua
+- v73  Paredón de la cascada reparado (el pozón hondo le había hecho un agujero); nuevo hallazgo detrás de la cascada: alero con vasijas de barro y pinturas de manos; botones de buceo y muestra solo con ícono, uno al lado del otro
+- v74  La cortina de la cascada llega hasta el pozo; el alero con cerámicas queda en un hueco del paredón detrás del agua; la tarjeta suma la cerámica chaná (Goya-Malabrigo, campanas) con links
+- v75  Arreglado un error que impedía bucear en la cascada (desde v72); cangrejos en lugares fijos debajo de las entradas de buceo, más grandes y visibles, que no desaparecen al esconderse
+- v76  Caminando, arrastrar en la pantalla gira al explorador (como al bucear); la cortina de la cascada cae 2 m más adelante dejando el alero más atrás; sin piedras tapando el alero
+- v77  Alero detrás de la cascada visible: apoyado contra el pie del paredón, fondo oscuro solo detrás, y la espuma de la cascada delante de la cortina
+- v78  Todos los bichos del juego pintados en la sala del fogón; alero detrás de la cascada más grande, al que se sube desde el agua y se camina, con campanas de cerámica y zoolitos (paloma, pájaro, lobo marino, tiburón)
+- v79  Fondo del alero cerrado (pared, costados y techo oscuros); remo de canoa, huesos de lobo marino, mandíbula y dientes de tiburón y astas de ciervo
+- v80  Alero con piso plano (nada enterrado) y fondo de roca continuo; se entra con "Salir del agua" frente al alero y se camina en primera persona como en la cueva del fogón; caminando hacia el borde se vuelve al agua; luz suave adentro
+- v81  Ícono de la app nuevo: la camioneta con el sombrero vaquero en el techo y el ñandú en la puerta
+- v82  Modo desarrollo con 7 toques (otros 7 vuelven al juego de antes, sin perder nada); se quitó el borrado con pulsación larga; en la ayuda, cuadro para reportar errores o sugerir mejoras (GitHub, mail o copiar)
+- v83  Reportes a insightrealitycontact@gmail.com con ejemplos; pistas con "laguna del arroyo" y sapito en los arenales; botón para salir de la foto; tocar el contador abre el cuaderno; 4L en el indicador de velocidad y destrabar junto a los controles; cara del gato montés y su ronroneo; zumbido del picaflor; frutos del caraguatá más naranjas
+- v84  Mapa solo tocando el minimapa; ceibo con ramas unidas; hallazgos en la portada; sugerencias con un botón Enviar (compartir en el celular); el venado escapa hacia los pastizales bajos; el zorrillo larga una nube de olor; sin aire buceando se sube a respirar en vez de salir del agua
+- v85  Nutria (antes coipo); el contador suma peces y microorganismos al encontrar la máscara y el microscopio; sapitos de vuelta en la orilla de la laguna del arroyo (en la versión sin costa no aparecían) y un poco más grandes
+- v86  Bandurria mora, chiricote, Juan chiviro y rana llorona, cada uno con su canto; el mapa grande se desbloquea al fotografiar 3 bichos ("el mapa del naturalista")
+- v87  Sin minimapa al arrancar (aparece junto con el mapa del naturalista); rana llorona arreglada (la bolsa de la garganta se volvía gigante)
+- v88  Rana llorona: bolsa de la garganta más chica y adelante, sin hundirse en el piso, canto largo "ueeeeee"; botón de salir de la foto más chico y sin tapar los controles
+- v89  Camioneta eléctrica: zumbido suave del motor y ruido de las ruedas en el suelo (más fuerte en barro y arena); sin toma de aire
+- v90  Camioneta a un tercio de volumen; dragones con cabeza, pecho y panza amarillo intenso
+- v91  El dragón es Xanthopsar flavus (amenazado), como se lo llama en Uruguay
+- v92  Los dragones andan junto a la viudita blanca, alrededor de sus postes en el pastizal
+- v93  La viudita pasa a ser la viudita blanca grande (Heteroxolmis dominicana), blanca con alas negras, la que anda con los dragones
+- v94  La viudita blanca grande te detecta primero, da la alarma y vuela; los dragones la siguen enseguida
+- v95  Foto especial de la viudita con los dragones; canto de la rana llorona de unos 6 segundos; yarará más grande y con más contraste
+- v96  Yarará (crucera) gris con dibujos negros
+- v97  Teletransporte a bichos: va a donde está el bicho en ese momento, a una distancia que no lo espante, mirándolo de frente
+- v98  Compartir cualquier foto del cuaderno (botón ↗ en cada foto); botón 📸 para capturar la pantalla entera del juego y compartirla con el link
+- v99  En la captura de pantalla el minimapa sale redondo y en su lugar
+- v100  El alero detrás de la cascada queda entero delante del paredón (las pinturas ya no se cortan) y la cortina de agua cae más adelante; si la camioneta quedó estacionada pegada al alero, se corre a la orilla
+- v101  La cortina de la cascada es más densa: desde afuera el alero casi no se ve; la luz de adentro solo se prende al entrar
+- v102  El hallazgo del alero solo cuenta con una foto sacada desde adentro; desde afuera aparece una pista
+- v103  La foto del alero también vale desde el agua si la cascada no tapa la vista (detrás de la cortina o desde un costado)
+- v104  Portada con hallazgos al final; logros y fotos especiales como medallas dibujadas, con festejo cada vez que se gana una
+- v105  Las medallas de fotos especiales dicen qué foto es (ej. "Nido de barro del hornero"), también las que faltan
+- v106  Portada: lugares como sellos de pasaporte y hallazgos como tarjetas doradas
+- v107  Sellos también en la pestaña de lugares; barras parejas y una barra en cada sección; 5 lugares nuevos que aparecen con la máscara (pozo del arroyo, manantial) y el microscopio (casita del pescador, barrial, monte); logros con su pista y sin pestaña propia; hallazgos después de lugares; la viudita con los dragones es una sola foto especial
+- v108  Festejos con botón "Ver en el cuaderno"; botones de bajarse, volver a la camioneta y despacio junto a los controles; logros "El rápido de la pradera", "Los huevos del tero" y "El fantasma de la sierra" (con la pista del puma); botón para compartir el juego en la entrada
+- v109  El Juan chiviro se posa sobre la copa real de los árboles y cada tanto vuela a otro árbol cercano
+- v110  Botones de acción solo con ícono, en fila a la izquierda; inicio nuevo: Explorar con la camioneta, cuaderno de cuero, compartir arriba a la derecha, Mi explorador junto al jugador, y arrastrar/zoom en el fondo; laguna escondida rodeada de lomas parecidas y con la entrada más tapada
+- v111  Volante en vez de botones izquierda/derecha; menú junto al contador (con ícono de cuaderno), compartir arriba a la derecha, foto y sonido abajo al medio; pistas arriba y con fondo oscuro en vertical; inicio y manejo acomodados en horizontal; ícono de hallazgos como mano abierta; el puma aparece como "El fantasma de la sierra"; fotos especiales bajo el agua recién con la máscara
+- v112  Inicio: Explorar con el logo abajo a la derecha, cuaderno a la izquierda, 🎨 junto al lápiz del jugador; barro que patina más; charcos marrones; volante sin saltos; caminando sin volante y con cámara fija el arrastre orbita; buceo con joystick y botones de subir/bajar; foto caminando con controles; acelerador gradual; contador con fondo de cuaderno; sonido a la izquierda de foto; pistas siempre arriba; salir del agua donde estaba el botón de entrar
+- v113  Insectos: hormigas cortadoras con su camino y hormiguero (foto especial con el hormiguero), araña tejedora con una telaraña grande junto a la tapera, colmena en un tronco cerca del camino con nubes de abejas
+- v114  Buceo con dos joysticks: el izquierdo mira (como arrastrar la pantalla), el derecho avanza, retrocede y se corre a los costados
+- v115  Inicio: cuaderno y Seguir explorando en una fila arriba de "Un juego de…", el botón conserva el logo; firma al final de la ayuda
+- v116  Color a elección para lo que va en el techo de la camioneta (y las cajas); firma con la tipografía del resto
+- v117  Si una foto no tiene nada nuevo, ofrece guardarla como foto de lo conocido que está cerca (lugares, el alero, bichos); el alero muestra su foto en el cuaderno
+- v118  Mano de hallazgos como estarcido rupestre; sellos estampados sobre las fotos de cada lugar; enredaderas de la cascada pegadas al paredón y menos; pastos del manantial sin parpadeo; la yarará ya no aparece dentro del agua del manantial; charcos con mezcla de marrón y celeste; camioneta al doble de volumen; con teclado se mueven el volante y los pedales, y Q/E corren al bucear
+- v119  Nombres al pasar el puntero en el mapa grande; "La gruta" pasa a ser "La cueva", adentro se apagan los sonidos de afuera de a poco y se oye el fuego; cascada más suave; avispas camoatí negras con su nido de papel colgando; telaraña más alta y en un lugar despejado
+- v120  Las marcas del mapa no crecen con el zoom; la telaraña vuelve al ombú, alta cerca de la copa y más discreta; las avispas suben y bajan suave, y el nido queda más escondido
+- v121  Código abierto (licencia MIT), con README y CONTRIBUIR.md para sumar bichos, lugares y más; link al repositorio en la ayuda
+- v122  La máscara está en el baúl de la casita del pescador y el microscopio del naturalista en la tapera; la casita es un lugar desde el principio; sonidos de los bichos más suaves, más espaciados, con variación de tono, sin pisarse, y control de volumen de los bichos en el inicio
+- v123  Pistas distintas para bichos nuevos (✨, borde dorado) y ya conocidos (🐾, con su nombre y dirección, más discretas)
+- v124  Los dragones vuelven a aparecer junto a la viudita (no encontraban lugar desde v94); el nido del tero ya no queda tapado por sus propios pastos, apoya bien sobre el suelo y se distingue un poco más
+- v125  Las bandurrias se mudan del arroyo a las orillas de la laguna escondida: su grito ayuda a encontrarla
+- v126  El martín pescador pesca desde ramas sobre el agua de la laguna escondida; las pistas nombran un lugar solo si ya lo descubriste, si no lo describen en general
+- v127  En el celular los avisos no nombran teclas; volante más suave cerca del centro y más fuerte hacia los extremos
+- v128  Araña tejedora más fiel (patas anilladas juntas de a pares en X, abdomen plateado con bandas); galería de bichos para revisar los modelos y compararlos con fotos reales (modo desarrollo o ?galeria)
+- v129  Galería de bichos: al tocar uno se abre el modelo 3D para girar y acercar, con fotos reales de iNaturalist al lado (y sus créditos); también el cangrejo y el nido de las avispas
+- v130  Ojos para los bichos que no tenían (puma, tero, carpincho, ñandú, zorro, mulita, yacaré, lobito, cuervo, venado, zorrillo, espátula y las aves pequeñas); rana llorona con ojos negros y patas delanteras
+- v131  Repaso de modelos: galería de frente; garza, espátula y bandurria con cuello unido; mulita con anillos; puntas de alas en lechuza y tero; yacaré abre la boca; gato montés con cola unida y se echa al quedarse quieto; lobito con patas; astas del venado de campo; ojos en pato, comadreja y nutria; águila más fina; biguá con pies; la yarará pasa a llamarse crucera, con cabeza triangular; picaflor con pico rojo y nombre científico corregido; chajá, lagarto, tortuga, apereá, martín, lechuza de campo (levanta una pata), dormilón, nutria, sapito, Juan chiviro y puma ajustados; chiricote corregido a Aramides cajaneus, con cola que sube y baja y nuevo canto
+- v132  Águila mora con alas más anchas y digitadas y cola corta; crucera más fina hacia la cabeza y la cola; apereá con hocico simple
+- v133  Mano pelada en el manantial, tanteando el agua con las manos; la galería suma los peces (en 3D) y los microorganismos (como se ven en el microscopio), cada uno con fotos reales
+- v134  Peces: colas bien orientadas, mojarra y bagre con cola en horquilla, bagre con aleta larga hasta la cola, vieja más fina hacia la cola con ojos y aletas pectorales horizontales, tararira con boca que se abre, anguila más oscura y con las puntas cerradas; crucera más oscura; el yacaré abre la boca hacia abajo; la galería busca fotos por género cuando el nombre dice "sp."
+- v135  Colas de los peces pegadas al cuerpo; bagre más alargado con la aleta pegada al lomo; tararira con la boca dentro de la cabeza; las fotos de peces se buscan solo entre peces (la mojarra mostraba mariposas)
+- v136  La mojarra es Astyanax lacustris (antes "Astyanax sp.", que traía fotos de mariposas)
+- v137  Galería: hidra, copépodo y ameba buscan la especie o grupo correcto; fitolitos de maíz y almidón muestran fotos de microscopio de Wikimedia Commons
+- v138  Nuevo mensaje para compartir el juego: "¡Jugá a Safari Gaucho! Encontrá los bichos del este uruguayo."
+- v139  Mensaje propio al compartir la foto de un bicho o un lugar ("¡Encontré un carpincho en el paso del arroyo! Jugá a Safari Gaucho"); en personalizar, el lienzo de dibujo aparece a la vista y se cierra al pasar al explorador
+- v140  Mate con la bombilla a la vista y pintado con ñandúes (también el del techo); se puede elegir exploradora (pelo largo con trenza)
+- v141  La camioneta tiene una caja de carga abierta atrás con un cajón de cuadernos (aparece uno por cada nivel conseguido) y los instrumentos encontrados (máscara, microscopio); la rueda de auxilio pasa al capó
+- v142  Galería: nueva sección de plantas en preparación, con 24 especies del este (árboles, palmeras, arbustos, hierbas, enredadera, epífita y acuáticas) y sus fotos reales
+- v143  Galería de plantas: todo lo que ya está en el mundo (caraguatá banana do mato, caraguatá falso, envira, chachí, laurel, uña de gato, helechos, musgo, paja, flores del pastizal, pastos del manantial, plantas sumergidas), marcado "en el juego" o "propuesta", y "?" cuando la especie está por definir
+- v144  Cuadernos separados: el cuaderno de campo, la bitácora de buceo, la libreta del microscopio y la de los primeros habitantes, cada uno con su color y sus pestañas; se elige cuál llevar abierto (o todos cerrados) y solo ese da pistas por cercanía; en la caja de la camioneta el abierto se ve abierto arriba del cajón; la caja tiene el piso más bajo y cada cuaderno su instrumento delante
+- v145  Compartir hallazgos, logros y fotos especiales con mensaje propio; botón "Llevar abierto" debajo de Cerrar; caja de carga honda (hasta la mitad de las ruedas) sin que los objetos atraviesen la carrocería; el libro de los primeros habitantes queda para más adelante
+- v146  Mensajes propios para los logros; guardabarros dentro de la caja; mesita a la derecha con el cuaderno abierto inclinado hacia la cámara; los lomos de los cuadernos arriba, afuera del panel; botones Cerrarlo y Llevarlo abierto (los dos cierran); tocar la caja de la camioneta abre los cuadernos
+- v147  Lugares con la montaña y hallazgos con la mano; al arrancar la cámara es la fija y con doble toque pasa a libre; cuaderno abierto casi acostado y con su símbolo en las hojas, símbolo también en los lomos; el contador cambia de color y de datos según el cuaderno abierto; cajón y mesa detrás de los instrumentos; sombreros gigantes nuevos para la camioneta (negro, blanco, gorra, boina, gorro de lana)
+- v148  Hallazgos con su dibujo propio; la cámara orbita alrededor de la caja; tocar un libro de la caja abre ese cuaderno, tocar el techo o el sombrero abre personalizar; Cerrarlo cierra todos; al empezar se invita a abrir el cuaderno de campo y al encontrar la máscara o el microscopio, su cuaderno; contadores según el cuaderno abierto (todos si no hay ninguno); símbolos grandes y legibles en las hojas; techo sin los sombreros repetidos, sin "gigante" en los nombres y con todo apoyado; gorra más real; el selector de color arranca en el color actual; los bichos no giran en el lugar cuando se traban; el libro abierto ya no atraviesa la mesa
+- v149  Caja de carga con el piso encima de las ruedas y bordes bajos para ver lo que llevás; termo y mate siempre, primeros en la fila; los mensajes largos quedan en pantalla hasta tocarlos o tocar afuera
+- v150  Caja: cajón de cuadernos contra el borde izquierdo, mesa ancha contra el derecho (igual de alta que el cajón, abierta adelante, con el instrumento del cuaderno abierto debajo), objetos de adelante bien separados y puerta de atrás vidriada
+- v151  Volante más simple: siempre como agarrado de arriba (arrastrar a la derecha gira a la derecha); en la caja, termo y mate entre el cajón y la mesa, el instrumento del cuaderno abierto delante de la mesa, cámara de fotos en vez de binoculares y máscara con snorkel
+- v152  Íconos en los lomos de los libros de la caja; selectores de color que arrancan en el actual; plantas mejoradas (espinillo de ramas desnudas con pompones, sauce más ancho, canelón de tronco rugoso, pitanga con frutos de colores, guayabo con frutos y flores, palmeras con hojas hacia arriba y racimos —también algunos butiá del palmar—, mburucuyá con frutos y hojas lobuladas, banana do mato con hojas paradas, envira más chica, laurel más alto y claro) y nuevas (calaguala, culantrillo, llantén, maciega, paja brava, bis bis, flores amarillas, azucena de campo); galería de plantas separada por tipo; aviso de modo desarrollo con botón para salir
+- v153  Mariposa bandera argentina en el monte del arroyo (45 bichos); plantas: canelón de rollos, tembetarí nuevo, banana do mato igual que en el mundo, calaguala y helecho de la sierra separados, frutos alrededor en pitanga (también verdes) y guayabo, azucenita roja, molle con matecitos, oreja de palo (hongo); sombrero de lona de camión para el explorador y la camioneta; gorra sin costuras y con visera más larga
+- v154  Gorra con la visera hacia adelante; sombreros de lona de camión en forma country y pescador; mariposas solo de decoración (monarcas del sur y amarillas) hasta su hallazgo; plantas: paja estrelladora, cola de zorro, bibí azul, amarillo y blanco, calaguala y helecho de la sierra con su especie, cabomba y elodea
+- v155  Sombrero de lona de camión gris verdoso con forma de vaquero (ala levantada a los costados); cola de zorro (Cortaderia selloana) con plumas largas; bibí azul (Herbertia lahue) y bibí amarillo (Cypella herbertii)
+- v156  Sin el sombrero de lona (queda el vaquero) y sin el bibí blanco
+- v157  Galería con pestañas; nueva sección Primeros habitantes con cada pintura de la cueva (bichos y motivos) y los objetos (vasija, campana, cuatro zoolitos, remo) más propuestas (boleadoras, punta cola de pescado, mortero); en modo desarrollo, el estante de cuadernos muestra el Herbario y los Primeros habitantes como libros en desarrollo
+- v158  La crucera pintada en la cueva se mueve al acercarte; las lechuzas parpadean; el venado y el puma giran la cabeza para mirarte; los pindó se mecen con el viento
+- v159  Pinturas de la cueva que reaccionan al acercarte (la crucera se desliza suave, el búho parpadea, el venado y el puma te miran de frente, el pindó se mece bajo la lluvia); personalizar se cierra tocando arriba, muestra la camioneta y Listo vuelve al juego; galería en el aviso de desarrollo; Herbario y Primeros habitantes como cuadernos en desarrollo con textos y pistas en borrador; tocar el suelo para caminar hasta ahí; sin piedras en la entrada de la cueva
+- v160  La boca de la cueva despejada (sin piedras ni matas delante); caminando, mantener apretado sigue llevando al explorador hacia donde apuntás, y arrastrar sigue girando
+- v161  En modo foto, W A S D mueven la cámara un poquito (hasta 2–3 m) y Q/E la bajan y suben, para elegir el ángulo; las flechas apuntan y + / − o la rueda hacen zoom
+- v162  En el celular, el modo foto tiene un joystick chico para moverse un poquito y elegir el ángulo
+- v163  Con dos dedos (o el botón derecho del mouse) se mueve la cámara para mirar desde otro lado; el doble toque la vuelve a su lugar, atrás de la camioneta
+- v164  Ícono nuevo también en el botón de Explorar; la app ya no usa copias guardadas viejas del manifiesto ni de los íconos
+- v165  Ícono con la camioneta más iluminada
+- v166  Ícono con bastante más luz en la camioneta y el fondo un poco más apagado
+- v167  En la caja, el mate y el termo van en una matera baja de cuero descarne con el motivo Safari Gaucho y un ñandú
+- v168  La cámara se acerca más a la camioneta; matera con una sola asa al medio; marcas de las ruedas en el lienzo para dibujar las puertas; los bichos miran a la camioneta o al explorador (no a la cámara); la libreta del microscopio va antes del herbario
+- v169  Logro nuevo "Baqueano del barro": banderas a los dos lados del barrial; al entrar con envión se arma el desafío y hay que salir por las banderas del otro lado sin empantanarse; sin la palabra "rueda" en el lienzo
+- v170  Baqueano del barro rehecho: banderas enfrentadas con camino punteado naranja, se arranca y se gana pasando entre las banderas, salirse cancela, en 4H se empantana y en 4L pasa despacio, al empantanarse vuelve a la entrada, más relieve y barro blando; en el celular el sonido y la cámara ya no pisan el volante y el cuentakilómetros tiene su mismo ancho; herramienta herramientas/capturas.py para revisar la interfaz en distintas pantallas
+- v171  Página para opinar sobre las plantas (?plantas): criterios para elegir, ✅ va / ❌ no va / 💬 comentario en cada planta, proponer especies nuevas y mandarle la opinión a Pablo por WhatsApp o mail
+- v172  En modo foto, el recuadro se pone naranja cuando enfocás un bicho que todavía no tenés, y naranja suave con su nombre arriba si ya lo conocés
+- v173  El recuadro de la cámara también avisa bajo el agua: naranja para los peces nuevos y naranja suave con el nombre para los conocidos
+- v174  Siete peces nuevos (13 en total): mojarra de cola roja y madrecita en la orilla de la laguna de las espátulas (se esconden entre las plantas y salen de a ratos), tachuela y bagre cantor en la cascada, cabeza amarga y dientudo en el arroyo, pez anual en el manantial; agua turbia en la parte honda de la laguna; cuervo con la parte de atrás del ala clara
+- v175  Barrial con decisiones: manchas oscuras de barro hondo y claras más secas que se notan al manejar, en bajada se avanza y en subida se patina; el cartel y las líneas aparecen al acercarse a las banderas, se confirma al entrar y se cancela al alejarse; mojarras de cola roja, madrecitas y agua turbia también en la laguna escondida
+- v176  Barrial: cartel corto, huellas viejas firmes para aprovechar y la camioneta se desliza más con la inercia en el barro hondo (y un poco en todo barro)
+- v177  Estadísticas anónimas con GoatCounter (sin cookies ni datos personales, solo en la versión publicada): visitas, si se abre como app, instalaciones, tiempo de juego, primera foto de cada bicho, lugares, peces, muestras, hallazgos, logros, buceos, compartir, barrial, errores y aparatos lentos
+- v178  Novedades: tocar la versión, el aviso de versión nueva o el cartel al actualizar lleva a esta lista de cambios; modo colaborador con botón en la ayuda (galería, cuadernos en preparación, opinar plantas y sugerir correcciones desde cada ficha)
+- v179  Modo colaborador desbloquea todo y vuelve a la partida propia al salir; las estadísticas no cuentan lo desbloqueado; CAMBIOS.md (para jugadores) y CAMBIOS-TECNICO.md; mensaje de colaboración, README y CONTRIBUIR actualizados
+
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v179).
+La versión vigente es index.html (lista como app instalable).

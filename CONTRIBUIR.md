@@ -20,6 +20,11 @@ Este juego se hizo conversando con una inteligencia artificial (Claude). Podés 
 - **`DIVES`**, **`FISH`** — puntos de buceo y peces. **`MICRO`**, **`MSITES`** — el microscopio y sus muestras.
 - **`function baseH(`** — la forma del terreno.
 
+## Herramientas para revisar
+- **Galería** (modo colaborador, o `?galeria` en la dirección): todos los bichos, peces, plantas, pinturas y objetos en 3D, con fotos reales de iNaturalist y Wikimedia al lado.
+- **`herramientas/capturas.py`**: saca capturas de la interfaz en distintas pantallas y arma una hoja para detectar solapamientos.
+- **Plantas por definir**: en la galería, las que dicen «?» esperan que alguien proponga la especie local correcta.
+
 ## Ideas para empezar
 - Un bicho de tu zona, con su sonido y su lugar.
 - Un hallazgo local: una historia, un objeto, una pintura.
