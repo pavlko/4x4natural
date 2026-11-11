@@ -2,6 +2,11 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v183
+- 🤿🔬 Los palos de buceo y las estacas de muestras tienen su cartel con el dibujo del snorkel o del microscopio.
+- 🖐️ Acercar y alejar con dos dedos anda mejor y ya no mueve la cámara sin querer.
+- 👥 Cambiar de jugador ya no mezcla las partidas.
+
 ## v179
 - 🤝 El modo colaborador desbloquea todo para revisarlo. Tu partida queda guardada: con «Volver a mi juego» seguís donde estabas.
 
