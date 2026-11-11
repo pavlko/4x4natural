@@ -13,4 +13,4 @@ Si encontrás algo para corregir o tenés una idea, escribime ✉️ insightreal
 
 ---
 
-Para invitar a colaborar: [COLABORAR-MENSAJE.md](COLABORAR-MENSAJE.md). Capturas: carpeta [capturas/](capturas/).
+Para invitar a colaborar: [COLABORAR-MENSAJE.md](COLABORAR-MENSAJE.md). Capturas: carpeta [capturas/](capturas/). Código QR para jugar: [horizontal](capturas/qr-jugar.jpg) · [vertical, para historias o imprimir](capturas/qr-jugar-vertical.jpg).
