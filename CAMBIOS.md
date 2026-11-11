@@ -170,6 +170,7 @@ Un juego de Insight Reality
 - v167  En la caja, el mate y el termo van en una matera baja de cuero descarne con el motivo Safari Gaucho y un ñandú
 - v168  La cámara se acerca más a la camioneta; matera con una sola asa al medio; marcas de las ruedas en el lienzo para dibujar las puertas; los bichos miran a la camioneta o al explorador (no a la cámara); la libreta del microscopio va antes del herbario
 - v169  Logro nuevo "Baqueano del barro": banderas a los dos lados del barrial; al entrar con envión se arma el desafío y hay que salir por las banderas del otro lado sin empantanarse; sin la palabra "rueda" en el lienzo
+- v170  Baqueano del barro rehecho: banderas enfrentadas con camino punteado naranja, se arranca y se gana pasando entre las banderas, salirse cancela, en 4H se empantana y en 4L pasa despacio, al empantanarse vuelve a la entrada, más relieve y barro blando; en el celular el sonido y la cámara ya no pisan el volante y el cuentakilómetros tiene su mismo ancho; herramienta herramientas/capturas.py para revisar la interfaz en distintas pantallas
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v169).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v170).
 La versión vigente es index.html (lista como app instalable).
