@@ -184,6 +184,7 @@ Un juego de Insight Reality
 - v177  Estadísticas anónimas con GoatCounter (sin cookies ni datos personales, solo en la versión publicada): visitas, si se abre como app, instalaciones, tiempo de juego, primera foto de cada bicho, lugares, peces, muestras, hallazgos, logros, buceos, compartir, barrial, errores y aparatos lentos
 - v178  Novedades: tocar la versión, el aviso de versión nueva o el cartel al actualizar lleva a esta lista de cambios; modo colaborador con botón en la ayuda (galería, cuadernos en preparación, opinar plantas y sugerir correcciones desde cada ficha)
 - v179  Modo colaborador desbloquea todo y vuelve a la partida propia al salir; las estadísticas no cuentan lo desbloqueado; CAMBIOS.md (para jugadores) y CAMBIOS-TECNICO.md; mensaje de colaboración, README y CONTRIBUIR actualizados
+- v180  El modo desarrollo se abre con 7 toques en «Quiero colaborar» (o en «beta» en la entrada); ya no con el contador del juego, para que no se active por accidente
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v179).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v180).
 La versión vigente es index.html (lista como app instalable).
