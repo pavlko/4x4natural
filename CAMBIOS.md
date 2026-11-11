@@ -178,6 +178,7 @@ Un juego de Insight Reality
 - v175  Barrial con decisiones: manchas oscuras de barro hondo y claras más secas que se notan al manejar, en bajada se avanza y en subida se patina; el cartel y las líneas aparecen al acercarse a las banderas, se confirma al entrar y se cancela al alejarse; mojarras de cola roja, madrecitas y agua turbia también en la laguna escondida
 - v176  Barrial: cartel corto, huellas viejas firmes para aprovechar y la camioneta se desliza más con la inercia en el barro hondo (y un poco en todo barro)
 - v177  Estadísticas anónimas con GoatCounter (sin cookies ni datos personales, solo en la versión publicada): visitas, si se abre como app, instalaciones, tiempo de juego, primera foto de cada bicho, lugares, peces, muestras, hallazgos, logros, buceos, compartir, barrial, errores y aparatos lentos
+- v178  Novedades: tocar la versión, el aviso de versión nueva o el cartel al actualizar lleva a esta lista de cambios; modo colaborador con botón en la ayuda (galería, cuadernos en preparación, opinar plantas y sugerir correcciones desde cada ficha)
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v177).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v178).
 La versión vigente es index.html (lista como app instalable).

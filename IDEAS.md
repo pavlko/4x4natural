@@ -179,3 +179,6 @@ Cada hallazgo sube de nivel: trae una herramienta, una forma nueva de mirar el m
 - Avance: primera foto, cada 5 bichos, lugares, hallazgos (baúl, microscopio, alero, cueva), logros, primer buceo, primera muestra al microscopio, cuaderno abierto, personalizar.
 - Uso: compartir (foto, logro, juego), modo caminar, cámara libre, desafíos (carrera del ñandú, barrial: intentos y cruces).
 - Para mejorar: dónde se traban (por ejemplo, cuántos encuentran la laguna escondida o el puma) y cuánto tiempo juegan por sesión (aproximado).
+
+### Suscribirse a novedades (plan)
+- Botón "Avisame de las novedades" que anota el correo en una lista de distribución (por ejemplo Buttondown o Mailchimp, con su formulario). Pedir solo el correo, con consentimiento, pensado para adultos.
