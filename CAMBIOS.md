@@ -177,6 +177,7 @@ Un juego de Insight Reality
 - v174  Siete peces nuevos (13 en total): mojarra de cola roja y madrecita en la orilla de la laguna de las espátulas (se esconden entre las plantas y salen de a ratos), tachuela y bagre cantor en la cascada, cabeza amarga y dientudo en el arroyo, pez anual en el manantial; agua turbia en la parte honda de la laguna; cuervo con la parte de atrás del ala clara
 - v175  Barrial con decisiones: manchas oscuras de barro hondo y claras más secas que se notan al manejar, en bajada se avanza y en subida se patina; el cartel y las líneas aparecen al acercarse a las banderas, se confirma al entrar y se cancela al alejarse; mojarras de cola roja, madrecitas y agua turbia también en la laguna escondida
 - v176  Barrial: cartel corto, huellas viejas firmes para aprovechar y la camioneta se desliza más con la inercia en el barro hondo (y un poco en todo barro)
+- v177  Estadísticas anónimas con GoatCounter (sin cookies ni datos personales, solo en la versión publicada): visitas, si se abre como app, instalaciones, tiempo de juego, primera foto de cada bicho, lugares, peces, muestras, hallazgos, logros, buceos, compartir, barrial, errores y aparatos lentos
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v176).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v177).
 La versión vigente es index.html (lista como app instalable).
