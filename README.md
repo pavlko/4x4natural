@@ -1,8 +1,14 @@
 # Safari Gaucho
 
 <p align="center">
-  <img src="capturas/cascada-camioneta.jpg" width="260" alt="La camioneta frente a la cascada">
-  <img src="capturas/cuaderno-de-campo.jpg" width="260" alt="El cuaderno de campo">
+  <img src="capturas/cascada-camioneta.jpg" width="200" alt="La camioneta frente a la cascada">
+  <img src="capturas/sacando-foto.jpg" width="200" alt="Sacando una foto a un cuervo de cabeza roja">
+  <img src="capturas/carrera-nandu.jpg" width="200" alt="La carrera con el ñandú">
+</p>
+<p align="center">
+  <img src="capturas/buceando.jpg" width="200" alt="Buceando entre mojarras">
+  <img src="capturas/microscopio.jpg" width="200" alt="Una muestra en el microscopio">
+  <img src="capturas/cuaderno-de-campo.jpg" width="200" alt="El cuaderno de campo">
 </p>
 
 Un juego de **Insight Reality**, hecho por Pablo Bounous con amor para sus hijos y todos los hijos.

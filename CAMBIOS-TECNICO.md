@@ -188,6 +188,7 @@ Un juego de Insight Reality
 - v181  Los 7 toques en «Quiero colaborar» abren solo el modo desarrollo, aunque se toque de más
 - v182  Los modos desarrollo y colaborador se muestran como un botoncito debajo del menú que se despliega al tocarlo, sin tapar el contador
 - v183  Pellizcar acerca/aleja y deslizar con dos dedos traslada, sin mezclarse (el gesto se decide al empezar); al cambiar de jugador se sale de caminar, foto, buceo, cueva y desafíos, y la cámara vuelve a su lugar; carteles con el dibujo del snorkel en los palos de buceo y del microscopio en las estacas de muestras
+- v184  Imagen de vista previa al compartir el link (capturas/vista-previa.jpg, etiquetas og y twitter); seis capturas en el README
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v183).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v184).
 La versión vigente es index.html (lista como app instalable).
