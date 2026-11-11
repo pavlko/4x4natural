@@ -11,11 +11,11 @@
   <img src="capturas/cuaderno-de-campo.jpg" width="200" alt="El cuaderno de campo">
 </p>
 
-Un juego de **Insight Reality**, hecho por Pablo Bounous con amor para sus hijos y todos los hijos.
+Un juego de **Insight Reality**, hecho por Pablo Bounous con amor para sus hijos, y para todos los hijos.
 
-Manejá una 4x4 (eléctrica) por la sierra y el humedal del este de Uruguay y fotografiá los bichos donde viven. Algunos están a la vista; otros, en lugares que hay que encontrar: una quebrada con cascada, una cueva con pinturas, una laguna escondida, un alero detrás del agua. Hay buceo, un microscopio, hallazgos de los primeros habitantes, logros y fotos especiales.
+Manejá una 4x4 eléctrico por la sierra y el humedal del este de Uruguay y fotografiá los bichos donde viven. Algunos están a la vista; otros, en lugares que hay que encontrar: una quebrada con cascada, una cueva con pinturas, una laguna escondida, un alero detrás del agua. Hay buceo, un microscopio, hallazgos de los primeros habitantes, logros y fotos especiales.
 
-Pensado para chicos de 7 a 12 años: naturaleza uruguaya, un cuaderno de campo con información real y un toque de lo indígena.
+Pensado para chicos de 7 a 12 años: naturaleza uruguaya, un cuaderno de campo con información real y un toque indígena.
 
 **Jugar:** https://pavlko.github.io/4x4natural/
 
