@@ -1,5 +1,5 @@
 // Safari Gaucho: guarda el juego para que abra rápido y funcione sin conexión
-const CACHE='natural4x4-v185';
+const CACHE='natural4x4-v186';
 const SHELL=['./','./index.html','./manifest.webmanifest','./icons/icon-192-v4.png','./icons/icon-512-v4.png','./icons/icon-maskable-512-v4.png','./icons/apple-touch-icon-v4.png',
   'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>Promise.allSettled(SHELL.map(u=>c.add(new Request(u,{cache:'reload'}))))).then(()=>self.skipWaiting()));});
