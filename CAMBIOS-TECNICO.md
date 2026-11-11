@@ -189,6 +189,7 @@ Un juego de Insight Reality
 - v182  Los modos desarrollo y colaborador se muestran como un botoncito debajo del menú que se despliega al tocarlo, sin tapar el contador
 - v183  Pellizcar acerca/aleja y deslizar con dos dedos traslada, sin mezclarse (el gesto se decide al empezar); al cambiar de jugador se sale de caminar, foto, buceo, cueva y desafíos, y la cámara vuelve a su lugar; carteles con el dibujo del snorkel en los palos de buceo y del microscopio en las estacas de muestras
 - v184  Imagen de vista previa al compartir el link (capturas/vista-previa.jpg, etiquetas og y twitter); seis capturas en el README
+- v185  Modelos de peces: madrecita con manchas de los dos lados; bagre cantor con barbillas unidas a la boca, aleta adiposa, espina dorsal, cola horquillada y línea oscura; cabeza amarga con línea negra en el cuerpo, ocelo de la cola con centro negro y mancha detrás de la cabeza; dientudo con dientes chicos dentro de la boca, cola horquillada y franja plateada; pez anual con rayas verticales oscuras, aletas dorsal y anal redondeadas, cola redonda con borde oscuro y puntos celestes (hembra parda con manchas)
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v184).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v185).
 La versión vigente es index.html (lista como app instalable).

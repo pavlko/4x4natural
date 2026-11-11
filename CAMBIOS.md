@@ -2,6 +2,9 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v185
+- 🐟 Peces más fieles: el pez anual con sus rayas y aletas redondas, el bagre cantor con sus barbillas larguísimas, la cabeza amarga con su línea negra y el ojo falso en la cola.
+
 ## v183
 - 🤿🔬 Los palos de buceo y las estacas de muestras tienen su cartel con el dibujo del snorkel o del microscopio.
 - 🖐️ Acercar y alejar con dos dedos anda mejor y ya no mueve la cámara sin querer.
