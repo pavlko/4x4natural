@@ -185,6 +185,7 @@ Un juego de Insight Reality
 - v178  Novedades: tocar la versión, el aviso de versión nueva o el cartel al actualizar lleva a esta lista de cambios; modo colaborador con botón en la ayuda (galería, cuadernos en preparación, opinar plantas y sugerir correcciones desde cada ficha)
 - v179  Modo colaborador desbloquea todo y vuelve a la partida propia al salir; las estadísticas no cuentan lo desbloqueado; CAMBIOS.md (para jugadores) y CAMBIOS-TECNICO.md; mensaje de colaboración, README y CONTRIBUIR actualizados
 - v180  El modo desarrollo se abre con 7 toques en «Quiero colaborar» (o en «beta» en la entrada); ya no con el contador del juego, para que no se active por accidente
+- v181  Los 7 toques en «Quiero colaborar» abren solo el modo desarrollo, aunque se toque de más
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v180).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v181).
 La versión vigente es index.html (lista como app instalable).
