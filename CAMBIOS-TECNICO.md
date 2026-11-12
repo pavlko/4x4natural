@@ -199,6 +199,7 @@ Un juego de Insight Reality
 - v192  El aviso de estadísticas pasa a «Cómo lo hicimos», antes de «Es de código abierto», con la letra normal; la firma completa en itálica suave (Newsreader)
 - v193  Galería: todas las especies y objetos con Fotos reales, Leer más y Videos, en cada tarjeta y arriba de las fotos del visor (iNaturalist si hay nombre científico, si no Wikimedia Commons; Wikipedia en español; YouTube)
 - v194  Fichas de peces y de microorganismos en los cuadernos con Fotos reales, Leer más y Videos, como las de los bichos
+- v195  Aves: el primer link lleva a su página de eBird para Uruguay (fotos, cantos y mapa) en vez de iNaturalist; códigos de especie de eBird para 20 aves (la lechuza de campanario y la viudita siguen con iNaturalist hasta confirmar el código tras cambios de taxonomía). Solo se enlaza: las fotos y sonidos de Macaulay Library no se copian ni se muestran dentro del juego
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v194).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v195).
 La versión vigente es index.html (lista como app instalable).
