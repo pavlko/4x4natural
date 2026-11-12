@@ -27,7 +27,7 @@ Pensado para chicos de 7 a 12 años: naturaleza uruguaya, un cuaderno de campo c
 - Textos para compartir: [invitar a jugar](JUGAR-MENSAJE.md) · [invitar a colaborar](COLABORAR-MENSAJE.md)
 
 ## Apoyar el proyecto
-Safari Gaucho es gratis y sin publicidad, y lo va a seguir siendo. Si querés ayudar a que siga creciendo: 💚 [Aportar con Mercado Pago](https://link.mercadopago.com.uy/insightreality) (monto libre). Pronto: stickers, postales, remeras y el cuaderno de campo impreso.
+Safari Gaucho es gratis y sin publicidad, y lo va a seguir siendo. Si querés ayudar a que siga creciendo: 💚 [Aportar con Mercado Pago](https://link.mercadopago.com.uy/insightreality) (monto libre).
 
 ## Novedades
 - Para jugadores: [CAMBIOS.md](CAMBIOS.md) · Técnico: [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md) · Ideas y planes: [IDEAS.md](IDEAS.md)
