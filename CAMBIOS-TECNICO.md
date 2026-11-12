@@ -191,6 +191,7 @@ Un juego de Insight Reality
 - v184  Imagen de vista previa al compartir el link (capturas/vista-previa.jpg, etiquetas og y twitter); seis capturas en el README
 - v185  Modelos de peces: madrecita con manchas de los dos lados; bagre cantor con barbillas unidas a la boca, aleta adiposa, espina dorsal, cola horquillada y línea oscura; cabeza amarga con línea negra en el cuerpo, ocelo de la cola con centro negro y mancha detrás de la cabeza; dientudo con dientes chicos dentro de la boca, cola horquillada y franja plateada; pez anual con rayas verticales oscuras, aletas dorsal y anal redondeadas, cola redonda con borde oscuro y puntos celestes (hembra parda con manchas)
 - v186  Castañeta con dorsal de espinas adelante y radios blandos atrás, pectorales, ventrales y anal (galería y buceo); bagre con los dos bigotes grandes hacia arriba y dos pares cortos de mentón; cabeza amarga con aleta dorsal a lo largo de todo el lomo y la línea negra empezando detrás del ojo
+- v187  Sección «Apoyar el proyecto» en la ayuda con el link de Mercado Pago (monto libre) y el evento /e/apoyar; también en el README
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v186).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v187).
 La versión vigente es index.html (lista como app instalable).

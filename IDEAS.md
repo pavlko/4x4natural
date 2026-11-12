@@ -182,3 +182,8 @@ Cada hallazgo sube de nivel: trae una herramienta, una forma nueva de mirar el m
 
 ### Suscribirse a novedades (plan)
 - Botón "Avisame de las novedades" que anota el correo en una lista de distribución (por ejemplo Buttondown o Mailchimp, con su formulario). Pedir solo el correo, con consentimiento, pensado para adultos.
+
+### Tienda (plan)
+- Stickers, postales y láminas impresos en Uruguay; cuaderno de campo impreso; remeras, tazas, bolsas, gorras, parches, pines, imanes, calcos con el ñandú de la puerta, juego de memoria de bichos, rompecabezas.
+- Remeras y tazas por impresión a pedido (Redbubble, Spreadshirt u otra) para no tener stock.
+- Botón «🛍️ Tienda» en la ayuda, junto a «Apoyar el proyecto».

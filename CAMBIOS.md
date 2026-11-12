@@ -2,6 +2,9 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v187
+- 💚 Si querés apoyar el proyecto, en la ayuda (ⓘ) hay un botón para aportar. El juego sigue siendo gratis y sin publicidad.
+
 ## v185
 - 🐟 Peces más fieles: el pez anual con sus rayas y aletas redondas, el bagre cantor con sus barbillas larguísimas, la cabeza amarga con su línea negra y el ojo falso en la cola.
 
