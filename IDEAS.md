@@ -187,3 +187,8 @@ Cada hallazgo sube de nivel: trae una herramienta, una forma nueva de mirar el m
 - Stickers, postales y láminas impresos en Uruguay; cuaderno de campo impreso; remeras, tazas, bolsas, gorras, parches, pines, imanes, calcos con el ñandú de la puerta, juego de memoria de bichos, rompecabezas.
 - Remeras y tazas por impresión a pedido (Redbubble, Spreadshirt u otra) para no tener stock.
 - Botón «🛍️ Tienda» en la ayuda, junto a «Apoyar el proyecto».
+
+### Bichos de los árboles (plan)
+- Tamandúa (Tamandua tetradactyla), coendú (Coendou spinosus) y margay (Leopardus wiedii): viven en los montes del este y del norte, arriba de los árboles.
+- Necesitan árboles «protagonistas» bien armados: tronco, ramas gruesas visibles y copa abierta, donde se los pueda ver desde abajo o desde una ladera.
+- Comportamientos: el tamandúa trepando y metiendo la lengua en un termitero de árbol; el coendú quieto en una horqueta, de noche más activo; el margay bajando cabeza abajo por el tronco (es de los pocos felinos que lo hacen).
