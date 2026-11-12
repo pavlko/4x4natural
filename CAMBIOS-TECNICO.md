@@ -196,6 +196,7 @@ Un juego de Insight Reality
 - v189  Firma: «hecho con amor para mis hijos y para todos los hijos»
 - v190  Ayuda reordenada: las instrucciones primero; después un separador «El proyecto» con Colaborar (primer paso: contar un error o una idea; después el modo colaborador), Apoyar y Cómo lo hicimos
 - v191  Firma con «Maldonado, Uruguay. 2026»
+- v192  El aviso de estadísticas pasa a «Cómo lo hicimos», antes de «Es de código abierto», con la letra normal; la firma completa en itálica suave (Newsreader)
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v191).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v192).
 La versión vigente es index.html (lista como app instalable).
