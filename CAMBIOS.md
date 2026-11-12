@@ -2,6 +2,9 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v194
+- 🔗 Todas las fichas (bichos, peces, microorganismos, plantas y objetos de la galería) tienen links a fotos reales, para leer más y a videos.
+
 ## v187
 - 💚 Si querés apoyar el proyecto, en la ayuda (ⓘ) hay un botón para aportar. El juego sigue siendo gratis y sin publicidad.
 
