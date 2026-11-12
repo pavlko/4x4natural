@@ -203,6 +203,7 @@ Un juego de Insight Reality
 - v196  eBird también para la lechuza de campanario (brnowl, American Barn Owl) y la viudita blanca grande (bawmon3); la lechuza pasa a Tyto furcata, la especie de Uruguay tras la separación de las lechuzas de campanario. Las 22 aves enlazan a eBird
 - v197  Nido del hornero rehecho: cúpula de barro con forma de horno, terrones, base sobre la tabla y la entrada en arco al costado con su borde y umbral
 - v198  Tres árboles protagonistas junto al arroyo: tronco grueso con raíces, tres ramas principales con horquetas, copas abiertas y puntos de apoyo guardados (HERO_TREES.perch) para los futuros bichos de árbol; epífitas sobre las ramas: barba de viejo (Tillandsia usneoides), clavel del aire, flor de patito (Gomesa bifolia) y helecho de los árboles (Pleopeltis pleopeltifolia); las tres nuevas en la galería y el herbario
+- v199  Tamandúa (Tamandua tetradactyla), bicho 45: vive en el primer árbol protagonista; recorre la rama, baja por el tronco cabeza abajo hasta un termitero, saca la lengua y vuelve a descansar en la rama (hab:'tree', treeLife); modelo con chaleco negro, hocico largo, garras y cola prensil con la punta pelada
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v198).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v199).
 La versión vigente es index.html (lista como app instalable).

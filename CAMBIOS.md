@@ -2,6 +2,9 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v199
+- 🐜 ¡Un bicho nuevo! El tamandúa vive arriba de uno de los árboles grandes del arroyo. Buscalo en las ramas o comiendo termitas en el tronco.
+
 ## v198
 - 🌳 Árboles grandes junto al arroyo, con ramas que se ven y plantas que viven sobre ellos: barba de viejo, clavel del aire, la orquídea flor de patito y un helecho. ¡Mirá para arriba!
 

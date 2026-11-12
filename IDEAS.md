@@ -192,3 +192,6 @@ Cada hallazgo sube de nivel: trae una herramienta, una forma nueva de mirar el m
 - Tamandúa (Tamandua tetradactyla), coendú (Coendou spinosus) y margay (Leopardus wiedii): viven en los montes del este y del norte, arriba de los árboles.
 - Necesitan árboles «protagonistas» bien armados: tronco, ramas gruesas visibles y copa abierta, donde se los pueda ver desde abajo o desde una ladera.
 - Comportamientos: el tamandúa trepando y metiendo la lengua en un termitero de árbol; el coendú quieto en una horqueta, de noche más activo; el margay bajando cabeza abajo por el tronco (es de los pocos felinos que lo hacen).
+
+### Bichos de árbol y la noche (plan)
+- El tamandúa y el coendú son más activos de noche o al atardecer; el margay es nocturno. Con el modo nocturno: de día dormidos en un hueco o una horqueta (difíciles de ver), de noche recorriendo las ramas; ojos que brillan con la linterna.
