@@ -10,8 +10,9 @@ Fotografiá los bichos del este uruguayo.
 
 Ya se puede jugar, gratis y sin publicidad, en el celular o en la compu (se instala como app, registra visitas estadísticas). Pensado para niños, pero se avisa: es adictivo para naturalistas iniciados.
 
-Busco ayuda 🙌 Está en desarrollo continuo y quiero que sea certero científicamente y efectivo, tanto para aprender como para entretener. Si sabés de juegos, sos biólogo, botánico, guía, docente, arqueólogo, paleontólogo, o conocedor, me sirven correcciones de nombres y especies, qué bichos y plantas pueden ser más característicos e interesantes, mejoras a los textos y links de las fichas, y más o menos ideas de juego :-)
-✉️ insightrealitycontact@gmail.com · 📲 wa.me/59898289414
+🙌 Busco ayuda  
+Está en desarrollo continuo y quiero que sea certero científicamente y efectivo, tanto para aprender como para entretener. Si sabés de juegos, sos biólogo, botánico, guía, docente, arqueólogo, paleontólogo, o conocedor, me sirven correcciones de nombres y especies, qué bichos y plantas pueden ser más característicos e interesantes, mejoras a los textos y links de las fichas, y más o menos ideas de juego :-)
+✉️ insightrealitycontact@gmail.com
 
 🤝 Para colaborar: en el juego, tocá la ⓘ (abajo, en la entrada) y después «Quiero colaborar». Se desbloquea todo para revisarlo, ves la galería con todos los modelos y fotos reales, los cuadernos en preparación, y en cada ficha podés sugerir correcciones. Tu partida queda guardada.
 
