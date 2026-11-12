@@ -207,6 +207,7 @@ Un juego de Insight Reality
 - v200  Galería: el visor muestra los textos del juego de cada ficha para revisarlos (pista antes de encontrarlo, ficha al encontrarlo, dato extra y foto especial en bichos; pista y ficha en peces; ficha y relación con lo grande en microorganismos; borradores en plantas y objetos), con los nombres de lugares entre ⟨ ⟩
 - v201  Galería: pestaña Paleontología (en desarrollo) con modelos de propuesta: gliptodonte, megaterio, tigre dientes de sable, mesosaurio, placas de caparazón y garra de perezoso gigante; textos en borrador y links a Wikimedia Commons, Wikipedia y videos
 - v202  Paleontología: en vez de animales enteros, los restos que se encontrarían: caparazón de gliptodonte semienterrado, fémur de megaterio, cráneo de dientes de sable, laja con mesosaurio, placas de caparazón y garra de perezoso gigante
+- v203  Herbario (en desarrollo) dividido por tipo como los bichos: portada con contadores y pestañas de árboles, palmeras, arbustos, helechos, hierbas y flores, epífitas y enredaderas, acuáticas, hongos y musgos; nueva Libreta de fósiles (en desarrollo) con los restos de la galería
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v202).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v203).
 La versión vigente es index.html (lista como app instalable).
