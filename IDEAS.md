@@ -195,3 +195,9 @@ Cada hallazgo sube de nivel: trae una herramienta, una forma nueva de mirar el m
 
 ### Bichos de árbol y la noche (plan)
 - El tamandúa y el coendú son más activos de noche o al atardecer; el margay es nocturno. Con el modo nocturno: de día dormidos en un hueco o una horqueta (difíciles de ver), de noche recorriendo las ramas; ojos que brillan con la linterna.
+
+### Sombreros como modos de exploración (plan, alternativa al cuaderno abierto)
+- En vez de llevar un cuaderno abierto, ponerse un sombrero: cada sombrero define qué pistas da el juego (bichos, buceo, microscopio, plantas, arqueología, fósiles, noche).
+- Sombrero del explorador y de la camioneta: el del explorador manda caminando; el de la camioneta, manejando. Se pueden combinar (por ejemplo, la camioneta de naturalista y el explorador de botánico).
+- Cada sombrero se gana al encontrar su hallazgo: gorro de buzo con la máscara, sombrero de ala con el herbario, casco con linterna para la noche, sombrero de paleontólogo con el martillo.
+- Ventaja: se ve en el personaje y en la camioneta, es una decisión clara y divertida para los chicos, y se fotografía.

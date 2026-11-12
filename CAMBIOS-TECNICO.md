@@ -208,6 +208,7 @@ Un juego de Insight Reality
 - v201  Galería: pestaña Paleontología (en desarrollo) con modelos de propuesta: gliptodonte, megaterio, tigre dientes de sable, mesosaurio, placas de caparazón y garra de perezoso gigante; textos en borrador y links a Wikimedia Commons, Wikipedia y videos
 - v202  Paleontología: en vez de animales enteros, los restos que se encontrarían: caparazón de gliptodonte semienterrado, fémur de megaterio, cráneo de dientes de sable, laja con mesosaurio, placas de caparazón y garra de perezoso gigante
 - v203  Herbario (en desarrollo) dividido por tipo como los bichos: portada con contadores y pestañas de árboles, palmeras, arbustos, helechos, hierbas y flores, epífitas y enredaderas, acuáticas, hongos y musgos; nueva Libreta de fósiles (en desarrollo) con los restos de la galería
+- v204  Compartir pantalla: la librería de captura se precarga al rato de empezar (menos espera); si el celular no deja abrir compartir después de capturar, aparece un panel con la captura y botones Compartir, WhatsApp y Guardar
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v203).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v204).
 La versión vigente es index.html (lista como app instalable).
