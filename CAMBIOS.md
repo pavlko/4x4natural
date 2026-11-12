@@ -2,6 +2,9 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v198
+- 🌳 Árboles grandes junto al arroyo, con ramas que se ven y plantas que viven sobre ellos: barba de viejo, clavel del aire, la orquídea flor de patito y un helecho. ¡Mirá para arriba!
+
 ## v194
 - 🔗 Todas las fichas (bichos, peces, microorganismos, plantas y objetos de la galería) tienen links a fotos reales, para leer más y a videos.
 

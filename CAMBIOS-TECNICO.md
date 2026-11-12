@@ -202,6 +202,7 @@ Un juego de Insight Reality
 - v195  Aves: el primer link lleva a su página de eBird para Uruguay (fotos, cantos y mapa) en vez de iNaturalist; códigos de especie de eBird para 20 aves (la lechuza de campanario y la viudita siguen con iNaturalist hasta confirmar el código tras cambios de taxonomía). Solo se enlaza: las fotos y sonidos de Macaulay Library no se copian ni se muestran dentro del juego
 - v196  eBird también para la lechuza de campanario (brnowl, American Barn Owl) y la viudita blanca grande (bawmon3); la lechuza pasa a Tyto furcata, la especie de Uruguay tras la separación de las lechuzas de campanario. Las 22 aves enlazan a eBird
 - v197  Nido del hornero rehecho: cúpula de barro con forma de horno, terrones, base sobre la tabla y la entrada en arco al costado con su borde y umbral
+- v198  Tres árboles protagonistas junto al arroyo: tronco grueso con raíces, tres ramas principales con horquetas, copas abiertas y puntos de apoyo guardados (HERO_TREES.perch) para los futuros bichos de árbol; epífitas sobre las ramas: barba de viejo (Tillandsia usneoides), clavel del aire, flor de patito (Gomesa bifolia) y helecho de los árboles (Pleopeltis pleopeltifolia); las tres nuevas en la galería y el herbario
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v197).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v198).
 La versión vigente es index.html (lista como app instalable).
