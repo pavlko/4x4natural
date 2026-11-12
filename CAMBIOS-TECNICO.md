@@ -195,6 +195,7 @@ Un juego de Insight Reality
 - v188  Ayuda: sin la línea de cosas «pronto» (no estaba decidido); más espacio antes del aviso de estadísticas y de la firma
 - v189  Firma: «hecho con amor para mis hijos y para todos los hijos»
 - v190  Ayuda reordenada: las instrucciones primero; después un separador «El proyecto» con Colaborar (primer paso: contar un error o una idea; después el modo colaborador), Apoyar y Cómo lo hicimos
+- v191  Firma con «Maldonado, Uruguay. 2026»
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v190).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v191).
 La versión vigente es index.html (lista como app instalable).
