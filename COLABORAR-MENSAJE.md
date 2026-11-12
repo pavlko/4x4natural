@@ -24,9 +24,9 @@ Hoy tiene:
 - 🏅 Hallazgos, logros y desafíos: ganarle una carrera al ñandú, cruzar el barrial.
 
 En preparación:
-🌿 Botánica: 44 plantas (13 árboles, 2 palmeras, 5 arbustos, 4 helechos, 12 hierbas y flores, 3 enredaderas y epífitas, 3 acuáticas, 1 musgo y 1 hongo). Podés ayudar a crear el contenido acá: https://pavlko.github.io/4x4natural/?plantas
-🏺 Arqueología: pinturas rupestres, cerámicas, zoolitos
-🦴 Paleontología: gliptodonte y la megafauna que vivió acá
+- 🌿 Botánica: 44 plantas (13 árboles, 2 palmeras, 5 arbustos, 4 helechos, 12 hierbas y flores, 3 enredaderas y epífitas, 3 acuáticas, 1 musgo y 1 hongo). Podés ayudar a crear el contenido acá: https://pavlko.github.io/4x4natural/?plantas
+- 🏺 Arqueología: pinturas rupestres, cerámicas, zoolitos
+- 🦴 Paleontología: gliptodonte y la megafauna que vivió acá
 
 Es de código abierto: cualquiera puede copiarlo y rehacerlo para su propio lugar, con su fauna, su flora y su narrativa: https://github.com/pavlko/4x4natural/fork
 Lo hice con ayuda de inteligencia artificial: para crear tu propia versión no hace falta saber programar.
