@@ -206,6 +206,7 @@ Un juego de Insight Reality
 - v199  Tamandúa (Tamandua tetradactyla), bicho 45: vive en el primer árbol protagonista; recorre la rama, baja por el tronco cabeza abajo hasta un termitero, saca la lengua y vuelve a descansar en la rama (hab:'tree', treeLife); modelo con chaleco negro, hocico largo, garras y cola prensil con la punta pelada
 - v200  Galería: el visor muestra los textos del juego de cada ficha para revisarlos (pista antes de encontrarlo, ficha al encontrarlo, dato extra y foto especial en bichos; pista y ficha en peces; ficha y relación con lo grande en microorganismos; borradores en plantas y objetos), con los nombres de lugares entre ⟨ ⟩
 - v201  Galería: pestaña Paleontología (en desarrollo) con modelos de propuesta: gliptodonte, megaterio, tigre dientes de sable, mesosaurio, placas de caparazón y garra de perezoso gigante; textos en borrador y links a Wikimedia Commons, Wikipedia y videos
+- v202  Paleontología: en vez de animales enteros, los restos que se encontrarían: caparazón de gliptodonte semienterrado, fémur de megaterio, cráneo de dientes de sable, laja con mesosaurio, placas de caparazón y garra de perezoso gigante
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v201).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v202).
 La versión vigente es index.html (lista como app instalable).
