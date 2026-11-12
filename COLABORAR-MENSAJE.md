@@ -16,14 +16,14 @@ Está en desarrollo continuo y quiero que sea certero científicamente y efectiv
 
 🤝 Para colaborar: en el juego, tocá la ⓘ (abajo, en la entrada) y después «Quiero colaborar». Se desbloquea todo para revisarlo, ves la galería con todos los modelos y fotos reales, los cuadernos en preparación, y en cada ficha podés sugerir correcciones. Tu partida queda guardada.
 
-Hoy tiene
-🏞️ 40 hectáreas de sierras, arroyo, quebrada con cascada, una laguna, cueva, manantial, palmar.
-🐾 44 bichos: 22 aves, 11 mamíferos, 4 reptiles, 2 anfibios, 5 invertebrados
-🤿 Con la máscara del pescador: 13 peces
-🔬 Con el microscopio del naturalista: 16 microorganismos
-🏅 Hallazgos, logros y desafíos: ganarle una carrera al ñandú, cruzar el barrial.
+Hoy tiene:
+- 🏞️ 40 hectáreas de sierras, arroyo, quebrada con cascada, una laguna, cueva, manantial, palmar.
+- 🐾 44 bichos: 22 aves, 11 mamíferos, 4 reptiles, 2 anfibios, 5 invertebrados
+- 🤿 Con la máscara del pescador: 13 peces
+- 🔬 Con el microscopio del naturalista: 16 microorganismos
+- 🏅 Hallazgos, logros y desafíos: ganarle una carrera al ñandú, cruzar el barrial.
 
-En preparación
+En preparación:
 🌿 Botánica: 44 plantas (13 árboles, 2 palmeras, 5 arbustos, 4 helechos, 12 hierbas y flores, 3 enredaderas y epífitas, 3 acuáticas, 1 musgo y 1 hongo). Podés ayudar a crear el contenido acá: https://pavlko.github.io/4x4natural/?plantas
 🏺 Arqueología: pinturas rupestres, cerámicas, zoolitos
 🦴 Paleontología: gliptodonte y la megafauna que vivió acá
