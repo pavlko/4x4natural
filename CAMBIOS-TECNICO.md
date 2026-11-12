@@ -205,6 +205,7 @@ Un juego de Insight Reality
 - v198  Tres árboles protagonistas junto al arroyo: tronco grueso con raíces, tres ramas principales con horquetas, copas abiertas y puntos de apoyo guardados (HERO_TREES.perch) para los futuros bichos de árbol; epífitas sobre las ramas: barba de viejo (Tillandsia usneoides), clavel del aire, flor de patito (Gomesa bifolia) y helecho de los árboles (Pleopeltis pleopeltifolia); las tres nuevas en la galería y el herbario
 - v199  Tamandúa (Tamandua tetradactyla), bicho 45: vive en el primer árbol protagonista; recorre la rama, baja por el tronco cabeza abajo hasta un termitero, saca la lengua y vuelve a descansar en la rama (hab:'tree', treeLife); modelo con chaleco negro, hocico largo, garras y cola prensil con la punta pelada
 - v200  Galería: el visor muestra los textos del juego de cada ficha para revisarlos (pista antes de encontrarlo, ficha al encontrarlo, dato extra y foto especial en bichos; pista y ficha en peces; ficha y relación con lo grande en microorganismos; borradores en plantas y objetos), con los nombres de lugares entre ⟨ ⟩
+- v201  Galería: pestaña Paleontología (en desarrollo) con modelos de propuesta: gliptodonte, megaterio, tigre dientes de sable, mesosaurio, placas de caparazón y garra de perezoso gigante; textos en borrador y links a Wikimedia Commons, Wikipedia y videos
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v200).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v201).
 La versión vigente es index.html (lista como app instalable).
