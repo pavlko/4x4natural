@@ -193,6 +193,7 @@ Un juego de Insight Reality
 - v186  Castañeta con dorsal de espinas adelante y radios blandos atrás, pectorales, ventrales y anal (galería y buceo); bagre con los dos bigotes grandes hacia arriba y dos pares cortos de mentón; cabeza amarga con aleta dorsal a lo largo de todo el lomo y la línea negra empezando detrás del ojo
 - v187  Sección «Apoyar el proyecto» en la ayuda con el link de Mercado Pago (monto libre) y el evento /e/apoyar; también en el README
 - v188  Ayuda: sin la línea de cosas «pronto» (no estaba decidido); más espacio antes del aviso de estadísticas y de la firma
+- v189  Firma: «hecho con amor para mis hijos y para todos los hijos»
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v188).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v189).
 La versión vigente es index.html (lista como app instalable).
