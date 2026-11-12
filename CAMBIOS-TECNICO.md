@@ -197,6 +197,7 @@ Un juego de Insight Reality
 - v190  Ayuda reordenada: las instrucciones primero; después un separador «El proyecto» con Colaborar (primer paso: contar un error o una idea; después el modo colaborador), Apoyar y Cómo lo hicimos
 - v191  Firma con «Maldonado, Uruguay. 2026»
 - v192  El aviso de estadísticas pasa a «Cómo lo hicimos», antes de «Es de código abierto», con la letra normal; la firma completa en itálica suave (Newsreader)
+- v193  Galería: todas las especies y objetos con Fotos reales, Leer más y Videos, en cada tarjeta y arriba de las fotos del visor (iNaturalist si hay nombre científico, si no Wikimedia Commons; Wikipedia en español; YouTube)
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v192).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v193).
 La versión vigente es index.html (lista como app instalable).
