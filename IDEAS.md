@@ -201,3 +201,14 @@ Cada hallazgo sube de nivel: trae una herramienta, una forma nueva de mirar el m
 - Sombrero del explorador y de la camioneta: el del explorador manda caminando; el de la camioneta, manejando. Se pueden combinar (por ejemplo, la camioneta de naturalista y el explorador de botánico).
 - Cada sombrero se gana al encontrar su hallazgo: gorro de buzo con la máscara, sombrero de ala con el herbario, casco con linterna para la noche, sombrero de paleontólogo con el martillo.
 - Ventaja: se ve en el personaje y en la camioneta, es una decisión clara y divertida para los chicos, y se fotografía.
+
+### Sombreros de oficio en 3D (opción, por ahora seguimos con los cuadernos)
+- Cuaderno de campo → sombrero de naturalista: ala ancha de lona color tierra, cinta de cuero y una pluma de ñandú.
+- Bitácora de buceo → gorro de neopreno con la máscara subida en la frente y el snorkel al costado.
+- Libreta del microscopio → visera con una lupa abatible que baja frente al ojo.
+- Herbario → sombrero de paja con hojas y flores prensadas en la cinta.
+- Los primeros habitantes → salacot de arqueólogo con un pincel en la cinta.
+- Libreta de fósiles → casco de paleontólogo con un martillito colgado.
+- Diario nocturno → casco con linterna frontal (se prende de noche).
+- En la camioneta, versiones grandes de cada uno en el techo.
+- Sin oficio: el sombrero estético elegido en personalizar, sin pistas.
