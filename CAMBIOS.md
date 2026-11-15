@@ -2,6 +2,12 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v213
+- **Mi cuaderno de campo** es tu propio cuaderno, el que tenés desde el principio. Empieza con un diario corto que cuenta el viaje y se va completando cuando encontrás cosas importantes. Tiene un resumen de todas tus libretas y además tus Lugares, Hallazgos, Logros y Fotos especiales.
+- El cuaderno de los bichos ahora se llama **Libreta de fauna**. Era del naturalista y estaba en la caja de la camioneta. Tiene aves, mamíferos, reptiles, anfibios e invertebrados.
+- Cada cuaderno abierto te da pistas solo de lo suyo. Con Mi cuaderno abierto te avisa si cerca hay un lugar por descubrir, un hallazgo escondido, un logro o un bicho al que le podés sacar una foto especial.
+- Con Mi cuaderno abierto, el contador de arriba muestra lugares, hallazgos y logros.
+
 ## v212
 - El contador de arriba ahora usa dibujitos en vez de palabras: 🐾 bichos y ⛰ lugares, y cuando los encontrás, 🐟 peces y 🔍 microorganismos. Van en una grilla de dos columnas, así ocupa menos lugar.
 
