@@ -2,6 +2,9 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v212
+- El contador de arriba ahora usa dibujitos en vez de palabras: 🐾 bichos y ⛰ lugares, y cuando los encontrás, 🐟 peces y 🔍 microorganismos. Van en una grilla de dos columnas, así ocupa menos lugar.
+
 ## v211
 - El librito de arriba muestra si llevás el cuaderno abierto: cerrado se ve con la tapa; abierto se ven las hojas claras con un señalador rojo.
 - Al lado del libro abierto hay una ✕ para cerrarlo sin entrar al cuaderno.
