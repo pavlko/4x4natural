@@ -2,6 +2,10 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v208
+- 📚 Los cuadernos se eligen con íconos arriba, todos a la vista.
+- ❓ La ayuda se divide en dos: «Cómo se juega» y «El proyecto».
+
 ## v199
 - 🐜 ¡Un bicho nuevo! El tamandúa vive arriba de uno de los árboles grandes del arroyo. Buscalo en las ramas o comiendo termitas en el tronco.
 

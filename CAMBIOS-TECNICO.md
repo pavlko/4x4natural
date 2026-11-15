@@ -212,6 +212,7 @@ Un juego de Insight Reality
 - v205  Flor de patito con pseudobulbo, dos hojas visibles y vara ramificada; clavel del aire creciendo de costado; el termitero pasa al lado del tronco sin ramas y el tamandúa baja pegado al tronco cabeza abajo hasta el termitero, de frente a él, y las termitas (puntitos) desaparecen mientras come y reaparecen después
 - v206  El árbol del tamandúa es un higuerón (Ficus luschnathiana): tronco gris más grueso, raíces anchas en la base y raíces aéreas sobre el tronco, copa oscura más grande y alta que tapa el cielo; ficha del higuerón en galería y herbario; el tamandúa descansa 20 s antes de volver a bajar; las termitas quedan sobre la superficie del termitero
 - v207  El tamandúa trepa con las patas sobre la corteza (sin separarse del tronco) al bajar, comer y subir
+- v208  Ayuda en dos libros con pestañas arriba (Cómo se juega / El proyecto); estante de cuadernos solo con íconos, sin scroll; en modo colaborador o desarrollo, cada cuaderno tiene botones a su galería y a toda la galería; los libros en desarrollo invitan a ayudar con botones de WhatsApp y mail
 
-Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v207).
+Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v208).
 La versión vigente es index.html (lista como app instalable).
