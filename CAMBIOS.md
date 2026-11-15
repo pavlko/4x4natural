@@ -2,6 +2,12 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v210
+- Debajo de «📖 Llevarlo abierto» ahora dice para qué sirve: te va mostrando pistas mientras explorás. Cuando ya lo llevás abierto, lo dice.
+- Al principio, arriba del cuaderno se ve tu único libro y signos de pregunta: son las libretas que todavía no encontraste. Si tocás uno te avisa que hay más escondidas por el campo.
+- El contador de bichos ya no tapa los libros cuando el cuaderno está abierto.
+- El cartel «Abrí el cuaderno de campo» ya no aparece encima si el cuaderno ya está abierto.
+
 ## v209
 - En cada cuaderno en preparación hay solo dos botones: **🖼️ Galería** (abre la galería de ese cuaderno) y **↩️ Salir de colaborar**.
 - Se sacó «Opinar plantas»: las plantas se ven y se comentan desde la galería.
