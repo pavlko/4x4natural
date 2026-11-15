@@ -2,6 +2,11 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v209
+- En cada cuaderno en preparación hay solo dos botones: **🖼️ Galería** (abre la galería de ese cuaderno) y **↩️ Salir de colaborar**.
+- Se sacó «Opinar plantas»: las plantas se ven y se comentan desde la galería.
+- El Herbario ahora tiene solapas como las de aves y mamíferos: Árboles, Palmeras, Arbustos, Helechos, Hierbas y flores, Epífitas y enredaderas, Acuáticas, Hongos y musgos. En la portada, tocando cada grupo vas a su solapa.
+
 ## v208
 - 📚 Los cuadernos se eligen con íconos arriba, todos a la vista.
 - ❓ La ayuda se divide en dos: «Cómo se juega» y «El proyecto».
