@@ -215,7 +215,12 @@ Un juego de Insight Reality
 - v208  Ayuda en dos libros con pestañas arriba (Cómo se juega / El proyecto); estante de cuadernos solo con íconos, sin scroll; en modo colaborador o desarrollo, cada cuaderno tiene botones a su galería y a toda la galería; los libros en desarrollo invitan a ayudar con botones de WhatsApp y mail
 
 Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v208).
-La versión vigente es index.html (lista como app instalable).## v210
+La versión vigente es index.html (lista como app instalable).## v211
+- `#tally.open` (nbTally) con estilo de libro abierto + `#tallyX` (oculto en buceo).
+- `#bX` fijo arriba a la derecha (body.bookon); `#bClose` oculto; `#nbOpen` alterna llevar/dejar.
+- `body.bookon #hud{visibility:hidden}`; `.cover` height 100% y `.pages` flex:1; header compacto en ≤520px.
+
+## v210
 - `#nbOpenTx` (small bajo `#nbOpen`), texto según `op===VIEW_NB` en renderShelf.
 - `.nbsp.lock` con toast al tocar.
 - `body.bookon` (toggleBook) oculta `#tally`; al abrir el cuaderno se cierra `#announce`; el aviso inicial nbTip0 solo sale si `!bookOpen&&!SAVE.openNb`.

@@ -2,6 +2,12 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v211
+- El librito de arriba muestra si llevás el cuaderno abierto: cerrado se ve con la tapa; abierto se ven las hojas claras con un señalador rojo.
+- Al lado del libro abierto hay una ✕ para cerrarlo sin entrar al cuaderno.
+- Dentro del cuaderno, una ✕ en la esquina de arriba lo cierra. El botón «Llevarlo abierto» cambia a «Dejar de llevarlo» cuando ya lo llevás.
+- El cuaderno ocupa toda la altura de la pantalla: hay más lugar para leer.
+
 ## v210
 - Debajo de «📖 Llevarlo abierto» ahora dice para qué sirve: te va mostrando pistas mientras explorás. Cuando ya lo llevás abierto, lo dice.
 - Al principio, arriba del cuaderno se ve tu único libro y signos de pregunta: son las libretas que todavía no encontraste. Si tocás uno te avisa que hay más escondidas por el campo.
