@@ -2,6 +2,10 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v216
+- En Mi cuaderno, primero están los contadores («Mis libretas» y «En este cuaderno») y abajo el ✍️ Diario, que va creciendo.
+- El botón «🐾 Abrir la Libreta de fauna» quedó justo debajo del párrafo que la nombra, y el diario sigue abajo. Aparece siempre que no lleves abierta la de fauna.
+
 ## v215
 - Con Mi cuaderno abierto, el contador de arriba también muestra los bichos: es el resumen de todo.
 - Cuando un número del contador cambia, salta un poquito y se pone amarillo, así se nota.
