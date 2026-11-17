@@ -2,6 +2,11 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v215
+- Con Mi cuaderno abierto, el contador de arriba también muestra los bichos: es el resumen de todo.
+- Cuando un número del contador cambia, salta un poquito y se pone amarillo, así se nota.
+- El diario ahora dice «Tengo esta libreta vieja de un naturalista…».
+
 ## v214
 - El botón de cada cuaderno ahora dice «📖 Llevar este abierto» y abajo «Para que aparezcan pistas de esto».
 
