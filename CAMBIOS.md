@@ -2,6 +2,9 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v214
+- El botón de cada cuaderno ahora dice «📖 Llevar este abierto» y abajo «Para que aparezcan pistas de esto».
+
 ## v213
 - **Mi cuaderno de campo** es tu propio cuaderno, el que tenés desde el principio. Empieza con un diario corto que cuenta el viaje y se va completando cuando encontrás cosas importantes. Tiene un resumen de todas tus libretas y además tus Lugares, Hallazgos, Logros y Fotos especiales.
 - El cuaderno de los bichos ahora se llama **Libreta de fauna**. Era del naturalista y estaba en la caja de la camioneta. Tiene aves, mamíferos, reptiles, anfibios e invertebrados.

@@ -215,7 +215,10 @@ Un juego de Insight Reality
 - v208  Ayuda en dos libros con pestañas arriba (Cómo se juega / El proyecto); estante de cuadernos solo con íconos, sin scroll; en modo colaborador o desarrollo, cada cuaderno tiene botones a su galería y a toda la galería; los libros en desarrollo invitan a ayudar con botones de WhatsApp y mail
 
 Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v208).
-La versión vigente es index.html (lista como app instalable).## v213
+La versión vigente es index.html (lista como app instalable).## v214
+- Textos de `#nbOpen`/`#nbOpenTx`, del aviso inicial y del toast de cerrar.
+
+## v213
 - NBK: nuevo `mio` (tabs portada, lugares, hallazgos, logros, fotos), `campo` pasa a Libreta de fauna (tabs fauna + grupos). VIEW_NB por defecto `mio`. Se conserva el id `campo` para no romper partidas guardadas.
 - renderPortada: diario (según SAVE.mapOk/mask/micro/alero/hall), «Mis libretas» (data-nb), «En este cuaderno»; `#faunaP`, `#fotosP`, `#logMed`, `#plStampTop`. Se ocultó la lista vieja `#logros`.
 - goTab cambia de libreta si la solapa es de otra. ICP `mio`, `fauna`; NB_IC mio/campo; nbTex: mio paisaje, campo huella; estante de la camioneta con espaciado según libretas disponibles.
