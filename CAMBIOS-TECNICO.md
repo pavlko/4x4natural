@@ -215,7 +215,10 @@ Un juego de Insight Reality
 - v208  Ayuda en dos libros con pestañas arriba (Cómo se juega / El proyecto); estante de cuadernos solo con íconos, sin scroll; en modo colaborador o desarrollo, cada cuaderno tiene botones a su galería y a toda la galería; los libros en desarrollo invitan a ayudar con botones de WhatsApp y mail
 
 Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v208).
-La versión vigente es index.html (lista como app instalable).## v221 · en prueba
+La versión vigente es index.html (lista como app instalable).## v222 · en prueba
+- Se quitan `LAGC`/`lagC` y el lugar `lagunac`. `lag2E` re-cava la laguna del arroyo después de mezclar la costa; `barraX(z)` lleva la salida 34 m al este entre z=262 y la costa (ancho 9,5→5 m, boca de −0,4 m). Lugar `barra` movido a la boca.
+
+## v221 · en prueba
 - Costa en toda la franja sur: `COASTZ(x)` (≈292), `coastM`, `coastProf` (duna secundaria u≈−24, primaria u≈−12, playa −7..0, mar), `puntaAt` (PUNTA.x=−100), `lagC` (laguna costera en x=175), médano en x=250 con cresta en S (`mix` con la máscara para no levantar el mar). Se borró un `COASTZ` viejo sin uso.
 - Barra del arroyo: después de la mezcla de la costa se vuelve a cavar el cauce; en la línea de costa una barra emergida con una boca angosta corrida al este.
 - Pasto dibujante (InstancedMesh, ~1400) en la primaria y margarita de los médanos (hojas + flores amarillas) en la secundaria; también en PLANTS para el herbario.

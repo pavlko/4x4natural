@@ -2,6 +2,10 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v222 · en prueba
+- La laguna del arroyo vuelve a ser la laguna costera: queda justo detrás de las dunas. Se sacó la laguna chica que estaba al este.
+- La barra del arroyo sale al mar corrida hacia el este, cruzando las dunas en diagonal hasta una boca angosta en la playa.
+
 ## v221 · en prueba
 - **Toda la costa sur** ahora es playa: duna secundaria con margarita de los médanos, duna primaria con pasto dibujante, playa y mar.
 - **La punta de piedra** al medio. Al oeste, el agua es más marrón: es el **Río de la Plata**. Al este, el océano.
