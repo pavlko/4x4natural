@@ -7,7 +7,7 @@ self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.
 self.addEventListener('fetch',e=>{const r=e.request;if(r.method!=='GET')return;
   const url=new URL(r.url);
   // la edición aula tiene su propio guardado aparte
-  if(url.pathname.includes('/aula/'))return;
+  if(url.pathname.includes('/aula/')||url.pathname.includes('/prueba/'))return;
   // la página: primero la red (para recibir actualizaciones), si no hay conexión, la copia guardada
   if(r.mode==='navigate'){e.respondWith(fetch(r,{cache:'reload'}).then(res=>{const cp=res.clone();caches.open(CACHE).then(c=>c.put('./index.html',cp));return res;}).catch(()=>caches.match('./index.html')));return;}
   // el resto: lo guardado primero, y se actualiza en segundo plano (incluye las tipografías)

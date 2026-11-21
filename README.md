@@ -58,3 +58,8 @@ Código bajo licencia MIT (ver `LICENSE`). Si publicás tu propia versión, te p
 
 Para escuelas: **https://pavlko.github.io/4x4natural/aula/**  
 Es una versión fija del juego (Aula 1.0), sin aportes, sin contacto por WhatsApp, sin modo colaborador y sin los cuadernos en preparación. Guarda la partida aparte y sus estadísticas se cuentan aparte (rutas `/aula/`). Se actualiza solo cuando se decide pasar una versión nueva al aula.
+
+
+## Versión de prueba
+
+Los cambios nuevos se prueban primero en **https://pavlko.github.io/4x4natural/prueba/**, con su propio guardado. El juego de siempre sigue estable hasta que se pasa una versión probada.

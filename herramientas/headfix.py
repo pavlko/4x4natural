@@ -10,11 +10,13 @@ if 'rel="manifest"' not in s:
     m=re.search(r'<meta charset="[^"]*">\s*',s,re.I);assert m
     s=s[:m.end()]+HEAD+s[m.end():]
 open(idx,'w').write(s)
-if len(sys.argv)>1 and sys.argv[1]=='aula':
+ed=sys.argv[1] if len(sys.argv)>1 else ''
+if ed in ('aula','prueba'):
+    T={'aula':'Safari Gaucho Aula','prueba':'Safari Gaucho Prueba'}[ed]
     a=s.replace('href="icons/','href="../icons/')
-    a=a.replace('content="https://pavlko.github.io/4x4natural/"','content="https://pavlko.github.io/4x4natural/aula/"')
-    a=a.replace('<meta name="apple-mobile-web-app-title" content="Safari Gaucho">','<meta name="apple-mobile-web-app-title" content="Safari Gaucho Aula">')
-    a=a.replace(HEAD.split('\n')[0],HEAD.split('\n')[0]+"\n<script>window.SG_ED='aula';</script>",1)
-    assert "SG_ED='aula'" in a
-    open('/home/claude/g/aula.html','w').write(a)
+    a=a.replace('content="https://pavlko.github.io/4x4natural/"','content="https://pavlko.github.io/4x4natural/%s/"'%ed)
+    a=a.replace('<meta name="apple-mobile-web-app-title" content="Safari Gaucho">','<meta name="apple-mobile-web-app-title" content="%s">'%T)
+    a=a.replace(HEAD.split('\n')[0],HEAD.split('\n')[0]+"\n<script>window.SG_ED='%s';</script>"%ed,1)
+    assert "SG_ED='%s'"%ed in a
+    open('/home/claude/g/%s.html'%ed,'w').write(a)
 print('ok')

@@ -2,6 +2,12 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v218 · en prueba
+Esta versión está en la dirección de prueba (`/prueba/`). El juego de siempre sigue igual hasta que la pasemos.
+- **La gruta** ya no tiene pinturas ni fuego: es oscura y fresca, y en el techo duermen murciélagos (algunos vuelan). Está inspirada en las Grutas de Salamanca, cerca de Aiguá, que fueron refugio de comunidades indígenas hace unos 8.000 años.
+- **Detrás de la cascada** ahora hay hallazgos reales del este: boleadoras, una piedra con hoyuelos y lascas de piedra tallada. Se sacaron las campanas, los zoolitos, el remo y las pinturas de manos.
+- «La cueva» pasa a llamarse «La gruta».
+
 ## v217
 - Nueva **edición aula** para escuelas, en su propia dirección (`/aula/`). Es el mismo juego, pero sin el botón de aportes, sin WhatsApp, sin modo colaborador y sin los cuadernos que todavía se están armando. Las sugerencias se mandan solo por mail. Guarda la partida aparte, así no se mezcla con la del juego de casa.
 - Se puede volver a instalar como app con su ícono: se habían perdido el manifiesto y los íconos en la página principal.
