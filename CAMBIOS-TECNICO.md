@@ -215,7 +215,14 @@ Un juego de Insight Reality
 - v208  Ayuda en dos libros con pestañas arriba (Cómo se juega / El proyecto); estante de cuadernos solo con íconos, sin scroll; en modo colaborador o desarrollo, cada cuaderno tiene botones a su galería y a toda la galería; los libros en desarrollo invitan a ayudar con botones de WhatsApp y mail
 
 Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v208).
-La versión vigente es index.html (lista como app instalable).## v219 · en prueba
+La versión vigente es index.html (lista como app instalable).## v220 · en prueba
+- `BEACH`, `coastM(x,z)`, `coastProf(x,z)`: en baseH se apaga el borde alto donde está la costa y se mezcla el perfil (dunas 262–279, playa hasta 296, mar después). Arena en colorAt; sin árboles, piedras, arbustos ni pasto sobre la playa.
+- Mar fuera del mapa: dos planos con el material del agua (sur y este).
+- Bloqueo de la camioneta: `coastM>.45 && z>BEACH.dune-2` con toastOnce('playa'). A pie se puede llegar hasta el agua (el límite de profundidad que ya existía).
+- Cartel «Bajada a la playa» (canvas), postes del estacionamiento y pasarela de tablas que sigue el terreno.
+- `regionAt` → 'costa'; lugar nuevo `playa`.
+
+## v219 · en prueba
 - Especie `vampiro` (Desmodus rotundus, grp mamiferos, sin spots). `window.BATP` = animal falso en la gruta (flag `cave`: no se chequea oclusión con el terreno, porque la gruta está bajo el relieve). Se agrega en el visor y en shootCore. `BUILD.vampiro` para la galería.
 - `regionAt(x,z)` + `ZONES` + `updateZone()` (cada 0,5 s junto a updateTrail, con 2 s de confirmación); cartel `#zoneBan`. Ojo: ya existía `zoneAt` (lo usa sandAt), por eso el nombre nuevo.
 

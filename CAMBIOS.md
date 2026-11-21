@@ -2,6 +2,12 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v220 · en prueba
+- **La playa**: al sureste del mapa hay una costa chica con dunas, arena y mar abierto. Es un lugar nuevo para descubrir.
+- **Bajada a la playa**: un estacionamiento con cartel y una pasarela de madera sobre las dunas.
+- **La camioneta no entra a la arena**: en Uruguay está prohibido andar en vehículos por la playa porque rompe las dunas. Si lo intentás, aparece un aviso y hay que seguir a pie.
+- Nueva zona en los carteles: Costa atlántica.
+
 ## v219 · en prueba
 - **Vampiro común**, nueva ficha en Mamíferos: se fotografía en la gruta, colgado del techo. Es el único de los 23 murciélagos de Uruguay que se alimenta de sangre. Ahora son 46 bichos.
 - **Zonas del mapa**: al entrar a cada zona aparece arriba su nombre y a qué lugar real se parece. Sierras y quebradas (Quebrada de los Cuervos), Bañado y laguna (bañados de Rocha), Palmar de butiá (palmares de Castillos) y Campo y monte del arroyo (campos serranos de Maldonado y Lavalleja).
