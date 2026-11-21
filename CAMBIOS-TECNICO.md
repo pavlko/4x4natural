@@ -215,7 +215,15 @@ Un juego de Insight Reality
 - v208  Ayuda en dos libros con pestañas arriba (Cómo se juega / El proyecto); estante de cuadernos solo con íconos, sin scroll; en modo colaborador o desarrollo, cada cuaderno tiene botones a su galería y a toda la galería; los libros en desarrollo invitan a ayudar con botones de WhatsApp y mail
 
 Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v208).
-La versión vigente es index.html (lista como app instalable).## v220 · en prueba
+La versión vigente es index.html (lista como app instalable).## v221 · en prueba
+- Costa en toda la franja sur: `COASTZ(x)` (≈292), `coastM`, `coastProf` (duna secundaria u≈−24, primaria u≈−12, playa −7..0, mar), `puntaAt` (PUNTA.x=−100), `lagC` (laguna costera en x=175), médano en x=250 con cresta en S (`mix` con la máscara para no levantar el mar). Se borró un `COASTZ` viejo sin uso.
+- Barra del arroyo: después de la mezcla de la costa se vuelve a cavar el cauce; en la línea de costa una barra emergida con una boca angosta corrida al este.
+- Pasto dibujante (InstancedMesh, ~1400) en la primaria y margarita de los médanos (hojas + flores amarillas) en la secundaria; también en PLANTS para el herbario.
+- Agua del Río de la Plata: plano marrón semitransparente al oeste de la punta; mar fuera del mapa al sur, este y oeste.
+- Se sacaron el cartel, el estacionamiento y la pasarela. Bloqueo de la camioneta: `nz>COASTZ(nx)-34` solo avanzando hacia el sur.
+- Lugares: playa, punta, barra, lagunac, medano. Región `plata`.
+
+## v220 · en prueba
 - `BEACH`, `coastM(x,z)`, `coastProf(x,z)`: en baseH se apaga el borde alto donde está la costa y se mezcla el perfil (dunas 262–279, playa hasta 296, mar después). Arena en colorAt; sin árboles, piedras, arbustos ni pasto sobre la playa.
 - Mar fuera del mapa: dos planos con el material del agua (sur y este).
 - Bloqueo de la camioneta: `coastM>.45 && z>BEACH.dune-2` con toastOnce('playa'). A pie se puede llegar hasta el agua (el límite de profundidad que ya existía).

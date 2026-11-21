@@ -2,6 +2,15 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v221 · en prueba
+- **Toda la costa sur** ahora es playa: duna secundaria con margarita de los médanos, duna primaria con pasto dibujante, playa y mar.
+- **La punta de piedra** al medio. Al oeste, el agua es más marrón: es el **Río de la Plata**. Al este, el océano.
+- **La barra del arroyo**: el arroyo llega al mar y una barra de arena casi lo cierra, con una boca angosta.
+- **La laguna costera**, escondida detrás de las dunas.
+- **El médano**: una duna móvil de arena suelta con la cresta en S, chica, inspirada en las de Valizas.
+- Sin cartel ni pasarela: todo es ambiente natural. La camioneta frena antes de las dunas y se sigue a pie.
+- Lugares nuevos: La punta de piedra, La barra del arroyo, La laguna costera y El médano. Nueva zona: Costa del Río de la Plata.
+
 ## v220 · en prueba
 - **La playa**: al sureste del mapa hay una costa chica con dunas, arena y mar abierto. Es un lugar nuevo para descubrir.
 - **Bajada a la playa**: un estacionamiento con cartel y una pasarela de madera sobre las dunas.
