@@ -52,3 +52,9 @@ Idea, diseño y dirección: Pablo Bounous (Insight Reality). Programado conversa
 
 ## Licencia
 Código bajo licencia MIT (ver `LICENSE`). Si publicás tu propia versión, te pedimos que le pongas otro nombre y que menciones de dónde salió.
+
+
+## Edición aula
+
+Para escuelas: **https://pavlko.github.io/4x4natural/aula/**  
+Es una versión fija del juego (Aula 1.0), sin aportes, sin contacto por WhatsApp, sin modo colaborador y sin los cuadernos en preparación. Guarda la partida aparte y sus estadísticas se cuentan aparte (rutas `/aula/`). Se actualiza solo cuando se decide pasar una versión nueva al aula.

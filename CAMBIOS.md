@@ -2,6 +2,10 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v217
+- Nueva **edición aula** para escuelas, en su propia dirección (`/aula/`). Es el mismo juego, pero sin el botón de aportes, sin WhatsApp, sin modo colaborador y sin los cuadernos que todavía se están armando. Las sugerencias se mandan solo por mail. Guarda la partida aparte, así no se mezcla con la del juego de casa.
+- Se puede volver a instalar como app con su ícono: se habían perdido el manifiesto y los íconos en la página principal.
+
 ## v216
 - En Mi cuaderno, primero están los contadores («Mis libretas» y «En este cuaderno») y abajo el ✍️ Diario, que va creciendo.
 - El botón «🐾 Abrir la Libreta de fauna» quedó justo debajo del párrafo que la nombra, y el diario sigue abajo. Aparece siempre que no lleves abierta la de fauna.

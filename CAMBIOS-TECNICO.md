@@ -215,7 +215,13 @@ Un juego de Insight Reality
 - v208  Ayuda en dos libros con pestañas arriba (Cómo se juega / El proyecto); estante de cuadernos solo con íconos, sin scroll; en modo colaborador o desarrollo, cada cuaderno tiene botones a su galería y a toda la galería; los libros en desarrollo invitan a ayudar con botones de WhatsApp y mail
 
 Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v208).
-La versión vigente es index.html (lista como app instalable).## v216
+La versión vigente es index.html (lista como app instalable).## v217
+- `AULA` (`window.SG_ED==='aula'` o `?aula`): clase `html.aula`, `.noaula` oculta colaborador y apoyo, `#fbGit` oculto; COLAB() false; devToggle/colabTap sin efecto; sugerencias solo por mail; estante sin «?» de herbario, fósiles y habitantes; SAVE_KEY/PROF_KEY con prefijo `aula_`; sin cartel de novedades.
+- Estadísticas: en aula, rutas `/aula/...` y títulos «Aula · …».
+- `aula/`: index.html (con `SG_ED`), manifest (íconos `../icons/`), sw.js propio (caché `aula-1.0-vNNN`), version.json propio (solo se actualiza cuando se decide pasar una versión al aula).
+- sw.js principal ignora `/aula/`. `herramientas/headfix.py` repone manifest e íconos en el `<head>` (se habían perdido en v184) y arma `aula/index.html`.
+
+## v216
 - renderPortada: orden resumen → diario; `.dgo` insertado tras el párrafo 2; condición `SAVE.openNb!=='campo'`.
 
 ## v215

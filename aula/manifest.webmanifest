@@ -1,0 +1,42 @@
+{
+  "name": "Safari Gaucho · Aula",
+  "short_name": "Safari Aula",
+  "description": "Edición para escuelas de Safari Gaucho: manejá una 4x4 por la sierra y el humedal de Uruguay y fotografiá los bichos donde viven.",
+  "lang": "es",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "display_override": [
+    "fullscreen",
+    "standalone"
+  ],
+  "orientation": "any",
+  "background_color": "#1b1712",
+  "theme_color": "#23402F",
+  "categories": [
+    "games",
+    "education",
+    "kids"
+  ],
+  "icons": [
+    {
+      "src": "../icons/icon-192-v4.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "../icons/icon-512-v4.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "../icons/icon-maskable-512-v4.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
