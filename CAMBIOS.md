@@ -2,6 +2,16 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v223 · en prueba
+- **La barra** corre paralela al mar, entre la duna primaria y la secundaria, y sale al mar más al este.
+- **El médano en S** es el borde de la barra: desde arriba se ve el mar de un lado y la barra y la laguna del otro.
+- **Dunas más variadas**: tres cordones (primaria, secundaria y una tercera que baja al campo), con distinta altura y distancia al mar a lo largo de la costa.
+- **En modo colaborador** la camioneta puede andar por la arena, para revisar la costa rápido.
+- **Botón de cámara** (también en el juego de siempre, v217.1).
+
+## v217.1 · juego de siempre
+- **Botón de cámara** abajo del botón de compartir: «📌 Atrás» cuando la cámara sigue a la camioneta y «🔓 Libre» cuando queda donde la dejaste. Tocándolo se cambia de uno a otro. El doble toque en la pantalla sigue funcionando.
+
 ## v222 · en prueba
 - La laguna del arroyo vuelve a ser la laguna costera: queda justo detrás de las dunas. Se sacó la laguna chica que estaba al este.
 - La barra del arroyo sale al mar corrida hacia el este, cruzando las dunas en diagonal hasta una boca angosta en la playa.
