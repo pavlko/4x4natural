@@ -215,7 +215,11 @@ Un juego de Insight Reality
 - v208  Ayuda en dos libros con pestañas arriba (Cómo se juega / El proyecto); estante de cuadernos solo con íconos, sin scroll; en modo colaborador o desarrollo, cada cuaderno tiene botones a su galería y a toda la galería; los libros en desarrollo invitan a ayudar con botones de WhatsApp y mail
 
 Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v208).
-La versión vigente es index.html (lista como app instalable).## v218 · en prueba
+La versión vigente es index.html (lista como app instalable).## v219 · en prueba
+- Especie `vampiro` (Desmodus rotundus, grp mamiferos, sin spots). `window.BATP` = animal falso en la gruta (flag `cave`: no se chequea oclusión con el terreno, porque la gruta está bajo el relieve). Se agrega en el visor y en shootCore. `BUILD.vampiro` para la galería.
+- `regionAt(x,z)` + `ZONES` + `updateZone()` (cada 0,5 s junto a updateTrail, con 2 s de confirmación); cartel `#zoneBan`. Ojo: ya existía `zoneAt` (lo usa sandAt), por eso el nombre nuevo.
+
+## v218 · en prueba
 - Nueva edición `PRUEBA` (`window.SG_ED==='prueba'` o `?prueba`): guardado con prefijo `prueba_`, estadísticas en `/prueba/…`, cartel «VERSIÓN DE PRUEBA» en el inicio. Carpeta `prueba/` con su index, manifest, sw.js (caché `prueba-vNNN`) y version.json. El sw.js principal ignora `/prueba/`. `herramientas/headfix.py` arma `aula` y `prueba`.
 - El juego estable (`index.html`, `version.json`) queda en v217.
 - Gruta: `art()` no dibuja pinturas; el fuego queda oculto (`FIRE.dead`), luz fija fría, sin chispas ni sonido; `FIRE.bats`: 16 colgados y 5 volando.

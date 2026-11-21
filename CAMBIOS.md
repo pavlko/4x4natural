@@ -2,6 +2,10 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v219 · en prueba
+- **Vampiro común**, nueva ficha en Mamíferos: se fotografía en la gruta, colgado del techo. Es el único de los 23 murciélagos de Uruguay que se alimenta de sangre. Ahora son 46 bichos.
+- **Zonas del mapa**: al entrar a cada zona aparece arriba su nombre y a qué lugar real se parece. Sierras y quebradas (Quebrada de los Cuervos), Bañado y laguna (bañados de Rocha), Palmar de butiá (palmares de Castillos) y Campo y monte del arroyo (campos serranos de Maldonado y Lavalleja).
+
 ## v218 · en prueba
 Esta versión está en la dirección de prueba (`/prueba/`). El juego de siempre sigue igual hasta que la pasemos.
 - **La gruta** ya no tiene pinturas ni fuego: es oscura y fresca, y en el techo duermen murciélagos (algunos vuelan). Está inspirada en las Grutas de Salamanca, cerca de Aiguá, que fueron refugio de comunidades indígenas hace unos 8.000 años.
