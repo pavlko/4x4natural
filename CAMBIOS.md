@@ -2,6 +2,9 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v233 · en prueba
+- Los lobos finos se apoyan sobre la superficie real de la roca y ya no quedan metidos adentro.
+
 ## v232 · en prueba
 - Los lobos finos están arriba de las rocas del lado este y de la punta, al borde del agua.
 - El palmar de butiá se mudó al este de la laguna, junto al barrial, lejos del Río de la Plata.

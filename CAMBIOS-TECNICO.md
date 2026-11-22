@@ -342,3 +342,6 @@ La versión vigente es index.html (lista como app instalable).
 ## v232 · en prueba
 - PROCKS guarda las rocas de la punta (x, z, altura de arriba, tamaño). Los lobos van sobre rocas grandes del lado este con agua a menos de 4 m; a.ry es la altura donde se apoyan.
 - Palmar: el lugar pasa a (185,196); las palmeras no van sobre las dunas ni en el barrial; regionAt usa el centro nuevo con radio 70.
+
+## v233 · en prueba
+- Lobos: la altura de apoyo sale de un rayo hacia abajo contra las rocas de la punta (InstancedMesh), en el centro y en 8 puntos a 0,8 m; se toma la más alta.
