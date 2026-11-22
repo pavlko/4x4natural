@@ -2,6 +2,11 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v230 · en prueba
+- El ostrero camina despacio por la orilla y se queda más rato picoteando.
+- De la ballena solo se ve lo que sale del agua.
+- La ballena sigue saliendo cada 10 a 25 segundos aunque la camioneta quede lejos.
+
 ## v229 · en prueba
 - La cola de la sarda apunta para atrás, con el lóbulo de arriba más largo.
 - La tortuga de buceo tiene aletas grandes que se mueven al nadar.

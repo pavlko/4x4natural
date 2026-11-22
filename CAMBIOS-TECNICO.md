@@ -331,3 +331,7 @@ La versión vigente es index.html (lista como app instalable).
 - sardaMesh: lóbulos caudales con rotation.x +0.9 / 2.3.
 - tortugaUWMesh: aletas más grandes, que se agitan con rotation.z. Al llegar a cada roca gira hacia ella; la cabeza muerde y suelta partículas verdes. Viaja a -1.1 m hasta acercarse. Algas extra en la cara de cada roca donde come.
 - SPUPD.tortugav queda oculta con DIVE.on; BUILD.tortugav suma aletas.
+
+## v230 · en prueba
+- Ostrero: el paso ya no suma a la fase de la ola (eso lo hacía zigzaguear); camina a 0.28 m/s.
+- Ballena: plano de recorte en y=-0.04 (renderer.localClippingEnabled, materiales propios). sp.far evita que se congele cuando está a más de 260 m de la camioneta.
