@@ -2,6 +2,9 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v231 · en prueba
+- El relieve alrededor de la barra es más suave: una orilla baja y después una subida tranquila. El médano en S conserva su cara empinada del lado de la barra.
+
 ## v230 · en prueba
 - El ostrero camina despacio por la orilla y se queda más rato picoteando.
 - De la ballena solo se ve lo que sale del agua.

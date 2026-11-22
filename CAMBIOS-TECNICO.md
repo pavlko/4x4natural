@@ -335,3 +335,6 @@ La versión vigente es index.html (lista como app instalable).
 ## v230 · en prueba
 - Ostrero: el paso ya no suma a la fase de la ola (eso lo hacía zigzaguear); camina a 0.28 m/s.
 - Ballena: plano de recorte en y=-0.04 (renderer.localClippingEnabled, materiales propios). sp.far evita que se congele cuando está a más de 260 m de la camioneta.
+
+## v231 · en prueba
+- Barra: el corte limita la pendiente de las orillas: cap = dep + 1.3·ss(0,5,e) + k·(e−4), con k=0.2 (0.55 junto al médano). Se funde con el terreno entre w+40 y w+65 m.
