@@ -314,3 +314,9 @@ La versión vigente es index.html (lista como app instalable).
 ## v226 · en prueba / v217.4 estable
 - switchProfile llama a colabBanner, devBanner y renderShelf.
 - Estable: colaborador por jugador (colabKey). Ambos: la marca vieja 'sg_colab' del aparato pasa al jugador actual y se borra.
+
+## v227 · en prueba
+- Especies ostrero, gaviotin, tucu, lobofino, ballena, tortugav: BUILD, SPUPD propio, CALLS/CALL_R, grupos, íconos, eBird.
+- shoreZ(x) con caché para la línea de agua; pDist usa playerXZ (a pie).
+- Ballena: a.cx es el recorrido; a.x/a.y/a.z apuntan a lo que asoma (lomo, cola o cuerpo) para la foto.
+- placeNameAt: «La costa», «El mar», «El Río de la Plata».

@@ -2,6 +2,16 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v227 · en prueba
+- Seis bichos nuevos en la costa:
+  - ostrero, que camina por la orilla y se va volando y gritando;
+  - gaviotín sudamericano, que alconea y se zambulle a pescar;
+  - tucu-tucu, que asoma la cabeza de su montoncito de arena y hace «tuc-tuc» bajo tierra;
+  - lobo fino, en las rocas de la punta, que se tira al agua si te acercás;
+  - ballena franca, mar adentro, que sopla, levanta la cola o salta;
+  - tortuga verde, que asoma la cabeza para respirar cerca de la punta.
+- Las fotos sacadas en la costa dicen «La costa», «El mar» o «El Río de la Plata».
+
 ## v226 · en prueba y v217.4 · estable
 - Al cambiar de jugador, el modo colaborador y el modo desarrollo cambian con él (cada uno tiene el suyo, también en el juego estable).
 
