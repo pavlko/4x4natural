@@ -2,6 +2,12 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v235 · en prueba
+- El ostrero es negro y blanco, con el pico rojo anaranjado.
+- Vuelven las olas de la rama playa: espuma que sube y baja en la orilla, más mansa del lado del Río de la Plata.
+- Ballena: el chorro sale de la cabeza en forma de V, y al saltar levanta agua al salir y, más todavía, al caer.
+- Las paredes de los bordes del mapa suben de a poco desde la costa hacia el norte.
+
 ## v234 · en prueba
 - El gaviotín se puede fotografiar más fácil: vuela más cerca de la orilla, más bajo y más despacio, y la foto cuenta el largo de sus alas abiertas.
 

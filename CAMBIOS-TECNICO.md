@@ -348,3 +348,8 @@ La versión vigente es index.html (lista como app instalable).
 
 ## v234 · en prueba
 - Gaviotín: size 0.75 (envergadura); vuela a 5–16 m de la orilla, a 5.5 m de altura y a 4.5 m/s.
+
+## v235 · en prueba
+- Bordes: el alto de la pared se multiplica por 1−ss(COASTZ−175, COASTZ−45, z), en vez de 1−coastM.
+- Espuma de olas: dos tiras a lo largo de shoreZ, al este y al oeste de la punta, animadas en DECO_UPS (como updateSurf de la rama playa).
+- Ballena: chorro con dos conos translúcidos en V hijos de la ballena, más partículas desde el espiráculo. bigSplash: partículas, aro de espuma y corona de 15 conos, al salir (sp2) y al caer (sp1).
