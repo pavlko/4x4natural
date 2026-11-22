@@ -2,6 +2,9 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v234 · en prueba
+- El gaviotín se puede fotografiar más fácil: vuela más cerca de la orilla, más bajo y más despacio, y la foto cuenta el largo de sus alas abiertas.
+
 ## v233 · en prueba
 - Los lobos finos se apoyan sobre la superficie real de la roca y ya no quedan metidos adentro.
 

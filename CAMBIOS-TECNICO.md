@@ -345,3 +345,6 @@ La versión vigente es index.html (lista como app instalable).
 
 ## v233 · en prueba
 - Lobos: la altura de apoyo sale de un rayo hacia abajo contra las rocas de la punta (InstancedMesh), en el centro y en 8 puntos a 0,8 m; se toma la más alta.
+
+## v234 · en prueba
+- Gaviotín: size 0.75 (envergadura); vuela a 5–16 m de la orilla, a 5.5 m de altura y a 4.5 m/s.
