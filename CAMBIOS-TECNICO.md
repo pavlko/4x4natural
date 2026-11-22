@@ -310,3 +310,7 @@ La versión vigente es index.html (lista como app instalable).
 - Rocas de la punta: InstancedMesh de 160 dodecaedros (de prueba-mar.html), con puntaAt.
 - Agua del Plata: MeshBasicMaterial con degradé alfa en CanvasTexture, polygonOffset y renderOrder 2.
 - Puma: desaparece en |x|,|z| > HALF-5 (antes HALF-28). También en estable.
+
+## v226 · en prueba / v217.4 estable
+- switchProfile llama a colabBanner, devBanner y renderShelf.
+- Estable: colaborador por jugador (colabKey). Ambos: la marca vieja 'sg_colab' del aparato pasa al jugador actual y se borra.

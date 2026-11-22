@@ -2,6 +2,9 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v226 · en prueba y v217.4 · estable
+- Al cambiar de jugador, el modo colaborador y el modo desarrollo cambian con él (cada uno tiene el suyo, también en el juego estable).
+
 ## v225 · en prueba
 - El modo colaborador ahora es de cada jugador, no del aparato.
 - Modo desarrollo: la camioneta va a toda velocidad bajo el agua y sube cualquier pendiente.
