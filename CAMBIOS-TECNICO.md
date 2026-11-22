@@ -338,3 +338,7 @@ La versión vigente es index.html (lista como app instalable).
 
 ## v231 · en prueba
 - Barra: el corte limita la pendiente de las orillas: cap = dep + 1.3·ss(0,5,e) + k·(e−4), con k=0.2 (0.55 junto al médano). Se funde con el terreno entre w+40 y w+65 m.
+
+## v232 · en prueba
+- PROCKS guarda las rocas de la punta (x, z, altura de arriba, tamaño). Los lobos van sobre rocas grandes del lado este con agua a menos de 4 m; a.ry es la altura donde se apoyan.
+- Palmar: el lugar pasa a (185,196); las palmeras no van sobre las dunas ni en el barrial; regionAt usa el centro nuevo con radio 70.

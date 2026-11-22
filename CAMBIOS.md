@@ -2,6 +2,10 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v232 · en prueba
+- Los lobos finos están arriba de las rocas del lado este y de la punta, al borde del agua.
+- El palmar de butiá se mudó al este de la laguna, junto al barrial, lejos del Río de la Plata.
+
 ## v231 · en prueba
 - El relieve alrededor de la barra es más suave: una orilla baja y después una subida tranquila. El médano en S conserva su cara empinada del lado de la barra.
 
