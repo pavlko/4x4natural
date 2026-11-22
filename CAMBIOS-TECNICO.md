@@ -301,4 +301,10 @@ La versión vigente es index.html (lista como app instalable).## v224 · en prue
 - Quitado `#cbPl` del banner colaborador y la mención en ayuda.
 - Herbario: 8 solapas `h_*` en `#bookTabs` + secciones `.tp[data-t=h_*]` con `#hg_*`; íconos SVG en ICP; NBK herbario tabs ampliado; `renderDevBooks` llena cada solapa y la portada (`.hport [data-go]`) navega con goTab. `paintIcons` también pinta `.ich[data-ic]`. `.hchips` ya no se usa.
 
-
+## v225 · en prueba / v217.3 estable
+- `colabKey()` = 'sg_colab:'+curKey(); COLAB/setColab usan esa clave.
+- DEVX: sin arrastre de agua (inWater=false), sin gravedad de pendiente, sin patinar ni bloqueo de pared.
+- coastProf(x,z,h0): base tierra adentro mezcla hacia h0 (sin pozo), ancho de playa variable, montículos 2D. barZ = COASTZ-32 (detrás de la duna secundaria); médano en u≈-24.
+- Rocas de la punta: InstancedMesh de 160 dodecaedros (de prueba-mar.html), con puntaAt.
+- Agua del Plata: MeshBasicMaterial con degradé alfa en CanvasTexture, polygonOffset y renderOrder 2.
+- Puma: desaparece en |x|,|z| > HALF-5 (antes HALF-28). También en estable.

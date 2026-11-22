@@ -2,6 +2,18 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v225 · en prueba
+- El modo colaborador ahora es de cada jugador, no del aparato.
+- Modo desarrollo: la camioneta va a toda velocidad bajo el agua y sube cualquier pendiente.
+- La barra del arroyo corre por detrás de la duna secundaria, y el médano en S la acompaña.
+- Detrás de las dunas el terreno ya no se hunde; dunas y playa más irregulares (ancho de playa variable, montículos).
+- Vuelven las rocas de la punta de la vieja rama playa.
+- El agua marrón del Río de la Plata se funde de a poco con el mar, sin parpadeos.
+- El puma se va recién cuando llega al borde del mapa.
+
+## v217.3 · estable
+- El puma se va recién cuando llega al borde del mapa.
+
 ## v224 · en prueba
 - La entrada dice ahora: «Manejá por los ambientes de Uruguay, de la sierra a la costa, y fotografiá los bichos donde viven».
 - **Modo desarrollo** (7 toques en «beta» o en «Quiero colaborar»): la camioneta puede andar por la arena, por las dunas y hasta por abajo del agua. En modo colaborador vuelve a frenar en las dunas, como en el juego normal.
