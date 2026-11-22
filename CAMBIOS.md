@@ -2,6 +2,12 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v229 · en prueba
+- La cola de la sarda apunta para atrás, con el lóbulo de arriba más largo.
+- La tortuga de buceo tiene aletas grandes que se mueven al nadar.
+- La tortuga nada por encima de las rocas, se pone frente a las algas y las muerde, soltando pedacitos verdes.
+- Mientras buceás no aparece la tortuga de superficie, la que sacaba la cabeza y se iba de golpe.
+
 ## v228 · en prueba
 - Buceo en la punta de piedra, con una cañita de buceo en la playa del remanso.
 - El agua es clara en el remanso del este, más turbia hacia lo hondo de la punta y marrón del lado del Río de la Plata.

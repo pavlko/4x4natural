@@ -326,3 +326,8 @@ La versión vigente es index.html (lista como app instalable).
 - coastProf: más hondo alrededor de la punta.
 - DIVES 'punta' (sea:true) con visAt/fogAt por posición; buildPunta arma rocas, mejillones (InstancedMesh), algas, cuevas y los entes pejerrey, lenguado, tortugav, sargo y sarda.
 - genFish no pone mojarras en el mar.
+
+## v229 · en prueba
+- sardaMesh: lóbulos caudales con rotation.x +0.9 / 2.3.
+- tortugaUWMesh: aletas más grandes, que se agitan con rotation.z. Al llegar a cada roca gira hacia ella; la cabeza muerde y suelta partículas verdes. Viaja a -1.1 m hasta acercarse. Algas extra en la cara de cada roca donde come.
+- SPUPD.tortugav queda oculta con DIVE.on; BUILD.tortugav suma aletas.
