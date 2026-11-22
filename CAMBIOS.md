@@ -3,7 +3,7 @@
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
 ## v228 · en prueba
-- Buceo en la punta de piedra, con un cañita de buceo en la playa del remanso.
+- Buceo en la punta de piedra, con una cañita de buceo en la playa del remanso.
 - El agua es clara en el remanso del este, más turbia hacia lo hondo de la punta y marrón del lado del Río de la Plata.
 - Cuatro peces nuevos:
   - pejerreyes en cardumen cerca de la superficie;
