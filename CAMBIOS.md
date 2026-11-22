@@ -2,6 +2,14 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v224 · en prueba
+- La entrada dice ahora: «Manejá por los ambientes de Uruguay, de la sierra a la costa, y fotografiá los bichos donde viven».
+- **Modo desarrollo** (7 toques en «beta» o en «Quiero colaborar»): la camioneta puede andar por la arena, por las dunas y hasta por abajo del agua. En modo colaborador vuelve a frenar en las dunas, como en el juego normal.
+- La cámara libre se marca con 🔄 en vez del candado.
+
+## v217.2 · juego de siempre
+- La cámara libre se marca con 🔄 en vez del candado.
+
 ## v223 · en prueba
 - **La barra** corre paralela al mar, entre la duna primaria y la secundaria, y sale al mar más al este.
 - **El médano en S** es el borde de la barra: desde arriba se ve el mar de un lado y la barra y la laguna del otro.

@@ -215,7 +215,15 @@ Un juego de Insight Reality
 - v208  Ayuda en dos libros con pestañas arriba (Cómo se juega / El proyecto); estante de cuadernos solo con íconos, sin scroll; en modo colaborador o desarrollo, cada cuaderno tiene botones a su galería y a toda la galería; los libros en desarrollo invitan a ayudar con botones de WhatsApp y mail
 
 Cada versión está en versiones/vNN.html (se abre con doble click) y también en el historial git (etiquetas v01…v208).
-La versión vigente es index.html (lista como app instalable).## v223 · en prueba
+La versión vigente es index.html (lista como app instalable).## v224 · en prueba
+- `devToggle` marca `SAVE.devx` (además de `SAVE.dev`, que también pone el colaborador). `DEVX()` = dev de verdad y no colaborador. Con DEVX no se bloquean el agua honda (`hn<-1.35`) ni la costa.
+- Texto `.lead` de la portada.
+- `#camMode`: «🔄 Libre».
+
+## v217.2 · juego de siempre
+- Ícono 🔄 en `#camMode`.
+
+## v223 · en prueba
 - Dunas: tres gaussianas (terciaria u≈−38, secundaria u≈−26, primaria u≈−13) con centro, alto y ancho variables por fbm en x; `coastM` arranca 12 m antes.
 - Barra: `barZ(x)` (≈COASTZ−17,5) y `barD(x,z)` (tramo laguna→barra, tramo paralelo L+4..L+92, tramo a la boca en L+104). Ancho 6→4,2 m, profundidad −1,3→−0,45 en la boca.
 - Médano: `MEDANO.x = LAGX()+70`, cresta en S en u≈−10,5 sobre la franja entre la barra y la playa.
