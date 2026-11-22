@@ -358,3 +358,7 @@ La versión vigente es index.html (lista como app instalable).
 - SPUPD.tortugav: la altura va de mix(fondo+0.3, −0.02, u); sube y baja en unos 2 s, inclinándose.
 - Tortuga de buceo: y = clamp(H+0.35, −0.35) en cada paso; las rocas donde come tienen que tener agua a menos de −1.5 al lado.
 - Lobos: prueban una grilla de 7×7 lugares arriba de cada roca y miden 15 puntos del cuerpo con rayos contra las rocas cercanas. Se quedan con el más parejo (diferencia < 0.35 m).
+
+## v237 · en prueba / v217.5 estable
+- #nbShelf: nowrap, botones flex 1 1 0 con un máximo de 56 px, y 64 px libres a la derecha para la ✕.
+- body:has(#book.show) oculta #colabBan y #devBan.

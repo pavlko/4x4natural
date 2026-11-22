@@ -2,6 +2,10 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v237 · en prueba y v217.5 · estable
+- Los botones de las libretas arriba del cuaderno van en una sola fila y se ven enteros, también en el navegador.
+- Mientras el cuaderno está abierto, no se ven los carteles de colaborador ni de desarrollo.
+
 ## v236 · en prueba
 - La tortuga que sale a respirar se hunde despacio hasta perderse en el fondo, en vez de desaparecer de golpe.
 - La tortuga de buceo ya no se mete por debajo del fondo.
