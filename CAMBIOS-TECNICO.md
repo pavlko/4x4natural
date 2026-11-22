@@ -320,3 +320,9 @@ La versión vigente es index.html (lista como app instalable).
 - shoreZ(x) con caché para la línea de agua; pDist usa playerXZ (a pie).
 - Ballena: a.cx es el recorrido; a.x/a.y/a.z apuntan a lo que asoma (lomo, cola o cuerpo) para la foto.
 - placeNameAt: «La costa», «El mar», «El Río de la Plata».
+
+## v228 · en prueba
+- H(x,z) para z>HALF-1 usa Hsea (fondo que se hunde mar adentro); el resto es Hg. Malla de fondo extra entre SEAX0..SEAX1 y HALF-4..SEAZ1; seaOK limita el nado.
+- coastProf: más hondo alrededor de la punta.
+- DIVES 'punta' (sea:true) con visAt/fogAt por posición; buildPunta arma rocas, mejillones (InstancedMesh), algas, cuevas y los entes pejerrey, lenguado, tortugav, sargo y sarda.
+- genFish no pone mojarras en el mar.

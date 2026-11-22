@@ -2,6 +2,17 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v228 · en prueba
+- Buceo en la punta de piedra, con un cañita de buceo en la playa del remanso.
+- El agua es clara en el remanso del este, más turbia hacia lo hondo de la punta y marrón del lado del Río de la Plata.
+- Cuatro peces nuevos:
+  - pejerreyes en cardumen cerca de la superficie;
+  - un lenguado enterrado en la arena, que se escapa si te acercás mucho;
+  - sargos en las cuevas hondas con mejillones;
+  - la sarda (tiburón tigre de arena), haciendo ochos despacio a media agua cerca de las rocas.
+- La tortuga verde come algas en las rocas: foto especial «comiendo algas».
+- El fondo del mar sigue más allá del borde del mapa frente a la punta, y es más hondo alrededor de ella.
+
 ## v227 · en prueba
 - Seis bichos nuevos en la costa:
   - ostrero, que camina por la orilla y se va volando y gritando;
