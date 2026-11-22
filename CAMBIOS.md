@@ -2,6 +2,11 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v236 · en prueba
+- La tortuga que sale a respirar se hunde despacio hasta perderse en el fondo, en vez de desaparecer de golpe.
+- La tortuga de buceo ya no se mete por debajo del fondo.
+- Los lobos finos buscan un lugar parejo arriba de la roca donde entre todo el cuerpo, sin quedar en el aire.
+
 ## v235 · en prueba
 - El ostrero es negro y blanco, con el pico rojo anaranjado.
 - Vuelven las olas de la rama playa: espuma que sube y baja en la orilla, más mansa del lado del Río de la Plata.

@@ -353,3 +353,8 @@ La versión vigente es index.html (lista como app instalable).
 - Bordes: el alto de la pared se multiplica por 1−ss(COASTZ−175, COASTZ−45, z), en vez de 1−coastM.
 - Espuma de olas: dos tiras a lo largo de shoreZ, al este y al oeste de la punta, animadas en DECO_UPS (como updateSurf de la rama playa).
 - Ballena: chorro con dos conos translúcidos en V hijos de la ballena, más partículas desde el espiráculo. bigSplash: partículas, aro de espuma y corona de 15 conos, al salir (sp2) y al caer (sp1).
+
+## v236 · en prueba
+- SPUPD.tortugav: la altura va de mix(fondo+0.3, −0.02, u); sube y baja en unos 2 s, inclinándose.
+- Tortuga de buceo: y = clamp(H+0.35, −0.35) en cada paso; las rocas donde come tienen que tener agua a menos de −1.5 al lado.
+- Lobos: prueban una grilla de 7×7 lugares arriba de cada roca y miden 15 puntos del cuerpo con rayos contra las rocas cercanas. Se quedan con el más parejo (diferencia < 0.35 m).
