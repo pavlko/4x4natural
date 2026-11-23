@@ -362,3 +362,6 @@ La versión vigente es index.html (lista como app instalable).
 ## v237 · en prueba / v217.5 estable
 - #nbShelf: nowrap, botones flex 1 1 0 con un máximo de 56 px, y 64 px libres a la derecha para la ✕.
 - body:has(#book.show) oculta #colabBan y #devBan.
+
+## v238 · en prueba / v217.6 estable
+- camToggle() lo comparten el botón y el doble toque; con photo activo, el doble toque llama a shoot().

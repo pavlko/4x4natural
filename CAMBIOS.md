@@ -2,6 +2,11 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v238 · en prueba y v217.6 · estable
+- El doble toque en la pantalla pasa la cámara de atrás a libre y de libre a atrás.
+- El botón de cámara muestra siempre el ícono de girar, con el texto «Atrás» o «Libre».
+- En modo foto, y también buceando, el doble toque saca la foto.
+
 ## v237 · en prueba y v217.5 · estable
 - Los botones de las libretas arriba del cuaderno van en una sola fila y se ven enteros, también en el navegador.
 - Mientras el cuaderno está abierto, no se ven los carteles de colaborador ni de desarrollo.
