@@ -376,3 +376,6 @@ La versión vigente es index.html (lista como app instalable).
 ## Aula 1.1
 - Base: versiones/v217.html (Aula 1.0) más bakeGroup, animalLOD, baldosas VEGCH y el tercer escalón de perfCheck. Nada más.
 - Etiqueta «v217 · Aula 1.1» (version.json igual); caché del sw aula-1.1-v217. Fuente en versiones/aula-1.1.html.
+
+## Aula 1.2
+- Fuente: est.html v217.7 con la etiqueta «v217.7 · Aula 1.2» (versiones/aula-1.2.html); caché del sw aula-1.2-v217.7.

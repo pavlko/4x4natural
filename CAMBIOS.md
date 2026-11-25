@@ -2,6 +2,15 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## Aula 1.2 (v217.7 · Aula 1.2)
+- La edición para el aula queda igual al juego estable de ahora. No incluye nada del territorio nuevo de la versión de prueba (costa, punta, buceo de mar). Suma:
+  - el botón de cámara 🔄 Atrás / Libre, con doble toque de ida y vuelta;
+  - el doble toque para sacar la foto;
+  - el puma, que se va recién en el borde del mapa;
+  - los botones de libretas en una sola fila;
+  - lo más liviano para las Ceibal.
+- Sigue sin aportes, sin WhatsApp, sin modo colaborador y sin cuadernos futuros.
+
 ## Aula 1.1 (v217 · Aula 1.1)
 - La edición para el aula es igual a Aula 1.0, solo que más liviana para las laptops de Ceibal: los mismos cambios de rendimiento que la v239 y la v217.7.
 
