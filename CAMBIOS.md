@@ -2,6 +2,13 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## v239 · en prueba y v217.7 · estable
+- Más liviano para las computadoras modestas, como las de Ceibal. Mirando hacia la cascada, la compu dibuja unas 1.900 piezas por cuadro en vez de 5.300.
+  - Los tres árboles grandes con epífitas, junto al arroyo, se dibujan como un solo objeto cada uno.
+  - Los bichos que están a más de unos 120 m no se dibujan; con zoom se ven de más lejos.
+  - El pasto y las plantas chicas lejanas no se dibujan.
+- Si la compu sigue lenta, el juego apaga las sombras solo.
+
 ## v238 · en prueba y v217.6 · estable
 - El doble toque en la pantalla pasa la cámara de atrás a libre y de libre a atrás.
 - El botón de cámara muestra siempre el ícono de girar, con el texto «Atrás» o «Libre».

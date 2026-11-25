@@ -365,3 +365,10 @@ La versión vigente es index.html (lista como app instalable).
 
 ## v238 · en prueba / v217.6 estable
 - camToggle() lo comparten el botón y el doble toque; con photo activo, el doble toque llama a shoot().
+
+## v239 · en prueba / v217.7 estable
+- bakeGroup(g): junta las mallas fijas de un grupo, una por apariencia de material (sin uv). Se usa en HERO_TREES: unas 750 mallas por árbol pasan a unas 15.
+- animalLOD (cada 0.4 s): los bichos a más de 118·LODK·zoom m pasan a la capa 1 (no se dibujan ni dan sombra). Quedan exceptuados sp.far y los de size ≥ 2.5.
+- chunkInstances: los instanced de objetos chicos (radio < 1.6) usan baldosas de 40 m (VEGCH) y se ocultan por distancia: pasto a 75 m, resto a 100 m (× LODK × zoom).
+- perfCheck: tercer escalón sin sombras (sun.castShadow=false); LODK baja a 0.7 y a 0.55.
+- Hacia la cascada, desde el arranque: 5.340 dibujos y 4,5 M triángulos pasan a 1.880 y 2,9 M.
