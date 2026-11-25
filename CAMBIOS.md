@@ -2,6 +2,9 @@
 
 Lo nuevo del juego, de lo más reciente a lo más viejo. El detalle técnico está en [CAMBIOS-TECNICO.md](CAMBIOS-TECNICO.md).
 
+## Aula 1.1 (v217 · Aula 1.1)
+- La edición para el aula es igual a Aula 1.0, solo que más liviana para las laptops de Ceibal: los mismos cambios de rendimiento que la v239 y la v217.7.
+
 ## v239 · en prueba y v217.7 · estable
 - Más liviano para las computadoras modestas, como las de Ceibal. Mirando hacia la cascada, la compu dibuja unas 1.900 piezas por cuadro en vez de 5.300.
   - Los tres árboles grandes con epífitas, junto al arroyo, se dibujan como un solo objeto cada uno.

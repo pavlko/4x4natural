@@ -372,3 +372,7 @@ La versión vigente es index.html (lista como app instalable).
 - chunkInstances: los instanced de objetos chicos (radio < 1.6) usan baldosas de 40 m (VEGCH) y se ocultan por distancia: pasto a 75 m, resto a 100 m (× LODK × zoom).
 - perfCheck: tercer escalón sin sombras (sun.castShadow=false); LODK baja a 0.7 y a 0.55.
 - Hacia la cascada, desde el arranque: 5.340 dibujos y 4,5 M triángulos pasan a 1.880 y 2,9 M.
+
+## Aula 1.1
+- Base: versiones/v217.html (Aula 1.0) más bakeGroup, animalLOD, baldosas VEGCH y el tercer escalón de perfCheck. Nada más.
+- Etiqueta «v217 · Aula 1.1» (version.json igual); caché del sw aula-1.1-v217. Fuente en versiones/aula-1.1.html.
